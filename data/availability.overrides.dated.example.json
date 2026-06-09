@@ -1,0 +1,9 @@
+{
+  "_comment": "EXAMPLE date-keyed overrides (the 'dates' form). Use this when a change is tied to a specific calendar date rather than a weekday — each ISO date collapses to its weekday at resolve time. Loaded via WeekOverrides.from_dated_dict; cfprog-week --overrides picks this form automatically when a 'dates' key is present. base_flags still apply week-wide.",
+  "base_flags": [],
+  "dates": {
+    "2026-06-08": { "flags": ["sessions_hard"], "note": "Monday — peak week, go heavy." },
+    "2026-06-09": { "unavailable": true, "note": "Tuesday — travelling for work." },
+    "2026-06-13": { "flags": ["wl_priority"], "note": "Saturday — weightlifting meet prep." }
+  }
+}
