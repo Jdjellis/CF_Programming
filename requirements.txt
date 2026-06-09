@@ -1,0 +1,9 @@
+# Phase 1 core requires nothing beyond the Python standard library.
+# Install the package (editable) plus dev tooling with:
+#   pip install -e ".[dev]"
+#
+# Later phases add:
+#   gspread, google-auth          # Sheets read/write
+#   pdfplumber or pymupdf         # Slack PDF parsing
+#   streamlit                     # analytics dashboard
+pytest>=7

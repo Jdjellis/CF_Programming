@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cfprog"
+version = "0.1.0"
+description = "Personal CrossFit programming + autoregulation system (Phase 1: policy + deterministic load/plate calculator)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+authors = [{ name = "Josh Ellis" }]
+dependencies = [
+    # Phase 1 core is pure stdlib. External deps land in later phases:
+    #   google-api-python-client / gspread  -> Sheets I/O (Phase 1 read, stubbed)
+    #   pdfplumber / pymupdf                 -> Slack PDF ingestion (Phase 2)
+    #   streamlit                            -> analytics dashboard (Phase 3)
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+sheets = ["gspread>=6", "google-auth>=2"]
+
+[project.scripts]
+cfprog-calc = "cfprog.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

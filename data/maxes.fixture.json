@@ -1,0 +1,22 @@
+{
+  "_comment": "LOCAL FIXTURE ONLY. The single source of truth is the Google Sheet top section (ID 1Q1RlKE9LfTpUYSAqwFWnknJ_g9ftTal1P4eeMBnqY_A). These values mirror that section as of the spec and are used only until Sheets auth is wired. Do NOT hardcode maxes anywhere else; read them through MaxesProvider.",
+  "source": "google_sheet_top_section",
+  "sheet_id": "1Q1RlKE9LfTpUYSAqwFWnknJ_g9ftTal1P4eeMBnqY_A",
+  "unit": "kg",
+  "maxes": {
+    "deadlift": { "one_rm": 240, "year": 2025 },
+    "back_squat": { "one_rm": 165, "year": 2025 },
+    "front_squat": { "one_rm": 135, "year": 2025 },
+    "overhead_squat": { "one_rm": 100, "year": 2020 },
+    "bench_press": { "one_rm": 120, "year": 2022 },
+    "strict_press": { "one_rm": 70, "year": 2022 },
+    "push_press": { "one_rm": 100, "year": 2025 },
+    "push_jerk": { "one_rm": 105, "year": 2022 },
+    "split_jerk": { "one_rm": 124, "year": 2025 },
+    "clean": { "one_rm": 124, "year": 2025 },
+    "power_clean": { "one_rm": 122, "year": 2025 },
+    "snatch": { "one_rm": 88, "year": 2025 },
+    "power_snatch": { "one_rm": 82.5, "year": 2025 },
+    "clean_and_jerk": { "one_rm": 124, "year": 2025 }
+  }
+}

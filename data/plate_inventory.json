@@ -1,0 +1,14 @@
+{
+  "_comment": "Confirmed plate inventory. 'count' is pairs available (one plate per side). null = effectively unlimited supply (calculator minimizes plate count and never reports running out). Weights in kg.",
+  "bar_weight_kg": 20.0,
+  "plates": [
+    { "weight_kg": 25.0,  "count": null },
+    { "weight_kg": 20.0,  "count": null },
+    { "weight_kg": 15.0,  "count": null },
+    { "weight_kg": 10.0,  "count": null },
+    { "weight_kg": 5.0,   "count": null },
+    { "weight_kg": 2.5,   "count": null },
+    { "weight_kg": 1.25,  "count": null },
+    { "weight_kg": 0.5,   "count": null }
+  ]
+}
