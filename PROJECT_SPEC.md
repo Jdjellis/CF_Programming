@@ -74,6 +74,14 @@ supplies arithmetic. Never mix the two.
 > This section is the source content for `skills/programming-policy/SKILL.md`.
 > Formalise it there with a version header and changelog. Everything below is the
 > "brain" the weekly generator applies.
+>
+> **Policy evolves in SKILL.md (versioned), not here.** Refinements since this
+> section was written live in the SKILL.md changelog. Current: **v1.1** —
+> (a) strength is priority #1 over skill, with an explicit triage order
+> (PROTECT → CRUISE → ACCESSORY → SKILL); (b) where the class already covers a
+> PROTECT lift that week (e.g. heavy front squats), defer the heavy stimulus to
+> class and substitute low-CNS supporting **accessory** work (quad / knee) on a
+> non-clashing class day rather than duplicating the lift. See SKILL.md §1, §3, §5.
 
 ### 3.1 Priority tiers
 
@@ -286,7 +294,8 @@ specific = most `requires` satisfied (ties broken by listed order). An explicit
 `choose` wins outright. Override precedence: `unavailable` → `rest` → `choose` →
 `flags`. If nothing is eligible the day is `NEEDS_CHOICE` (it never guesses).
 `resolve_week` returns a Monday-first `ResolvedWeek`; `render_week_markdown`
-prints it. CLI: `cfprog-week` (see README).
+prints it. CLI: `cfprog-avail` (see README). The weekly generator (§5a) consumes
+this resolved week as its day spine.
 
 ### What it does *not* do
 
@@ -315,7 +324,7 @@ deterministic calculator (Section 8 holds).
 | Slack ingestion | Code | Pull latest PDF from channel; parse + tag. (blocked on Slack access) |
 | Sheets read | Code | Read maxes/standards via `MaxesProvider` (stubbed to fixture until auth). |
 | Gym-availability layer (`cfprog.availability`) | Code | General weekly schedule + week/day overrides → resolved week. Feeds "available training days" to the generator. ✅ done |
-| Weekly generator | Code + policy | Applies SKILL.md to the class plan + resolved availability → tiers + schedule + loads. **← next** |
+| Weekly generator | Code + policy | Applies SKILL.md to the class plan + resolved availability → tiers + schedule + loads. ✅ generation done (consumes the availability layer for the day spine + multi-session days; deconfliction placement + Markdown render + daily-adjust; Slack ingestion / Calendar+Slack adapters still pending) |
 | Scheduled job | Code | Cron / GitHub Action, fires Sunday night. |
 
 ---
@@ -332,11 +341,15 @@ deterministic calculator (Section 8 holds).
    analysis. The Sheet is now a read-only XRM snapshot. ✅
 
 **Phase 2 — generation (current), then ingestion:**
-4. **Weekly generator** (the next build): apply `SKILL.md` to a class plan →
-   tier each session (push/cruise/skip), build the weekly schedule with
-   deconfliction, and calculate loads per session via the calculator. Plus a
-   daily readiness-adjust step. Driven by a `ClassPlanProvider` (fixture/manual)
-   until Slack lands. See Section 5a for the contract. **No external deps.**
+4. **Weekly generator** ✅ DONE (generation only): applies `SKILL.md` to a class
+   plan → tiers each session (push/cruise/skip), builds the weekly schedule with
+   deconfliction placement, and calculates loads per session via the calculator.
+   Plus a daily readiness-adjust step and a Markdown renderer (kept separate from
+   generation). Driven by a `ClassPlanProvider` (fixture/manual) until Slack
+   lands. See Section 5a for the contract. No external deps. Modules:
+   `cfprog.classplan`, `cfprog.focus`, `cfprog.generator`, `cfprog.render`,
+   `cfprog.weekcli` (`cfprog-week`). Fixtures: `data/classplan.fixture.json`,
+   `data/focus_blocks.fixture.json`.
 5. Slack PDF ingestion + stimulus tagging (feeds the generator; blocked on Slack
    access method).
 6. Output adapters (Markdown first; Google Calendar / Slack DM later).
@@ -374,18 +387,21 @@ deterministic calculator (Section 8 holds).
   schedule captured in `data/availability.template.json` (per-day options +
   context flags); week-to-week / day-to-day changes layered as overrides and
   resolved deterministically by `cfprog.availability`. See Section 5b.
-- [ ] **Class-plan input (interim)** — until Slack is wired, decide the
-  `ClassPlanProvider` fixture format / how the week's class WODs (movements +
-  stimulus tags + % / rep / RPE targets) are entered. Distinct from availability
-  above: availability is *which class*, the class plan is *what's in it*.
+- [x] **Class-plan input (interim)** — RESOLVED. `ClassPlanProvider` interface
+  with a JSON fixture/manual-entry file (`data/classplan.fixture.json`): per
+  session → day, date, primary `stimulus` + `also_taxes`, movements, and strength
+  pieces (lift + sets/reps + percent|rpe|rep_max target). Mirrors `MaxesProvider`.
+  Distinct from availability above: availability is *which class*, the class plan
+  is *what's in it* — the generator joins them by date.
 - [ ] **Slack access method** — connector vs bot token. Channel is known:
   `GKAQQ7PGE` (workspace `crossfitclaremont`,
   https://crossfitclaremont.slack.com/archives/GKAQQ7PGE).
 - [ ] **Output channel** — Markdown first (decided); Google Calendar events or
   Slack DM later, as swappable adapters.
-- [ ] **Focus block(s) config** — confirm the active block(s): name, length,
-  days/week, tier, session template (default: 6-wk ring-MU 3×/wk + FS/strict-press
-  emphasis).
+- [x] **Focus block(s) config** — RESOLVED (spec default). Configured in
+  `data/focus_blocks.fixture.json`: 6-wk ring-MU block 3×/wk (SKILL) +
+  front-squat/strict-press strength emphasis 2×/wk (PROTECT). Athlete trains
+  Mon–Sat; deload cadence ~every 4th block week (this week is normal).
 - [ ] **Wearable** — device + API, or stay on self-report (optional/future).
 
 ---

@@ -1,13 +1,13 @@
 """CLI for the gym-availability layer: render the resolved week.
 
-    cfprog-week                              # usual week, no changes
-    cfprog-week --flags pm                   # this week starts late -> all-PM days
-    cfprog-week --flags sessions_hard        # hard week -> Monday AM+PM double
-    cfprog-week --rest wednesday             # day-to-day: rest Wednesday
-    cfprog-week --unavailable thursday       # travelling Thursday
-    cfprog-week --choose saturday=sat-wl-only
-    cfprog-week --day-flags saturday=wl_priority
-    cfprog-week --overrides week.json        # full override file (see WeekOverrides)
+    cfprog-avail                             # usual week, no changes
+    cfprog-avail --flags pm                  # this week starts late -> all-PM days
+    cfprog-avail --flags sessions_hard       # hard week -> Monday AM+PM double
+    cfprog-avail --rest wednesday            # day-to-day: rest Wednesday
+    cfprog-avail --unavailable thursday      # travelling Thursday
+    cfprog-avail --choose saturday=sat-wl-only
+    cfprog-avail --day-flags saturday=wl_priority
+    cfprog-avail --overrides week.json       # full override file (see WeekOverrides)
 
 This is I/O only — all resolution lives in cfprog.availability and is unit-tested.
 """

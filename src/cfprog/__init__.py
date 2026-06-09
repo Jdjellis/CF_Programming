@@ -41,6 +41,20 @@ from cfprog.analytics import (
     ratio_gaps,
     RATIO_STANDARDS,
 )
+from cfprog.classplan import (
+    STIMULUS_TAGS,
+    SetScheme,
+    StrengthPiece,
+    ClassSession,
+    ClassPlanProvider,
+    FixtureClassPlanProvider,
+    InMemoryClassPlanProvider,
+)
+from cfprog.focus import (
+    FocusTemplate,
+    FocusBlock,
+    load_focus_blocks,
+)
 from cfprog.availability import (
     AvailabilityProvider,
     FixtureAvailabilityProvider,
@@ -61,6 +75,14 @@ from cfprog.availability import (
     weekday_name,
     WEEKDAYS,
 )
+from cfprog.generator import (
+    WeeklyGenerator,
+    WeeklyPlan,
+    DayPlan,
+    PlannedSession,
+    ResolvedStrength,
+)
+from cfprog.render import render_weekly_plan, render_day_plan
 
 __all__ = [
     "Plate",
@@ -89,6 +111,16 @@ __all__ = [
     "tonnage_by_lift",
     "ratio_gaps",
     "RATIO_STANDARDS",
+    "STIMULUS_TAGS",
+    "SetScheme",
+    "StrengthPiece",
+    "ClassSession",
+    "ClassPlanProvider",
+    "FixtureClassPlanProvider",
+    "InMemoryClassPlanProvider",
+    "FocusTemplate",
+    "FocusBlock",
+    "load_focus_blocks",
     "AvailabilityProvider",
     "FixtureAvailabilityProvider",
     "WeeklyAvailability",
@@ -107,6 +139,13 @@ __all__ = [
     "normalize_weekday",
     "weekday_name",
     "WEEKDAYS",
+    "WeeklyGenerator",
+    "WeeklyPlan",
+    "DayPlan",
+    "PlannedSession",
+    "ResolvedStrength",
+    "render_weekly_plan",
+    "render_day_plan",
 ]
 
 __version__ = "0.1.0"

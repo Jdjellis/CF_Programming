@@ -24,7 +24,8 @@ sheets = ["gspread>=6", "google-auth>=2"]
 [project.scripts]
 cfprog-calc = "cfprog.cli:main"
 cfprog-log = "cfprog.logcli:main"
-cfprog-week = "cfprog.availcli:main"
+cfprog-avail = "cfprog.availcli:main"
+cfprog-week = "cfprog.weekcli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
