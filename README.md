@@ -11,7 +11,7 @@ See [`PROJECT_SPEC.md`](PROJECT_SPEC.md) for the full, authoritative context
 > Never mix the two. All load/plate math is deterministic, unit-tested code —
 > the model never does it at runtime (spec Section 8).
 
-## Status — Phase 1 complete
+## Status
 
 | Deliverable | State |
 |---|---|
@@ -19,9 +19,11 @@ See [`PROJECT_SPEC.md`](PROJECT_SPEC.md) for the full, authoritative context
 | `skills/programming-policy/SKILL.md` (versioned policy from spec §3) | ✅ |
 | Deterministic load/plate calculator (%/rep-max/RPE → kg → plates) | ✅ |
 | Maxes read behind an interface (Sheet source of truth, fixture-backed) | ✅ |
+| Logging layer (`LogStore` → SQLite) + analytics core | ✅ |
+| **Gym-availability layer** (general weekly schedule + week/day overrides) | ✅ |
 
-Phases 2 (Slack ingestion + weekly generator) and 3 (analytics + writeback)
-are **not** started.
+The weekly generator (which consumes availability + class plan + maxes), Slack
+ingestion, and the analytics surface are still ahead (spec §7, Phase 2–3).
 
 ## Layout
 
@@ -32,10 +34,14 @@ src/cfprog/
   plates.py       # deterministic plate solver (the priority deliverable)
   maxes.py        # MaxesProvider interface + fixture + Sheets stub
   calculator.py   # ties it together: lift + target + max -> weight + loadout
+  availability.py # general weekly schedule + week/day overrides -> resolved week
   cli.py          # `cfprog-calc` demo / one-off lookups
+  availcli.py     # `cfprog-week` renders the resolved weekly availability
 data/
   maxes.fixture.json     # mirrors the Sheet top section (stand-in until auth)
   plate_inventory.json   # confirmed bar + plate inventory
+  availability.template.json          # your usual weekly schedule (general availability)
+  availability.overrides.example.json # sample week-to-week / day-to-day overrides
 skills/programming-policy/SKILL.md   # versioned training policy
 tests/                   # unit tests for every piece of arithmetic
 ```
@@ -68,6 +74,36 @@ cfprog-calc front_squat --percent 85
 cfprog-calc clean --rep-max 3
 cfprog-calc strict_press --rpe 8 --reps 5
 ```
+
+## Gym availability
+
+Your *usual* weekly schedule lives in `data/availability.template.json` — each
+day offers one or more **options** (an ordered set of class slots), and options
+carry context flags so the resolver picks the right one. Week-to-week and
+day-to-day changes are layered on top as **overrides**; they never edit the
+template.
+
+```bash
+cfprog-week                                   # usual week
+cfprog-week --flags sessions_hard             # hard week → Monday AM+PM double
+cfprog-week --day-flags tuesday=pm            # train Tuesday evening instead
+cfprog-week --rest wednesday --unavailable thursday
+cfprog-week --choose saturday=sat-wl-only     # WL focus → drop the 7am CrossFit
+cfprog-week --overrides data/availability.overrides.example.json
+```
+
+**Context flags** (toggle per-week or per-day): `sessions_hard` (Mon AM+PM
+double), `pm` (swap a morning day to its all-PM option), and `wl_priority` /
+`needs_double` / `wl_heavy` (the three-way Saturday logic).
+
+**Resolution is deterministic:** for a trainable day the chosen option is the
+*most specific eligible* one — eligible = every `requires` flag active and no
+`excludes` flag active; most specific = most `requires` satisfied (ties broken
+by listed order). An explicit `--choose` wins outright; if nothing is eligible
+the day resolves to `needs_choice` rather than guessing. Override precedence:
+`unavailable` → `rest` → `choose` → `flags`. This layer is the
+`available training days` input the weekly generator (Phase 2) consumes; it does
+**no** load math and invents **no** stimulus.
 
 ### Configured equipment
 
