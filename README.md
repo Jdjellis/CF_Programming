@@ -41,7 +41,8 @@ src/cfprog/
   logstore.py     # LogStore interface + SQLite store (sets, RPE, readiness)
   analytics.py    # estimated 1RM, tonnage, ratio-gap analysis
   classplan.py    # ClassPlanProvider interface + fixture (the week's class plan)
-  focus.py        # focus-block config (skill + strength emphasis)
+  focus.py        # focus-block config + current-focus (skill + strength emphasis)
+  references.py   # parser for the references/ program & drill library
   generator.py    # weekly generator: tier + deconflict + load + daily-adjust
   render.py       # WeeklyPlan -> Markdown (renderer kept separate from generation)
   weekcli.py      # `cfprog-week` generate / render / daily-adjust
@@ -52,6 +53,7 @@ data/
   availability.overrides.example.json # sample week-to-week / day-to-day overrides
   classplan.fixture.json    # the week's class plan (stand-in until Slack ingestion)
   focus_blocks.fixture.json # focus-block configuration
+references/                 # program & drill library (squat block, rehab, ring-MU)
 examples/                   # rendered weekly plan + daily-adjust output
 skills/programming-policy/SKILL.md   # versioned training policy
 tests/                   # unit tests for every piece of arithmetic + the generator
@@ -167,9 +169,17 @@ What the Sunday deliverable gives you (see `examples/`):
 
 **Priority / triage** (SKILL.md v1.1): strength is priority #1 — under time or
 energy pressure work is shed from the bottom up (skill → accessory → class →
-protected strength). Each focus session also carries a configurable `emphasis`
-line (this week's specific drills, e.g. which ring-MU progression to chase), so
-the focus can be refined week to week without touching code.
+protected strength).
+
+**Current focus** (SKILL.md v1.2): each focus block carries a structured *current
+focus* — a name + cues plus an optional `reference` into the `references/`
+program/drill library (rendered as a one-click link). The generator pulls *this
+week's* drills straight from the referenced program for the current program week
+(a visible **wk X/Y** marker that auto-advances), so you refine a structured
+program (e.g. a 12-week squat block) by editing the program, not by re-typing
+drills each week. Link-only references (purchased PDFs) carry an explicit
+`this_week` list instead; a plain-string emphasis still works. Loads are
+unaffected — kilos still come from the calculator.
 
 The class plan is supplied through a `ClassPlanProvider` (fixture / manual entry
 in `data/classplan.fixture.json`) — the same interface pattern as `MaxesProvider`

@@ -8,7 +8,7 @@ description: >
   autoregulating load by daily readiness, or choosing weakness-specific
   accessory work. Does NOT do load arithmetic — that is the deterministic
   calculator's job (the model never does plate/percentage math at runtime).
-version: 1.1.0
+version: 1.2.0
 status: active
 source_of_truth: PROJECT_SPEC.md (Section 3); maxes from Google Sheet top section
 last_updated: 2026-06-09
@@ -138,9 +138,29 @@ come from the calculator; this menu chooses the movement.)
 | **Ring MU** (skill) | Transitions, false-grip work, kip swing on rings, eccentrics — frequency over load | Loading it heavy; chase frequency instead |
 | **Quad / knee support** (when class covers the squat) | Bulgarian split squats, zombie front squats (quad / upright-torso bias), Spanish-squat holds (knee/tendon health) — low-CNS, appended to a class day | A second heavy barbell front squat the same week the class squats heavy |
 
+### Current focus (per-block, reference-backed)
+
 The specific drills within a menu (e.g. *which* ring-MU progression, *which* knee
-rehab) are configured per week as the focus block's `emphasis`, so the focus can
-be refined week to week without changing the policy.
+rehab) are the focus block's **current focus** — a structured `emphasis` on the
+template, not a hand-typed line each week:
+
+- **`name`** + optional **`cues`** — what to prioritise and how.
+- **`reference`** — a path into the `references/` program/drill library (Markdown,
+  rendered as a one-click link). The generator pulls *this week's* drills straight
+  from that file, so you refine the program by editing the program, not the config.
+- **`program_week` / `program_length`** — a visible **wk X/Y** progress marker. The
+  week defaults to the block's `current_week` and **auto-advances** as it
+  increments; an explicit `program_week` lets a focus track its own counter (start
+  mid-program). Non-periodised references (a flat rehab/mobility menu) carry no
+  week marker.
+- **`this_week`** — an optional explicit drill list that overrides the reference
+  (required for link-only references such as a purchased PDF program, which can't
+  be parsed). A plain string `emphasis` still works (treated as `cues`).
+
+Loads are **not** affected: where a drill names a lift + a percentage, the kilos
+still resolve through the calculator via the template's strength pieces — the
+reference text is descriptive. Multiple concurrent focuses each point at their own
+reference and track their own program week (§4).
 
 ## 6. Hard constraints (inherited from spec Section 8)
 
@@ -155,6 +175,19 @@ be refined week to week without changing the policy.
 ---
 
 ## Changelog
+
+### 1.2.0 — 2026-06-09
+- **Current focus, reference-backed (§5).** The per-week `emphasis` is now a
+  structured *current focus*: a name + cues, an optional `reference` into a new
+  `references/` program/drill library, and a `program_week`/`program_length`
+  progress marker that auto-advances with the block week. When a reference is
+  given and `this_week` is omitted, the generator pulls the week's drills straight
+  from the program (single source of truth); link-only references (e.g. purchased
+  PDFs) require an explicit `this_week`. A plain-string emphasis still works.
+- Rationale: the athlete follows structured multi-week programs (e.g. a 12-week
+  squat block) and wants to prioritise *specific* drills with links to the full
+  program, rather than re-typing an emphasis line each week. No change to load
+  arithmetic — the calculator still owns the kilos.
 
 ### 1.1.0 — 2026-06-09
 - **Strength is priority #1 over skill.** Added an explicit triage order

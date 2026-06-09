@@ -10,7 +10,13 @@ from __future__ import annotations
 
 from typing import List
 
-from cfprog.generator import DayPlan, PlannedSession, ResolvedStrength, WeeklyPlan
+from cfprog.generator import (
+    DayPlan,
+    PlannedSession,
+    ResolvedFocus,
+    ResolvedStrength,
+    WeeklyPlan,
+)
 
 _TIER_BADGE = {
     "PROTECT": "🔴 PUSH (PROTECT)",
@@ -42,10 +48,27 @@ def _strength_line(rs: ResolvedStrength) -> str:
     return f"{head}<br>    ↳ {load}"
 
 
+def _focus_md(f: ResolvedFocus) -> List[str]:
+    """Render the current focus: name (wk X/Y) — cues, drills, + a program link."""
+    name = f.name or "Current focus"
+    marker = ""
+    if f.program_week:
+        span = f"/{f.program_length}" if f.program_length else ""
+        marker = f" (wk {f.program_week}{span})"
+    cue = f" — {f.cues}" if f.cues else ""
+    line = f"  - 🎯 **{name}**{marker}{cue}"
+    if f.reference:
+        line += f"  ·  [program ↗]({f.reference})"
+    out = [line]
+    for drill in f.this_week:
+        out.append(f"    - ▹ {drill}")
+    return out
+
+
 def _session_md(s: PlannedSession) -> List[str]:
     lines = [f"- **[{_TIER_BADGE.get(s.tier, s.tier)}]** {s.name}  _({s.stimulus})_"]
-    if s.emphasis:
-        lines.append(f"  - 🎯 _Focus: {s.emphasis}_")
+    if s.focus:
+        lines.extend(_focus_md(s.focus))
     for m in s.movements:
         lines.append(f"  - {m}")
     for rs in s.prescriptions:

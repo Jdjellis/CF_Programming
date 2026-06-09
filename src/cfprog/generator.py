@@ -43,6 +43,7 @@ from cfprog.classplan import ClassPlanProvider, ClassSession, SetScheme, Strengt
 from cfprog.focus import FocusBlock, FocusTemplate
 from cfprog.logstore import LogStore
 from cfprog.models import PrescriptionResult
+from cfprog.references import Reference, load_reference
 
 # Map availability DayStatus -> (human label, is a training day?)
 _STATUS_LABEL = {
@@ -89,6 +90,24 @@ class ResolvedStrength:
 
 
 @dataclass
+class ResolvedFocus:
+    """The current focus resolved for a session (issue #3).
+
+    The generator resolves a template's `FocusEmphasis` against its block: it
+    fixes the program week (config override or the block's `current_week`) and,
+    when no explicit `this_week` is given, pulls the drills for that week straight
+    from the referenced program file. Renderers consume this — no arithmetic.
+    """
+
+    name: str
+    cues: str = ""
+    reference: Optional[str] = None       # path, link-rendered downstream
+    program_week: Optional[int] = None    # set => show "wk X" (periodised)
+    program_length: Optional[int] = None  # "/Y" when known
+    this_week: List[str] = field(default_factory=list)
+
+
+@dataclass
 class PlannedSession:
     """One session on a day: its tier, origin, loads, and any notes."""
 
@@ -100,7 +119,7 @@ class PlannedSession:
     skill_items: List[str] = field(default_factory=list)
     movements: List[str] = field(default_factory=list)
     notes: List[str] = field(default_factory=list)
-    emphasis: str = ""          # week's "what to prioritise" focus (configurable)
+    focus: Optional[ResolvedFocus] = None  # week's current focus (configurable)
 
     @property
     def order(self) -> int:
@@ -254,6 +273,10 @@ class WeeklyGenerator:
         self.availability_provider = availability_provider
         self.overrides = overrides
         self.base_flags = tuple(base_flags)
+        # Parsed-reference cache (path -> Reference | None), so a referenced
+        # program is read once per generate() regardless of how many sessions
+        # cite it. None records a link-only / unparseable reference.
+        self._ref_cache: Dict[str, Optional[Reference]] = {}
 
     # -- load resolution ----------------------------------------------------
 
@@ -301,7 +324,60 @@ class WeeklyGenerator:
             prescriptions=prescriptions,
             skill_items=list(tpl.skill_items),
             movements=list(tpl.movements),
-            emphasis=tpl.emphasis,
+            focus=self._resolve_focus(block, tpl),
+        )
+
+    # -- current-focus resolution (issue #3) --------------------------------
+
+    def _reference(self, ref: Optional[str]) -> Optional[Reference]:
+        if not ref:
+            return None
+        if ref not in self._ref_cache:
+            self._ref_cache[ref] = load_reference(ref)
+        return self._ref_cache[ref]
+
+    def _resolve_focus(
+        self, block: FocusBlock, tpl: FocusTemplate
+    ) -> Optional[ResolvedFocus]:
+        """Resolve a template's configured emphasis into a session focus.
+
+        Where the focus omits `this_week` and points at a parseable program, the
+        drills are pulled for the program week (explicit override, else the
+        block's `current_week` — so it auto-advances week to week). A periodised
+        program surfaces a "wk X/Y" marker; a flat drill menu (rehab/mobility)
+        carries no week marker. No load arithmetic happens here.
+        """
+        emp = tpl.emphasis
+        if emp is None or emp.is_empty:
+            return None
+
+        name, cues = emp.name, emp.cues
+        program_week, program_length = emp.program_week, emp.program_length
+        this_week = list(emp.this_week)
+
+        ref_obj = self._reference(emp.reference)
+        if not this_week and ref_obj is not None:
+            wk_index = program_week if program_week is not None else block.current_week
+            week = ref_obj.for_week(wk_index)
+            this_week = list(week.drills)
+            if not cues:
+                cues = week.cues
+            if ref_obj.num_weeks is not None:
+                # Periodised program -> surface (and auto-advance) the week marker.
+                if program_week is None:
+                    program_week = block.current_week
+                if program_length is None:
+                    program_length = ref_obj.num_weeks
+        if ref_obj is not None and not name:
+            name = ref_obj.title
+
+        return ResolvedFocus(
+            name=name,
+            cues=cues,
+            reference=emp.reference,
+            program_week=program_week,
+            program_length=program_length,
+            this_week=this_week,
         )
 
     # -- placement / deconfliction -----------------------------------------
