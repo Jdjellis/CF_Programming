@@ -138,10 +138,10 @@ with, or vice versa.
 
 | Source | Role | Notes |
 |---|---|---|
-| **Google Sheet (top section)** | **Source of truth** for maxes + standards | PRs, %-of-1RM table, rep-max→% table, lift-ratio standards. Sheet ID: `1Q1RlKE9LfTpUYSAqwFWnknJ_g9ftTal1P4eeMBnqY_A` |
-| **Slack PDF** | **Sole weekly programming input** | Posted Sunday night to the Claremont channel `GKAQQ7PGE` (workspace `crossfitclaremont`). Class WODs + recommended extras. |
-| **Log (new Sheet tab or store)** | Logged actuals + RPE | Write here; do **not** touch the old training blocks (deprecated). |
-| **Wearable (optional)** | Readiness + sleep feed | Future. Structured feed in lieu of self-report. |
+| **Google Sheet (top section)** | **Read-only snapshot of current XRMs** (source of truth for *maxes*) | PRs, %-of-1RM table, rep-max→% table, lift-ratio standards. Read via `MaxesProvider`. Sheet ID: `1Q1RlKE9LfTpUYSAqwFWnknJ_g9ftTal1P4eeMBnqY_A`. **Not** the analytics database — see below. |
+| **SQLite store** (`data/cfprog.db`) | **Database for all recorded lifts, RPE, and readiness** | The thing analytics queries. Sits behind the `LogStore` interface (swappable for Postgres/hosted later). The Sheet stays a snapshot; logged actuals live here, never written back to the deprecated Sheet blocks. |
+| **Slack PDF** | **Sole weekly programming input** | Posted Sunday night to the Claremont channel `GKAQQ7PGE` (workspace `crossfitclaremont`). Class WODs + recommended extras. Until Slack is wired, the class plan is supplied through a `ClassPlanProvider` interface (fixture/manual entry), mirroring how maxes are stubbed. |
+| **Wearable (optional)** | Readiness + sleep feed | Future. Structured feed in lieu of self-report; lands in the readiness table of the SQLite store. |
 
 ### Reference tables (mirror the Sheet; Sheet stays live source)
 
@@ -170,15 +170,80 @@ with, or vice versa.
 
 ```
 Sunday night
-  └─ Slack PDF drops
+  └─ Slack PDF drops  (until wired: class plan via ClassPlanProvider fixture)
        └─ INGESTION: parse class WODs + extras, tag each by stimulus
-            └─ DECONFLICTION: place focus-block work, flag interference
-                 └─ daily READINESS input adjusts load/volume (green/amber/red)
-                      └─ LOAD CALC: %/RPE → kg → plate math (from current maxes)
-                           └─ OUTPUT: weekly plan + daily adjustments
-                                └─ LOG actuals + RPE
-                                     └─ WRITEBACK to Sheet → ANALYTICS update
+            └─ WEEKLY GENERATOR (applies SKILL.md):
+                 ├─ TIER each session: PUSH (protect) / CRUISE / SKILL-or-SKIP
+                 ├─ DECONFLICT: place focus-block work, flag interference
+                 └─ LOAD CALC: %/RPE → kg → plate math (from current maxes)
+                      └─ OUTPUT: the Sunday weekly plan (schedule + tiers + loads)
+                           └─ daily READINESS (from log) adjusts each session
+                                └─ LOG actuals + RPE → SQLite → ANALYTICS update
 ```
+
+---
+
+## 5a. Weekly generator — contract (Phase 2 build target)
+
+The generator runs **Sunday** and produces a plan for the week ahead. It is the
+glue between the policy (`SKILL.md`), the log (readiness + history), the maxes
+(Sheet), and the deterministic calculator. **It applies the policy; it does not
+re-improvise it, and it never does load arithmetic itself** — loads come from
+the calculator.
+
+### The Sunday deliverable must tell me three things
+
+1. **What to push, cruise, or skip** — every session tagged with its tier:
+   - **PUSH** = PROTECT work (front-squat / strict-press strength). Do it, on the
+     best-readiness day, before conditioning.
+   - **CRUISE** = class metcons / extras. Autoregulate intensity here.
+   - **SKILL / SKIP-ELIGIBLE** = focus-block skill work; do it if able, first to
+     go on a red day.
+2. **A schedule for the week** — a day-by-day plan (which sessions, in what
+   order), with focus-block work placed and interference flagged/resolved per the
+   deconfliction rules.
+3. **Calculated loads for each session** — for every strength prescription, the
+   working weight **and** the per-side plate loadout, from the calculator.
+
+### Inputs
+
+- **Class plan** for the week: per session → day, primary stimulus tag
+  (`heavy_squat | heavy_pull | press | gymnastics | engine | mixed`), movements,
+  and any prescribed % / rep / RPE targets. From Slack later; from a
+  `ClassPlanProvider` (fixture/manual) for now.
+- **Focus block(s)**: name, length (weeks), days/week, tier, session template
+  (Section 3.4). Configured, not hardcoded.
+- **Maxes**: via `MaxesProvider` (Sheet snapshot).
+- **Readiness**: latest known from the `LogStore`; future days default to a
+  planned tier (assume GREEN for top-set planning) with the daily-adjustment
+  table applied at session time.
+- **Athlete config**: available training days, deload cadence (~every 4th week;
+  banked amber/red can pull it earlier).
+
+### Process (policy, then arithmetic)
+
+1. Tag each piece of work with a tier.
+2. Place focus-block sessions across the week, deconflicting against class
+   stimulus: no same-stimulus on consecutive days; don't double-load a pattern
+   the class already taxes (move/drop the PROTECT clash — prefer *move*);
+   sequence strength before conditioning on shared days.
+3. Resolve each strength target to kg + plates via the calculator.
+4. Emit the plan, plus a per-day readiness-adjustment guide (green/amber/red →
+   what changes).
+
+### Output
+
+- **Start with a Markdown weekly plan** (written to a file / printed). Google
+  Calendar events and Slack DM are later, swappable output adapters — keep the
+  plan a structured object so renderers can vary.
+- A **daily adjust** step (callable each morning) takes the day's readiness and
+  re-emits that day's sessions adjusted (trim back-off on amber; drop to
+  SKILL/recovery on red), reusing the same calculator.
+
+### Scheduling
+
+Fires Sunday night via cron / GitHub Action (Phase 2 wiring). The generator
+itself is pure given its inputs, so it's testable without the scheduler.
 
 ---
 
@@ -194,34 +259,42 @@ Sunday night
 
 | Component | Home | Notes |
 |---|---|---|
-| `skills/programming-policy/SKILL.md` | Code | Versioned policy (Section 3). |
-| Load/plate calculator | Code | **Deterministic. Never LLM arithmetic.** Unit-tested. |
-| Slack ingestion | Code | Pull latest PDF from channel; parse + tag. |
-| Sheets read/write | Code | Read maxes/standards; write log. |
-| Weekly generator | Code + policy | Applies SKILL.md to ingested plan. |
-| Analytics suite | Code | Reads Sheet; thin viz layer (Streamlit or React). |
+| `skills/programming-policy/SKILL.md` | Code | Versioned policy (Section 3). ✅ done |
+| Load/plate calculator | Code | **Deterministic. Never LLM arithmetic.** Unit-tested. ✅ done |
+| Logging layer (`LogStore` → SQLite) | Code | Recorded lifts + RPE + readiness; analytics DB. ✅ done |
+| Analytics (estimated 1RM, tonnage, ratio gaps) | Code | Deterministic core done; viz layer (Streamlit/React) later |
+| Slack ingestion | Code | Pull latest PDF from channel; parse + tag. (blocked on Slack access) |
+| Sheets read | Code | Read maxes/standards via `MaxesProvider` (stubbed to fixture until auth). |
+| Weekly generator | Code + policy | Applies SKILL.md to the class plan → tiers + schedule + loads. **← next** |
 | Scheduled job | Code | Cron / GitHub Action, fires Sunday night. |
 
 ---
 
 ## 7. Build sequence (phased)
 
-**Phase 1 — foundation (useful day one, no external deps):**
-1. Repo scaffold.
-2. `skills/programming-policy/SKILL.md` from Section 3.
+**Phase 1 — foundation (useful day one, no external deps): ✅ DONE**
+1. Repo scaffold. ✅
+2. `skills/programming-policy/SKILL.md` from Section 3. ✅
 3. Deterministic **load/plate calculator**: %/RPE/rep-max → kg → exact plate
-   loadout per side, from current maxes. Unit-tested against known cases.
+   loadout per side, from current maxes. Unit-tested against known cases. ✅
+3a. (added) **Logging layer + analytics core**: SQLite `LogStore` for recorded
+   lifts/RPE/readiness; deterministic estimated-1RM, tonnage, and ratio-gap
+   analysis. The Sheet is now a read-only XRM snapshot. ✅
 
-**Phase 2 — ingestion + generation:**
-4. Slack PDF ingestion + stimulus tagging.
-5. Weekly generator: deconfliction + readiness adjustment + load prescriptions.
-6. Output format (doc / calendar / Slack DM — TBD).
+**Phase 2 — generation (current), then ingestion:**
+4. **Weekly generator** (the next build): apply `SKILL.md` to a class plan →
+   tier each session (push/cruise/skip), build the weekly schedule with
+   deconfliction, and calculate loads per session via the calculator. Plus a
+   daily readiness-adjust step. Driven by a `ClassPlanProvider` (fixture/manual)
+   until Slack lands. See Section 5a for the contract. **No external deps.**
+5. Slack PDF ingestion + stimulus tagging (feeds the generator; blocked on Slack
+   access method).
+6. Output adapters (Markdown first; Google Calendar / Slack DM later).
+7. Scheduled job (cron / GitHub Action) firing Sunday night.
 
-**Phase 3 — analytics + writeback:**
-7. Log writeback to Sheet.
-8. Analytics: PR trend lines, estimated 1RM from logged sets, automated
-   ratio-gap analysis vs standards, tonnage/volume, readiness-vs-performance
-   correlation (once wearable feeds it).
+**Phase 3 — analytics surface + automation:**
+8. Viz layer over the analytics core (PR trend lines, tonnage, ratio gaps,
+   readiness-vs-performance correlation once the wearable feeds it).
 
 ---
 
@@ -233,21 +306,30 @@ Sunday night
   duplicate or hardcode maxes elsewhere.
 - **Policy lives in the versioned SKILL.md** — the generator applies it; it isn't
   re-improvised per run.
-- **Do not write to the deprecated training blocks** in the Sheet; create a fresh
-  log target.
+- **Logged actuals live in the SQLite store, never in the Sheet.** The Sheet is a
+  read-only XRM snapshot; do not write to it (and never touch the deprecated
+  training blocks). Recorded lifts/RPE/readiness go to `data/cfprog.db` via
+  `LogStore`.
 
 ---
 
 ## 9. Open inputs (fill before building the dependent parts)
 
-- [ ] **Plate inventory + bar weight** — required for the calculator's plate
-  rounding. (e.g. bar 20 kg; pairs of 25/20/15/10/5/2.5/1.25 — confirm what you
-  own and any micro/fractional plates.)
+- [x] **Plate inventory + bar weight** — RESOLVED. 20 kg bar; pairs of
+  25/20/15/10/5/2.5/1.25 kg + 0.5 kg micro, effectively unlimited supply. See
+  `data/plate_inventory.json`.
+- [x] **Log write target** — RESOLVED. SQLite store (`data/cfprog.db`) behind the
+  `LogStore` interface. Sheet stays a read-only XRM snapshot.
+- [ ] **Class-plan input (interim)** — until Slack is wired, decide the
+  `ClassPlanProvider` fixture format / how the week's class sessions are entered.
 - [ ] **Slack access method** — connector vs bot token. Channel is known:
   `GKAQQ7PGE` (workspace `crossfitclaremont`,
   https://crossfitclaremont.slack.com/archives/GKAQQ7PGE).
-- [ ] **Log write target** — new Sheet tab name, or separate store.
-- [ ] **Output channel** — doc, Google Calendar events, or Slack DM.
+- [ ] **Output channel** — Markdown first (decided); Google Calendar events or
+  Slack DM later, as swappable adapters.
+- [ ] **Focus block(s) config** — confirm the active block(s): name, length,
+  days/week, tier, session template (default: 6-wk ring-MU 3×/wk + FS/strict-press
+  emphasis).
 - [ ] **Wearable** — device + API, or stay on self-report (optional/future).
 
 ---
