@@ -52,11 +52,11 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - **Push Press** — 1 x 3 @ 85% of 1RM ⭐<br>    ↳ `85 kg` (85% of 100) — per side: 25 + 5 + 2.5
   - **Push Press** — 1 x 5 @ 75% of 1RM<br>    ↳ `75 kg` (75% of 100) — per side: 25 + 2.5
 - **[🟢 SKILL / skip-eligible (flex)]** Ring MU skill  ·  Ring Muscle-Up Block  _(gymnastics)_
-  - 🎯 _Focus: This week's focus: false-grip strength + the transition turnover (chase frequency, not load)._
-  - ◦ False-grip ring rows — 4 x 6
-  - ◦ Ring MU transitions (low rings / feet assist) — 5 x 3
-  - ◦ Kip swing on rings — 4 x 5
-  - ◦ Eccentric lower from support — 4 x 3
+  - 🎯 **Kipping ring muscle-up block** (wk 3/6) — Chase frequency, not load.  ·  [program ↗](references/ring-mu-kipping.md)
+    - ▹ False-grip ring pull-ups — 4x4
+    - ▹ Low-ring transitions (feet assist, minimal) — 5x3
+    - ▹ Kip swing to high pull (sternum to rings) — 5x4
+    - ▹ Eccentric lower from support — 4x3
 
 ### Tue 2026-06-09 — Train · class: **engine** _(also taxes: gymnastics)_
 
@@ -67,10 +67,13 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - B. 21 min alt OTM x10: hanging tuck hold / seated straddle leg lifts
   - Comp extras: Sorensen / GHD side plank / back ext quality; Front Squat Dips — build to heavy 3 then 5x2 @80%
 - **[🟣 ACCESSORY (support — flex)]** Quad / knee supporting work  ·  Front Squat / Strict Press Strength  _(heavy_squat)_
-  - 🎯 _Focus: Quad development + knee health — class already supplies the heavy squat stimulus this week._
-  - Bulgarian split squat — 3 x 8 / leg (controlled, full depth)
-  - Zombie front squat — 3 x 5 (front-rack + quad/upright-torso bias)
-  - Spanish squat (banded) — 3 x 20s holds (knee rehab / tendon health)
+  - 🎯 **Knee / tendon rehab** — Quad development + knee health — class already supplies the heavy squat stimulus this week.  ·  [program ↗](references/knee-rehab.md)
+    - ▹ Spanish squat (banded) — 3x20–30s isometric holds (tendon health)
+    - ▹ ATG split squat (bodyweight → goblet) — 3x8/leg, controlled full depth
+    - ▹ Zombie front squat — 3x5 (front-rack + quad / upright-torso bias)
+    - ▹ Bulgarian split squat — 3x8/leg
+    - ▹ Tibialis raises — 3x15 (knee tracking / lower-leg balance)
+    - ▹ Slant-board single-leg sit — 3x10/leg (VMO + tendon load)
   - ⚠ _Class already supplies heavy_squat (Mon, Wed, Sat). Deferring the heavy stimulus to class; personal squat work = supporting accessory (low-CNS) appended to Tue — no competing barbell front squat (SKILL.md §3.3)._
 
 ### Wed 2026-06-10 — Train · class: **heavy_squat** _(also taxes: engine, heavy_pull)_
@@ -88,18 +91,21 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - **Power Snatch — build to 3RM** — 1 x 3 @ 3RM ⭐<br>    ↳ `76.5 kg` (93% of 82.5) — per side: 25 + 1.25 + 4×0.5 _(Δ-0.225)_
   - **Snatch Pull (@120% of snatch)** — 3 x 3 @ 120% of 1RM ⭐<br>    ↳ `105.5 kg` (120% of 88) — per side: 25 + 15 + 1.25 + 3×0.5 _(Δ-0.1)_
 - **[🟢 SKILL / skip-eligible (flex)]** Ring MU skill  ·  Ring Muscle-Up Block  _(gymnastics)_
-  - 🎯 _Focus: This week's focus: false-grip strength + the transition turnover (chase frequency, not load)._
-  - ◦ False-grip ring rows — 4 x 6
-  - ◦ Ring MU transitions (low rings / feet assist) — 5 x 3
-  - ◦ Kip swing on rings — 4 x 5
-  - ◦ Eccentric lower from support — 4 x 3
+  - 🎯 **Kipping ring muscle-up block** (wk 3/6) — Chase frequency, not load.  ·  [program ↗](references/ring-mu-kipping.md)
+    - ▹ False-grip ring pull-ups — 4x4
+    - ▹ Low-ring transitions (feet assist, minimal) — 5x3
+    - ▹ Kip swing to high pull (sternum to rings) — 5x4
+    - ▹ Eccentric lower from support — 4x3
 
 ### Thu 2026-06-11 — Train · class: **gymnastics** _(also taxes: heavy_pull)_
 
 - _Available sessions: 17:30 Gymnastics, 18:30 Comp class_
 
 - **[🔴 PUSH (PROTECT)]** Strict Press strength  ·  Front Squat / Strict Press Strength  _(press)_
-  - 🎯 _Focus: Overhead press is the genuine weak link (SP 70 vs 80 goal) — class under-supplies it; this is the protected lift this week._
+  - 🎯 **Strict press / strict-HSPU strength** — Overhead press is the genuine weak link (SP 70 vs 80 goal) — class under-supplies it; this is the protected lift this week.
+    - ▹ Strict Press — top single @ RPE 8, then 3x5 @ 75% (dedicated overhead volume)
+    - ▹ Strict HSPU progression (deficit / negatives) — 4x4 accessory
+    - ▹ Half-kneeling DB press — 3x8/arm (overhead stability)
   - Strict Press — dedicated overhead-press volume
   - Strict HSPU progression — accessory
   - **Strict Press** — 1 x 5 @ 5 reps @ RPE 8 ⭐<br>    ↳ `58 kg` (83% of 70) — per side: 15 + 2.5 + 3×0.5 _(Δ-0.1)_
@@ -134,11 +140,11 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - **Snatch (OTM @70%)** — 10 x 1 @ 70% of 1RM ⭐<br>    ↳ `61.5 kg` (70% of 88) — per side: 15 + 2.5 + 1.25 + 4×0.5 _(Δ-0.1)_
   - **Clean (OTM @70%)** — 10 x 1 @ 70% of 1RM ⭐<br>    ↳ `87 kg` (70% of 124) — per side: 25 + 5 + 2.5 + 2×0.5 _(Δ+0.2)_
 - **[🟢 SKILL / skip-eligible (flex)]** Ring MU skill  ·  Ring Muscle-Up Block  _(gymnastics)_
-  - 🎯 _Focus: This week's focus: false-grip strength + the transition turnover (chase frequency, not load)._
-  - ◦ False-grip ring rows — 4 x 6
-  - ◦ Ring MU transitions (low rings / feet assist) — 5 x 3
-  - ◦ Kip swing on rings — 4 x 5
-  - ◦ Eccentric lower from support — 4 x 3
+  - 🎯 **Kipping ring muscle-up block** (wk 3/6) — Chase frequency, not load.  ·  [program ↗](references/ring-mu-kipping.md)
+    - ▹ False-grip ring pull-ups — 4x4
+    - ▹ Low-ring transitions (feet assist, minimal) — 5x3
+    - ▹ Kip swing to high pull (sternum to rings) — 5x4
+    - ▹ Eccentric lower from support — 4x3
 
 ### Sun 2026-06-14 — REST
 

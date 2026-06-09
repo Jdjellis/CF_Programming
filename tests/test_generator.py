@@ -21,7 +21,7 @@ from cfprog.classplan import (
     SetScheme,
     StrengthPiece,
 )
-from cfprog.focus import FocusBlock, FocusTemplate, load_focus_blocks
+from cfprog.focus import FocusBlock, FocusEmphasis, FocusTemplate, load_focus_blocks
 from cfprog.generator import WeeklyGenerator
 from cfprog.models import Target
 
@@ -175,13 +175,24 @@ def test_triage_guide_present_strength_first(plan):
     assert "Skill" in plan.triage[-1]
 
 
-def test_focus_sessions_carry_configurable_emphasis(plan):
-    """The per-week drill focus is surfaced (point: refine what to prioritise)."""
+def test_focus_sessions_carry_resolved_current_focus(plan):
+    """Each focus session surfaces a structured current focus (issue #3)."""
     focus = [s for d in plan.days for s in d.sessions if s.origin == "focus"]
-    ring = next(s for s in focus if "Ring MU" in s.name)
-    press = next(s for s in focus if "Strict Press" in s.name)
-    assert "false-grip" in ring.emphasis.lower()
-    assert press.emphasis
+    ring = next(s for s in focus if s.name.startswith("Ring MU"))
+    press = next(s for s in focus if s.name.startswith("Strict Press"))
+
+    # Ring MU is reference-backed: drills pulled for the block's current week (3),
+    # auto-advancing without hand-typing them in config.
+    assert ring.focus is not None
+    assert ring.focus.reference == "references/ring-mu-kipping.md"
+    assert ring.focus.program_week == 3 and ring.focus.program_length == 6
+    assert any("false-grip" in d.lower() for d in ring.focus.this_week)
+
+    # Strict press is an inline focus (no parseable reference): explicit this_week.
+    assert press.focus is not None
+    assert press.focus.reference is None
+    assert press.focus.this_week
+    assert press.focus.cues
 
 
 def test_rest_day_present_and_empty(plan):
@@ -227,6 +238,98 @@ def test_protect_dropped_when_class_taxes_pattern_every_day(calc):
     assert plan.flags
     assert "DROPPED PROTECT" in plan.flags[0]
     assert "every training day" in plan.flags[0]
+
+
+# ---------------------------------------------------------------------------
+# Current-focus resolution (issue #3)
+# ---------------------------------------------------------------------------
+
+def _block_with_emphasis(emphasis, current_week=3):
+    tpl = FocusTemplate(name="Skill", stimulus="gymnastics", emphasis=emphasis)
+    return FocusBlock(
+        name="Block", length_weeks=6, current_week=current_week,
+        days_per_week=1, tier="SKILL", templates=(tpl,),
+    )
+
+
+def _resolve(emphasis, current_week=3, calc=None):
+    block = _block_with_emphasis(emphasis, current_week)
+    gen = WeeklyGenerator(FixtureClassPlanProvider(), [block], calc or LoadCalculator())
+    return gen._resolve_focus(block, block.templates[0])
+
+
+def test_focus_auto_advances_with_block_week():
+    """program_week defaults to the block's current_week -> drills auto-advance."""
+    emp = FocusEmphasis(reference="references/ring-mu-kipping.md")
+    wk2 = _resolve(emp, current_week=2)
+    wk5 = _resolve(emp, current_week=5)
+    assert wk2.program_week == 2 and wk5.program_week == 5
+    assert wk2.program_length == 6
+    assert wk2.this_week != wk5.this_week           # different week, different drills
+
+
+def test_focus_program_week_override_starts_mid_program():
+    """An explicit program_week lets a focus track its own counter (open Q2)."""
+    emp = FocusEmphasis(reference="references/squat-12wk-block.md", program_week=4)
+    res = _resolve(emp, current_week=2)              # block week 2, program week 4
+    assert res.program_week == 4 and res.program_length == 12
+    assert res.this_week                             # week-4 drills pulled
+
+
+def test_explicit_this_week_overrides_reference():
+    emp = FocusEmphasis(
+        reference="references/squat-12wk-block.md",
+        this_week=("My own drill A", "My own drill B"),
+    )
+    res = _resolve(emp)
+    assert list(res.this_week) == ["My own drill A", "My own drill B"]
+
+
+def test_flat_menu_reference_has_no_week_marker():
+    """A non-periodised rehab menu carries drills but no wk X/Y marker."""
+    emp = FocusEmphasis(reference="references/knee-rehab.md")
+    res = _resolve(emp)
+    assert res.program_week is None and res.program_length is None
+    assert res.this_week                             # menu drills still surfaced
+
+
+def test_pdf_reference_is_link_only_uses_config_this_week():
+    """A link-only (unparseable) reference falls back to the configured drills."""
+    emp = FocusEmphasis(
+        name="Purchased squat program",
+        reference="references/purchased.pdf",
+        program_week=5,
+        program_length=10,
+        this_week=("Day's prescription from the PDF",),
+    )
+    res = _resolve(emp)
+    assert res.reference == "references/purchased.pdf"   # still linked
+    assert res.program_week == 5 and res.program_length == 10
+    assert res.this_week == ["Day's prescription from the PDF"]
+
+
+def test_plain_string_emphasis_is_backward_compatible():
+    """A bare string is treated as cues with no reference (old emphasis)."""
+    block = _block_with_emphasis("just chase frequency")
+    gen = WeeklyGenerator(FixtureClassPlanProvider(), [block])
+    res = gen._resolve_focus(block, block.templates[0])
+    assert res.cues == "just chase frequency"
+    assert res.reference is None and res.program_week is None and not res.this_week
+
+
+def test_empty_emphasis_resolves_to_no_focus():
+    res = _resolve(FocusEmphasis())
+    assert res is None
+
+
+def test_render_shows_focus_marker_drills_and_program_link(plan):
+    """The renderer surfaces 'name (wk X/Y)', the drills, and a program link."""
+    from cfprog.render import render_weekly_plan
+
+    md = render_weekly_plan(plan)
+    assert "(wk 3/6)" in md                                   # ring-MU progress
+    assert "[program ↗](references/ring-mu-kipping.md)" in md  # one-click link
+    assert "▹" in md                                          # this-week drills
 
 
 # ---------------------------------------------------------------------------
@@ -306,7 +409,7 @@ def test_red_drops_loaded_work_keeps_skill(gen, plan):
     assert cruise.prescriptions == []          # loaded work dropped
     assert any("RED" in n for n in cruise.notes)
     skill = next(s for s in adj.sessions if s.tier == "SKILL")
-    assert skill.skill_items                   # skill content intact
+    assert skill.focus and skill.focus.this_week   # skill drills intact (from reference)
 
 
 def test_red_keeps_accessory_as_rehab_only(gen, plan):

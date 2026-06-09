@@ -51,6 +51,7 @@ from cfprog.classplan import (
     InMemoryClassPlanProvider,
 )
 from cfprog.focus import (
+    FocusEmphasis,
     FocusTemplate,
     FocusBlock,
     load_focus_blocks,
@@ -75,12 +76,20 @@ from cfprog.availability import (
     weekday_name,
     WEEKDAYS,
 )
+from cfprog.references import (
+    Reference,
+    ReferenceWeek,
+    parse_reference,
+    load_reference,
+    resolve_reference_path,
+)
 from cfprog.generator import (
     WeeklyGenerator,
     WeeklyPlan,
     DayPlan,
     PlannedSession,
     ResolvedStrength,
+    ResolvedFocus,
 )
 from cfprog.render import render_weekly_plan, render_day_plan
 
@@ -118,6 +127,7 @@ __all__ = [
     "ClassPlanProvider",
     "FixtureClassPlanProvider",
     "InMemoryClassPlanProvider",
+    "FocusEmphasis",
     "FocusTemplate",
     "FocusBlock",
     "load_focus_blocks",
@@ -139,11 +149,17 @@ __all__ = [
     "normalize_weekday",
     "weekday_name",
     "WEEKDAYS",
+    "Reference",
+    "ReferenceWeek",
+    "parse_reference",
+    "load_reference",
+    "resolve_reference_path",
     "WeeklyGenerator",
     "WeeklyPlan",
     "DayPlan",
     "PlannedSession",
     "ResolvedStrength",
+    "ResolvedFocus",
     "render_weekly_plan",
     "render_day_plan",
 ]
