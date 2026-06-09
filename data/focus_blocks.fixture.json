@@ -1,0 +1,56 @@
+{
+  "_comment": "Focus-block configuration for the weekly generator (spec Section 3.4 / SKILL.md Section 4). Blocks are CONFIGURED here, not hardcoded in the generator: name, length, days/week, tier, and session templates. Two concurrent blocks (skill + strength don't interfere). PROTECT strength percentages feed the deterministic load calc — no weights are written here. Confirmed config: spec default — 6-wk ring-MU skill block (3x/wk) + front-squat/strict-press strength emphasis (2x/wk, PROTECT). 'current_week' is early/mid block (normal week, not a deload).",
+  "blocks": [
+    {
+      "name": "Front Squat / Strict Press Strength",
+      "length_weeks": 6,
+      "current_week": 3,
+      "days_per_week": 2,
+      "tier": "PROTECT",
+      "templates": [
+        {
+          "name": "Front Squat strength (paused)",
+          "stimulus": "heavy_squat",
+          "movements": [
+            "Paused Front Squat (3s pause in the hole) — attacks the clean stand-up (recovery-limited)"
+          ],
+          "strength": [
+            {"lift": "front_squat", "label": "Paused Front Squat", "schemes": [{"sets": 1, "reps": 3, "percent": 80}, {"sets": 3, "reps": 3, "percent": 72.5}]}
+          ]
+        },
+        {
+          "name": "Strict Press strength",
+          "stimulus": "press",
+          "movements": [
+            "Strict Press — dedicated overhead-press volume (the genuine weak link; box under-supplies it)",
+            "Strict HSPU progression — accessory"
+          ],
+          "strength": [
+            {"lift": "strict_press", "label": "Strict Press", "schemes": [{"sets": 1, "reps": 5, "rpe": 8}, {"sets": 3, "reps": 5, "percent": 75}]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ring Muscle-Up Block",
+      "length_weeks": 6,
+      "current_week": 3,
+      "days_per_week": 3,
+      "tier": "SKILL",
+      "templates": [
+        {
+          "name": "Ring MU skill",
+          "stimulus": "gymnastics",
+          "movements": [],
+          "skill_items": [
+            "False-grip ring rows — 4 x 6",
+            "Ring MU transitions (low rings / feet assist) — 5 x 3",
+            "Kip swing on rings — 4 x 5",
+            "Eccentric lower from support — 4 x 3"
+          ],
+          "strength": []
+        }
+      ]
+    }
+  ]
+}

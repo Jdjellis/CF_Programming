@@ -265,7 +265,7 @@ itself is pure given its inputs, so it's testable without the scheduler.
 | Analytics (estimated 1RM, tonnage, ratio gaps) | Code | Deterministic core done; viz layer (Streamlit/React) later |
 | Slack ingestion | Code | Pull latest PDF from channel; parse + tag. (blocked on Slack access) |
 | Sheets read | Code | Read maxes/standards via `MaxesProvider` (stubbed to fixture until auth). |
-| Weekly generator | Code + policy | Applies SKILL.md to the class plan → tiers + schedule + loads. **← next** |
+| Weekly generator | Code + policy | Applies SKILL.md to the class plan → tiers + schedule + loads. ✅ generation done (deconfliction placement + Markdown render + daily-adjust; Slack ingestion / Calendar+Slack adapters still pending) |
 | Scheduled job | Code | Cron / GitHub Action, fires Sunday night. |
 
 ---
@@ -282,11 +282,15 @@ itself is pure given its inputs, so it's testable without the scheduler.
    analysis. The Sheet is now a read-only XRM snapshot. ✅
 
 **Phase 2 — generation (current), then ingestion:**
-4. **Weekly generator** (the next build): apply `SKILL.md` to a class plan →
-   tier each session (push/cruise/skip), build the weekly schedule with
-   deconfliction, and calculate loads per session via the calculator. Plus a
-   daily readiness-adjust step. Driven by a `ClassPlanProvider` (fixture/manual)
-   until Slack lands. See Section 5a for the contract. **No external deps.**
+4. **Weekly generator** ✅ DONE (generation only): applies `SKILL.md` to a class
+   plan → tiers each session (push/cruise/skip), builds the weekly schedule with
+   deconfliction placement, and calculates loads per session via the calculator.
+   Plus a daily readiness-adjust step and a Markdown renderer (kept separate from
+   generation). Driven by a `ClassPlanProvider` (fixture/manual) until Slack
+   lands. See Section 5a for the contract. No external deps. Modules:
+   `cfprog.classplan`, `cfprog.focus`, `cfprog.generator`, `cfprog.render`,
+   `cfprog.weekcli` (`cfprog-week`). Fixtures: `data/classplan.fixture.json`,
+   `data/focus_blocks.fixture.json`.
 5. Slack PDF ingestion + stimulus tagging (feeds the generator; blocked on Slack
    access method).
 6. Output adapters (Markdown first; Google Calendar / Slack DM later).
@@ -320,16 +324,19 @@ itself is pure given its inputs, so it's testable without the scheduler.
   `data/plate_inventory.json`.
 - [x] **Log write target** — RESOLVED. SQLite store (`data/cfprog.db`) behind the
   `LogStore` interface. Sheet stays a read-only XRM snapshot.
-- [ ] **Class-plan input (interim)** — until Slack is wired, decide the
-  `ClassPlanProvider` fixture format / how the week's class sessions are entered.
+- [x] **Class-plan input (interim)** — RESOLVED. `ClassPlanProvider` interface
+  with a JSON fixture/manual-entry file (`data/classplan.fixture.json`): per
+  session → day, date, primary `stimulus` + `also_taxes`, movements, and strength
+  pieces (lift + sets/reps + percent|rpe|rep_max target). Mirrors `MaxesProvider`.
 - [ ] **Slack access method** — connector vs bot token. Channel is known:
   `GKAQQ7PGE` (workspace `crossfitclaremont`,
   https://crossfitclaremont.slack.com/archives/GKAQQ7PGE).
 - [ ] **Output channel** — Markdown first (decided); Google Calendar events or
   Slack DM later, as swappable adapters.
-- [ ] **Focus block(s) config** — confirm the active block(s): name, length,
-  days/week, tier, session template (default: 6-wk ring-MU 3×/wk + FS/strict-press
-  emphasis).
+- [x] **Focus block(s) config** — RESOLVED (spec default). Configured in
+  `data/focus_blocks.fixture.json`: 6-wk ring-MU block 3×/wk (SKILL) +
+  front-squat/strict-press strength emphasis 2×/wk (PROTECT). Athlete trains
+  Mon–Sat; deload cadence ~every 4th block week (this week is normal).
 - [ ] **Wearable** — device + API, or stay on self-report (optional/future).
 
 ---

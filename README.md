@@ -11,7 +11,7 @@ See [`PROJECT_SPEC.md`](PROJECT_SPEC.md) for the full, authoritative context
 > Never mix the two. All load/plate math is deterministic, unit-tested code —
 > the model never does it at runtime (spec Section 8).
 
-## Status — Phase 1 complete
+## Status — Phase 1 complete · Phase 2 generation complete
 
 | Deliverable | State |
 |---|---|
@@ -19,9 +19,11 @@ See [`PROJECT_SPEC.md`](PROJECT_SPEC.md) for the full, authoritative context
 | `skills/programming-policy/SKILL.md` (versioned policy from spec §3) | ✅ |
 | Deterministic load/plate calculator (%/rep-max/RPE → kg → plates) | ✅ |
 | Maxes read behind an interface (Sheet source of truth, fixture-backed) | ✅ |
+| Logging layer (`LogStore` → SQLite) + analytics core | ✅ |
+| **Weekly generator** — tiering + deconfliction placement + loads + daily-adjust + Markdown | ✅ |
 
-Phases 2 (Slack ingestion + weekly generator) and 3 (analytics + writeback)
-are **not** started.
+Still pending in Phase 2: Slack PDF ingestion (feeds the generator) and the
+Calendar / Slack DM output adapters. Phase 3 (analytics surface) not started.
 
 ## Layout
 
@@ -33,11 +35,21 @@ src/cfprog/
   maxes.py        # MaxesProvider interface + fixture + Sheets stub
   calculator.py   # ties it together: lift + target + max -> weight + loadout
   cli.py          # `cfprog-calc` demo / one-off lookups
+  logstore.py     # LogStore interface + SQLite store (sets, RPE, readiness)
+  analytics.py    # estimated 1RM, tonnage, ratio-gap analysis
+  classplan.py    # ClassPlanProvider interface + fixture (the week's class plan)
+  focus.py        # focus-block config (skill + strength emphasis)
+  generator.py    # weekly generator: tier + deconflict + load + daily-adjust
+  render.py       # WeeklyPlan -> Markdown (renderer kept separate from generation)
+  weekcli.py      # `cfprog-week` generate / render / daily-adjust
 data/
-  maxes.fixture.json     # mirrors the Sheet top section (stand-in until auth)
-  plate_inventory.json   # confirmed bar + plate inventory
+  maxes.fixture.json        # mirrors the Sheet top section (stand-in until auth)
+  plate_inventory.json      # confirmed bar + plate inventory
+  classplan.fixture.json    # the week's class plan (stand-in until Slack ingestion)
+  focus_blocks.fixture.json # focus-block configuration
+examples/                   # rendered weekly plan + daily-adjust output
 skills/programming-policy/SKILL.md   # versioned training policy
-tests/                   # unit tests for every piece of arithmetic
+tests/                   # unit tests for every piece of arithmetic + the generator
 ```
 
 ## Setup
@@ -75,6 +87,45 @@ cfprog-calc strict_press --rpe 8 --reps 5
 effectively unlimited supply (see `data/plate_inventory.json`). The solver still
 models per-denomination counts, so it generalises to a limited set and will
 report when a weight isn't reachable.
+
+## Weekly generator
+
+Runs Sunday and turns the week's class plan + a personal focus block into a
+tiered, deconflicted, load-calculated plan (spec §5a). It **applies** the policy
+in `SKILL.md` — it does not re-improvise it — and it never does load arithmetic
+itself (every weight comes from the calculator). The generator is **pure given
+its inputs** and unit-tested: tiering, placement/deconfliction, and load
+resolution are all deterministic rules.
+
+```bash
+cfprog-week                      # generate + print the week's Markdown plan
+cfprog-week --out plan.md        # also write it to a file
+cfprog-week --adjust Thu amber   # re-emit one day for a morning's readiness
+cfprog-week --adjust Mon red
+```
+
+What the Sunday deliverable gives you (see `examples/`):
+
+1. **Push / cruise / skip** — every session tiered: **PUSH** (PROTECT
+   front-squat / strict-press strength), **CRUISE** (class metcons — the relief
+   valve), **SKILL** (the focus block; first to cut on a red day).
+2. **A schedule** — day-by-day, focus-block work placed around class stimuli with
+   interference resolved: no same-stimulus on consecutive days; PROTECT moved off
+   (or dropped from) a day the class already taxes; strength before conditioning.
+3. **Calculated loads** — working weight + per-side plate loadout for every
+   strength prescription, via the calculator.
+
+The class plan is supplied through a `ClassPlanProvider` (fixture / manual entry
+in `data/classplan.fixture.json`) — the same interface pattern as `MaxesProvider`
+— so Slack PDF ingestion drops in later without touching the generator. The
+Markdown renderer is one of several swappable output adapters; the plan itself is
+a structured object (`WeeklyPlan`), so Calendar / Slack DM adapters can be added
+without changing generation.
+
+**Daily-adjust** (callable each morning) takes a day's readiness and re-emits
+that day adjusted, reusing the same calculator: AMBER keeps each piece's top set
+and trims back-off volume; RED drops loaded PROTECT/CRUISE work to skill / active
+recovery while SKILL work survives.
 
 ## Source of truth
 
