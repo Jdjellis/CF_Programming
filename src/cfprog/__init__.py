@@ -26,6 +26,21 @@ from cfprog.maxes import (
     GoogleSheetsMaxesProvider,
     SHEET_ID,
 )
+from cfprog.logstore import (
+    LoggedSet,
+    ReadinessEntry,
+    LogStore,
+    SQLiteLogStore,
+    READINESS_TIERS,
+)
+from cfprog.analytics import (
+    estimate_one_rm,
+    best_estimated_one_rm,
+    tonnage,
+    tonnage_by_lift,
+    ratio_gaps,
+    RATIO_STANDARDS,
+)
 
 __all__ = [
     "Plate",
@@ -43,6 +58,17 @@ __all__ = [
     "FixtureMaxesProvider",
     "GoogleSheetsMaxesProvider",
     "SHEET_ID",
+    "LoggedSet",
+    "ReadinessEntry",
+    "LogStore",
+    "SQLiteLogStore",
+    "READINESS_TIERS",
+    "estimate_one_rm",
+    "best_estimated_one_rm",
+    "tonnage",
+    "tonnage_by_lift",
+    "ratio_gaps",
+    "RATIO_STANDARDS",
 ]
 
 __version__ = "0.1.0"

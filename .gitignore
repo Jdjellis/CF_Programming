@@ -16,6 +16,12 @@ venv/
 .coverage
 htmlcov/
 
+# Local data store (personal training data — keep out of git)
+*.db
+*.sqlite
+*.sqlite3
+data/cfprog.db
+
 # Secrets / credentials (never commit Sheets/Slack creds)
 credentials.json
 token.json
