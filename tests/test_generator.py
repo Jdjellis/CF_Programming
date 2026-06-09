@@ -70,51 +70,72 @@ def test_class_sessions_are_cruise(plan):
         assert all(s.tier == "CRUISE" for s in class_sessions)
 
 
-def test_focus_strength_is_protect_and_skill_is_skill(plan):
+def test_only_uncovered_lift_stays_protect(plan):
+    """Class covers the squat this week -> the squat block demotes to ACCESSORY;
+    strict press (class under-supplies it) is the only PROTECT."""
     protect = [s for d in plan.days for s in d.sessions if s.tier == "PROTECT"]
+    accessory = [s for d in plan.days for s in d.sessions if s.tier == "ACCESSORY"]
     skill = [s for d in plan.days for s in d.sessions if s.tier == "SKILL"]
-    assert {s.stimulus for s in protect} == {"heavy_squat", "press"}
+    assert {s.stimulus for s in protect} == {"press"}
+    assert {s.stimulus for s in accessory} == {"heavy_squat"}
     assert all(s.stimulus == "gymnastics" for s in skill)
-    assert all(s.origin == "focus" for s in protect + skill)
+    assert all(s.origin == "focus" for s in protect + accessory + skill)
 
 
-def test_push_cruise_skip_summary_groups_by_tier(plan):
+def test_push_cruise_skip_summary_groups_by_bucket(plan):
     groups = plan.push_cruise_skip()
-    assert any("Strict Press" in x for x in groups["PUSH"])
-    assert any("Front Squat strength" in x for x in groups["PUSH"])
-    assert len(groups["SKILL/SKIP"]) == 3  # ring-MU placed 3x
-    assert len(groups["CRUISE"]) == 5      # five class days
+    # Strict press is the only PUSH item this week (squat deferred to class).
+    assert len(groups["PUSH"]) == 1
+    assert "Strict Press strength" in groups["PUSH"][0]
+    assert len(groups["CRUISE"]) == 5                       # five class days
+    # FLEX = 3 ring-MU + 1 squat accessory
+    assert len(groups["FLEX"]) == 4
+    assert any("Quad / knee" in x for x in groups["FLEX"])
 
 
 # ---------------------------------------------------------------------------
 # Placement / deconfliction
 # ---------------------------------------------------------------------------
 
-def test_strict_press_avoids_days_the_class_already_presses(plan):
-    """Class taxes 'press' on Mon and Sat -> strict-press PROTECT must not land
-    there; it goes to the earliest clean day (Tue)."""
+def test_strict_press_protect_lands_on_a_clean_fresh_day(plan):
+    """Class taxes 'press' Mon+Sat; the protected press avoids those, and the
+    class-load tie-break keeps it off the heavy-barbell days (Wed) -> Thu."""
     press_days = [
         d.day for d in plan.days
         for s in d.sessions
         if s.tier == "PROTECT" and s.stimulus == "press"
     ]
-    assert press_days == ["Tue"]
+    assert press_days == ["Thu"]
     assert not _sessions_of(plan, "Mon", tier="PROTECT")
     assert not _sessions_of(plan, "Sat", tier="PROTECT")
 
 
-def test_front_squat_protect_lands_on_least_conflicting_day(plan):
-    """Class squats Mon/Wed/Sat; only Tue/Thu are clash-free. Tue sits between
-    two squat days (Mon+Wed), Thu next to one (Wed) -> Thu wins, with a flag."""
-    fs_days = [
-        d.day for d in plan.days
-        for s in d.sessions
+def test_squat_strength_substituted_with_accessory_when_class_covers(plan):
+    """Class squats Mon/Wed/Sat -> defer the heavy stimulus to class. No
+    competing barbell front squat; a low-CNS accessory is appended instead."""
+    # No independent heavy front-squat strength anywhere.
+    assert not [
+        s for d in plan.days for s in d.sessions
         if s.tier == "PROTECT" and s.stimulus == "heavy_squat"
     ]
-    assert fs_days == ["Thu"]
-    thu = _day(plan, "Thu")
-    assert thu.interference, "residual adjacency should be flagged"
-    assert "Mon, Wed, Sat" in thu.interference[0]
+    accessory = [
+        (d.day, s) for d in plan.days for s in d.sessions if s.tier == "ACCESSORY"
+    ]
+    assert len(accessory) == 1
+    day, sess = accessory[0]
+    assert "Quad / knee" in sess.name
+    assert not sess.prescriptions          # supporting work, not a loaded barbell lift
+    assert plan.decisions and "substituted supporting accessory" in plan.decisions[0]
+
+
+def test_accessory_appended_to_light_nonclashing_class_day_never_rest(plan):
+    accessory_days = [
+        d for d in plan.days for s in d.sessions if s.tier == "ACCESSORY"
+    ]
+    for d in accessory_days:
+        assert not d.is_rest                       # never the rest day
+        assert "heavy_squat" not in d.taxed_patterns_set()  # non-clashing day
+    assert {d.day for d in accessory_days} == {"Tue"}
 
 
 def test_ring_mu_skill_placed_three_times_and_spread(plan):
@@ -130,10 +151,32 @@ def test_ring_mu_skill_placed_three_times_and_spread(plan):
 
 
 def test_strength_sequenced_before_conditioning_on_shared_day(plan):
-    """Tue carries PROTECT strict press + a CRUISE engine WOD -> strength first."""
-    ordered = _day(plan, "Tue").ordered_sessions()
+    """Thu carries PROTECT strict press + a CRUISE gymnastics WOD -> strength first."""
+    ordered = _day(plan, "Thu").ordered_sessions()
     tiers = [s.tier for s in ordered]
     assert tiers.index("PROTECT") < tiers.index("CRUISE")
+
+
+def test_strength_outranks_skill_and_accessory_in_order(plan):
+    """PROTECT sorts ahead of CRUISE, ACCESSORY and SKILL within a day."""
+    from cfprog.generator import TIER_ORDER
+    assert TIER_ORDER["PROTECT"] < TIER_ORDER["CRUISE"] < TIER_ORDER["ACCESSORY"]
+    assert TIER_ORDER["ACCESSORY"] < TIER_ORDER["SKILL"]
+
+
+def test_triage_guide_present_strength_first(plan):
+    assert plan.triage
+    assert "PROTECT strength" in plan.triage[0]
+    assert "Skill" in plan.triage[-1]
+
+
+def test_focus_sessions_carry_configurable_emphasis(plan):
+    """The per-week drill focus is surfaced (point: refine what to prioritise)."""
+    focus = [s for d in plan.days for s in d.sessions if s.origin == "focus"]
+    ring = next(s for s in focus if "Ring MU" in s.name)
+    press = next(s for s in focus if "Strict Press" in s.name)
+    assert "false-grip" in ring.emphasis.lower()
+    assert press.emphasis
 
 
 def test_rest_day_present_and_empty(plan):
@@ -229,7 +272,8 @@ def test_green_adjust_is_unchanged(gen, plan):
     assert before == after
 
 
-def test_amber_keeps_top_set_trims_backoff(gen, plan):
+def test_amber_keeps_protect_top_set_trims_backoff(gen, plan):
+    """Thu's PROTECT strict press: top set kept (1x5 @RPE8), back-off 3x5 -> 2x5."""
     thu = _day(plan, "Thu")
     adj = gen.daily_adjust(thu, "amber")
     protect = next(s for s in adj.sessions if s.tier == "PROTECT")
@@ -238,6 +282,14 @@ def test_amber_keeps_top_set_trims_backoff(gen, plan):
     assert top.scheme.startswith("1 x")        # top set untouched
     assert backoff.scheme.startswith("2 x")    # 3 sets -> trimmed to 2
     assert any("AMBER" in n for n in protect.notes)
+
+
+def test_amber_marks_flex_optional_not_trimmed(gen, plan):
+    """Skill/accessory are the flex items on amber -> kept but flagged optional."""
+    tue = _day(plan, "Tue")
+    adj = gen.daily_adjust(tue, "amber")
+    acc = next(s for s in adj.sessions if s.tier == "ACCESSORY")
+    assert any("flex" in n.lower() for n in acc.notes)
 
 
 def test_red_drops_loaded_work_keeps_skill(gen, plan):
@@ -250,6 +302,13 @@ def test_red_drops_loaded_work_keeps_skill(gen, plan):
     assert any("RED" in n for n in cruise.notes)
     skill = next(s for s in adj.sessions if s.tier == "SKILL")
     assert skill.skill_items                   # skill content intact
+
+
+def test_red_keeps_accessory_as_rehab_only(gen, plan):
+    tue = _day(plan, "Tue")
+    adj = gen.daily_adjust(tue, "red")
+    acc = next(s for s in adj.sessions if s.tier == "ACCESSORY")
+    assert any("rehab" in n.lower() for n in acc.notes)
 
 
 def test_invalid_readiness_rejected(gen, plan):

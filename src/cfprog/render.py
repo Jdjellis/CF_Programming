@@ -15,8 +15,15 @@ from cfprog.generator import DayPlan, PlannedSession, ResolvedStrength, WeeklyPl
 _TIER_BADGE = {
     "PROTECT": "🔴 PUSH (PROTECT)",
     "CRUISE": "🟡 CRUISE",
-    "SKILL": "🟢 SKILL / skip-eligible",
+    "ACCESSORY": "🟣 ACCESSORY (support — flex)",
+    "SKILL": "🟢 SKILL / skip-eligible (flex)",
     "DELOAD": "🔵 DELOAD",
+}
+
+_BUCKET_HEADING = {
+    "PUSH": "PUSH (protect — priority #1)",
+    "CRUISE": "CRUISE (class — autoregulate)",
+    "FLEX": "FLEX (support / skill — first to cut)",
 }
 
 
@@ -37,6 +44,8 @@ def _strength_line(rs: ResolvedStrength) -> str:
 
 def _session_md(s: PlannedSession) -> List[str]:
     lines = [f"- **[{_TIER_BADGE.get(s.tier, s.tier)}]** {s.name}  _({s.stimulus})_"]
+    if s.emphasis:
+        lines.append(f"  - 🎯 _Focus: {s.emphasis}_")
     for m in s.movements:
         lines.append(f"  - {m}")
     for rs in s.prescriptions:
@@ -87,14 +96,26 @@ def render_weekly_plan(plan: WeeklyPlan) -> str:
     # What to push / cruise / skip
     out.append("## What to push, cruise, or skip")
     groups = plan.push_cruise_skip()
-    for key in ("PUSH", "CRUISE", "SKILL/SKIP"):
+    for key in ("PUSH", "CRUISE", "FLEX"):
         items = groups.get(key, [])
-        out.append(f"**{key}**")
+        out.append(f"**{_BUCKET_HEADING.get(key, key)}**")
         if items:
             for it in items:
                 out.append(f"- {it}")
         else:
             out.append("- _(none this week)_")
+        out.append("")
+
+    if plan.triage:
+        out.append("## Priority when squeezed (time / energy)")
+        for line in plan.triage:
+            out.append(f"- {line}")
+        out.append("")
+
+    if plan.decisions:
+        out.append("## Policy decisions this week")
+        for d in plan.decisions:
+            out.append(f"- {d}")
         out.append("")
 
     if plan.flags:

@@ -37,9 +37,24 @@ from cfprog.logstore import LogStore
 from cfprog.models import PrescriptionResult
 
 # Tier ordering within a day: PROTECT strength first, then class CRUISE, then
-# SKILL (neurologically cheap — slot it anywhere; first to cut on a red day).
-TIER_ORDER = {"PROTECT": 0, "CRUISE": 1, "SKILL": 2, "DELOAD": 1}
+# Tier ordering within a day and the triage order under time/energy pressure
+# (SKILL.md §1, v1.1): PROTECT strength is priority #1 — never cut for skill. The
+# athlete prefers training in class, so CRUISE sits just under it. ACCESSORY
+# (low-CNS supporting work) and SKILL (frequency) are the flex — first to drop.
+TIER_ORDER = {"PROTECT": 0, "CRUISE": 1, "ACCESSORY": 2, "SKILL": 3, "DELOAD": 1}
+# Order in which work is shed when short on time or energy (lowest priority first).
+TRIAGE_DROP_ORDER = ("SKILL", "ACCESSORY", "CRUISE", "PROTECT")
+# Tiers that are optional on a squeezed/amber day (strength is protected).
+FLEX_TIERS = ("ACCESSORY", "SKILL")
 READINESS_TIERS = ("green", "amber", "red")
+
+# Human-readable priority order under time/energy pressure (SKILL.md §1, v1.1).
+_TRIAGE_GUIDE = (
+    "1. PROTECT strength top sets — priority #1; never cut for skill.",
+    "2. Class session (CRUISE) — you prefer training in class.",
+    "3. Supporting accessory (ACCESSORY) — drop if time/energy short.",
+    "4. Skill frequency (SKILL) — first to cut under pressure; cheap to catch another day.",
+)
 
 
 # ---------------------------------------------------------------------------
@@ -63,12 +78,13 @@ class PlannedSession:
 
     name: str
     origin: str                 # "class" | "focus"
-    tier: str                   # PROTECT | CRUISE | SKILL
+    tier: str                   # PROTECT | CRUISE | ACCESSORY | SKILL
     stimulus: str
     prescriptions: List[ResolvedStrength] = field(default_factory=list)
     skill_items: List[str] = field(default_factory=list)
     movements: List[str] = field(default_factory=list)
     notes: List[str] = field(default_factory=list)
+    emphasis: str = ""          # week's "what to prioritise" focus (configurable)
 
     @property
     def order(self) -> int:
@@ -108,16 +124,29 @@ class WeeklyPlan:
     block_context: List[str]
     days: List[DayPlan]
     flags: List[str] = field(default_factory=list)
+    decisions: List[str] = field(default_factory=list)
+    triage: List[str] = field(default_factory=list)
     latest_known_readiness: Optional[str] = None
 
+    # Ordered buckets for the "what to push / cruise / skip" summary.
+    _SUMMARY_BUCKETS = ("PUSH", "CRUISE", "FLEX")
+    _TIER_BUCKET = {
+        "PROTECT": "PUSH",
+        "CRUISE": "CRUISE",
+        "ACCESSORY": "FLEX",
+        "SKILL": "FLEX",
+    }
+
     def push_cruise_skip(self) -> Dict[str, List[str]]:
-        """The 'what to push / cruise / skip' summary, grouped by tier."""
-        groups: Dict[str, List[str]] = {"PUSH": [], "CRUISE": [], "SKILL/SKIP": []}
-        bucket = {"PROTECT": "PUSH", "CRUISE": "CRUISE", "SKILL": "SKILL/SKIP"}
+        """The 'what to push / cruise / skip' summary, grouped by tier bucket.
+
+        PUSH = PROTECT strength (priority #1). CRUISE = class work. FLEX =
+        supporting accessory + skill (first to cut under time/energy pressure).
+        """
+        groups: Dict[str, List[str]] = {b: [] for b in self._SUMMARY_BUCKETS}
         for d in self.days:
             for s in d.ordered_sessions():
-                label = f"{d.day}: {s.name}"
-                groups[bucket.get(s.tier, "CRUISE")].append(label)
+                groups[self._TIER_BUCKET.get(s.tier, "CRUISE")].append(f"{d.day}: {s.name}")
         return groups
 
 
@@ -148,6 +177,17 @@ def _consecutive_same_stimulus(days: List[DayPlan], idx: int, stimulus: str) -> 
 
 def _focus_on_day(day: DayPlan) -> int:
     return sum(1 for s in day.sessions if s.origin == "focus")
+
+
+def _class_strength_load(day: DayPlan) -> int:
+    """How much heavy class barbell work the day already carries.
+
+    Protected strength wants a *fresh* day, so placement prefers days where the
+    class isn't already grinding through its own heavy lifts.
+    """
+    return sum(
+        len(s.prescriptions) for s in day.sessions if s.origin == "class"
+    )
 
 
 def _focus_stimulus_adjacent(days: List[DayPlan], idx: int, stimulus: str) -> int:
@@ -224,14 +264,68 @@ class WeeklyGenerator:
         return PlannedSession(
             name=f"{tpl.name}  ·  {block.name}",
             origin="focus",
-            tier=block.tier,
+            tier=tpl.effective_tier(block.tier),
             stimulus=tpl.stimulus,
             prescriptions=prescriptions,
             skill_items=list(tpl.skill_items),
             movements=list(tpl.movements),
+            emphasis=tpl.emphasis,
         )
 
     # -- placement / deconfliction -----------------------------------------
+
+    def _place_protect_template(
+        self, days: List[DayPlan], block: FocusBlock, tpl: FocusTemplate
+    ) -> None:
+        """Dispatch a PROTECT template (SKILL.md §3.3, v1.1).
+
+        If the class already supplies this template's main lift somewhere this
+        week and the template defines a low-CNS `complement`, defer the heavy
+        stimulus to class and place the *supporting accessory* instead — never a
+        competing barbell version of the lift. Otherwise place the protected
+        barbell strength on the least-conflicting day.
+        """
+        training = [d for d in days if not d.is_rest]
+        covered = any(tpl.stimulus in d.taxed_patterns_set() for d in training)
+        if covered and tpl.use_complement_when_class_covers and tpl.complement:
+            self._place_accessory(days, block, tpl, tpl.complement)
+        else:
+            self._place_protect(days, block, tpl)
+
+    def _place_accessory(
+        self,
+        days: List[DayPlan],
+        block: FocusBlock,
+        primary: FocusTemplate,
+        comp: FocusTemplate,
+    ) -> None:
+        """Append low-CNS supporting work to a non-clashing class day (never rest).
+
+        The athlete prefers training in class, so this slots onto a class day
+        whose stimulus does NOT already tax the accessory's pattern — keeping the
+        rest day genuinely rest. The class covers the heavy lift; this only adds
+        quad/knee development the class doesn't supply.
+        """
+        training = [d for d in days if not d.is_rest]
+        candidates = [d for d in training if comp.stimulus not in d.taxed_patterns_set()]
+        if not candidates:  # nowhere clash-free — still avoid the rest day
+            candidates = training
+
+        best = min(candidates, key=lambda d: (_focus_on_day(d), _iso(d.date).toordinal()))
+        taxing_days = [d.day for d in training if primary.stimulus in d.taxed_patterns_set()]
+        session = self._focus_session(block, comp)
+        note = (
+            f"Class already supplies {primary.stimulus} ({', '.join(taxing_days)}). "
+            f"Deferring the heavy stimulus to class; personal squat work = supporting "
+            f"accessory (low-CNS) appended to {best.day} — no competing barbell "
+            f"front squat (SKILL.md §3.3)."
+        )
+        session.notes.append(note)  # inline on the session; not an interference flag
+        self._decisions.append(
+            f"{primary.name}: substituted supporting accessory on {best.day} "
+            f"(class covers {primary.stimulus} on {', '.join(taxing_days)})."
+        )
+        best.sessions.append(session)
 
     def _place_protect(
         self, days: List[DayPlan], block: FocusBlock, tpl: FocusTemplate
@@ -257,6 +351,7 @@ class WeeklyGenerator:
             return (
                 _consecutive_same_stimulus(days, idx, tpl.stimulus),  # avoid stacking
                 _focus_stimulus_adjacent(days, idx, tpl.stimulus),    # spread focus
+                _class_strength_load(d),                              # keep strength fresh
                 _focus_on_day(d),                                     # keep days light
                 _iso(d.date).toordinal(),                             # stable tie-break
             )
@@ -333,6 +428,7 @@ class WeeklyGenerator:
 
     def generate(self) -> WeeklyPlan:
         self._dropped_flags: List[str] = []
+        self._decisions: List[str] = []
         sessions = self.class_provider.sessions()
 
         # Build the day spine from the class plan, inserting rest days for gaps.
@@ -345,11 +441,13 @@ class WeeklyGenerator:
             if cs is not None:
                 d.sessions.append(self._class_session(cs))
 
-        # 2. Place focus work — PROTECT blocks first, then SKILL (policy order).
+        # 2. Place focus work — PROTECT templates first, then SKILL (policy order).
+        # PROTECT may substitute its low-CNS complement when the class already
+        # covers the lift (SKILL.md §3.3, v1.1).
         for block in sorted(self.focus_blocks, key=lambda b: TIER_ORDER.get(b.tier, 1)):
             for tpl in block.slots():
-                if block.tier == "PROTECT":
-                    self._place_protect(days, block, tpl)
+                if tpl.effective_tier(block.tier) == "PROTECT":
+                    self._place_protect_template(days, block, tpl)
                 else:
                     self._place_skill(days, block, tpl)
 
@@ -359,6 +457,8 @@ class WeeklyGenerator:
             block_context=self._block_context(),
             days=days,
             flags=list(self._dropped_flags),
+            decisions=list(self._decisions),
+            triage=list(_TRIAGE_GUIDE),
             latest_known_readiness=self._latest_readiness(),
         )
 
@@ -460,8 +560,14 @@ class WeeklyGenerator:
 
     def _amber_session(self, s: PlannedSession) -> PlannedSession:
         out = self._copy_session(s)
-        if s.tier == "SKILL":
-            return out  # skill is cheap — keep full frequency
+        if s.tier in FLEX_TIERS:
+            # Flex — strength is priority #1, so this is the first thing to drop
+            # if time/energy is short. Kept here, but marked optional.
+            out.notes = list(s.notes) + [
+                "AMBER: flex item — drop first if short on time/energy "
+                "(strength is the priority); otherwise keep it, it's low-cost."
+            ]
+            return out
         # Trim back-off volume; always keep the top set of each piece.
         trimmed: List[ResolvedStrength] = []
         for rs in s.prescriptions:
@@ -480,7 +586,14 @@ class WeeklyGenerator:
 
     def _red_session(self, s: PlannedSession) -> Optional[PlannedSession]:
         if s.tier == "SKILL":
-            return self._copy_session(s)  # survives a red day
+            return self._copy_session(s)  # survives a red day (cheap, frequency)
+        if s.tier == "ACCESSORY":
+            out = self._copy_session(s)
+            out.notes = list(s.notes) + [
+                "RED: keep rehab / mobility only (e.g. Spanish-squat holds, knee work); "
+                "skip the loaded split / zombie squats."
+            ]
+            return out
         out = self._copy_session(s)
         out.prescriptions = []
         out.notes = list(s.notes) + [

@@ -8,7 +8,7 @@ description: >
   autoregulating load by daily readiness, or choosing weakness-specific
   accessory work. Does NOT do load arithmetic — that is the deterministic
   calculator's job (the model never does plate/percentage math at runtime).
-version: 1.0.0
+version: 1.1.0
 status: active
 source_of_truth: PROJECT_SPEC.md (Section 3); maxes from Google Sheet top section
 last_updated: 2026-06-09
@@ -49,13 +49,19 @@ scheduling order and how autoregulation touches them.
 
 | Tier | What goes here | Scheduling rule |
 |---|---|---|
-| **PROTECT** | Front-squat strength; strict-pressing strength. These move the goals. | Push. Schedule on best-readiness days, **before** conditioning. Never let a class metcon cannibalise protected work. |
-| **CRUISE** | Class metcons; box-recommended extras. | The relief valve — autoregulate intensity *here* on bad days, not on protected work. Conditioning adapts fine with autoregulated load. |
-| **SKILL** | Active focus block (e.g. ring muscle-ups); HSPU technique. | Do anyway; neurologically cheap → frequency wins. Survives low-readiness days ("productive when smashed"). |
+| **PROTECT** | Front-squat strength; strict-pressing strength. These move the goals. **Priority #1.** | Push. Schedule on best-readiness / freshest days, **before** conditioning. Never let a class metcon — or skill work — cannibalise protected strength. |
+| **CRUISE** | Class metcons; box-recommended extras. | The relief valve — autoregulate intensity *here* on bad days, not on protected work. **Prefer training in class**: the class session is high-value, not just filler. |
+| **ACCESSORY** | Low-CNS supporting work — quad development (split squats, zombie squats), knee/tendon rehab (Spanish squats). | Appended to a non-clashing class day (never the rest day). Used as the *substitute* for a PROTECT lift the class already covers (see §3). Flex — drop before strength if time/energy is short. |
+| **SKILL** | Active focus block (e.g. ring muscle-ups); HSPU technique. | Do anyway; neurologically cheap → frequency wins. Survives low-readiness days ("productive when smashed"). Flex — but **strength outranks skill**: under time/energy pressure, skill is the first thing cut, never the protected strength. |
 | **DELOAD** | Planned down-week. | ~Every 4th week. Banked amber/red days can pull a deload earlier if fatigue accumulates. |
 
+**Priority / triage order** (what survives a time-or-energy squeeze, highest
+first): **1) PROTECT strength top sets → 2) class session (CRUISE) → 3) supporting
+accessory → 4) skill frequency.** Strength is priority #1 and is never dropped for
+skill; shed from the bottom up.
+
 Rule of thumb: **on a bad day you scale CRUISE, you keep PROTECT's top set (or
-move it), and you still do SKILL.**
+move it), and skill is the first flex item to fall — not the strength.**
 
 ## 2. Readiness autoregulation
 
@@ -88,11 +94,26 @@ chooses the kilos and plates.
   FS (it's PROTECT — prefer to *move* it to a better day, not delete it).
 - **Sequence strength before conditioning** when both fall on one day.
 
+**Defer to class where it already covers a lift.** The athlete prefers training
+in class. Where the class programming already supplies a PROTECT pattern that week
+(e.g. heavy front squats programmed across the week), **defer the heavy stimulus
+to class** — do *not* schedule a competing independent barbell version of that
+lift. Replace the personal heavy work with **supporting accessory** (quad
+development, knee/tendon rehab) that the class does *not* supply, appended to a
+non-clashing class day (keep the rest day genuinely rest). A PROTECT lift the
+class does *not* cover that week (e.g. strict pressing — box under-supplies it)
+stays a protected independent strength session, placed on the freshest available
+day.
+
 Deconfliction decision order when placing focus-block work:
-1. Is today's class stimulus the same pattern as the planned PROTECT work?
-   → move PROTECT to a non-conflicting day.
-2. Was yesterday the same stimulus? → don't repeat; shift or swap.
-3. Otherwise place PROTECT first, then SKILL, then the class CRUISE work.
+1. Does the class already cover this PROTECT lift this week? → defer the heavy
+   stimulus to class; substitute supporting accessory (low-CNS) on a non-clashing
+   class day. No competing barbell version of the lift.
+2. Else, is today's class stimulus the same pattern as the planned PROTECT work?
+   → move PROTECT to a non-conflicting, fresh day.
+3. Was yesterday the same stimulus? → don't repeat; shift or swap.
+4. Otherwise place PROTECT first (on the freshest, lowest class-barbell-load day),
+   then ACCESSORY/SKILL, then the class CRUISE work.
 
 ## 4. Focus blocks
 
@@ -115,6 +136,11 @@ come from the calculator; this menu chooses the movement.)
 | **Snatch pull finish** (technique-limited) | Snatch pulls (full finish), tall / no-contact snatch, halting snatch deadlift, snatch high pulls, tempo / segment snatch | Treating it as an overhead-stability problem |
 | **Overhead press / strict HSPU** | Dedicated strict-press volume, strict HSPU progressions | Letting box programming dictate press volume (it under-supplies it) |
 | **Ring MU** (skill) | Transitions, false-grip work, kip swing on rings, eccentrics — frequency over load | Loading it heavy; chase frequency instead |
+| **Quad / knee support** (when class covers the squat) | Bulgarian split squats, zombie front squats (quad / upright-torso bias), Spanish-squat holds (knee/tendon health) — low-CNS, appended to a class day | A second heavy barbell front squat the same week the class squats heavy |
+
+The specific drills within a menu (e.g. *which* ring-MU progression, *which* knee
+rehab) are configured per week as the focus block's `emphasis`, so the focus can
+be refined week to week without changing the policy.
 
 ## 6. Hard constraints (inherited from spec Section 8)
 
@@ -129,6 +155,23 @@ come from the calculator; this menu chooses the movement.)
 ---
 
 ## Changelog
+
+### 1.1.0 — 2026-06-09
+- **Strength is priority #1 over skill.** Added an explicit triage order
+  (PROTECT → CRUISE → ACCESSORY → SKILL); under time/energy pressure skill is the
+  first flex item cut, never the protected strength (§1).
+- **Defer to class where it already covers a lift.** Where the class already
+  programmes a PROTECT pattern that week (e.g. heavy front squats), defer the
+  heavy stimulus to class instead of duplicating it independently; substitute
+  low-CNS supporting **ACCESSORY** work (quad development, knee/tendon rehab) on a
+  non-clashing class day, keeping the rest day rest. A lift the class does *not*
+  cover (strict press) stays a protected independent session on the freshest day
+  (§1, §3). Added the ACCESSORY tier and the quad/knee support menu (§5).
+- Noted that per-week drill selection lives in the focus block's `emphasis` field
+  (refine the focus without editing the policy).
+- Rationale: athlete strongly prefers training in class and wants strength
+  protected above skill; avoids redundant squat volume when the box already
+  supplies it. Rules only — no change to load arithmetic (still the calculator's).
 
 ### 1.0.0 — 2026-06-09
 - Initial policy, authored from PROJECT_SPEC.md Section 3 (priority tiers,

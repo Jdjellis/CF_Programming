@@ -1,5 +1,5 @@
 {
-  "_comment": "Focus-block configuration for the weekly generator (spec Section 3.4 / SKILL.md Section 4). Blocks are CONFIGURED here, not hardcoded in the generator: name, length, days/week, tier, and session templates. Two concurrent blocks (skill + strength don't interfere). PROTECT strength percentages feed the deterministic load calc — no weights are written here. Confirmed config: spec default — 6-wk ring-MU skill block (3x/wk) + front-squat/strict-press strength emphasis (2x/wk, PROTECT). 'current_week' is early/mid block (normal week, not a deload).",
+  "_comment": "Focus-block configuration for the weekly generator (spec Section 3.4 / SKILL.md Section 4). Blocks are CONFIGURED here, not hardcoded: name, length, days/week, tier, and session templates. Two concurrent blocks (skill + strength don't interfere). PROTECT strength percentages feed the deterministic load calc — no weights are written here. Spec-default blocks: 6-wk ring-MU skill block (3x/wk) + front-squat/strict-press strength emphasis (2x/wk, PROTECT). 'current_week' is early/mid block (normal week, not a deload). v1.1 policy: where the class already covers a PROTECT lift (heavy squats), defer the heavy stimulus to class and substitute the low-CNS 'complement' (quad/knee supporting work) appended to a non-clashing class day — never a competing barbell front squat. The per-template 'emphasis' line is where week-to-week drill focus is refined (point: 'refine what specific exercises to prioritise').",
   "blocks": [
     {
       "name": "Front Squat / Strict Press Strength",
@@ -11,18 +11,34 @@
         {
           "name": "Front Squat strength (paused)",
           "stimulus": "heavy_squat",
+          "emphasis": "Clean stand-up: 3s pause in the hole, stay vertical out of the front rack.",
+          "use_complement_when_class_covers": true,
           "movements": [
             "Paused Front Squat (3s pause in the hole) — attacks the clean stand-up (recovery-limited)"
           ],
           "strength": [
             {"lift": "front_squat", "label": "Paused Front Squat", "schemes": [{"sets": 1, "reps": 3, "percent": 80}, {"sets": 3, "reps": 3, "percent": 72.5}]}
-          ]
+          ],
+          "complement": {
+            "name": "Quad / knee supporting work",
+            "stimulus": "heavy_squat",
+            "tier": "ACCESSORY",
+            "low_cns": true,
+            "emphasis": "Quad development + knee health — class already supplies the heavy squat stimulus this week.",
+            "movements": [
+              "Bulgarian split squat — 3 x 8 / leg (controlled, full depth)",
+              "Zombie front squat — 3 x 5 (front-rack + quad/upright-torso bias)",
+              "Spanish squat (banded) — 3 x 20s holds (knee rehab / tendon health)"
+            ],
+            "strength": []
+          }
         },
         {
           "name": "Strict Press strength",
           "stimulus": "press",
+          "emphasis": "Overhead press is the genuine weak link (SP 70 vs 80 goal) — class under-supplies it; this is the protected lift this week.",
           "movements": [
-            "Strict Press — dedicated overhead-press volume (the genuine weak link; box under-supplies it)",
+            "Strict Press — dedicated overhead-press volume",
             "Strict HSPU progression — accessory"
           ],
           "strength": [
@@ -41,6 +57,7 @@
         {
           "name": "Ring MU skill",
           "stimulus": "gymnastics",
+          "emphasis": "This week's focus: false-grip strength + the transition turnover (chase frequency, not load).",
           "movements": [],
           "skill_items": [
             "False-grip ring rows — 4 x 6",

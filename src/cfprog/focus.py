@@ -16,7 +16,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 from cfprog.classplan import StrengthPiece, _check_stimulus, parse_strength_piece
 
@@ -26,6 +26,9 @@ _DEFAULT_FIXTURE = (
 
 # Tiers a focus block may carry (DELOAD is a week-level state, not a block tier).
 FOCUS_TIERS = ("PROTECT", "SKILL")
+# Tiers a template may override to (ACCESSORY = low-CNS supporting work, the
+# substitute used when the class already covers a PROTECT block's main lift).
+TEMPLATE_TIERS = ("PROTECT", "SKILL", "ACCESSORY")
 
 
 @dataclass(frozen=True)
@@ -35,6 +38,13 @@ class FocusTemplate:
     `stimulus` is the pattern this template loads — used by deconfliction the
     same way a class session's primary stimulus is. `strength` pieces (if any)
     are load-resolved by the calculator; `skill_items` are unloaded skill work.
+
+    `emphasis` is a free-text "what to prioritise this week" line (e.g. the
+    specific ring-MU drills to chase) — configured per week so the focus can be
+    refined without touching code. `tier` overrides the block tier (used by a
+    `complement`). When the class already supplies this template's pattern,
+    `use_complement_when_class_covers` swaps in `complement` — a low-CNS
+    supporting variant — instead of duplicating the class's main lift.
     """
 
     name: str
@@ -42,9 +52,19 @@ class FocusTemplate:
     movements: Tuple[str, ...] = ()
     skill_items: Tuple[str, ...] = ()
     strength: Tuple[StrengthPiece, ...] = ()
+    emphasis: str = ""
+    tier: Optional[str] = None
+    low_cns: bool = False
+    complement: Optional["FocusTemplate"] = None
+    use_complement_when_class_covers: bool = False
 
     def __post_init__(self) -> None:
         _check_stimulus(self.stimulus)
+        if self.tier is not None and self.tier not in TEMPLATE_TIERS:
+            raise ValueError(f"template tier must be one of {TEMPLATE_TIERS}, got {self.tier!r}")
+
+    def effective_tier(self, block_tier: str) -> str:
+        return self.tier or block_tier
 
 
 @dataclass(frozen=True)
@@ -81,12 +101,18 @@ class FocusBlock:
 
 
 def _parse_template(d: dict) -> FocusTemplate:
+    complement = d.get("complement")
     return FocusTemplate(
         name=str(d["name"]),
         stimulus=_check_stimulus(str(d["stimulus"])),
         movements=tuple(d.get("movements", ())),
         skill_items=tuple(d.get("skill_items", ())),
         strength=tuple(parse_strength_piece(s) for s in d.get("strength", ())),
+        emphasis=str(d.get("emphasis", "")),
+        tier=d.get("tier"),
+        low_cns=bool(d.get("low_cns", False)),
+        complement=_parse_template(complement) if complement else None,
+        use_complement_when_class_covers=bool(d.get("use_complement_when_class_covers", False)),
     )
 
 

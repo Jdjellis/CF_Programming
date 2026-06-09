@@ -110,10 +110,20 @@ What the Sunday deliverable gives you (see `examples/`):
    front-squat / strict-press strength), **CRUISE** (class metcons — the relief
    valve), **SKILL** (the focus block; first to cut on a red day).
 2. **A schedule** — day-by-day, focus-block work placed around class stimuli with
-   interference resolved: no same-stimulus on consecutive days; PROTECT moved off
-   (or dropped from) a day the class already taxes; strength before conditioning.
+   interference resolved: no same-stimulus on consecutive days; strength before
+   conditioning. Where the class already covers a PROTECT lift that week (e.g.
+   heavy front squats), the heavy stimulus is **deferred to class** and the
+   personal work becomes low-CNS **accessory** (quad / knee) appended to a
+   non-clashing class day — no competing barbell front squat. A lift the class
+   under-supplies (strict press) stays a protected session on the freshest day.
 3. **Calculated loads** — working weight + per-side plate loadout for every
    strength prescription, via the calculator.
+
+**Priority / triage** (SKILL.md v1.1): strength is priority #1 — under time or
+energy pressure work is shed from the bottom up (skill → accessory → class →
+protected strength). Each focus session also carries a configurable `emphasis`
+line (this week's specific drills, e.g. which ring-MU progression to chase), so
+the focus can be refined week to week without touching code.
 
 The class plan is supplied through a `ClassPlanProvider` (fixture / manual entry
 in `data/classplan.fixture.json`) — the same interface pattern as `MaxesProvider`

@@ -74,6 +74,14 @@ supplies arithmetic. Never mix the two.
 > This section is the source content for `skills/programming-policy/SKILL.md`.
 > Formalise it there with a version header and changelog. Everything below is the
 > "brain" the weekly generator applies.
+>
+> **Policy evolves in SKILL.md (versioned), not here.** Refinements since this
+> section was written live in the SKILL.md changelog. Current: **v1.1** —
+> (a) strength is priority #1 over skill, with an explicit triage order
+> (PROTECT → CRUISE → ACCESSORY → SKILL); (b) where the class already covers a
+> PROTECT lift that week (e.g. heavy front squats), defer the heavy stimulus to
+> class and substitute low-CNS supporting **accessory** work (quad / knee) on a
+> non-clashing class day rather than duplicating the lift. See SKILL.md §1, §3, §5.
 
 ### 3.1 Priority tiers
 

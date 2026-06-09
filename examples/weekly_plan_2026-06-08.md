@@ -8,21 +8,30 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
 - _No readiness logged yet — future days planned GREEN; adjust each morning._
 
 ## What to push, cruise, or skip
-**PUSH**
-- Tue: Strict Press strength  ·  Front Squat / Strict Press Strength
-- Thu: Front Squat strength (paused)  ·  Front Squat / Strict Press Strength
+**PUSH (protect — priority #1)**
+- Thu: Strict Press strength  ·  Front Squat / Strict Press Strength
 
-**CRUISE**
+**CRUISE (class — autoregulate)**
 - Mon: Weightlifting + Performance
 - Tue: WOD — engine + gymnastics pulling
 - Wed: Weightlifting (squat + snatch)
 - Thu: WOD — gymnastics (bar series) + partner metcon
 - Sat: Weightlifting + Performance
 
-**SKILL/SKIP**
+**FLEX (support / skill — first to cut)**
 - Mon: Ring MU skill  ·  Ring Muscle-Up Block
+- Tue: Quad / knee supporting work  ·  Front Squat / Strict Press Strength
 - Wed: Ring MU skill  ·  Ring Muscle-Up Block
 - Sat: Ring MU skill  ·  Ring Muscle-Up Block
+
+## Priority when squeezed (time / energy)
+- 1. PROTECT strength top sets — priority #1; never cut for skill.
+- 2. Class session (CRUISE) — you prefer training in class.
+- 3. Supporting accessory (ACCESSORY) — drop if time/energy short.
+- 4. Skill frequency (SKILL) — first to cut under pressure; cheap to catch another day.
+
+## Policy decisions this week
+- Front Squat strength (paused): substituted supporting accessory on Tue (class covers heavy_squat on Mon, Wed, Sat).
 
 ## Schedule
 
@@ -40,7 +49,8 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - **Push Press** — 1 x 4 @ 80% of 1RM<br>    ↳ `80 kg` (80% of 100) — per side: 25 + 5
   - **Push Press** — 1 x 3 @ 85% of 1RM ⭐<br>    ↳ `85 kg` (85% of 100) — per side: 25 + 5 + 2.5
   - **Push Press** — 1 x 5 @ 75% of 1RM<br>    ↳ `75 kg` (75% of 100) — per side: 25 + 2.5
-- **[🟢 SKILL / skip-eligible]** Ring MU skill  ·  Ring Muscle-Up Block  _(gymnastics)_
+- **[🟢 SKILL / skip-eligible (flex)]** Ring MU skill  ·  Ring Muscle-Up Block  _(gymnastics)_
+  - 🎯 _Focus: This week's focus: false-grip strength + the transition turnover (chase frequency, not load)._
   - ◦ False-grip ring rows — 4 x 6
   - ◦ Ring MU transitions (low rings / feet assist) — 5 x 3
   - ◦ Kip swing on rings — 4 x 5
@@ -48,15 +58,16 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
 
 ### Tue 2026-06-09 — class: **engine** _(also taxes: gymnastics)_
 
-- **[🔴 PUSH (PROTECT)]** Strict Press strength  ·  Front Squat / Strict Press Strength  _(press)_
-  - Strict Press — dedicated overhead-press volume (the genuine weak link; box under-supplies it)
-  - Strict HSPU progression — accessory
-  - **Strict Press** — 1 x 5 @ 5 reps @ RPE 8 ⭐<br>    ↳ `58 kg` (83% of 70) — per side: 15 + 2.5 + 3×0.5 _(Δ-0.1)_
-  - **Strict Press** — 3 x 5 @ 75% of 1RM<br>    ↳ `52.5 kg` (75% of 70) — per side: 15 + 1.25
 - **[🟡 CRUISE]** WOD — engine + gymnastics pulling  _(engine)_
   - A. 20 min AMRAP: 3 rounds (400m run / 15 pull-ups) into 2 rounds (300m run / 10 C2B) into AMRAP (200m run / 5 bar MU)
   - B. 21 min alt OTM x10: hanging tuck hold / seated straddle leg lifts
   - Comp extras: Sorensen / GHD side plank / back ext quality; Front Squat Dips — build to heavy 3 then 5x2 @80%
+- **[🟣 ACCESSORY (support — flex)]** Quad / knee supporting work  ·  Front Squat / Strict Press Strength  _(heavy_squat)_
+  - 🎯 _Focus: Quad development + knee health — class already supplies the heavy squat stimulus this week._
+  - Bulgarian split squat — 3 x 8 / leg (controlled, full depth)
+  - Zombie front squat — 3 x 5 (front-rack + quad/upright-torso bias)
+  - Spanish squat (banded) — 3 x 20s holds (knee rehab / tendon health)
+  - ⚠ _Class already supplies heavy_squat (Mon, Wed, Sat). Deferring the heavy stimulus to class; personal squat work = supporting accessory (low-CNS) appended to Tue — no competing barbell front squat (SKILL.md §3.3)._
 
 ### Wed 2026-06-10 — class: **heavy_squat** _(also taxes: heavy_pull, engine)_
 
@@ -69,7 +80,8 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - **Power Snatch (5x1 @85-90%)** — 5 x 1 @ 87.5% of 1RM ⭐<br>    ↳ `72 kg` (88% of 82.5) — per side: 25 + 2×0.5 _(Δ-0.1875)_
   - **Power Snatch — build to 3RM** — 1 x 3 @ 3RM ⭐<br>    ↳ `76.5 kg` (93% of 82.5) — per side: 25 + 1.25 + 4×0.5 _(Δ-0.225)_
   - **Snatch Pull (@120% of snatch)** — 3 x 3 @ 120% of 1RM ⭐<br>    ↳ `105.5 kg` (120% of 88) — per side: 25 + 15 + 1.25 + 3×0.5 _(Δ-0.1)_
-- **[🟢 SKILL / skip-eligible]** Ring MU skill  ·  Ring Muscle-Up Block  _(gymnastics)_
+- **[🟢 SKILL / skip-eligible (flex)]** Ring MU skill  ·  Ring Muscle-Up Block  _(gymnastics)_
+  - 🎯 _Focus: This week's focus: false-grip strength + the transition turnover (chase frequency, not load)._
   - ◦ False-grip ring rows — 4 x 6
   - ◦ Ring MU transitions (low rings / feet assist) — 5 x 3
   - ◦ Kip swing on rings — 4 x 5
@@ -77,17 +89,16 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
 
 ### Thu 2026-06-11 — class: **gymnastics** _(also taxes: heavy_pull)_
 
-- **[🔴 PUSH (PROTECT)]** Front Squat strength (paused)  ·  Front Squat / Strict Press Strength  _(heavy_squat)_
-  - Paused Front Squat (3s pause in the hole) — attacks the clean stand-up (recovery-limited)
-  - **Paused Front Squat** — 1 x 3 @ 80% of 1RM ⭐<br>    ↳ `108 kg` (80% of 135) — per side: 25 + 15 + 2.5 + 3×0.5
-  - **Paused Front Squat** — 3 x 3 @ 72.5% of 1RM<br>    ↳ `98 kg` (72% of 135) — per side: 25 + 10 + 2.5 + 3×0.5 _(Δ+0.125)_
-  - ⚠ _PROTECT heavy_squat placed Thu (no clash-free day this week). Class taxes heavy_squat on Mon, Wed, Sat; this sits next to Wed — keep it submaximal or drop it if the class dose was heavy (class covers the pattern)._
+- **[🔴 PUSH (PROTECT)]** Strict Press strength  ·  Front Squat / Strict Press Strength  _(press)_
+  - 🎯 _Focus: Overhead press is the genuine weak link (SP 70 vs 80 goal) — class under-supplies it; this is the protected lift this week._
+  - Strict Press — dedicated overhead-press volume
+  - Strict HSPU progression — accessory
+  - **Strict Press** — 1 x 5 @ 5 reps @ RPE 8 ⭐<br>    ↳ `58 kg` (83% of 70) — per side: 15 + 2.5 + 3×0.5 _(Δ-0.1)_
+  - **Strict Press** — 3 x 5 @ 75% of 1RM<br>    ↳ `52.5 kg` (75% of 70) — per side: 15 + 1.25
 - **[🟡 CRUISE]** WOD — gymnastics (bar series) + partner metcon  _(gymnastics)_
   - A. Gymnastics Cycle Wk1 — Bar Series: straight-arm pulling (ball-ups, front-lever inverted hang, kip extensions)
   - B. 16 min AMRAP: kip extensions / ball-ups / candlesticks / thoracic rotation / parallette traverse
   - Comp class: Weighted Pull-Ups 6x4 @20%; max-unbroken BW pull-up set; pairs — T2B / burpee box get-over / HS walk
-
-> ⚠ **Interference:** PROTECT heavy_squat placed Thu (no clash-free day this week). Class taxes heavy_squat on Mon, Wed, Sat; this sits next to Wed — keep it submaximal or drop it if the class dose was heavy (class covers the pattern).
 
 ### Fri 2026-06-12 — REST DAY
 
@@ -108,7 +119,8 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - **Split Jerk** — 5 x 2 @ 85% of 1RM ⭐<br>    ↳ `105.5 kg` (85% of 124) — per side: 25 + 15 + 1.25 + 3×0.5 _(Δ+0.1)_
   - **Snatch (OTM @70%)** — 10 x 1 @ 70% of 1RM ⭐<br>    ↳ `61.5 kg` (70% of 88) — per side: 15 + 2.5 + 1.25 + 4×0.5 _(Δ-0.1)_
   - **Clean (OTM @70%)** — 10 x 1 @ 70% of 1RM ⭐<br>    ↳ `87 kg` (70% of 124) — per side: 25 + 5 + 2.5 + 2×0.5 _(Δ+0.2)_
-- **[🟢 SKILL / skip-eligible]** Ring MU skill  ·  Ring Muscle-Up Block  _(gymnastics)_
+- **[🟢 SKILL / skip-eligible (flex)]** Ring MU skill  ·  Ring Muscle-Up Block  _(gymnastics)_
+  - 🎯 _Focus: This week's focus: false-grip strength + the transition turnover (chase frequency, not load)._
   - ◦ False-grip ring rows — 4 x 6
   - ◦ Ring MU transitions (low rings / feet assist) — 5 x 3
   - ◦ Kip swing on rings — 4 x 5
