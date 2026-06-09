@@ -8,6 +8,11 @@ synthetic weeks that isolate edge cases (the move-or-drop branch, adjacency).
 
 import pytest
 
+from cfprog.availability import (
+    DayOverride,
+    FixtureAvailabilityProvider,
+    WeekOverrides,
+)
 from cfprog.calculator import LoadCalculator
 from cfprog.classplan import (
     ClassSession,
@@ -314,3 +319,94 @@ def test_red_keeps_accessory_as_rehab_only(gen, plan):
 def test_invalid_readiness_rejected(gen, plan):
     with pytest.raises(ValueError):
         gen.daily_adjust(_day(plan, "Mon"), "purple")
+
+
+# ---------------------------------------------------------------------------
+# Availability integration (generator consumes the gym-availability layer)
+# ---------------------------------------------------------------------------
+
+@pytest.fixture
+def avail_gen(calc):
+    return WeeklyGenerator(
+        class_provider=FixtureClassPlanProvider(),
+        focus_blocks=load_focus_blocks(),
+        calculator=calc,
+        availability_provider=FixtureAvailabilityProvider(),
+    )
+
+
+def test_availability_drives_a_full_monday_to_sunday_spine(avail_gen):
+    plan = avail_gen.generate()
+    assert [d.day for d in plan.days] == ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    # Fri + Sun are rest in the template; the rest are training days.
+    assert {d.day for d in plan.days if d.is_rest} == {"Fri", "Sun"}
+    assert _day(plan, "Fri").status == "Rest"
+
+
+def test_availability_surfaces_class_slots(avail_gen):
+    plan = avail_gen.generate()
+    # Monday's default option is the 17:30 CrossFit + 18:30 Weightlifting double.
+    assert len(_day(plan, "Mon").class_slots) == 2
+    assert any("Weightlifting" in s for s in _day(plan, "Mon").class_slots)
+    # Tuesday's default is a single CrossFit class.
+    assert len(_day(plan, "Tue").class_slots) == 1
+
+
+def test_placement_is_stable_under_availability(avail_gen):
+    """Deconfliction outcome is unchanged when the spine comes from availability."""
+    plan = avail_gen.generate()
+    press = [d.day for d in plan.days for s in d.sessions
+             if s.tier == "PROTECT" and s.stimulus == "press"]
+    accessory = [d.day for d in plan.days for s in d.sessions if s.tier == "ACCESSORY"]
+    skill = [d.day for d in plan.days for s in d.sessions if s.tier == "SKILL"]
+    assert press == ["Thu"]
+    assert accessory == ["Tue"]
+    assert skill == ["Mon", "Wed", "Sat"]
+
+
+def test_override_rest_day_moves_protected_strength(calc):
+    """Resting Thursday (override) forces the strict-press PROTECT off Thu."""
+    overrides = WeekOverrides(days={"thursday": DayOverride(rest=True)})
+    gen = WeeklyGenerator(
+        FixtureClassPlanProvider(), load_focus_blocks(), calc,
+        availability_provider=FixtureAvailabilityProvider(), overrides=overrides,
+    )
+    plan = gen.generate()
+    assert _day(plan, "Thu").is_rest
+    press = [d.day for d in plan.days for s in d.sessions
+             if s.tier == "PROTECT" and s.stimulus == "press"]
+    assert press and "Thu" not in press
+
+
+def test_class_wod_on_availability_rest_day_is_flagged_not_scheduled(calc):
+    """A WOD that lands on an availability-rested day is flagged, not scheduled."""
+    overrides = WeekOverrides(days={"saturday": DayOverride(unavailable=True)})
+    gen = WeeklyGenerator(
+        FixtureClassPlanProvider(), load_focus_blocks(), calc,
+        availability_provider=FixtureAvailabilityProvider(), overrides=overrides,
+    )
+    plan = gen.generate()
+    sat = _day(plan, "Sat")
+    assert sat.is_rest
+    assert not sat.sessions                      # the Sat WOD is not scheduled
+    assert any("not scheduled" in f for f in plan.flags)
+
+
+def test_multi_session_day_attaches_all_and_unions_stimuli(calc):
+    """Two class sessions on one date (e.g. AM CF + PM WL) both attach; the day's
+    taxed patterns union (uses the class-plan fallback spine)."""
+    sessions = [
+        ClassSession(day="Mon", date="2026-06-08", title="AM CrossFit",
+                     stimulus="engine", also_taxes=("gymnastics",)),
+        ClassSession(day="Mon", date="2026-06-08", title="PM Weightlifting",
+                     stimulus="heavy_squat", also_taxes=("heavy_pull",)),
+    ]
+    gen = WeeklyGenerator(
+        InMemoryClassPlanProvider("2026-06-08", sessions), load_focus_blocks(), calc,
+    )
+    plan = gen.generate()
+    mon = plan.days[0]
+    class_sessions = [s for s in mon.sessions if s.origin == "class"]
+    assert len(class_sessions) == 2
+    assert mon.class_stimulus == "engine"        # first session's primary
+    assert mon.taxed_patterns_set() == {"engine", "gymnastics", "heavy_squat", "heavy_pull"}

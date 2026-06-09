@@ -57,13 +57,35 @@ def _session_md(s: PlannedSession) -> List[str]:
     return lines
 
 
+def _avail_line(d: DayPlan) -> List[str]:
+    """Availability context (slots / flags / notes) when the layer is in use."""
+    out: List[str] = []
+    if d.class_slots:
+        out.append(f"- _Available sessions: {', '.join(d.class_slots)}_")
+    if d.avail_flags:
+        out.append(f"- _Flags: {', '.join(d.avail_flags)}_")
+    for n in d.avail_notes:
+        out.append(f"- _avail: {n}_")
+    return out
+
+
 def _day_md(d: DayPlan) -> List[str]:
+    status = d.status or ("Rest" if d.is_rest else "Train")
     if d.is_rest:
-        return [f"### {d.day} {d.date} — REST DAY", ""]
-    head = f"### {d.day} {d.date} — class: **{d.class_stimulus}**"
+        lines = [f"### {d.day} {d.date} — {status.upper()}", ""]
+        lines.extend(_avail_line(d))
+        if d.interference:
+            for note in d.interference:
+                lines.append(f"> ⚠ **Interference:** {note}")
+        lines.append("")
+        return lines
+    head = f"### {d.day} {d.date} — {status} · class: **{d.class_stimulus or 'open / no WOD'}**"
     if d.also_taxes:
         head += f" _(also taxes: {', '.join(d.also_taxes)})_"
     lines = [head, ""]
+    lines.extend(_avail_line(d))
+    if _avail_line(d):
+        lines.append("")
     for s in d.ordered_sessions():
         lines.extend(_session_md(s))
     if d.interference:

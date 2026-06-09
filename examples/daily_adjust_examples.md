@@ -7,7 +7,9 @@
 
 ## Daily adjust — Thu @ AMBER
 
-### Thu 2026-06-11 — class: **gymnastics** _(also taxes: heavy_pull)_
+### Thu 2026-06-11 — Train · class: **gymnastics** _(also taxes: heavy_pull)_
+
+- _Available sessions: 17:30 Gymnastics, 18:30 Comp class_
 
 - **[🔴 PUSH (PROTECT)]** Strict Press strength  ·  Front Squat / Strict Press Strength  _(press)_
   - 🎯 _Focus: Overhead press is the genuine weak link (SP 70 vs 80 goal) — class under-supplies it; this is the protected lift this week._
@@ -25,7 +27,9 @@
 
 ## Daily adjust — Tue @ RED
 
-### Tue 2026-06-09 — class: **engine** _(also taxes: gymnastics)_
+### Tue 2026-06-09 — Train · class: **engine** _(also taxes: gymnastics)_
+
+- _Available sessions: 05:30 CrossFit_
 
 - **[🟡 CRUISE]** WOD — engine + gymnastics pulling  _(engine)_
   - A. 20 min AMRAP: 3 rounds (400m run / 15 pull-ups) into 2 rounds (300m run / 10 C2B) into AMRAP (200m run / 5 bar MU)

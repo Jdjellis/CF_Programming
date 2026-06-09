@@ -1,11 +1,15 @@
 """CLI for the weekly generator: build the plan, render Markdown, daily-adjust.
 
-    cfprog-week                      # generate + print the week (fixtures)
+    cfprog-week                      # generate + print the week (fixtures + availability)
     cfprog-week --out plan.md        # also write Markdown to a file
+    cfprog-week --flags sessions_hard  # base availability flags for the week
+    cfprog-week --no-availability     # spine from the class plan only (ignore availability)
     cfprog-week --adjust Thu amber   # re-emit one day for a morning readiness
     cfprog-week --adjust Mon red
 
-I/O only — all judgment is in the generator, all arithmetic in the calculator.
+The day spine comes from the gym-availability layer (which days/sessions); the
+class plan supplies what's in each day. I/O only — all judgment is in the
+generator, all arithmetic in the calculator.
 """
 
 from __future__ import annotations
@@ -14,6 +18,7 @@ import argparse
 import sys
 from typing import Optional
 
+from cfprog.availability import FixtureAvailabilityProvider
 from cfprog.classplan import FixtureClassPlanProvider
 from cfprog.focus import load_focus_blocks
 from cfprog.generator import WeeklyGenerator
@@ -32,6 +37,15 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Weekly generator (Phase 2).")
     parser.add_argument("--classplan", help="path to a class-plan fixture JSON")
     parser.add_argument("--focus", help="path to a focus-blocks fixture JSON")
+    parser.add_argument("--availability", help="path to an availability template JSON")
+    parser.add_argument(
+        "--flags", nargs="*", default=[],
+        help="base availability context flags for the week (e.g. sessions_hard pm)",
+    )
+    parser.add_argument(
+        "--no-availability", action="store_true",
+        help="ignore the availability layer; build the spine from the class plan only",
+    )
     parser.add_argument("--out", help="write the rendered Markdown to this path")
     parser.add_argument(
         "--adjust", nargs=2, metavar=("DAY", "READINESS"),
@@ -39,9 +53,15 @@ def main(argv: Optional[list[str]] = None) -> int:
     )
     args = parser.parse_args(argv)
 
+    availability = (
+        None if args.no_availability
+        else FixtureAvailabilityProvider(args.availability)
+    )
     gen = WeeklyGenerator(
         class_provider=FixtureClassPlanProvider(args.classplan),
         focus_blocks=load_focus_blocks(args.focus),
+        availability_provider=availability,
+        base_flags=args.flags,
     )
     plan = gen.generate()
 

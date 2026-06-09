@@ -28,15 +28,31 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass, field, replace
 from datetime import date
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Iterable, List, Optional, Tuple
 
 from cfprog.calculator import LoadCalculator
+from cfprog.availability import (
+    AvailabilityProvider,
+    DayStatus,
+    ResolvedWeek,
+    WEEKDAYS,
+    WeekOverrides,
+    resolve_week,
+)
 from cfprog.classplan import ClassPlanProvider, ClassSession, SetScheme, StrengthPiece
 from cfprog.focus import FocusBlock, FocusTemplate
 from cfprog.logstore import LogStore
 from cfprog.models import PrescriptionResult
 
-# Tier ordering within a day: PROTECT strength first, then class CRUISE, then
+# Map availability DayStatus -> (human label, is a training day?)
+_STATUS_LABEL = {
+    DayStatus.TRAIN: "Train",
+    DayStatus.OPEN_GYM: "Open gym",
+    DayStatus.REST: "Rest",
+    DayStatus.UNAVAILABLE: "Unavailable",
+    DayStatus.NEEDS_CHOICE: "Needs choice",
+}
+
 # Tier ordering within a day and the triage order under time/energy pressure
 # (SKILL.md §1, v1.1): PROTECT strength is priority #1 — never cut for skill. The
 # athlete prefers training in class, so CRUISE sits just under it. ACCESSORY
@@ -97,10 +113,16 @@ class DayPlan:
 
     day: str
     date: str
-    class_stimulus: Optional[str]          # None on a rest day
+    class_stimulus: Optional[str] = None   # None on a rest / open-gym day with no WOD
     also_taxes: Tuple[str, ...] = ()
     is_rest: bool = False
     planned_readiness: str = "green"       # Sunday planning assumes GREEN
+    # Availability context (populated when the generator consumes the availability
+    # layer; None/empty when running class-plan-only).
+    status: Optional[str] = None           # Train | Open gym | Rest | Unavailable | Needs choice
+    class_slots: Tuple[str, ...] = ()      # resolved class slots (times) for the day
+    avail_flags: Tuple[str, ...] = ()      # active availability context flags
+    avail_notes: Tuple[str, ...] = ()      # notes from availability resolution
     sessions: List[PlannedSession] = field(default_factory=list)
     interference: List[str] = field(default_factory=list)
 
@@ -217,11 +239,21 @@ class WeeklyGenerator:
         focus_blocks: List[FocusBlock],
         calculator: Optional[LoadCalculator] = None,
         log_store: Optional[LogStore] = None,
+        availability_provider: Optional[AvailabilityProvider] = None,
+        overrides: Optional[WeekOverrides] = None,
+        base_flags: Iterable[str] = (),
     ) -> None:
         self.class_provider = class_provider
         self.focus_blocks = list(focus_blocks)
         self.calc = calculator or LoadCalculator()
         self.log_store = log_store
+        # Optional gym-availability layer. When supplied, it is the source of
+        # truth for *which days/sessions* the athlete trains (the day spine);
+        # the class plan supplies *what's in* each day. When omitted, the spine
+        # is derived from the class plan alone (back-compatible).
+        self.availability_provider = availability_provider
+        self.overrides = overrides
+        self.base_flags = tuple(base_flags)
 
     # -- load resolution ----------------------------------------------------
 
@@ -431,15 +463,18 @@ class WeeklyGenerator:
         self._decisions: List[str] = []
         sessions = self.class_provider.sessions()
 
-        # Build the day spine from the class plan, inserting rest days for gaps.
-        days = self._build_days(sessions)
+        # Build the day spine. When an availability layer is supplied it is the
+        # source of truth for which days/sessions the athlete trains; otherwise
+        # the spine is derived from the class plan (back-compatible).
+        resolved = self._resolved_availability()
+        if resolved is not None:
+            days = self._build_days_from_availability(resolved)
+        else:
+            days = self._build_days_from_class(sessions)
 
-        # 1+3. Tier + load-resolve the class sessions (CRUISE).
-        by_date = {cs.date: cs for cs in sessions}
-        for d in days:
-            cs = by_date.get(d.date)
-            if cs is not None:
-                d.sessions.append(self._class_session(cs))
+        # 1+3. Attach + tier + load-resolve the class sessions (CRUISE), joining
+        # the class plan onto the spine by date (multiple sessions/day allowed).
+        self._attach_class_sessions(days, sessions)
 
         # 2. Place focus work — PROTECT templates first, then SKILL (policy order).
         # PROTECT may substitute its low-CNS complement when the class already
@@ -462,34 +497,98 @@ class WeeklyGenerator:
             latest_known_readiness=self._latest_readiness(),
         )
 
-    def _build_days(self, sessions: List[ClassSession]) -> List[DayPlan]:
+    # -- day spine ----------------------------------------------------------
+
+    def _resolved_availability(self) -> Optional[ResolvedWeek]:
+        if self.availability_provider is None:
+            return None
+        return resolve_week(
+            self.availability_provider.weekly(), self.overrides, self.base_flags
+        )
+
+    def _build_days_from_availability(self, resolved: ResolvedWeek) -> List[DayPlan]:
+        """Spine from the resolved availability week (Monday-first, 7 days).
+
+        `week_start` (from the class plan) is assumed to be the Monday; each
+        resolved weekday is dated off it. TRAIN / OPEN_GYM are trainable days;
+        REST / UNAVAILABLE are rest; NEEDS_CHOICE is surfaced as a flag and left
+        un-placed (the resolver wouldn't guess, so neither do we).
+        """
+        monday = _iso(self.class_provider.week_start())
+        spine: List[DayPlan] = []
+        for rd in resolved.days:
+            offset = WEEKDAYS.index(rd.weekday)
+            d = date.fromordinal(monday.toordinal() + offset)
+            training = rd.status in (DayStatus.TRAIN, DayStatus.OPEN_GYM)
+            notes = list(rd.notes)
+            if rd.open_gym and rd.open_gym.available and rd.status == DayStatus.REST:
+                when = (
+                    f"before {rd.open_gym.before}" if rd.open_gym.before
+                    else rd.open_gym.window or ""
+                )
+                notes.append(f"open gym available{f' ({when})' if when else ''}")
+            day = DayPlan(
+                day=d.strftime("%a"),
+                date=d.isoformat(),
+                is_rest=not training,
+                status=_STATUS_LABEL.get(rd.status, rd.status.value),
+                class_slots=tuple(str(s) for s in rd.sessions),
+                avail_flags=tuple(sorted(rd.active_flags)),
+                avail_notes=tuple(notes),
+            )
+            if rd.status == DayStatus.NEEDS_CHOICE:
+                day.interference.append(
+                    f"{day.day} {day.date}: availability NEEDS_CHOICE — no class "
+                    "option matched the active flags; pick one (left un-placed)."
+                )
+            spine.append(day)
+        return spine
+
+    def _build_days_from_class(self, sessions: List[ClassSession]) -> List[DayPlan]:
         if not sessions:
             return []
         spine: List[DayPlan] = []
         ordered = sorted(sessions, key=lambda s: _iso(s.date))
         cur = _iso(ordered[0].date)
         end = _iso(ordered[-1].date)
-        present = {cs.date: cs for cs in ordered}
+        present = {cs.date for cs in ordered}
         while cur <= end:
             iso = cur.isoformat()
-            cs = present.get(iso)
-            if cs is not None:
-                day = DayPlan(
-                    day=cs.day,
-                    date=iso,
-                    class_stimulus=cs.stimulus,
-                    also_taxes=cs.also_taxes,
-                )
-            else:
-                day = DayPlan(
-                    day=cur.strftime("%a"),
-                    date=iso,
-                    class_stimulus=None,
-                    is_rest=True,
-                )
-            spine.append(day)
+            spine.append(DayPlan(day=cur.strftime("%a"), date=iso, is_rest=iso not in present))
             cur = cur.fromordinal(cur.toordinal() + 1)
         return spine
+
+    def _attach_class_sessions(
+        self, days: List[DayPlan], sessions: List[ClassSession]
+    ) -> None:
+        """Join class WODs onto the spine by date; set the day's stimulus tags.
+
+        Multiple class sessions per day are supported (e.g. an AM CrossFit + PM
+        weightlifting double); the day's primary stimulus is the first session's,
+        and `also_taxes` unions every attached session's patterns. A WOD landing
+        on a non-training day is flagged, not silently scheduled.
+        """
+        by_date: Dict[str, List[ClassSession]] = {}
+        for cs in sessions:
+            by_date.setdefault(cs.date, []).append(cs)
+        for d in days:
+            css = by_date.get(d.date, [])
+            if not css:
+                continue
+            if d.is_rest:
+                self._dropped_flags.append(
+                    f"{d.day} {d.date}: a class WOD exists but availability marks the "
+                    f"day {d.status or 'rest'} — not scheduled."
+                )
+                continue
+            for cs in css:
+                d.sessions.append(self._class_session(cs))
+            primary = css[0].stimulus
+            taxed: set = set()
+            for cs in css:
+                taxed |= set(cs.taxed_patterns)
+            d.class_stimulus = primary
+            d.also_taxes = tuple(sorted(taxed - {primary}))
 
     def _block_context(self) -> List[str]:
         out: List[str] = []

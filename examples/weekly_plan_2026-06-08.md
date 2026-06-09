@@ -35,7 +35,9 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
 
 ## Schedule
 
-### Mon 2026-06-08 — class: **heavy_squat** _(also taxes: press, heavy_pull)_
+### Mon 2026-06-08 — Train · class: **heavy_squat** _(also taxes: heavy_pull, press)_
+
+- _Available sessions: 17:30 CrossFit, 18:30 Weightlifting_
 
 - **[🟡 CRUISE]** Weightlifting + Performance  _(heavy_squat)_
   - A. Back Squat: 6 x 2 @ 87.5%
@@ -56,7 +58,9 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - ◦ Kip swing on rings — 4 x 5
   - ◦ Eccentric lower from support — 4 x 3
 
-### Tue 2026-06-09 — class: **engine** _(also taxes: gymnastics)_
+### Tue 2026-06-09 — Train · class: **engine** _(also taxes: gymnastics)_
+
+- _Available sessions: 05:30 CrossFit_
 
 - **[🟡 CRUISE]** WOD — engine + gymnastics pulling  _(engine)_
   - A. 20 min AMRAP: 3 rounds (400m run / 15 pull-ups) into 2 rounds (300m run / 10 C2B) into AMRAP (200m run / 5 bar MU)
@@ -69,7 +73,10 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - Spanish squat (banded) — 3 x 20s holds (knee rehab / tendon health)
   - ⚠ _Class already supplies heavy_squat (Mon, Wed, Sat). Deferring the heavy stimulus to class; personal squat work = supporting accessory (low-CNS) appended to Tue — no competing barbell front squat (SKILL.md §3.3)._
 
-### Wed 2026-06-10 — class: **heavy_squat** _(also taxes: heavy_pull, engine)_
+### Wed 2026-06-10 — Train · class: **heavy_squat** _(also taxes: engine, heavy_pull)_
+
+- _Available sessions: 05:30 Weightlifting, 17:30 CrossFit_
+- _avail: default (preferred)_
 
 - **[🟡 CRUISE]** Weightlifting (squat + snatch)  _(heavy_squat)_
   - A. Front Squat: 5 x 3 @ 87.5%
@@ -87,7 +94,9 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - ◦ Kip swing on rings — 4 x 5
   - ◦ Eccentric lower from support — 4 x 3
 
-### Thu 2026-06-11 — class: **gymnastics** _(also taxes: heavy_pull)_
+### Thu 2026-06-11 — Train · class: **gymnastics** _(also taxes: heavy_pull)_
+
+- _Available sessions: 17:30 Gymnastics, 18:30 Comp class_
 
 - **[🔴 PUSH (PROTECT)]** Strict Press strength  ·  Front Squat / Strict Press Strength  _(press)_
   - 🎯 _Focus: Overhead press is the genuine weak link (SP 70 vs 80 goal) — class under-supplies it; this is the protected lift this week._
@@ -100,9 +109,14 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - B. 16 min AMRAP: kip extensions / ball-ups / candlesticks / thoracic rotation / parallette traverse
   - Comp class: Weighted Pull-Ups 6x4 @20%; max-unbroken BW pull-up set; pairs — T2B / burpee box get-over / HS walk
 
-### Fri 2026-06-12 — REST DAY
+### Fri 2026-06-12 — REST
 
-### Sat 2026-06-13 — class: **heavy_squat** _(also taxes: press, heavy_pull, engine)_
+- _avail: open gym available (daytime)_
+
+### Sat 2026-06-13 — Train · class: **heavy_squat** _(also taxes: engine, heavy_pull, press)_
+
+- _Available sessions: 07:00 CrossFit, 08:00 Weightlifting_
+- _avail: default (preferred)_
 
 - **[🟡 CRUISE]** Weightlifting + Performance  _(heavy_squat)_
   - A. Front Squat: 2 reps @ 70 / 77.5 / 82.5 / 87.5 / 92.5 / 97.5%
@@ -125,6 +139,10 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
   - ◦ Ring MU transitions (low rings / feet assist) — 5 x 3
   - ◦ Kip swing on rings — 4 x 5
   - ◦ Eccentric lower from support — 4 x 3
+
+### Sun 2026-06-14 — REST
+
+- _avail: open gym available (before 12:00)_
 
 ---
 _Loads are deterministic (calculator + plate solver); maxes read from the Sheet snapshot via MaxesProvider. Policy applied from programming-policy SKILL.md — not re-improvised._

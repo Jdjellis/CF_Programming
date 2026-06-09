@@ -136,8 +136,15 @@ itself (every weight comes from the calculator). The generator is **pure given
 its inputs** and unit-tested: tiering, placement/deconfliction, and load
 resolution are all deterministic rules.
 
+The **day spine comes from the gym-availability layer** (`cfprog.availability`):
+availability resolves *which days/sessions* you train (rest days, AM+PM doubles,
+the Saturday CF+WL combo), and the class plan is joined on by date to supply
+*what's in* each day. Pass `--no-availability` to build the spine from the class
+plan alone.
+
 ```bash
 cfprog-week                      # generate + print the week's Markdown plan
+cfprog-week --flags sessions_hard  # base availability flags (e.g. a hard week)
 cfprog-week --out plan.md        # also write it to a file
 cfprog-week --adjust Thu amber   # re-emit one day for a morning's readiness
 cfprog-week --adjust Mon red
