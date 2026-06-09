@@ -41,6 +41,26 @@ from cfprog.analytics import (
     ratio_gaps,
     RATIO_STANDARDS,
 )
+from cfprog.availability import (
+    AvailabilityProvider,
+    FixtureAvailabilityProvider,
+    WeeklyAvailability,
+    DayAvailability,
+    DayOption,
+    ClassSlot,
+    OpenGym,
+    DayOverride,
+    WeekOverrides,
+    DayStatus,
+    ResolvedDay,
+    ResolvedWeek,
+    resolve_day,
+    resolve_week,
+    render_week_markdown,
+    normalize_weekday,
+    weekday_name,
+    WEEKDAYS,
+)
 
 __all__ = [
     "Plate",
@@ -69,6 +89,24 @@ __all__ = [
     "tonnage_by_lift",
     "ratio_gaps",
     "RATIO_STANDARDS",
+    "AvailabilityProvider",
+    "FixtureAvailabilityProvider",
+    "WeeklyAvailability",
+    "DayAvailability",
+    "DayOption",
+    "ClassSlot",
+    "OpenGym",
+    "DayOverride",
+    "WeekOverrides",
+    "DayStatus",
+    "ResolvedDay",
+    "ResolvedWeek",
+    "resolve_day",
+    "resolve_week",
+    "render_week_markdown",
+    "normalize_weekday",
+    "weekday_name",
+    "WEEKDAYS",
 ]
 
 __version__ = "0.1.0"

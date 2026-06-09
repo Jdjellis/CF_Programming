@@ -218,7 +218,11 @@ the calculator.
   planned tier (assume GREEN for top-set planning) with the daily-adjustment
   table applied at session time.
 - **Athlete config**: available training days, deload cadence (~every 4th week;
-  banked amber/red can pull it earlier).
+  banked amber/red can pull it earlier). Available training days come from the
+  **gym-availability layer** (`cfprog.availability`): a general weekly schedule
+  (`data/availability.template.json`) of per-day options + context flags, with
+  week-to-week / day-to-day overrides resolved deterministically into the week's
+  actual sessions. ✅ done — see Section 5b.
 
 ### Process (policy, then arithmetic)
 
@@ -247,6 +251,51 @@ itself is pure given its inputs, so it's testable without the scheduler.
 
 ---
 
+## 5b. Gym-availability layer (✅ done)
+
+The generator needs to know **which sessions I can actually do each day** before
+it tiers, deconflicts, or loads anything. That is the availability layer
+(`cfprog.availability`), separate from the class plan (the day's WODs): it
+answers *when / what class*, never *the day's stimulus or load*.
+
+### Two inputs, composed at resolve time
+
+1. **General availability** — the usual weekly schedule, in
+   `data/availability.template.json`, behind an `AvailabilityProvider` (same
+   pattern as `MaxesProvider`; swappable for a calendar feed later). Each day
+   offers one or more **options** (an ordered list of class slots). Options carry
+   `requires` / `excludes` **context flags** so the right one is picked
+   automatically.
+2. **Overrides** — week-to-week or day-to-day changes layered on top, never
+   editing the template: `rest`, `unavailable`, `choose` (force an option),
+   `flags` (set context), `extra_sessions` (ad-hoc open gym). `WeekOverrides`
+   loads from a weekday- or date-keyed JSON file.
+
+### Context flags (current schedule)
+
+`sessions_hard` (Mon AM+PM double), `pm` (swap a morning day to its all-PM
+option), and `wl_priority` / `needs_double` / `wl_heavy` (the three-way Saturday
+logic: 7am CF + 8am WL by default → 8am WL only when WL is the priority → 8am WL
++ 9:30am CF only when a double is needed and WL is heavy).
+
+### Resolution (deterministic, total)
+
+For a trainable day the chosen option is the **most specific eligible** one:
+eligible = every `requires` flag active and no `excludes` flag active; most
+specific = most `requires` satisfied (ties broken by listed order). An explicit
+`choose` wins outright. Override precedence: `unavailable` → `rest` → `choose` →
+`flags`. If nothing is eligible the day is `NEEDS_CHOICE` (it never guesses).
+`resolve_week` returns a Monday-first `ResolvedWeek`; `render_week_markdown`
+prints it. CLI: `cfprog-week` (see README).
+
+### What it does *not* do
+
+No load arithmetic and no stimulus tagging — availability only says which class
+slots are on. Stimulus tags and loads still come from the class plan and the
+deterministic calculator (Section 8 holds).
+
+---
+
 ## 6. System architecture
 
 - **Claude Code = home base.** Builds and owns the durable assets and scheduled
@@ -265,7 +314,8 @@ itself is pure given its inputs, so it's testable without the scheduler.
 | Analytics (estimated 1RM, tonnage, ratio gaps) | Code | Deterministic core done; viz layer (Streamlit/React) later |
 | Slack ingestion | Code | Pull latest PDF from channel; parse + tag. (blocked on Slack access) |
 | Sheets read | Code | Read maxes/standards via `MaxesProvider` (stubbed to fixture until auth). |
-| Weekly generator | Code + policy | Applies SKILL.md to the class plan → tiers + schedule + loads. **← next** |
+| Gym-availability layer (`cfprog.availability`) | Code | General weekly schedule + week/day overrides → resolved week. Feeds "available training days" to the generator. ✅ done |
+| Weekly generator | Code + policy | Applies SKILL.md to the class plan + resolved availability → tiers + schedule + loads. **← next** |
 | Scheduled job | Code | Cron / GitHub Action, fires Sunday night. |
 
 ---
@@ -320,8 +370,14 @@ itself is pure given its inputs, so it's testable without the scheduler.
   `data/plate_inventory.json`.
 - [x] **Log write target** — RESOLVED. SQLite store (`data/cfprog.db`) behind the
   `LogStore` interface. Sheet stays a read-only XRM snapshot.
+- [x] **Gym availability (general + flexibility)** — RESOLVED. General weekly
+  schedule captured in `data/availability.template.json` (per-day options +
+  context flags); week-to-week / day-to-day changes layered as overrides and
+  resolved deterministically by `cfprog.availability`. See Section 5b.
 - [ ] **Class-plan input (interim)** — until Slack is wired, decide the
-  `ClassPlanProvider` fixture format / how the week's class sessions are entered.
+  `ClassPlanProvider` fixture format / how the week's class WODs (movements +
+  stimulus tags + % / rep / RPE targets) are entered. Distinct from availability
+  above: availability is *which class*, the class plan is *what's in it*.
 - [ ] **Slack access method** — connector vs bot token. Channel is known:
   `GKAQQ7PGE` (workspace `crossfitclaremont`,
   https://crossfitclaremont.slack.com/archives/GKAQQ7PGE).
