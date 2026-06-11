@@ -8,8 +8,8 @@ description: >
   complement class with, or wants to log a lift or check an estimated 1RM. Applies
   a versioned programming + autoregulation policy and a personal limiter-focused
   block, and calls a deterministic calculator for every load (never does the math
-  itself). Single athlete, on-demand, simple text output.
-version: 1.0.0
+  itself). Single athlete, on-demand: a brief chat summary plus an HTML weekly plan.
+version: 1.1.0
 ---
 
 # CrossFit Coach
@@ -55,32 +55,70 @@ the single source of truth) — never hardcode maxes.
 
 ## §2. Producing the weekly plan
 
-Deliver three things (see `references/examples/weekly-plan.md` for the exact shape):
-**what to push / cruise / skip**, **a day-by-day schedule**, and **calculated loads**.
+The plan is produced in **two stages** (see `references/examples/weekly-plan.md`):
+**first** propose the week in chat — the AM/PM schedule plus the prioritisation
+decisions — and get the athlete's confirmation; **then** calculate loads and generate
+the HTML file. Don't compute loads or render the file until the schedule is confirmed.
 
-1. **Map** the pasted programming onto the usual week from `availability.md` (rest
-   days, AM/PM doubles, the Saturday CF+WL combo). Apply any difference the athlete
-   stated for this week.
-2. **Tag** each class session by primary stimulus:
-   `heavy_squat | heavy_pull | press | gymnastics | engine | mixed`.
-3. **Tier** every piece of work (policy §1): **PROTECT** (front-squat / strict-press
-   strength — push, on the freshest day, before conditioning), **CRUISE** (class
-   metcons — the relief valve, autoregulate here), **ACCESSORY** (low-CNS quad/knee
-   support — flex), **SKILL** (the focus block — cheap, frequency wins, first to cut).
-4. **Deconflict** (policy §3, in order): if the class already covers a PROTECT lift
-   this week (e.g. heavy squats), **defer the heavy stimulus to class** and place the
-   low-CNS **complement** (`references/drills/knee-rehab.md`) on a non-clashing class
-   day — no competing barbell squat. A lift the class under-supplies (strict press)
-   stays a protected independent session on the freshest day. No same-stimulus on
-   consecutive days; strength before conditioning on shared days; keep rest days rest.
-5. **Place** the focus-block drills: read this week's `## Week N` section from each
-   block's program file in `references/drills/` and list its drills + cue.
-6. **Resolve loads:** for every strength prescription (class *or* personal), run
-   `calc.py` and paste the result line. Do not write a kg figure the script didn't
-   produce.
-7. **Emit** the plan in the example's format: focus blocks header, push/cruise/skip
-   lists, the triage order, any policy decisions made this week, then the day-by-day
-   schedule with loads. Keep it simple text — this is a quick read, not a document.
+The gym streams class programming as **Performance** or **Fitness** (the athlete does
+**Performance**) and also publishes **Comp** extras, with dedicated **Weightlifting**
+alongside. Use those stream names in the output — never "CrossFit". In the HTML day
+sections, **reproduce each stream's workout text verbatim** from the pasted
+programming (line breaks and all); don't paraphrase or condense it.
+
+**Order of execution.** When the athlete pastes the week's programming, work in this
+order — evaluate the class week *first*, then fit the personal work around it, then
+emit:
+
+1. **Evaluate the class week.** Map the pasted programming onto `availability.md`
+   (rest days, AM/PM doubles, the Saturday CF+WL combo; apply any difference the
+   athlete stated). Tag each class session by primary stimulus
+   (`heavy_squat | heavy_pull | press | gymnastics | engine | mixed`) and read the
+   **load picture**: which patterns the class already taxes hard this week, and where
+   the fresh days are. Tier the class work (policy §1): **CRUISE** is the class metcon
+   (the relief valve).
+2. **Decide the individual work to fit.** From `focus-blocks.md` (the current blocks
+   and which week each is in) and the policy weakness menus (§5), pick *this week's*
+   personal work and its tier: **PROTECT** (front-squat / strict-press strength),
+   **ACCESSORY** (low-CNS quad/knee support), **SKILL** (the focus block). Read each
+   block's current `## Week N` drills from `references/drills/`. If it's unclear what
+   the athlete wants in this week, **ask before placing it.**
+3. **Fit it in & deconflict** (policy §3, in order). Place the individual work on
+   non-clashing, fresh days: if the class already covers a PROTECT lift (e.g. heavy
+   squats), **defer the heavy stimulus to class** and substitute the low-CNS
+   complement (`references/drills/knee-rehab.md`) on a non-clashing day — no competing
+   barbell squat; a lift the class under-supplies (strict press) stays a protected
+   independent session on the freshest day. No same-stimulus on consecutive days;
+   strength before conditioning; keep rest days rest. **When the week is full, apply
+   the triage order** (PROTECT top sets → class → accessory → skill) — prioritise
+   strength, drop from the bottom (skill first, never the protected strength).
+   **Record every placement, move, or drop** as a prioritisation decision.
+4. **Propose & confirm (checkpoint — do this before any loads or rendering).** Reply
+   in chat with the **proposed week schedule** — the Mon–Sun × AM/PM grid as a quick
+   markdown table, including the fitted individual work — and the **prioritisation
+   decisions** from step 3. Then ask the athlete to confirm or adjust. **Wait for their
+   go-ahead.** If they change anything, revise and re-propose. Only once they confirm do
+   you move on.
+5. **Resolve loads.** For every prescription (class *or* personal) that names a
+   %/rep-max/RPE, run `calc.py` and paste the result line. Never write a kg the script
+   didn't produce.
+6. **Emit.** Build the JSON spec and render the HTML, naming the file
+   **`Gym Schedule - <Monday's date>.html`** (the Monday of the week, e.g.
+   `Gym Schedule - 2026-06-08.html`):
+
+   ```
+   python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Schedule - 2026-06-08.html"
+   ```
+
+   The spec carries (a) the **AM/PM summary grid including the fitted individual work**
+   — each cell a class `type` and/or an `add` chip for personal work; (b) per day, one
+   block per stream — class streams reproduce the workout `text` **verbatim**, the
+   athlete's own blocks set `"accent": "lim"` and carry their drills + `loads`; and
+   (c) a top-level **`decisions`** list that surfaces the prioritisation choices from
+   step 3. Every `load` line is pasted from `calc.py`. The spec shape is in
+   `references/examples/weekly-plan.json`; the rendered result is `weekly-plan.html`
+   (a real output would be `Gym Schedule - <Monday>.html`). The renderer is
+   presentation only — it does no math. Point the athlete at the file.
 
 ## §3. Mid-week autoregulation ("I'm beaten up, adjust today")
 
@@ -128,12 +166,41 @@ press). When a genuine new 1RM lands, remind the athlete to update
 
 Use `references/examples/weekly-plan.md` and `references/examples/daily-adjust.md`
 as the canonical templates for structure and the load-line format
-(`↳ 115 kg (85% of 135) — per side: 25 + 20 + 2.5`). Favour a short, skimmable plan
-over prose. Lead with what to push/cruise/skip; the athlete reads this on their phone.
+(`144.5 kg (87.5% of 165) — /side 2×25+10+1.25`). The weekly plan is rendered to HTML
+via `scripts/render_week.py` (input shape: `weekly-plan.json`), reproducing each
+stream's workout text verbatim with calculated loads underneath; daily adjusts stay as
+a short chat message. Favour a short, skimmable output over prose. Lead with what to
+push/cruise/skip; the athlete reads this on their phone.
 
 ---
 
 ## Changelog
+
+### 1.1.0
+- **Briefer output + an HTML weekly plan.** The weekly plan is now a short chat reply
+  (push/cruise/skip + triage) plus a generated, self-contained HTML file:
+  - a **Week Summary** grid — columns Mon–Sun, rows AM/PM, each cell the training
+    stream(s) for that slot using the gym's names (`WL | Perf | Comp | Fitness`, or a
+    combo like `Performance + WL`), with an optional effort tag;
+  - **Training Days** — per day, one block per stream with its workout text reproduced
+    **verbatim** from the gym's programming and the calculated %-loads listed
+    underneath (weightlifting especially).
+  Added `scripts/render_week.py` (presentation only — no math), the example input
+  `references/examples/weekly-plan.json` (built from a real week's programming), and
+  its rendered `weekly-plan.html`. Trimmed the `weekly-plan.md` and `daily-adjust.md`
+  examples to terse templates, and adopted the gym's stream vocabulary
+  (Performance/Fitness/Comp/Weightlifting — not "CrossFit"). The plan stays stateless
+  — the model regenerates it each week from the pasted programming + the maxes fixture;
+  saved HTML files double as a lightweight per-week archive. No change to load
+  arithmetic (still `calc.py`).
+- **Explicit planning workflow + the personal work shown in the plan.** §2 now sets the
+  order of execution: evaluate the class week (load + priorities) → decide the
+  individual limiter work to fit → fit it in & deconflict, applying the triage order and
+  recording every move/drop → resolve loads → emit. The summary grid now **includes the
+  fitted individual work** (a per-cell `add` chip — strict press, ring MU, quad/knee),
+  the athlete's own day blocks render in a distinct "individual" colour
+  (`"accent": "lim"`), and a top-level **`decisions`** callout surfaces the
+  prioritisation choices made. The example week now demonstrates all of this.
 
 ### 1.0.0
 - Initial chat-first skill. Replaces the deterministic weekly generator + availability
