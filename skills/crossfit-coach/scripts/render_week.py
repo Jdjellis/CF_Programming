@@ -68,9 +68,12 @@ text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
 .src{color:var(--mut);margin:0 0 10px;font-size:13px}
 .focus{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .focus li{background:var(--chip);border-radius:999px;padding:2px 10px;font-size:12px;color:var(--mut)}
-.daynav{position:sticky;top:0;z-index:9;display:flex;gap:6px;overflow-x:auto;background:var(--bg);
-padding:8px 0;margin:10px 0 0;border-bottom:1px solid var(--line);-webkit-overflow-scrolling:touch}
-.daynav::-webkit-scrollbar{display:none}
+.daynav{position:sticky;top:0;z-index:9;display:flex;gap:6px;align-items:center;background:var(--bg);
+padding:8px 0;margin:10px 0 0;border-bottom:1px solid var(--line)}
+.dnchips{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.dnchips::-webkit-scrollbar{display:none}
+.todaybtn{flex:0 0 auto;cursor:pointer;border:1px solid var(--today);background:var(--today);color:#fff;
+border-radius:999px;padding:5px 13px;font:inherit;font-size:13px;font-weight:700;white-space:nowrap}
 .daynav a{flex:0 0 auto;text-decoration:none;color:var(--mut);background:var(--surface);
 border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:600;white-space:nowrap}
 .daynav a .dn{font-weight:400;font-size:11px;margin-left:4px;color:var(--mut)}
@@ -134,15 +137,17 @@ footer{margin-top:24px;color:var(--mut);font-size:11px;border-top:1px solid var(
 h2{margin:20px 0 8px}.day{padding:11px 12px}.wod{font-size:12.5px}}
 """
 
-# Tiny, dependency-free: highlight today's session and open the page on it.
+# Tiny, dependency-free: highlight today's session and reveal a "Today" jump button.
+# No auto-scroll — the athlete decides when to jump.
 SCRIPT = """
 (function(){try{
 var t=new Date();var p=function(n){return (n<10?'0':'')+n;};
 var iso=t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
-var hit=false;
-document.querySelectorAll('[data-iso="'+iso+'"]').forEach(function(el){el.classList.add('is-today');hit=true;});
-if(hit&&!location.hash){var card=document.querySelector('article.day[data-iso="'+iso+'"]');
-if(card){card.scrollIntoView({block:'start'});}}
+document.querySelectorAll('[data-iso="'+iso+'"]').forEach(function(el){el.classList.add('is-today');});
+var card=document.querySelector('article.day[data-iso="'+iso+'"]');
+var btn=document.querySelector('.todaybtn');
+if(btn&&card){btn.hidden=false;
+btn.addEventListener('click',function(){card.scrollIntoView({behavior:'smooth',block:'start'});});}
 }catch(e){}})();
 """
 
@@ -235,7 +240,13 @@ def render_daynav(days, isos) -> str:
         chips.append(
             f'<a class="dnchip{rest}" href="#day-{i}"{isattr}>{esc(d.get("day", ""))}{numspan}</a>'
         )
-    return f'<nav class="daynav">{"".join(chips)}</nav>'
+    # The Today button is revealed by the script only when today is in this week.
+    return (
+        '<nav class="daynav">'
+        '<button class="todaybtn" type="button" hidden>Today</button>'
+        f'<div class="dnchips">{"".join(chips)}</div>'
+        "</nav>"
+    )
 
 
 def render_summary_table(summary) -> str:

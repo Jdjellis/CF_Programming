@@ -202,3 +202,19 @@ def test_dark_mode_and_today_script_present():
     html = _render({"summary": {}, "days": []})
     assert "prefers-color-scheme:dark" in html  # honours the device theme
     assert "<script>" in html and "is-today" in html  # today-detection wired
+
+
+def test_today_button_present_but_no_autoscroll():
+    html = _render(
+        {
+            "week_start": "2026-06-08",
+            "summary": {},
+            "days": [{"day": "Mon", "date": "8 Jun", "streams": [{"label": "WL", "text": "x"}]}],
+        }
+    )
+    # a Today jump button is rendered (hidden until the script confirms today is in-week)
+    assert '<button class="todaybtn" type="button" hidden>Today</button>' in html
+    # highlight is wired, but the script must not force a scroll on open
+    assert "classList.add('is-today')" in html
+    assert "scrollIntoView" in html  # only inside the button click handler
+    assert "addEventListener('click'" in html

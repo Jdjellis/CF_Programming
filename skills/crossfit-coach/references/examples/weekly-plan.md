@@ -88,8 +88,9 @@ named `weekly-plan` here as the canonical example) in this folder for the shapes
 
 - **`week_start`** → the ISO date of the first day in `days` (the Monday, same date the
   file is named after). The renderer derives each day's date from it so the HTML can
-  highlight **today's** session, scroll to it on open, and link the sticky day-nav. Omit
-  it and the page still renders — it just won't know which day is "today".
+  highlight **today's** session, reveal a **Today** button that jumps to it, and link the
+  sticky day-nav. Omit it and the page still renders — it just won't know which day is
+  "today".
 - **`summary`** → the Week Summary grid (columns Mon–Sun, rows AM/PM). `type` is the
   class stream — `WL | Perf | Comp | Fitness | WOD | Rest`, or a combo like
   `"Performance + WL"`; the renderer colour-codes by keyword. **`add`** is the fitted

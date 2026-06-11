@@ -116,13 +116,14 @@ emit:
    athlete's own blocks set `"accent": "lim"` and carry their drills + `loads`; (c) a
    top-level **`decisions`** list that surfaces the prioritisation choices from step 3;
    and (d) a top-level **`week_start`** — the Monday's ISO date (same as the filename),
-   which lets the HTML highlight **today's** session, open scrolled to it, and link the
-   sticky day-nav. Every `load` line is pasted from `calc.py`. The spec shape is in
-   `references/examples/weekly-plan.json`; the rendered result is `weekly-plan.html`
-   (a real output would be `Gym Schedule - <Monday>.html`). The HTML is built for the
-   gym on a phone — it reflows the week summary to a tap-to-jump day list, highlights
-   today, and follows the device's dark-mode setting. The renderer is presentation only
-   — it does no math. Point the athlete at the file.
+   which lets the HTML highlight **today's** session, reveal a **Today** button that
+   jumps to it, and link the sticky day-nav. Every `load` line is pasted from `calc.py`.
+   The spec shape is in `references/examples/weekly-plan.json`; the rendered result is
+   `weekly-plan.html` (a real output would be `Gym Schedule - <Monday>.html`). The HTML
+   is built for the gym on a phone — it reflows the week summary to a tap-to-jump day
+   list, highlights today (with a Today button), and follows the device's dark-mode
+   setting. The renderer is presentation only — it does no math. Point the athlete at
+   the file.
 
 ## §3. Mid-week autoregulation ("I'm beaten up, adjust today")
 
@@ -188,10 +189,10 @@ push/cruise/skip; the athlete reads this on their phone.
   format updated accordingly (`scripts/calc.py` is still the only place load math
   happens). The weekly HTML (`render_week.py`) is now built for the gym on a phone: the
   Week Summary reflows to a tap-to-jump day list on narrow screens, a **sticky day-nav**
-  jumps straight to any day, **today's** session is highlighted and scrolled into view
-  on open (driven by a new top-level **`week_start`** ISO date in the spec), and the page
-  follows the device's **dark-mode** preference. Presentation only — still no math in the
-  renderer.
+  jumps straight to any day, **today's** session is highlighted with a **Today** button
+  that jumps to it (driven by a new top-level **`week_start`** ISO date in the spec), and
+  the page follows the device's **dark-mode** preference. Presentation only — still no
+  math in the renderer.
 
 ### 1.1.0
 - **Briefer output + an HTML weekly plan.** The weekly plan is now a short chat reply
