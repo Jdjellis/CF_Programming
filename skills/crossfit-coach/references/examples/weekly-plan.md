@@ -30,11 +30,11 @@ work — plus the prioritisation decisions, and ask before going further:
 
 ## 2. Generate the HTML (after confirmation)
 
-Build the JSON spec and render it, naming the file `Gym Schedule - <Monday's date>`:
+Build the JSON spec and render it, naming the file `Gym Program - Week starting <Monday's date>`:
 
 ```bash
-python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Schedule - 2026-06-08.html"
-# or stream it:  python3 .../render_week.py - -o "Gym Schedule - 2026-06-08.html" < plan.json
+python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Program - Week starting 2026-06-08.html"
+# or stream it:  python3 .../render_week.py - -o "Gym Program - Week starting 2026-06-08.html" < plan.json
 ```
 
 See **`weekly-plan.json`** (the input) and **`weekly-plan.html`** (the rendered result,

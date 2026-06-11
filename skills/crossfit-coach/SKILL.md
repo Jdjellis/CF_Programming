@@ -103,11 +103,11 @@ emit:
    %/rep-max/RPE, run `calc.py` and paste the result line. Never write a kg the script
    didn't produce.
 6. **Emit.** Build the JSON spec and render the HTML, naming the file
-   **`Gym Schedule - <Monday's date>.html`** (the Monday of the week, e.g.
-   `Gym Schedule - 2026-06-08.html`):
+   **`Gym Program - Week starting <Monday's date>.html`** (the Monday of the week, e.g.
+   `Gym Program - Week starting 2026-06-08.html`):
 
    ```
-   python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Schedule - 2026-06-08.html"
+   python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Program - Week starting 2026-06-08.html"
    ```
 
    The spec carries (a) the **AM/PM summary grid including the fitted individual work**
@@ -119,7 +119,7 @@ emit:
    which lets the HTML highlight **today's** session, reveal a **Today** button that
    jumps to it, and link the sticky day-nav. Every `load` line is pasted from `calc.py`.
    The spec shape is in `references/examples/weekly-plan.json`; the rendered result is
-   `weekly-plan.html` (a real output would be `Gym Schedule - <Monday>.html`). The HTML
+   `weekly-plan.html` (a real output would be `Gym Program - Week starting <Monday>.html`). The HTML
    is built for the gym on a phone — it reflows the week summary to a tap-to-jump day
    list, highlights today (with a Today button), and follows the device's dark-mode
    setting. The renderer is presentation only — it does no math. Point the athlete at
