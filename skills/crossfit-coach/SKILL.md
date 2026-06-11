@@ -55,11 +55,10 @@ the single source of truth) — never hardcode maxes.
 
 ## §2. Producing the weekly plan
 
-The plan ships in **two parts** (see `references/examples/weekly-plan.md`): a **brief
-chat reply** — what to push / cruise / skip plus the triage order — and a **generated
-HTML file** holding the full week (a Mon–Sun × AM/PM summary grid and the day-by-day
-schedule with calculated loads). Keep the chat reply phone-short; the detail lives in
-the HTML.
+The plan is produced in **two stages** (see `references/examples/weekly-plan.md`):
+**first** propose the week in chat — the AM/PM schedule plus the prioritisation
+decisions — and get the athlete's confirmation; **then** calculate loads and generate
+the HTML file. Don't compute loads or render the file until the schedule is confirmed.
 
 The gym streams class programming as **Performance** or **Fitness** (the athlete does
 **Performance**) and also publishes **Comp** extras, with dedicated **Weightlifting**
@@ -94,14 +93,21 @@ emit:
    the triage order** (PROTECT top sets → class → accessory → skill) — prioritise
    strength, drop from the bottom (skill first, never the protected strength).
    **Record every placement, move, or drop** as a prioritisation decision.
-4. **Resolve loads.** For every prescription (class *or* personal) that names a
+4. **Propose & confirm (checkpoint — do this before any loads or rendering).** Reply
+   in chat with the **proposed week schedule** — the Mon–Sun × AM/PM grid as a quick
+   markdown table, including the fitted individual work — and the **prioritisation
+   decisions** from step 3. Then ask the athlete to confirm or adjust. **Wait for their
+   go-ahead.** If they change anything, revise and re-propose. Only once they confirm do
+   you move on.
+5. **Resolve loads.** For every prescription (class *or* personal) that names a
    %/rep-max/RPE, run `calc.py` and paste the result line. Never write a kg the script
    didn't produce.
-5. **Emit.** Post a short chat reply (push/cruise/skip, the triage order, the
-   prioritisation decisions), then build the JSON spec and render the HTML:
+6. **Emit.** Build the JSON spec and render the HTML, naming the file
+   **`Gym Schedule - <Monday's date>.html`** (the Monday of the week, e.g.
+   `Gym Schedule - 2026-06-08.html`):
 
    ```
-   python3 skills/crossfit-coach/scripts/render_week.py plan.json -o weekly-plan.html
+   python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Schedule - 2026-06-08.html"
    ```
 
    The spec carries (a) the **AM/PM summary grid including the fitted individual work**
@@ -109,9 +115,10 @@ emit:
    block per stream — class streams reproduce the workout `text` **verbatim**, the
    athlete's own blocks set `"accent": "lim"` and carry their drills + `loads`; and
    (c) a top-level **`decisions`** list that surfaces the prioritisation choices from
-   step 3. Every `load` line is pasted from `calc.py`. The shape is in
-   `references/examples/weekly-plan.json`; the rendered result is `weekly-plan.html`.
-   The renderer is presentation only — it does no math. Point the athlete at the HTML.
+   step 3. Every `load` line is pasted from `calc.py`. The spec shape is in
+   `references/examples/weekly-plan.json`; the rendered result is `weekly-plan.html`
+   (a real output would be `Gym Schedule - <Monday>.html`). The renderer is
+   presentation only — it does no math. Point the athlete at the file.
 
 ## §3. Mid-week autoregulation ("I'm beaten up, adjust today")
 

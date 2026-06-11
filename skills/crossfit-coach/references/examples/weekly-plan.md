@@ -1,36 +1,44 @@
 # Weekly plan — output format
 
-The weekly plan ships as **two parts**: a short chat reply (push/cruise/skip + the
-priority order) and a **generated HTML file** with the full week. Keep the chat
-reply skimmable — the detail lives in the HTML.
+The weekly plan is produced in **two stages**: first **propose the week in chat** (the
+AM/PM schedule + the prioritisation decisions) and get the athlete's confirmation;
+**then** calculate loads and generate the HTML file. Don't compute loads or render the
+file until the schedule is confirmed.
 
 The gym streams class programming as **Performance** or **Fitness** (the athlete does
 **Performance**) and also publishes **Comp** extras; dedicated **Weightlifting** sits
 alongside. Use those names — never "CrossFit".
 
-## 1. Chat reply (keep it this short)
+## 1. Propose the week in chat (then wait for confirmation)
 
-> **Week of 8–14 Jun** — Front Squat/Strict Press wk3/6 · Ring MU wk3/6. No readiness
-> logged — adjust each morning.
+Reply with the proposed schedule as a quick table — including the fitted individual
+work — plus the prioritisation decisions, and ask before going further:
+
+> **Week of 8–14 Jun** — Front Squat/Strict Press wk3/6 · Ring MU wk3/6.
 >
-> - **Push (PROTECT):** Wed/Sun front-squat top sets; strict-press volume.
-> - **Cruise (Performance):** Mon WL+chipper · Tue WOD · Wed WL · Thu gym · Sat WL+Perf
-> - **Flex:** Tue Comp extras · Thu Comp class · Ring MU
+> | | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+> |---|---|---|---|---|---|---|---|
+> | **AM** | WL · +Ring MU | — | WL · +Ring MU | +Strict Press | Rest | Perf+WL · +Ring MU | Rest |
+> | **PM** | Perf | Perf · +Quad/knee | — | WOD+Comp | — | — | — |
 >
-> Triage when squeezed: PROTECT top sets → Performance class → accessory → skill.
-> 📄 Full week + loads: `weekly-plan.html`
+> **Priority decisions**
+> - Front-squat strength deferred to class (squats heavy Mon/Wed/Sat) → quad/knee on Tue instead.
+> - Strict press kept independent (box under-supplies pressing) → Thu AM, clear of Tue's Push Press.
+> - Ring MU Mon/Wed/Sat for frequency; first to flex if a day is squeezed.
+>
+> Want me to adjust anything, or shall I calculate loads and generate the schedule?
 
-## 2. Generate the HTML
+## 2. Generate the HTML (after confirmation)
 
-The model produces a compact JSON spec, then renders it:
+Build the JSON spec and render it, naming the file `Gym Schedule - <Monday's date>`:
 
 ```bash
-python3 skills/crossfit-coach/scripts/render_week.py plan.json -o weekly-plan.html
-# or stream it:  python3 .../render_week.py - -o weekly-plan.html < plan.json
+python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Schedule - 2026-06-08.html"
+# or stream it:  python3 .../render_week.py - -o "Gym Schedule - 2026-06-08.html" < plan.json
 ```
 
-See **`weekly-plan.json`** (the input) and **`weekly-plan.html`** (the result) in
-this folder for the canonical shapes.
+See **`weekly-plan.json`** (the input) and **`weekly-plan.html`** (the rendered result,
+named `weekly-plan` here as the canonical example) in this folder for the shapes.
 
 ### Two hard rules for the spec
 
