@@ -1,35 +1,8 @@
-[build-system]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "cfprog"
-version = "0.1.0"
-description = "Personal CrossFit programming + autoregulation system (Phase 1: policy + deterministic load/plate calculator)."
-readme = "README.md"
-requires-python = ">=3.10"
-license = { text = "Proprietary" }
-authors = [{ name = "Josh Ellis" }]
-dependencies = [
-    # Phase 1 core is pure stdlib. External deps land in later phases:
-    #   google-api-python-client / gspread  -> Sheets I/O (Phase 1 read, stubbed)
-    #   pdfplumber / pymupdf                 -> Slack PDF ingestion (Phase 2)
-    #   streamlit                            -> analytics dashboard (Phase 3)
-]
-
-[project.optional-dependencies]
-dev = ["pytest>=7"]
-sheets = ["gspread>=6", "google-auth>=2"]
-
-[project.scripts]
-cfprog-calc = "cfprog.cli:main"
-cfprog-log = "cfprog.logcli:main"
-cfprog-avail = "cfprog.availcli:main"
-cfprog-week = "cfprog.weekcli:main"
-
-[tool.setuptools.packages.find]
-where = ["src"]
+# This repo is now a Claude skill (skills/crossfit-coach), not an installable
+# package. The deterministic calculator is vendored under the skill and run
+# directly (the scripts put it on the path themselves) — no build/install step.
+# This file only configures the test run for the surviving arithmetic core.
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["skills/crossfit-coach/scripts/tests"]
 addopts = "-q"

@@ -1,26 +1,13 @@
----
-name: programming-policy
-description: >
-  Personal CrossFit programming + autoregulation policy. The "brain" the weekly
-  generator applies to turn box programming + a personal focus block into a
-  daily, readiness-adjusted, load-calculated plan. Apply this policy when
-  placing focus-block work against the class plan, deconflicting stimuli,
-  autoregulating load by daily readiness, or choosing weakness-specific
-  accessory work. Does NOT do load arithmetic — that is the deterministic
-  calculator's job (the model never does plate/percentage math at runtime).
-version: 1.2.0
-status: active
-source_of_truth: PROJECT_SPEC.md (Section 3); maxes from Google Sheet top section
-last_updated: 2026-06-09
----
-
 # Programming & Autoregulation Policy
 
-> This is the versioned policy the weekly generator applies. It is judgment, not
-> arithmetic: it decides *what* to program and *how hard*, then hands concrete
-> loads to the deterministic load/plate calculator. Never re-improvise this
-> policy per run, and never let the model compute weights — read the calculator's
-> output.
+> **This is the judgment brain of the `crossfit-coach` skill.** When you plan a
+> week, deconflict personal work against class, autoregulate by readiness, or pick
+> weakness-specific accessory work, **you (the assistant) apply this policy** —
+> it is the versioned rule set you reason from, not something to re-improvise each
+> time. It is judgment, not arithmetic: it decides *what* to program and *how
+> hard*, then hands concrete loads to the deterministic calculator
+> (`scripts/calc.py`). Never compute weights yourself — run the calculator and
+> read its output. (Policy version 1.2.0; see the changelog at the foot of this file.)
 
 ## 0. Athlete context (why this policy is shaped this way)
 
@@ -122,8 +109,9 @@ Deconfliction decision order when placing focus-block work:
   emphasis.
 - **Default block shape:** a 6-week ring-MU block, 3×/week (SKILL tier) **+** a
   front-squat / strict-press strength emphasis (PROTECT tier).
-- A block is defined by: `name`, `length_weeks`, `days_per_week`, `tier`, and a
-  `session_template` the generator slots around the class plan.
+- A block is defined by: a name, length in weeks, days per week, tier, and a
+  session template you slot around the class plan. The athlete's current blocks
+  live in `references/focus-blocks.md`.
 
 ## 5. Weakness-specific exercise logic
 
@@ -141,26 +129,21 @@ come from the calculator; this menu chooses the movement.)
 ### Current focus (per-block, reference-backed)
 
 The specific drills within a menu (e.g. *which* ring-MU progression, *which* knee
-rehab) are the focus block's **current focus** — a structured `emphasis` on the
-template, not a hand-typed line each week:
+rehab) come from the focus block's **current program** in the `references/drills/`
+library, not from memory:
 
-- **`name`** + optional **`cues`** — what to prioritise and how.
-- **`reference`** — a path into the `references/` program/drill library (Markdown,
-  rendered as a one-click link). The generator pulls *this week's* drills straight
-  from that file, so you refine the program by editing the program, not the config.
-- **`program_week` / `program_length`** — a visible **wk X/Y** progress marker. The
-  week defaults to the block's `current_week` and **auto-advances** as it
-  increments; an explicit `program_week` lets a focus track its own counter (start
-  mid-program). Non-periodised references (a flat rehab/mobility menu) carry no
-  week marker.
-- **`this_week`** — an optional explicit drill list that overrides the reference
-  (required for link-only references such as a purchased PDF program, which can't
-  be parsed). A plain string `emphasis` still works (treated as `cues`).
+- Each block in `references/focus-blocks.md` names a drill/program file in
+  `references/drills/` and the block's **current week** (e.g. "week 3 of 6").
+- For a periodised program, **read that week's `## Week N` section directly** and
+  list its drills + cue. Refine a program by editing the program file, not by
+  re-typing drills.
+- For a flat menu (rehab/mobility), there is no week marker — use the menu as-is.
+- Each block tracks its own week independently (skill + strength run concurrently).
+  When a block's stated week is stale, infer the current week from the date or ask.
 
 Loads are **not** affected: where a drill names a lift + a percentage, the kilos
-still resolve through the calculator via the template's strength pieces — the
-reference text is descriptive. Multiple concurrent focuses each point at their own
-reference and track their own program week (§4).
+still resolve through the calculator (`scripts/calc.py`) — the drill text is
+descriptive.
 
 ## 6. Hard constraints (inherited from spec Section 8)
 

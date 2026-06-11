@@ -1,9 +1,7 @@
-# Phase 1 core requires nothing beyond the Python standard library.
-# Install the package (editable) plus dev tooling with:
-#   pip install -e ".[dev]"
+# The skill itself needs nothing beyond the Python standard library — the
+# deterministic calculator is pure stdlib and runs without an install step.
+# The only dependency is the test runner for the calculator's unit tests:
 #
-# Later phases add:
-#   gspread, google-auth          # Sheets read/write
-#   pdfplumber or pymupdf         # Slack PDF parsing
-#   streamlit                     # analytics dashboard
+#   python3 -m pip install pytest
+#   python3 -m pytest
 pytest>=7
