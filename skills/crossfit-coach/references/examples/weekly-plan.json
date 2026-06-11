@@ -1,129 +1,107 @@
 {
-  "week_of": "2026-06-08",
+  "week_of": "8–14 Jun 2026",
   "source": "Claremont Competitors Programming — Week 8",
   "focus": [
-    "Front Squat / Strict Press — wk 3/6 · PROTECT",
-    "Ring Muscle-Up — wk 3/6 · SKILL",
-    "No readiness logged yet — future days planned GREEN; adjust each morning"
+    "Front Squat / Strict Press — wk 3/6",
+    "Ring Muscle-Up — wk 3/6"
   ],
   "summary": {
-    "mon": { "pm": { "type": "Weightlifting", "effort": "High" } },
-    "tue": { "am": { "type": "CrossFit", "effort": "Med" }, "pm": { "type": "Limiter", "effort": "Low" } },
-    "wed": { "am": { "type": "Weightlifting", "effort": "High" }, "pm": { "type": "CrossFit", "effort": "Low" } },
-    "thu": { "am": { "type": "Limiter", "effort": "High" }, "pm": { "type": "Comp", "effort": "Med" } },
+    "mon": { "am": { "type": "WL" }, "pm": { "type": "Perf" } },
+    "tue": { "pm": { "type": "Perf" } },
+    "wed": { "pm": { "type": "WL" } },
+    "thu": { "am": { "type": "Perf" }, "pm": { "type": "Comp" } },
     "fri": { "am": { "type": "Rest" } },
-    "sat": { "am": { "type": "Weightlifting", "effort": "High" } },
-    "sun": { "am": { "type": "Rest" } }
+    "sat": {},
+    "sun": { "am": { "type": "Performance + WL" } }
   },
   "days": [
     {
-      "day": "Mon", "date": "2026-06-08", "class": "heavy_squat",
-      "sessions": [
+      "day": "Mon", "date": "8 Jun",
+      "streams": [
         {
-          "tier": "CRUISE", "title": "Weightlifting + Performance", "stimulus": "heavy_squat",
-          "items": [
-            { "name": "Back Squat", "scheme": "6×2 @ 87.5%", "load": "144.5 kg (88% of 165) — /side 2×25+10+1.25+2×0.5" },
-            { "name": "Low Hang Power Clean", "scheme": "3×2 @ 80%", "load": "97.5 kg (80% of 122) — /side 25+10+2.5+1.25" },
-            { "name": "Low Hang Power Clean", "scheme": "3×1 @ 90%", "load": "110 kg (90% of 122) — /side 25+20" },
-            { "name": "Push Press", "scheme": "5/4/3/5+ @ 75/80/85/75%", "load": "75 / 80 / 85 / 75 kg (of 100)" },
-            { "name": "Performance", "detail": "chipper: 50 DL / 50 box jump / 25 strict HSPU / 50-40 echo / 50 FS @60" }
+          "label": "Weightlifting",
+          "text": "Week 8 of the Cycle\n\n(0 - 18 min)\nA. Back Squat: 6s x 2r x 87.5%\n\n(18 - 32 min)\nB. Low Hang Power Clean:\n3 Waves: (3 sets of each)\n2 x 80%\n1 x 90%\n*After each set complete 3 rebounding vertical jumps.",
+          "loads": [
+            { "lift": "Back Squat", "scheme": "6 x 2 @ 87.5%", "load": "144.5 kg (87.5% of 165) — /side 2×25+10+1.25+2×0.5" },
+            { "lift": "Low Hang Power Clean", "scheme": "2 @ 80%", "load": "97.5 kg (80% of 122) — /side 25+10+2.5+1.25" },
+            { "lift": "Low Hang Power Clean", "scheme": "1 @ 90%", "load": "110 kg (90% of 122) — /side 25+20" }
           ]
         },
         {
-          "tier": "SKILL", "title": "Ring MU block", "stimulus": "gymnastics",
-          "items": [
-            { "name": "False-grip ring pull-ups", "scheme": "4×4" },
-            { "name": "Low-ring transitions", "scheme": "5×3 (feet assist)" },
-            { "name": "Kip swing to high pull", "scheme": "5×4" },
-            { "name": "Eccentric lower from support", "scheme": "4×3" }
-          ],
-          "notes": ["Chase frequency, not load. → references/drills/ring-mu-kipping.md"]
+          "label": "Performance",
+          "text": "A. 4 Rounds: alt OT90 sec\nA1. 5 Back Rack Step Ups (e side)\n*Set a box so you're below parallel\nA2. 30m Single Arm DB OH Walk\n\nB. For time:\n50 Deadlifts\n50 Box Jumps (24/20\")\n25 Strict handstand Push Ups\n50/40 Calorie Echo Bike\n50 Front Squat\nBarbell: (60/40kg)\n*17.30 time cap\nWorkout is done in the format of 90 sec on, 30 sec off until reps are completed."
         }
       ]
     },
     {
-      "day": "Tue", "date": "2026-06-09", "class": "engine",
-      "sessions": [
+      "day": "Tue", "date": "9 Jun",
+      "streams": [
         {
-          "tier": "CRUISE", "title": "WOD — engine + gymnastics pulling", "stimulus": "engine",
-          "items": [
-            { "name": "AMRAP 20", "detail": "3rd: run/pull-ups → 2rd: run/C2B → AMRAP: run/bar-MU" },
-            { "name": "Midline OTM 21", "detail": "hanging tuck hold / seated straddle leg lifts" }
+          "label": "Performance",
+          "text": "A. 20 min AMRAP:\n3 Rounds:\n400m Run\n15 Pull Ups\n- into -\n2 Rounds:\n300m Run\n10 Chest to Bar Pull Ups\n- into -\nAMRAP in remaining time:\n200m Run\n5 Bar Muscle Ups\n\n(32 - 45 min)\nPush Press:\n5 x 75%\n4 x 80%\n3 x 85%\n5+ x 75%\n\nB. 21 min: alt OTM x 10 mins:\nM1: 30 sec hanging Tuck Hold\nM2: 5-10 Seated Straddle Leg Lifts\n\n*If you're able to do after, or in between your Push Press:\nGlute Ham Raises: 3 x 10\n*Use a band if you can't do 10 BW",
+          "loads": [
+            { "lift": "Push Press", "scheme": "5 @ 75%", "load": "75 kg (75% of 100) — /side 25+2.5" },
+            { "lift": "Push Press", "scheme": "4 @ 80%", "load": "80 kg (80% of 100) — /side 25+5" },
+            { "lift": "Push Press", "scheme": "3 @ 85%", "load": "85 kg (85% of 100) — /side 25+5+2.5" },
+            { "lift": "Push Press", "scheme": "5+ @ 75%", "load": "75 kg (75% of 100) — /side 25+2.5" }
           ]
         },
         {
-          "tier": "ACCESSORY", "title": "Quad / knee supporting work", "stimulus": "limiter",
-          "items": [
-            { "name": "Spanish squat (banded)", "scheme": "3×20–30s holds" },
-            { "name": "ATG split squat", "scheme": "3×8/leg" },
-            { "name": "Zombie front squat", "scheme": "3×5" }
-          ],
-          "notes": ["Class covers heavy_squat (Mon/Wed/Sat) — defer the heavy stimulus; low-CNS support only, no competing barbell FS. → references/drills/knee-rehab.md"]
+          "label": "Comp Extra's",
+          "text": "A. 3 Rounds for quality:\n40 sec S Leg Sorensen Hold (e side)\n20 sec GHD Side Plank (e side)\n20 Back Extensions\n20 Bent Knee S Leg Heel Raise (e side)\n\nB. Front Squat Dips: Build to a heavy 3, then 5 x 2 x 80% of that"
         }
       ]
     },
     {
-      "day": "Wed", "date": "2026-06-10", "class": "heavy_squat",
-      "sessions": [
+      "day": "Wed", "date": "10 Jun",
+      "streams": [
         {
-          "tier": "CRUISE", "title": "Weightlifting (squat + snatch)", "stimulus": "heavy_squat",
-          "items": [
-            { "name": "Front Squat", "scheme": "5×3 @ 87.5%", "load": "118 kg (88% of 135) — /side 25+20+2.5+3×0.5" },
-            { "name": "Power Snatch", "scheme": "5×1 @ 87.5%", "load": "72 kg (88% of 82.5) — /side 25+2×0.5" },
-            { "name": "Power Snatch — build to 3RM", "scheme": "1×3", "load": "76.5 kg (93% of 82.5) — /side 25+1.25+4×0.5" },
-            { "name": "Snatch Pull", "scheme": "3×3 @ 120%", "load": "105.5 kg (120% of 88) — /side 25+15+1.25+3×0.5" }
+          "label": "Weightlifting",
+          "text": "(0 - 18 min)\nFront Squat:\n5s x 3r x 87.5%\n\nPower Snatch:\n(18 - 32 min)\n5s x 1r x 85-90% of your 1RM\n\n(32 - 40 min)\nBuild to a 3RM\n\n(40 - 45 min)\nSnatch Pull:\n3 x 3 x 120%",
+          "loads": [
+            { "lift": "Front Squat", "scheme": "5 x 3 @ 87.5%", "load": "118 kg (87.5% of 135) — /side 25+20+2.5+3×0.5" },
+            { "lift": "Power Snatch", "scheme": "5 x 1 @ 85-90%", "load": "70 kg (85%) → 74.5 kg (90%) of 82.5" },
+            { "lift": "Snatch Pull", "scheme": "3 x 3 @ 120% (of snatch)", "load": "105.5 kg (120% of 88) — /side 25+15+1.25+3×0.5" }
           ]
         },
         {
-          "tier": "SKILL", "title": "Ring MU block", "stimulus": "gymnastics",
-          "items": [
-            { "name": "Same drills as Mon", "detail": "false-grip PU 4×4 · transitions 5×3 · high pull 5×4 · eccentrics 4×3" }
-          ]
+          "label": "Performance",
+          "text": "A. 4 Rounds OT2M:\nA1. 8-10 Kickstand RDLs (e side)\nA2. 5 Banded Zercher Jumps + 10 Back to Wall Cross Legged Shoulder Slides\n\nB. For total time\nEvery 1:00 x 4 sets:\n15/12 Calorie Row\n\nEvery 2:00 x 3 sets:\n30/24 Calorie Row\n\nEvery 3:00 x 2 sets:\n40/32 Calorie Row\n\nEvery 4:00 x 1 sets:\n50/40 Calorie Row\n\n*Advised to just do part A and then some mobility if you're doing Weightlifting.\n*Today's WOD optional. If your muscle ups need work it's reccommended."
         }
       ]
     },
     {
-      "day": "Thu", "date": "2026-06-11", "class": "gymnastics",
-      "sessions": [
+      "day": "Thu", "date": "11 Jun",
+      "streams": [
         {
-          "tier": "PROTECT", "title": "Strict Press strength", "stimulus": "limiter / press",
-          "items": [
-            { "name": "Strict Press", "scheme": "top single @ RPE 8", "load": "58 kg (83% of 70) — /side 15+2.5+3×0.5" },
-            { "name": "Strict Press", "scheme": "3×5 @ 75%", "load": "52.5 kg (75% of 70) — /side 15+1.25" },
-            { "name": "Strict HSPU progression", "scheme": "4×4" }
-          ],
-          "notes": ["Box under-supplies pressing — protected independent lift on the freshest day. Priority #1."]
+          "label": "Performance",
+          "text": "A. Gymnastics Cycle Week 1 – Bar Series\n1/4: Straight Arm Pulling: Ball Up, Front Lever Inverted Hang & Kip Extensions\n\nB. 16 Min AMRAP:\n2 Kip Extensions\n4 Ball Ups\n6 Candlesticks to Rolling Squat\n8 Side Lying Thoracic Rotation Press (e side)\n1 Up and Back Parallette Traverse"
         },
         {
-          "tier": "CRUISE", "title": "WOD — gymnastics + partner metcon", "stimulus": "gymnastics",
-          "items": [
-            { "name": "Bar series", "detail": "straight-arm pulling: ball-ups / front-lever hang / kip extensions" },
-            { "name": "AMRAP 16", "detail": "kip ext / ball-ups / candlesticks / parallette traverse" }
-          ]
+          "label": "Comp Class",
+          "text": "A. (If you are doing tomorrow's WOD make up some missed WL or Tuesday accessories from the week here)\n\n0 - 7 mins:\nWeighted Pull Ups: 6 sets of 4 at 20% of your 1RM\n*If you don't have a Weighted Pull Up:\nOTM x 7 mins: Tough Chin over bar Hold + Slow lower.\nIf holding chin over the bar is tough, use a band.\n\n8 - 16 min:\n8 min: Max unbroken BW set\n11, 12, 13, 14, 15 min: 50% of that max unbroken set:\n*If you don't have 5+ unbroken at BW:\n8 min: 8-12 Banded Pull Ups (to failure)\n11, 12, 13, 14, 15 min: 50% of that max unbroken set:\n\nB. In Pairs:\n10 Rounds for time:\n10 Toes to Bar (Sync)\n10 Burpee Box Get over (48\")\n15m Handstand Walk\n*Apart from T2B, one person working at a time\n*25 min time cap"
         }
       ]
     },
-    { "day": "Fri", "date": "2026-06-12", "rest_note": "REST — open gym available (daytime) if wanted" },
+    { "day": "Fri", "date": "12 Jun", "rest_note": "REST DAY" },
     {
-      "day": "Sat", "date": "2026-06-13", "class": "heavy_squat",
-      "sessions": [
+      "day": "Sun", "date": "14 Jun",
+      "note": "Gym programs this for Sat 13 Jun — done Sun this week.",
+      "streams": [
         {
-          "tier": "CRUISE", "title": "Weightlifting + Performance", "stimulus": "heavy_squat",
-          "items": [
-            { "name": "Front Squat (asc doubles)", "scheme": "2 @ 70→97.5%", "load": "94.5 / 104.5 / 111.5 / 118 / 125 / 131.5 kg (of 135)" },
-            { "name": "Split Jerk", "scheme": "5×2 @ 85%", "load": "105.5 kg (85% of 124) — /side 25+15+1.25+3×0.5" },
-            { "name": "Snatch", "scheme": "OTM 10×1 @ 70%", "load": "61.5 kg (70% of 88) — /side 15+2.5+1.25+4×0.5" },
-            { "name": "Clean", "scheme": "OTM 10×1 @ 70%", "load": "87 kg (70% of 124) — /side 25+5+2.5+2×0.5" }
+          "label": "Weightlifting",
+          "text": "(0 - 20 min)\nFront Squat: 2 x 70%, 77.5%, 82.5%, 87.5%, 92.5%, 97.5%\n\n(20 - 38 min)\nSplit Jerk: 5s x 2r x 85%\n\n(45 - 55 min)\nSnatch & Clean\n10 sets OTM;\nAt the start of the minute complete a full Snatch\nAt the 30 second mark complete a full Clean\n*This is at 70% of your 1RM Snatch. Precision and speed is the focus here.\n\n(57 - 75 min)\n4 Rounds, alt every 90 seconds\nE1: 2 barbell Z Press\nE2: 8 Prone barbell Rows\nE3: 12 Weighted GHD Hip Extensions\n*First set moderate, second set tough, third and fourth sets should be close to failure.",
+          "loads": [
+            { "lift": "Front Squat", "scheme": "2 @ 70 / 77.5 / 82.5 / 87.5 / 92.5 / 97.5%", "load": "94.5 / 104.5 / 111.5 / 118 / 125 / 131.5 kg (of 135)" },
+            { "lift": "Split Jerk", "scheme": "5 x 2 @ 85%", "load": "105.5 kg (85% of 124) — /side 25+15+1.25+3×0.5" },
+            { "lift": "Snatch & Clean", "scheme": "OTM 10 @ 70% of Snatch", "load": "61.5 kg (70% of 88) — /side 15+2.5+1.25+4×0.5" }
           ]
         },
         {
-          "tier": "SKILL", "title": "Ring MU block", "stimulus": "gymnastics",
-          "items": [
-            { "name": "Same drills as Mon", "detail": "false-grip PU 4×4 · transitions 5×3 · high pull 5×4 · eccentrics 4×3" }
-          ]
+          "label": "Performance",
+          "text": "In Pairs: 10 Rounds for time:\n300m Run\n16 DB Walking Lunges (22.5/15kg)\n5 Strict Handstand Push Ups\n*Alternate working partner after each movement\n*30 min time cap\n\n- 2 min rest -\n\nMax Calorie Ski Erg until the 30 min mark."
         }
       ]
-    },
-    { "day": "Sun", "date": "2026-06-14", "rest_note": "REST — optional open gym before noon" }
+    }
   ]
 }

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Render a weekly plan (JSON spec) to a single self-contained HTML file.
 
-This is presentation only — it does **no** load math. The model supplies the
-judgment (what to train, the tier, the effort) and pastes the calculator's load
-lines verbatim into the spec; this script just lays them out as:
+Presentation only — it does **no** load math. The model supplies the judgment and
+pastes the calculator's load lines verbatim into the spec; this script lays out:
 
-  1. a Week Summary grid — columns Mon..Sun, rows AM/PM, each cell a training
-     type (CrossFit / Weightlifting / Comp / Limiter / Rest) + effort (Low/Med/High);
-  2. a Training Days section — per day, the workouts with their pre-calculated %s.
+  1. a Week Summary grid — columns Mon..Sun, rows AM/PM, each cell the training
+     stream(s) for that slot (WL / Perf / Comp / Fitness, or a combo like
+     "Performance + WL"), with an optional effort tag;
+  2. Training Days — per day, each stream's workout text reproduced **verbatim**
+     from the gym's programming, with the calculated %-loads listed underneath.
 
 Usage:
     python3 render_week.py plan.json -o week.html      # from a file
@@ -21,6 +22,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import re
 import sys
 
 DAYS = [
@@ -33,63 +35,51 @@ DAYS = [
     ("sun", "Sun"),
 ]
 
-# normalise free-text effort / type into a css-friendly slug
 EFFORT_SLUG = {"low": "low", "med": "med", "medium": "med", "high": "high"}
-TYPE_SLUG = {
-    "crossfit": "cf",
-    "cf": "cf",
-    "weightlifting": "wl",
-    "wl": "wl",
-    "comp": "comp",
-    "comp programming": "comp",
-    "comp class": "comp",
-    "limiter": "lim",
-    "limiter work": "lim",
-    "individual limiter work": "lim",
-    "rest": "rest",
-}
 
 CSS = """
-:root{--cf:#2563eb;--wl:#7c3aed;--comp:#0891b2;--lim:#db2777;--rest:#94a3b8;
+:root{--wl:#7c3aed;--perf:#2563eb;--comp:#0891b2;--fit:#0d9488;--rest:#94a3b8;
 --low:#16a34a;--med:#d97706;--high:#dc2626;--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;}
 *{box-sizing:border-box}
 body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-color:var(--ink);margin:0;padding:20px;max-width:860px;margin:0 auto;background:#fff}
-h1{font-size:22px;margin:0 0 2px}h2{font-size:16px;margin:28px 0 10px;
-text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+color:var(--ink);margin:0 auto;padding:20px;max-width:880px;background:#fff}
+h1{font-size:22px;margin:0 0 2px}h2{font-size:15px;margin:26px 0 10px;
+text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
 .src{color:var(--mut);margin:0 0 10px;font-size:13px}
 .focus{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .focus li{background:#f1f5f9;border-radius:999px;padding:2px 10px;font-size:12px;color:var(--mut)}
 .gridwrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:560px}
-th,td{border:1px solid var(--line);padding:6px;text-align:center;vertical-align:top}
-thead th{background:#f8fafc;font-size:13px}
+table{border-collapse:collapse;width:100%;min-width:600px}
+th,td{border:1px solid var(--line);padding:7px 6px;text-align:center;vertical-align:middle}
+thead th{background:#f8fafc;font-size:13px;width:13%}
 tbody th{background:#f8fafc;width:42px;font-size:12px;color:var(--mut)}
-.cell{display:flex;flex-direction:column;gap:3px;align-items:center;min-height:34px;justify-content:center}
-.cell .type{font-weight:600;font-size:13px}
-.cell .eff{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.t-cf .type{color:var(--cf)}.t-wl .type{color:var(--wl)}
-.t-comp .type{color:var(--comp)}.t-lim .type{color:var(--lim)}.t-rest .type{color:var(--rest)}
+.cell{display:flex;flex-direction:column;gap:2px;align-items:center;min-height:30px;justify-content:center}
+.cell .type{font-weight:700;font-size:13px}
+.cell .eff{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.t-wl .type{color:var(--wl)}.t-perf .type{color:var(--perf)}
+.t-comp .type{color:var(--comp)}.t-fit .type{color:var(--fit)}.t-rest .type{color:var(--rest)}
+.t-combo .type{background:linear-gradient(90deg,var(--perf),var(--wl));
+-webkit-background-clip:text;background-clip:text;color:transparent}
 .e-low{color:var(--low)}.e-med{color:var(--med)}.e-high{color:var(--high)}
 .cell.empty{color:#cbd5e1}
-.day{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0}
+.day{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0}
 .day.rest{opacity:.7}
-.day h3{margin:0 0 8px;font-size:15px}
-.day h3 .klass{color:var(--mut);font-weight:400;font-size:13px}
-.session{margin:8px 0;padding-left:10px;border-left:3px solid var(--line)}
-.session.p-protect{border-color:var(--high)}.session.p-cruise{border-color:var(--med)}
-.session.p-accessory{border-color:var(--lim)}.session.p-skill{border-color:var(--low)}
-.session h4{margin:0 0 4px;font-size:14px}
-.tier{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.03em;
-padding:1px 6px;border-radius:4px;color:#fff;margin-right:6px;vertical-align:1px}
-.p-protect .tier{background:var(--high)}.p-cruise .tier{background:var(--med)}
-.p-accessory .tier{background:var(--lim)}.p-skill .tier{background:var(--low)}
-.items{margin:4px 0 0;padding:0;list-style:none}
-.items li{padding:2px 0;border-bottom:1px dashed #f1f5f9}
-.mv{font-weight:600}.scheme{color:var(--mut)}
-.load{display:block;font-size:13px;color:var(--ink)}
-.load .pct{color:var(--mut)}
-.note{margin:6px 0 0;font-size:12px;color:var(--mut);font-style:italic}
+.day>h3{margin:0 0 4px;font-size:16px}
+.day>h3 .date{color:var(--mut);font-weight:400;font-size:13px}
+.day .daynote{margin:0 0 8px;font-size:12px;color:var(--mut);font-style:italic}
+.stream{margin:12px 0 0;padding-left:11px;border-left:3px solid var(--line)}
+.stream.s-wl{border-color:var(--wl)}.stream.s-perf{border-color:var(--perf)}
+.stream.s-comp{border-color:var(--comp)}.stream.s-fit{border-color:var(--fit)}
+.stream h4{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.s-wl h4{color:var(--wl)}.s-perf h4{color:var(--perf)}
+.s-comp h4{color:var(--comp)}.s-fit h4{color:var(--fit)}
+.wod{white-space:pre-wrap;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin:6px 0 0}
+.loads{margin:7px 0 0}
+.loads .lh{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);margin-bottom:3px}
+.lrow{font-size:13px;padding:1px 0}
+.lrow .lift{font-weight:600}.lrow .scheme{color:var(--mut)}
+.lrow .load{color:var(--ink)}
 footer{margin-top:24px;color:#94a3b8;font-size:11px;border-top:1px solid var(--line);padding-top:8px}
 """
 
@@ -98,25 +88,38 @@ def esc(s) -> str:
     return html.escape(str(s)) if s is not None else ""
 
 
-def _slug(value, table, default=""):
-    if not value:
-        return default
-    return table.get(str(value).strip().lower(), default)
+def _effort_slug(value):
+    return EFFORT_SLUG.get(str(value).strip().lower(), "med") if value else None
+
+
+def grid_slugs(type_str: str):
+    """Map a free-text cell type ("WL", "Performance + WL", "Comp"...) to colour slugs."""
+    s = (type_str or "").lower()
+    if "rest" in s:
+        return ["rest"]
+    slugs = []
+    if "weightlift" in s or re.search(r"\bwl\b", s):
+        slugs.append("wl")
+    if "perf" in s:
+        slugs.append("perf")
+    if "comp" in s:
+        slugs.append("comp")
+    if "fit" in s:
+        slugs.append("fit")
+    return slugs
 
 
 def render_cell(cell) -> str:
-    """One AM/PM grid cell."""
     if not cell or not cell.get("type"):
         return '<td><div class="cell empty">—</div></td>'
     typ = cell["type"]
-    tslug = _slug(typ, TYPE_SLUG, "")
-    eff = cell.get("effort")
+    slugs = grid_slugs(typ)
+    tclass = "t-combo" if len(slugs) > 1 else (f"t-{slugs[0]}" if slugs else "")
     parts = [f'<span class="type">{esc(typ)}</span>']
-    if eff and tslug != "rest":
-        eslug = _slug(eff, EFFORT_SLUG, "med")
-        parts.append(f'<span class="eff e-{eslug}">{esc(eff)}</span>')
-    cls = f"cell t-{tslug}" if tslug else "cell"
-    return f'<td><div class="{cls}">{"".join(parts)}</div></td>'
+    eff = _effort_slug(cell.get("effort"))
+    if eff and "rest" not in slugs:
+        parts.append(f'<span class="eff e-{eff}">{esc(cell["effort"])}</span>')
+    return f'<td><div class="cell {tclass}">{"".join(parts)}</div></td>'
 
 
 def render_summary(summary) -> str:
@@ -132,41 +135,49 @@ def render_summary(summary) -> str:
     )
 
 
-def render_item(it) -> str:
-    name = f'<span class="mv">{esc(it.get("name", ""))}</span>'
-    scheme = f' <span class="scheme">{esc(it["scheme"])}</span>' if it.get("scheme") else ""
-    load = ""
-    if it.get("load"):
-        load = f'<span class="load">↳ {esc(it["load"])}</span>'
-    elif it.get("detail"):
-        load = f'<span class="load">{esc(it["detail"])}</span>'
-    return f"<li>{name}{scheme}{load}</li>"
+def _stream_slug(label: str) -> str:
+    s = (label or "").lower()
+    if "weightlift" in s or re.search(r"\bwl\b", s):
+        return "wl"
+    if "perf" in s:
+        return "perf"
+    if "comp" in s:
+        return "comp"
+    if "fit" in s or "wod" in s:
+        return "fit"
+    return ""
 
 
-def render_session(s) -> str:
-    tier = (s.get("tier") or "").upper()
-    pslug = tier.lower() if tier.lower() in {"protect", "cruise", "accessory", "skill"} else ""
-    tier_badge = f'<span class="tier">{esc(tier)}</span>' if tier else ""
-    items = "".join(render_item(it) for it in s.get("items", []))
-    items_html = f'<ul class="items">{items}</ul>' if items else ""
-    notes = "".join(f'<p class="note">{esc(n)}</p>' for n in s.get("notes", []))
-    cls = f"session p-{pslug}" if pslug else "session"
-    return (
-        f'<div class="{cls}"><h4>{tier_badge}{esc(s.get("title", ""))}'
-        f'{(" · " + esc(s["stimulus"])) if s.get("stimulus") else ""}</h4>'
-        f"{items_html}{notes}</div>"
-    )
+def render_loads(loads) -> str:
+    if not loads:
+        return ""
+    rows = []
+    for ld in loads:
+        lift = f'<span class="lift">{esc(ld.get("lift", ""))}</span>'
+        scheme = f' <span class="scheme">{esc(ld["scheme"])}</span>' if ld.get("scheme") else ""
+        load = f' <span class="load">→ {esc(ld["load"])}</span>' if ld.get("load") else ""
+        rows.append(f'<div class="lrow">{lift}{scheme}{load}</div>')
+    return f'<div class="loads"><div class="lh">% loads</div>{"".join(rows)}</div>'
+
+
+def render_stream(st) -> str:
+    slug = _stream_slug(st.get("label", ""))
+    cls = f"stream s-{slug}" if slug else "stream"
+    head = f'<h4>{esc(st.get("label", ""))}</h4>'
+    text = f'<div class="wod">{esc(st["text"])}</div>' if st.get("text") else ""
+    return f'<div class="{cls}">{head}{text}{render_loads(st.get("loads"))}</div>'
 
 
 def render_day(d) -> str:
-    is_rest = not d.get("sessions")
-    klass = f' · <span class="klass">class: {esc(d["class"])}</span>' if d.get("class") else ""
-    head = f'<h3>{esc(d.get("day", ""))} · {esc(d.get("date", ""))}{klass}</h3>'
-    if is_rest:
+    date = f' <span class="date">{esc(d["date"])}</span>' if d.get("date") else ""
+    head = f'<h3>{esc(d.get("day", ""))}{date}</h3>'
+    note = f'<p class="daynote">{esc(d["note"])}</p>' if d.get("note") else ""
+    streams = d.get("streams")
+    if not streams:
         label = esc(d.get("rest_note") or "Rest")
-        return f'<article class="day rest">{head}<p class="note">{label}</p></article>'
-    body = "".join(render_session(s) for s in d["sessions"])
-    return f'<article class="day">{head}{body}</article>'
+        return f'<article class="day rest">{head}<p class="daynote">{label}</p></article>'
+    body = "".join(render_stream(s) for s in streams)
+    return f'<article class="day">{head}{note}{body}</article>'
 
 
 def render(plan: dict) -> str:
@@ -180,7 +191,10 @@ def render(plan: dict) -> str:
     summary = render_summary(plan.get("summary", {}))
     days = "".join(render_day(d) for d in plan.get("days", []))
     days_section = f"<section><h2>Training days</h2>{days}</section>" if days else ""
-    foot = "Loads are deterministic — every kg comes from scripts/calc.py. Judgment from references/policy.md."
+    foot = (
+        "Workout text reproduced verbatim from the gym's programming. Loads are "
+        "deterministic — every kg comes from scripts/calc.py. Judgment from references/policy.md."
+    )
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">

@@ -61,6 +61,12 @@ HTML file** holding the full week (a Mon–Sun × AM/PM summary grid and the day
 schedule with calculated loads). Keep the chat reply phone-short; the detail lives in
 the HTML.
 
+The gym streams class programming as **Performance** or **Fitness** (the athlete does
+**Performance**) and also publishes **Comp** extras, with dedicated **Weightlifting**
+alongside. Use those stream names in the output — never "CrossFit". In the HTML day
+sections, **reproduce each stream's workout text verbatim** from the pasted
+programming (line breaks and all); don't paraphrase or condense it.
+
 1. **Map** the pasted programming onto the usual week from `availability.md` (rest
    days, AM/PM doubles, the Saturday CF+WL combo). Apply any difference the athlete
    stated for this week.
@@ -82,9 +88,10 @@ the HTML.
    `calc.py` and paste the result line. Do not write a kg figure the script didn't
    produce.
 7. **Emit** the plan. Post a short chat reply (push/cruise/skip, triage order, any
-   policy decision made this week), then build a compact JSON spec — the summary grid
-   plus the tiered day-by-day sessions, with every `load` line pasted verbatim from
-   `calc.py` (never a hand-typed kg) — and render it to HTML:
+   policy decision made this week), then build a compact JSON spec — the AM/PM summary
+   grid plus, per day, one block per stream with its **verbatim** workout `text` and a
+   `loads` list whose every line is pasted from `calc.py` (never a hand-typed kg) — and
+   render it to HTML:
 
    ```
    python3 skills/crossfit-coach/scripts/render_week.py plan.json -o weekly-plan.html
@@ -140,8 +147,9 @@ press). When a genuine new 1RM lands, remind the athlete to update
 
 Use `references/examples/weekly-plan.md` and `references/examples/daily-adjust.md`
 as the canonical templates for structure and the load-line format
-(`144.5 kg (88% of 165) — /side 2×25+10+1.25`). The weekly plan is rendered to HTML
-via `scripts/render_week.py` (input shape: `weekly-plan.json`); daily adjusts stay as
+(`144.5 kg (87.5% of 165) — /side 2×25+10+1.25`). The weekly plan is rendered to HTML
+via `scripts/render_week.py` (input shape: `weekly-plan.json`), reproducing each
+stream's workout text verbatim with calculated loads underneath; daily adjusts stay as
 a short chat message. Favour a short, skimmable output over prose. Lead with what to
 push/cruise/skip; the athlete reads this on their phone.
 
@@ -151,14 +159,21 @@ push/cruise/skip; the athlete reads this on their phone.
 
 ### 1.1.0
 - **Briefer output + an HTML weekly plan.** The weekly plan is now a short chat reply
-  (push/cruise/skip + triage) plus a generated, self-contained HTML file: a Mon–Sun ×
-  AM/PM summary grid (training type + effort per cell) over the tiered day-by-day
-  schedule with pre-calculated loads. Added `scripts/render_week.py` (presentation
-  only — no math), the example input `references/examples/weekly-plan.json`, and its
-  rendered `weekly-plan.html`. Trimmed the `weekly-plan.md` and `daily-adjust.md`
-  examples to terse templates. The plan stays stateless — the model regenerates it
-  each week from the pasted programming + the maxes fixture; saved HTML files double
-  as a lightweight per-week archive. No change to load arithmetic (still `calc.py`).
+  (push/cruise/skip + triage) plus a generated, self-contained HTML file:
+  - a **Week Summary** grid — columns Mon–Sun, rows AM/PM, each cell the training
+    stream(s) for that slot using the gym's names (`WL | Perf | Comp | Fitness`, or a
+    combo like `Performance + WL`), with an optional effort tag;
+  - **Training Days** — per day, one block per stream with its workout text reproduced
+    **verbatim** from the gym's programming and the calculated %-loads listed
+    underneath (weightlifting especially).
+  Added `scripts/render_week.py` (presentation only — no math), the example input
+  `references/examples/weekly-plan.json` (built from a real week's programming), and
+  its rendered `weekly-plan.html`. Trimmed the `weekly-plan.md` and `daily-adjust.md`
+  examples to terse templates, and adopted the gym's stream vocabulary
+  (Performance/Fitness/Comp/Weightlifting — not "CrossFit"). The plan stays stateless
+  — the model regenerates it each week from the pasted programming + the maxes fixture;
+  saved HTML files double as a lightweight per-week archive. No change to load
+  arithmetic (still `calc.py`).
 
 ### 1.0.0
 - Initial chat-first skill. Replaces the deterministic weekly generator + availability
