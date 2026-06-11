@@ -16,7 +16,7 @@ from cfprog.plates import best_loadout
 from cfprog.targets import resolve_target_weight
 
 _DEFAULT_INVENTORY = (
-    Path(__file__).resolve().parents[2] / "data" / "plate_inventory.json"
+    Path(__file__).resolve().parents[1] / "data" / "plate_inventory.json"
 )
 
 

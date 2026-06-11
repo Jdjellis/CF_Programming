@@ -18,7 +18,7 @@ from typing import Dict, Protocol, runtime_checkable
 # blocks lower in the workbook.
 SHEET_ID = "1Q1RlKE9LfTpUYSAqwFWnknJ_g9ftTal1P4eeMBnqY_A"
 
-_DEFAULT_FIXTURE = Path(__file__).resolve().parents[2] / "data" / "maxes.fixture.json"
+_DEFAULT_FIXTURE = Path(__file__).resolve().parents[1] / "data" / "maxes.fixture.json"
 
 
 def normalize_lift(name: str) -> str:

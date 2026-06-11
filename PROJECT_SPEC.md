@@ -5,6 +5,20 @@
 > by daily readiness, converts prescriptions to real kg + plate math, logs
 > actuals, and tracks progress against strength standards.
 
+> **⚠️ Architecture update (2026-06): now a chat-first skill.** The judgment
+> (tiering, deconfliction, autoregulation, weekly planning) is no longer
+> deterministic code — it is applied **conversationally** by the assistant in
+> Claude / CoWork, reasoning from the policy and references in
+> [`skills/crossfit-coach/`](skills/crossfit-coach/). Only the **arithmetic** that
+> must be deterministic remains as code: the load/plate calculator and a minimal
+> rep-max log. The earlier weekly-generator + availability-resolver + SQLite
+> implementation this replaced is preserved at the `pre-chat-migration` git tag.
+>
+> Read the sections below for the still-valid **athlete profile, diagnostic, and
+> training-policy rationale** — those are the source content for the skill's
+> references. Treat the build-sequence / data-source / architecture sections
+> (4–10) as **design history**, superseded by the skill layout in the README.
+
 ---
 
 ## 1. Purpose

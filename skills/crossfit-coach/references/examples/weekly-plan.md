@@ -151,4 +151,4 @@ _Source: Claremont Competitors Programming — 8-14 Jun 26 (Week 8)_
 - _avail: open gym available (before 12:00)_
 
 ---
-_Loads are deterministic (calculator + plate solver); maxes read from the Sheet snapshot via MaxesProvider. Policy applied from programming-policy SKILL.md — not re-improvised._
+_Format template (SKILL.md §2/§6). Loads are deterministic — every weight comes from `scripts/calc.py` (calculator + plate solver) reading the maxes fixture; never computed by hand. Judgment applied from `references/policy.md`._

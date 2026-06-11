@@ -1,17 +1,22 @@
-"""Tiny CLI / demo for the load calculator.
+"""Deterministic load/plate calculator — the skill's arithmetic entry point.
 
-    cfprog-calc front_squat --percent 85
-    cfprog-calc clean --rep-max 3
-    cfprog-calc strict_press --rpe 8 --reps 5
-    cfprog-calc --demo
+    python3 calc.py front_squat --percent 85
+    python3 calc.py clean --rep-max 3
+    python3 calc.py strict_press --rpe 8 --reps 5
+    python3 calc.py --demo
 
 Arithmetic is delegated to the tested deterministic modules; this is only I/O.
+The model never computes a working weight or plate loadout in its head — it runs
+this and pastes the output (PROJECT_SPEC §8).
 """
 
 from __future__ import annotations
 
 import argparse
+import os
 import sys
+
+sys.path.insert(0, os.path.dirname(__file__))
 
 from cfprog.calculator import LoadCalculator
 from cfprog.models import Target
