@@ -1,0 +1,129 @@
+{
+  "week_of": "2026-06-08",
+  "source": "Claremont Competitors Programming — Week 8",
+  "focus": [
+    "Front Squat / Strict Press — wk 3/6 · PROTECT",
+    "Ring Muscle-Up — wk 3/6 · SKILL",
+    "No readiness logged yet — future days planned GREEN; adjust each morning"
+  ],
+  "summary": {
+    "mon": { "pm": { "type": "Weightlifting", "effort": "High" } },
+    "tue": { "am": { "type": "CrossFit", "effort": "Med" }, "pm": { "type": "Limiter", "effort": "Low" } },
+    "wed": { "am": { "type": "Weightlifting", "effort": "High" }, "pm": { "type": "CrossFit", "effort": "Low" } },
+    "thu": { "am": { "type": "Limiter", "effort": "High" }, "pm": { "type": "Comp", "effort": "Med" } },
+    "fri": { "am": { "type": "Rest" } },
+    "sat": { "am": { "type": "Weightlifting", "effort": "High" } },
+    "sun": { "am": { "type": "Rest" } }
+  },
+  "days": [
+    {
+      "day": "Mon", "date": "2026-06-08", "class": "heavy_squat",
+      "sessions": [
+        {
+          "tier": "CRUISE", "title": "Weightlifting + Performance", "stimulus": "heavy_squat",
+          "items": [
+            { "name": "Back Squat", "scheme": "6×2 @ 87.5%", "load": "144.5 kg (88% of 165) — /side 2×25+10+1.25+2×0.5" },
+            { "name": "Low Hang Power Clean", "scheme": "3×2 @ 80%", "load": "97.5 kg (80% of 122) — /side 25+10+2.5+1.25" },
+            { "name": "Low Hang Power Clean", "scheme": "3×1 @ 90%", "load": "110 kg (90% of 122) — /side 25+20" },
+            { "name": "Push Press", "scheme": "5/4/3/5+ @ 75/80/85/75%", "load": "75 / 80 / 85 / 75 kg (of 100)" },
+            { "name": "Performance", "detail": "chipper: 50 DL / 50 box jump / 25 strict HSPU / 50-40 echo / 50 FS @60" }
+          ]
+        },
+        {
+          "tier": "SKILL", "title": "Ring MU block", "stimulus": "gymnastics",
+          "items": [
+            { "name": "False-grip ring pull-ups", "scheme": "4×4" },
+            { "name": "Low-ring transitions", "scheme": "5×3 (feet assist)" },
+            { "name": "Kip swing to high pull", "scheme": "5×4" },
+            { "name": "Eccentric lower from support", "scheme": "4×3" }
+          ],
+          "notes": ["Chase frequency, not load. → references/drills/ring-mu-kipping.md"]
+        }
+      ]
+    },
+    {
+      "day": "Tue", "date": "2026-06-09", "class": "engine",
+      "sessions": [
+        {
+          "tier": "CRUISE", "title": "WOD — engine + gymnastics pulling", "stimulus": "engine",
+          "items": [
+            { "name": "AMRAP 20", "detail": "3rd: run/pull-ups → 2rd: run/C2B → AMRAP: run/bar-MU" },
+            { "name": "Midline OTM 21", "detail": "hanging tuck hold / seated straddle leg lifts" }
+          ]
+        },
+        {
+          "tier": "ACCESSORY", "title": "Quad / knee supporting work", "stimulus": "limiter",
+          "items": [
+            { "name": "Spanish squat (banded)", "scheme": "3×20–30s holds" },
+            { "name": "ATG split squat", "scheme": "3×8/leg" },
+            { "name": "Zombie front squat", "scheme": "3×5" }
+          ],
+          "notes": ["Class covers heavy_squat (Mon/Wed/Sat) — defer the heavy stimulus; low-CNS support only, no competing barbell FS. → references/drills/knee-rehab.md"]
+        }
+      ]
+    },
+    {
+      "day": "Wed", "date": "2026-06-10", "class": "heavy_squat",
+      "sessions": [
+        {
+          "tier": "CRUISE", "title": "Weightlifting (squat + snatch)", "stimulus": "heavy_squat",
+          "items": [
+            { "name": "Front Squat", "scheme": "5×3 @ 87.5%", "load": "118 kg (88% of 135) — /side 25+20+2.5+3×0.5" },
+            { "name": "Power Snatch", "scheme": "5×1 @ 87.5%", "load": "72 kg (88% of 82.5) — /side 25+2×0.5" },
+            { "name": "Power Snatch — build to 3RM", "scheme": "1×3", "load": "76.5 kg (93% of 82.5) — /side 25+1.25+4×0.5" },
+            { "name": "Snatch Pull", "scheme": "3×3 @ 120%", "load": "105.5 kg (120% of 88) — /side 25+15+1.25+3×0.5" }
+          ]
+        },
+        {
+          "tier": "SKILL", "title": "Ring MU block", "stimulus": "gymnastics",
+          "items": [
+            { "name": "Same drills as Mon", "detail": "false-grip PU 4×4 · transitions 5×3 · high pull 5×4 · eccentrics 4×3" }
+          ]
+        }
+      ]
+    },
+    {
+      "day": "Thu", "date": "2026-06-11", "class": "gymnastics",
+      "sessions": [
+        {
+          "tier": "PROTECT", "title": "Strict Press strength", "stimulus": "limiter / press",
+          "items": [
+            { "name": "Strict Press", "scheme": "top single @ RPE 8", "load": "58 kg (83% of 70) — /side 15+2.5+3×0.5" },
+            { "name": "Strict Press", "scheme": "3×5 @ 75%", "load": "52.5 kg (75% of 70) — /side 15+1.25" },
+            { "name": "Strict HSPU progression", "scheme": "4×4" }
+          ],
+          "notes": ["Box under-supplies pressing — protected independent lift on the freshest day. Priority #1."]
+        },
+        {
+          "tier": "CRUISE", "title": "WOD — gymnastics + partner metcon", "stimulus": "gymnastics",
+          "items": [
+            { "name": "Bar series", "detail": "straight-arm pulling: ball-ups / front-lever hang / kip extensions" },
+            { "name": "AMRAP 16", "detail": "kip ext / ball-ups / candlesticks / parallette traverse" }
+          ]
+        }
+      ]
+    },
+    { "day": "Fri", "date": "2026-06-12", "rest_note": "REST — open gym available (daytime) if wanted" },
+    {
+      "day": "Sat", "date": "2026-06-13", "class": "heavy_squat",
+      "sessions": [
+        {
+          "tier": "CRUISE", "title": "Weightlifting + Performance", "stimulus": "heavy_squat",
+          "items": [
+            { "name": "Front Squat (asc doubles)", "scheme": "2 @ 70→97.5%", "load": "94.5 / 104.5 / 111.5 / 118 / 125 / 131.5 kg (of 135)" },
+            { "name": "Split Jerk", "scheme": "5×2 @ 85%", "load": "105.5 kg (85% of 124) — /side 25+15+1.25+3×0.5" },
+            { "name": "Snatch", "scheme": "OTM 10×1 @ 70%", "load": "61.5 kg (70% of 88) — /side 15+2.5+1.25+4×0.5" },
+            { "name": "Clean", "scheme": "OTM 10×1 @ 70%", "load": "87 kg (70% of 124) — /side 25+5+2.5+2×0.5" }
+          ]
+        },
+        {
+          "tier": "SKILL", "title": "Ring MU block", "stimulus": "gymnastics",
+          "items": [
+            { "name": "Same drills as Mon", "detail": "false-grip PU 4×4 · transitions 5×3 · high pull 5×4 · eccentrics 4×3" }
+          ]
+        }
+      ]
+    },
+    { "day": "Sun", "date": "2026-06-14", "rest_note": "REST — optional open gym before noon" }
+  ]
+}

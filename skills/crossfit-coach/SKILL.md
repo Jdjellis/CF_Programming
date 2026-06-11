@@ -8,8 +8,8 @@ description: >
   complement class with, or wants to log a lift or check an estimated 1RM. Applies
   a versioned programming + autoregulation policy and a personal limiter-focused
   block, and calls a deterministic calculator for every load (never does the math
-  itself). Single athlete, on-demand, simple text output.
-version: 1.0.0
+  itself). Single athlete, on-demand: a brief chat summary plus an HTML weekly plan.
+version: 1.1.0
 ---
 
 # CrossFit Coach
@@ -55,8 +55,11 @@ the single source of truth) — never hardcode maxes.
 
 ## §2. Producing the weekly plan
 
-Deliver three things (see `references/examples/weekly-plan.md` for the exact shape):
-**what to push / cruise / skip**, **a day-by-day schedule**, and **calculated loads**.
+The plan ships in **two parts** (see `references/examples/weekly-plan.md`): a **brief
+chat reply** — what to push / cruise / skip plus the triage order — and a **generated
+HTML file** holding the full week (a Mon–Sun × AM/PM summary grid and the day-by-day
+schedule with calculated loads). Keep the chat reply phone-short; the detail lives in
+the HTML.
 
 1. **Map** the pasted programming onto the usual week from `availability.md` (rest
    days, AM/PM doubles, the Saturday CF+WL combo). Apply any difference the athlete
@@ -78,9 +81,18 @@ Deliver three things (see `references/examples/weekly-plan.md` for the exact sha
 6. **Resolve loads:** for every strength prescription (class *or* personal), run
    `calc.py` and paste the result line. Do not write a kg figure the script didn't
    produce.
-7. **Emit** the plan in the example's format: focus blocks header, push/cruise/skip
-   lists, the triage order, any policy decisions made this week, then the day-by-day
-   schedule with loads. Keep it simple text — this is a quick read, not a document.
+7. **Emit** the plan. Post a short chat reply (push/cruise/skip, triage order, any
+   policy decision made this week), then build a compact JSON spec — the summary grid
+   plus the tiered day-by-day sessions, with every `load` line pasted verbatim from
+   `calc.py` (never a hand-typed kg) — and render it to HTML:
+
+   ```
+   python3 skills/crossfit-coach/scripts/render_week.py plan.json -o weekly-plan.html
+   ```
+
+   The spec shape is in `references/examples/weekly-plan.json`; the rendered result is
+   `weekly-plan.html`. The renderer is presentation only — it does no math. Point the
+   athlete at the HTML file for the full week.
 
 ## §3. Mid-week autoregulation ("I'm beaten up, adjust today")
 
@@ -128,12 +140,25 @@ press). When a genuine new 1RM lands, remind the athlete to update
 
 Use `references/examples/weekly-plan.md` and `references/examples/daily-adjust.md`
 as the canonical templates for structure and the load-line format
-(`↳ 115 kg (85% of 135) — per side: 25 + 20 + 2.5`). Favour a short, skimmable plan
-over prose. Lead with what to push/cruise/skip; the athlete reads this on their phone.
+(`144.5 kg (88% of 165) — /side 2×25+10+1.25`). The weekly plan is rendered to HTML
+via `scripts/render_week.py` (input shape: `weekly-plan.json`); daily adjusts stay as
+a short chat message. Favour a short, skimmable output over prose. Lead with what to
+push/cruise/skip; the athlete reads this on their phone.
 
 ---
 
 ## Changelog
+
+### 1.1.0
+- **Briefer output + an HTML weekly plan.** The weekly plan is now a short chat reply
+  (push/cruise/skip + triage) plus a generated, self-contained HTML file: a Mon–Sun ×
+  AM/PM summary grid (training type + effort per cell) over the tiered day-by-day
+  schedule with pre-calculated loads. Added `scripts/render_week.py` (presentation
+  only — no math), the example input `references/examples/weekly-plan.json`, and its
+  rendered `weekly-plan.html`. Trimmed the `weekly-plan.md` and `daily-adjust.md`
+  examples to terse templates. The plan stays stateless — the model regenerates it
+  each week from the pasted programming + the maxes fixture; saved HTML files double
+  as a lightweight per-week archive. No change to load arithmetic (still `calc.py`).
 
 ### 1.0.0
 - Initial chat-first skill. Replaces the deterministic weekly generator + availability
