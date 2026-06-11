@@ -2,15 +2,15 @@
 
 > Personal training-support system for a CrossFit competitor. Ingests weekly box
 > programming, deconflicts a personal focus block against it, autoregulates load
-> by daily readiness, converts prescriptions to real kg + plate math, logs
-> actuals, and tracks progress against strength standards.
+> by daily readiness, converts prescriptions to real kg, logs actuals, and tracks
+> progress against strength standards.
 
 > **⚠️ Architecture update (2026-06): now a chat-first skill.** The judgment
 > (tiering, deconfliction, autoregulation, weekly planning) is no longer
 > deterministic code — it is applied **conversationally** by the assistant in
 > Claude / CoWork, reasoning from the policy and references in
 > [`skills/crossfit-coach/`](skills/crossfit-coach/). Only the **arithmetic** that
-> must be deterministic remains as code: the load/plate calculator and a minimal
+> must be deterministic remains as code: the load calculator and a minimal
 > rep-max log. The earlier weekly-generator + availability-resolver + SQLite
 > implementation this replaced is preserved at the `pre-chat-migration` git tag.
 >
@@ -197,7 +197,7 @@ Sunday night
             └─ WEEKLY GENERATOR (applies SKILL.md):
                  ├─ TIER each session: PUSH (protect) / CRUISE / SKILL-or-SKIP
                  ├─ DECONFLICT: place focus-block work, flag interference
-                 └─ LOAD CALC: %/RPE → kg → plate math (from current maxes)
+                 └─ LOAD CALC: %/RPE → loadable kg (from current maxes)
                       └─ OUTPUT: the Sunday weekly plan (schedule + tiers + loads)
                            └─ daily READINESS (from log) adjusts each session
                                 └─ LOG actuals + RPE → SQLite → ANALYTICS update
@@ -225,7 +225,7 @@ the calculator.
    order), with focus-block work placed and interference flagged/resolved per the
    deconfliction rules.
 3. **Calculated loads for each session** — for every strength prescription, the
-   working weight **and** the per-side plate loadout, from the calculator.
+   loadable working weight, from the calculator.
 
 ### Inputs
 
@@ -253,7 +253,7 @@ the calculator.
    stimulus: no same-stimulus on consecutive days; don't double-load a pattern
    the class already taxes (move/drop the PROTECT clash — prefer *move*);
    sequence strength before conditioning on shared days.
-3. Resolve each strength target to kg + plates via the calculator.
+3. Resolve each strength target to kg via the calculator.
 4. Emit the plan, plus a per-day readiness-adjustment guide (green/amber/red →
    what changes).
 
@@ -332,7 +332,7 @@ deterministic calculator (Section 8 holds).
 | Component | Home | Notes |
 |---|---|---|
 | `skills/programming-policy/SKILL.md` | Code | Versioned policy (Section 3). ✅ done |
-| Load/plate calculator | Code | **Deterministic. Never LLM arithmetic.** Unit-tested. ✅ done |
+| Load calculator | Code | **Deterministic. Never LLM arithmetic.** Unit-tested. ✅ done |
 | Logging layer (`LogStore` → SQLite) | Code | Recorded lifts + RPE + readiness; analytics DB. ✅ done |
 | Analytics (estimated 1RM, tonnage, ratio gaps) | Code | Deterministic core done; viz layer (Streamlit/React) later |
 | Slack ingestion | Code | Pull latest PDF from channel; parse + tag. (blocked on Slack access) |
@@ -348,8 +348,9 @@ deterministic calculator (Section 8 holds).
 **Phase 1 — foundation (useful day one, no external deps): ✅ DONE**
 1. Repo scaffold. ✅
 2. `skills/programming-policy/SKILL.md` from Section 3. ✅
-3. Deterministic **load/plate calculator**: %/RPE/rep-max → kg → exact plate
-   loadout per side, from current maxes. Unit-tested against known cases. ✅
+3. Deterministic **load calculator**: %/RPE/rep-max → loadable kg, from current
+   maxes. Unit-tested against known cases. ✅ (per-side plate math later removed —
+   the athlete loads the bar themselves.)
 3a. (added) **Logging layer + analytics core**: SQLite `LogStore` for recorded
    lifts/RPE/readiness; deterministic estimated-1RM, tonnage, and ratio-gap
    analysis. The Sheet is now a read-only XRM snapshot. ✅
@@ -377,7 +378,7 @@ deterministic calculator (Section 8 holds).
 
 ## 8. Non-negotiables
 
-- **Plate math is deterministic code, unit-tested. The model never does
+- **Load math is deterministic code, unit-tested. The model never does
   arithmetic.** This is the single most important constraint.
 - **Sheet top section is the single source of truth for maxes** — read it, never
   duplicate or hardcode maxes elsewhere.
@@ -392,9 +393,10 @@ deterministic calculator (Section 8 holds).
 
 ## 9. Open inputs (fill before building the dependent parts)
 
-- [x] **Plate inventory + bar weight** — RESOLVED. 20 kg bar; pairs of
-  25/20/15/10/5/2.5/1.25 kg + 0.5 kg micro, effectively unlimited supply. See
-  `data/plate_inventory.json`.
+- [x] **Plate inventory + bar weight** — RESOLVED, then **removed**. The calculator
+  briefly solved per-side plate loadouts (20 kg bar; pairs of 25/20/15/10/5/2.5/1.25
+  + 0.5 kg micro). Dropped in favour of just the loadable working weight (nearest
+  0.5 kg) — the athlete is experienced and loads the bar themselves.
 - [x] **Log write target** — RESOLVED. SQLite store (`data/cfprog.db`) behind the
   `LogStore` interface. Sheet stays a read-only XRM snapshot.
 - [x] **Gym availability (general + flexibility)** — RESOLVED. General weekly

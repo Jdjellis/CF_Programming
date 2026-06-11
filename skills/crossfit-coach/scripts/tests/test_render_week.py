@@ -139,3 +139,66 @@ def test_bundled_example_renders():
     # a verbatim line and a calculated load both present
     assert "50/40 Calorie Echo Bike" in html
     assert "144.5 kg (87.5% of 165)" in html
+
+
+# --- phone affordances: sticky day-nav, mobile summary, today, dark mode ---
+
+def test_daynav_jumps_to_day_cards():
+    html = _render(
+        {
+            "summary": {},
+            "days": [
+                {"day": "Mon", "date": "8 Jun", "streams": [{"label": "WL", "text": "x"}]},
+                {"day": "Tue", "date": "9 Jun", "rest_note": "REST DAY"},
+            ],
+        }
+    )
+    assert 'class="daynav"' in html
+    # each chip jumps to the matching day card anchor
+    assert 'href="#day-0"' in html and 'href="#day-1"' in html
+    assert 'id="day-0"' in html and 'id="day-1"' in html
+    # a rest day chip is dimmed
+    assert 'class="dnchip rest"' in html
+
+
+def test_week_start_stamps_iso_for_today_wiring():
+    html = _render(
+        {
+            "week_start": "2026-06-08",
+            "summary": {"mon": {"am": {"type": "WL"}}},
+            "days": [
+                {"day": "Mon", "date": "8 Jun", "streams": [{"label": "WL", "text": "x"}]},
+                {"day": "Tue", "date": "9 Jun", "streams": [{"label": "Perf", "text": "y"}]},
+            ],
+        }
+    )
+    # day cards (and nav chips / stack rows) carry the date derived by offset
+    assert 'article class="day" id="day-0" data-iso="2026-06-08"' in html
+    assert 'data-iso="2026-06-09"' in html  # day 1 = week_start + 1
+
+
+def test_no_week_start_means_no_dated_cards():
+    html = _render(
+        {"summary": {}, "days": [{"day": "Mon", "streams": [{"label": "WL", "text": "x"}]}]}
+    )
+    assert 'id="day-0"' in html
+    assert 'id="day-0" data-iso' not in html  # no ISO stamped -> "today" stays off
+    assert 'class="daynav"' in html  # jump links still render
+
+
+def test_mobile_summary_stack_mirrors_grid():
+    html = _render(
+        {
+            "summary": {"mon": {"am": {"type": "WL", "add": "Ring MU"}}},
+            "days": [{"day": "Mon", "date": "8 Jun", "streams": [{"label": "WL", "text": "x"}]}],
+        }
+    )
+    assert 'class="summary-stack"' in html  # phone view present (CSS hides one or the other)
+    assert "wkrow" in html
+    assert "Ring MU" in html  # the fitted work shows in the stacked view too
+
+
+def test_dark_mode_and_today_script_present():
+    html = _render({"summary": {}, "days": []})
+    assert "prefers-color-scheme:dark" in html  # honours the device theme
+    assert "<script>" in html and "is-today" in html  # today-detection wired

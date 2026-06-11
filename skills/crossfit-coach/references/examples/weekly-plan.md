@@ -54,6 +54,7 @@ named `weekly-plan` here as the canonical example) in this folder for the shapes
 ```json
 {
   "week_of": "8–14 Jun 2026",
+  "week_start": "2026-06-08",
   "source": "Claremont Competitors Programming — Week 8",
   "focus": ["Front Squat / Strict Press — wk 3/6", "..."],
   "summary": {
@@ -74,7 +75,7 @@ named `weekly-plan` here as the canonical example) in this folder for the shapes
           "text": "(0 - 18 min)\nA. Back Squat: 6s x 2r x 87.5%\n...verbatim...",
           "loads": [
             { "lift": "Back Squat", "scheme": "6 x 2 @ 87.5%",
-              "load": "144.5 kg (87.5% of 165) — /side 2×25+10+1.25+2×0.5" }
+              "load": "144.5 kg (87.5% of 165)" }
           ] },
         { "label": "Performance", "text": "B. For time:\n50 Deadlifts\n...verbatim..." },
         { "label": "Ring MU", "accent": "lim",
@@ -85,6 +86,10 @@ named `weekly-plan` here as the canonical example) in this folder for the shapes
 }
 ```
 
+- **`week_start`** → the ISO date of the first day in `days` (the Monday, same date the
+  file is named after). The renderer derives each day's date from it so the HTML can
+  highlight **today's** session, scroll to it on open, and link the sticky day-nav. Omit
+  it and the page still renders — it just won't know which day is "today".
 - **`summary`** → the Week Summary grid (columns Mon–Sun, rows AM/PM). `type` is the
   class stream — `WL | Perf | Comp | Fitness | WOD | Rest`, or a combo like
   `"Performance + WL"`; the renderer colour-codes by keyword. **`add`** is the fitted
