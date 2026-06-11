@@ -14,7 +14,7 @@ alongside. Use those names — never "CrossFit".
 > logged — adjust each morning.
 >
 > - **Push (PROTECT):** Wed/Sun front-squat top sets; strict-press volume.
-> - **Cruise (Performance):** Mon WL+chipper · Tue WOD · Wed WL · Thu gym · Sun WL+Perf
+> - **Cruise (Performance):** Mon WL+chipper · Tue WOD · Wed WL · Thu gym · Sat WL+Perf
 > - **Flex:** Tue Comp extras · Thu Comp class · Ring MU
 >
 > Triage when squeezed: PROTECT top sets → Performance class → accessory → skill.
@@ -50,8 +50,8 @@ this folder for the canonical shapes.
   "focus": ["Front Squat / Strict Press — wk 3/6", "..."],
   "summary": {
     "mon": { "am": { "type": "WL" }, "pm": { "type": "Perf" } },
-    "thu": { "am": { "type": "Perf" }, "pm": { "type": "Comp" } },
-    "sun": { "am": { "type": "Performance + WL" } },
+    "thu": { "pm": { "type": "WOD + Comp" } },
+    "sat": { "am": { "type": "Perf + WL" } },
     "fri": { "am": { "type": "Rest" } }
   },
   "days": [

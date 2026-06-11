@@ -93,14 +93,14 @@ def _effort_slug(value):
 
 
 def grid_slugs(type_str: str):
-    """Map a free-text cell type ("WL", "Performance + WL", "Comp"...) to colour slugs."""
+    """Map a free-text cell type ("WL", "Performance + WL", "WOD + Comp"...) to slugs."""
     s = (type_str or "").lower()
     if "rest" in s:
         return ["rest"]
     slugs = []
     if "weightlift" in s or re.search(r"\bwl\b", s):
         slugs.append("wl")
-    if "perf" in s:
+    if "perf" in s or "wod" in s:
         slugs.append("perf")
     if "comp" in s:
         slugs.append("comp")
@@ -139,11 +139,11 @@ def _stream_slug(label: str) -> str:
     s = (label or "").lower()
     if "weightlift" in s or re.search(r"\bwl\b", s):
         return "wl"
-    if "perf" in s:
+    if "perf" in s or "wod" in s:
         return "perf"
     if "comp" in s:
         return "comp"
-    if "fit" in s or "wod" in s:
+    if "fit" in s:
         return "fit"
     return ""
 

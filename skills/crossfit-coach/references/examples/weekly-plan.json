@@ -8,11 +8,11 @@
   "summary": {
     "mon": { "am": { "type": "WL" }, "pm": { "type": "Perf" } },
     "tue": { "pm": { "type": "Perf" } },
-    "wed": { "pm": { "type": "WL" } },
-    "thu": { "am": { "type": "Perf" }, "pm": { "type": "Comp" } },
+    "wed": { "am": { "type": "WL" } },
+    "thu": { "pm": { "type": "WOD + Comp" } },
     "fri": { "am": { "type": "Rest" } },
-    "sat": {},
-    "sun": { "am": { "type": "Performance + WL" } }
+    "sat": { "am": { "type": "Perf + WL" } },
+    "sun": { "am": { "type": "Rest" } }
   },
   "days": [
     {
@@ -74,7 +74,7 @@
       "day": "Thu", "date": "11 Jun",
       "streams": [
         {
-          "label": "Performance",
+          "label": "WOD",
           "text": "A. Gymnastics Cycle Week 1 – Bar Series\n1/4: Straight Arm Pulling: Ball Up, Front Lever Inverted Hang & Kip Extensions\n\nB. 16 Min AMRAP:\n2 Kip Extensions\n4 Ball Ups\n6 Candlesticks to Rolling Squat\n8 Side Lying Thoracic Rotation Press (e side)\n1 Up and Back Parallette Traverse"
         },
         {
@@ -85,8 +85,7 @@
     },
     { "day": "Fri", "date": "12 Jun", "rest_note": "REST DAY" },
     {
-      "day": "Sun", "date": "14 Jun",
-      "note": "Gym programs this for Sat 13 Jun — done Sun this week.",
+      "day": "Sat", "date": "13 Jun",
       "streams": [
         {
           "label": "Weightlifting",
@@ -102,6 +101,7 @@
           "text": "In Pairs: 10 Rounds for time:\n300m Run\n16 DB Walking Lunges (22.5/15kg)\n5 Strict Handstand Push Ups\n*Alternate working partner after each movement\n*30 min time cap\n\n- 2 min rest -\n\nMax Calorie Ski Erg until the 30 min mark."
         }
       ]
-    }
+    },
+    { "day": "Sun", "date": "14 Jun", "rest_note": "REST DAY" }
   ]
 }
