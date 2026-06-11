@@ -204,17 +204,18 @@ def test_dark_mode_and_today_script_present():
     assert "<script>" in html and "is-today" in html  # today-detection wired
 
 
-def test_today_button_present_but_no_autoscroll():
+def test_summary_button_and_today_highlight():
     html = _render(
         {
             "week_start": "2026-06-08",
-            "summary": {},
+            "summary": {"mon": {"am": {"type": "WL"}}},
             "days": [{"day": "Mon", "date": "8 Jun", "streams": [{"label": "WL", "text": "x"}]}],
         }
     )
-    # a Today jump button is rendered (hidden until the script confirms today is in-week)
-    assert '<button class="todaybtn" type="button" hidden>Today</button>' in html
-    # highlight is wired, but the script must not force a scroll on open
+    # a Summary pill jumps back to the week-summary section
+    assert '<a class="navbtn" href="#week-summary">Summary</a>' in html
+    assert '<section id="week-summary">' in html
+    # today highlight still wired; no Today pill, and nothing scrolls on its own
     assert "classList.add('is-today')" in html
-    assert "scrollIntoView" in html  # only inside the button click handler
-    assert "addEventListener('click'" in html
+    assert "todaybtn" not in html
+    assert "scrollIntoView" not in html

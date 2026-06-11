@@ -61,6 +61,7 @@ CSS = """
 --low:#4ade80;--med:#fbbf24;--high:#f87171;--today:#fb923c;--today-bg:#2a1a0e;
 --dec-bg:#231020;--dec-line:#7d2a52;}}
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 color:var(--ink);margin:0 auto;padding:20px;max-width:880px;background:var(--bg)}
 h1{font-size:22px;margin:0 0 2px}h2{font-size:15px;margin:26px 0 10px;
@@ -72,8 +73,7 @@ text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
 padding:8px 0;margin:10px 0 0;border-bottom:1px solid var(--line)}
 .dnchips{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .dnchips::-webkit-scrollbar{display:none}
-.todaybtn{flex:0 0 auto;cursor:pointer;border:1px solid var(--today);background:var(--today);color:#fff;
-border-radius:999px;padding:5px 13px;font:inherit;font-size:13px;font-weight:700;white-space:nowrap}
+.daynav a.navbtn{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:700}
 .daynav a{flex:0 0 auto;text-decoration:none;color:var(--mut);background:var(--surface);
 border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:600;white-space:nowrap}
 .daynav a .dn{font-weight:400;font-size:11px;margin-left:4px;color:var(--mut)}
@@ -110,6 +110,7 @@ border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0}
 border-radius:8px;padding:10px 14px;margin:16px 0 0}
 .decisions h2{margin:0 0 6px;color:var(--lim);font-size:13px}
 .decisions ul{margin:0;padding-left:18px}.decisions li{font-size:13px;margin:2px 0}
+#week-summary{scroll-margin-top:64px}
 .day{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0;scroll-margin-top:64px}
 .day.rest{opacity:.7}
 .day.is-today{border-color:var(--today);box-shadow:inset 0 0 0 1px var(--today);opacity:1}
@@ -137,17 +138,13 @@ footer{margin-top:24px;color:var(--mut);font-size:11px;border-top:1px solid var(
 h2{margin:20px 0 8px}.day{padding:11px 12px}.wod{font-size:12.5px}}
 """
 
-# Tiny, dependency-free: highlight today's session and reveal a "Today" jump button.
-# No auto-scroll — the athlete decides when to jump.
+# Tiny, dependency-free: highlight today's session (the day card, nav chip, and
+# summary row). No scrolling — navigation is plain anchor links.
 SCRIPT = """
 (function(){try{
 var t=new Date();var p=function(n){return (n<10?'0':'')+n;};
 var iso=t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
 document.querySelectorAll('[data-iso="'+iso+'"]').forEach(function(el){el.classList.add('is-today');});
-var card=document.querySelector('article.day[data-iso="'+iso+'"]');
-var btn=document.querySelector('.todaybtn');
-if(btn&&card){btn.hidden=false;
-btn.addEventListener('click',function(){card.scrollIntoView({behavior:'smooth',block:'start'});});}
 }catch(e){}})();
 """
 
@@ -240,10 +237,10 @@ def render_daynav(days, isos) -> str:
         chips.append(
             f'<a class="dnchip{rest}" href="#day-{i}"{isattr}>{esc(d.get("day", ""))}{numspan}</a>'
         )
-    # The Today button is revealed by the script only when today is in this week.
+    # A pinned Summary pill jumps back up to the week-summary overview.
     return (
         '<nav class="daynav">'
-        '<button class="todaybtn" type="button" hidden>Today</button>'
+        '<a class="navbtn" href="#week-summary">Summary</a>'
         f'<div class="dnchips">{"".join(chips)}</div>'
         "</nav>"
     )
@@ -287,7 +284,7 @@ def render_summary_stack(summary, days, isos) -> str:
 
 def render_summary(summary, days, isos) -> str:
     return (
-        '<section><h2>Week summary</h2>'
+        '<section id="week-summary"><h2>Week summary</h2>'
         f"{render_summary_table(summary)}{render_summary_stack(summary, days, isos)}"
         "</section>"
     )
