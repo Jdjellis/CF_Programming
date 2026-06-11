@@ -6,14 +6,20 @@
     "Ring Muscle-Up — wk 3/6"
   ],
   "summary": {
-    "mon": { "am": { "type": "WL" }, "pm": { "type": "Perf" } },
-    "tue": { "pm": { "type": "Perf" } },
-    "wed": { "am": { "type": "WL" } },
-    "thu": { "pm": { "type": "WOD + Comp" } },
+    "mon": { "am": { "type": "WL", "add": "Ring MU" }, "pm": { "type": "Perf" } },
+    "tue": { "pm": { "type": "Perf", "add": "Quad/knee" } },
+    "wed": { "am": { "type": "WL", "add": "Ring MU" } },
+    "thu": { "am": { "add": "Strict Press" }, "pm": { "type": "WOD + Comp" } },
     "fri": { "am": { "type": "Rest" } },
-    "sat": { "am": { "type": "Perf + WL" } },
+    "sat": { "am": { "type": "Perf + WL", "add": "Ring MU" } },
     "sun": { "am": { "type": "Rest" } }
   },
+  "decisions": [
+    "Front-squat strength deferred to class — Performance/WL squats heavy Mon/Wed/Sat. No competing barbell front squat; substituted low-CNS quad/knee support on Tue (the engine/pulling day).",
+    "Strict press kept as the protected independent lift (the box under-supplies pressing) — placed Thu AM: fresh, a gymnastics day (no press clash), and clear of Tue's Push Press.",
+    "Ring MU skill placed Mon/Wed/Sat for frequency (neurologically cheap). It is the first thing to flex if a day gets squeezed — strength is never cut for skill.",
+    "Triage if time/energy is short: PROTECT top sets → Performance class → quad/knee accessory → ring-MU skill."
+  ],
   "days": [
     {
       "day": "Mon", "date": "8 Jun",
@@ -30,6 +36,10 @@
         {
           "label": "Performance",
           "text": "A. 4 Rounds: alt OT90 sec\nA1. 5 Back Rack Step Ups (e side)\n*Set a box so you're below parallel\nA2. 30m Single Arm DB OH Walk\n\nB. For time:\n50 Deadlifts\n50 Box Jumps (24/20\")\n25 Strict handstand Push Ups\n50/40 Calorie Echo Bike\n50 Front Squat\nBarbell: (60/40kg)\n*17.30 time cap\nWorkout is done in the format of 90 sec on, 30 sec off until reps are completed."
+        },
+        {
+          "label": "Ring MU", "accent": "lim",
+          "text": "False-grip ring pull-ups: 4 x 4\nLow-ring transitions (feet assist, minimal): 5 x 3\nKip swing to high pull (sternum to rings): 5 x 4\nEccentric lower from support: 4 x 3\n*Chase frequency, not load. → references/drills/ring-mu-kipping.md"
         }
       ]
     },
@@ -49,6 +59,10 @@
         {
           "label": "Comp Extra's",
           "text": "A. 3 Rounds for quality:\n40 sec S Leg Sorensen Hold (e side)\n20 sec GHD Side Plank (e side)\n20 Back Extensions\n20 Bent Knee S Leg Heel Raise (e side)\n\nB. Front Squat Dips: Build to a heavy 3, then 5 x 2 x 80% of that"
+        },
+        {
+          "label": "Quad / knee", "accent": "lim",
+          "text": "Spanish squat (banded): 3 x 20-30s isometric holds\nATG split squat (BW → goblet): 3 x 8/leg, controlled full depth\nZombie front squat: 3 x 5 (front-rack + quad bias)\nTibialis raises: 3 x 15\n*Low-CNS support — class supplies the heavy squat this week. → references/drills/knee-rehab.md"
         }
       ]
     },
@@ -67,12 +81,24 @@
         {
           "label": "Performance",
           "text": "A. 4 Rounds OT2M:\nA1. 8-10 Kickstand RDLs (e side)\nA2. 5 Banded Zercher Jumps + 10 Back to Wall Cross Legged Shoulder Slides\n\nB. For total time\nEvery 1:00 x 4 sets:\n15/12 Calorie Row\n\nEvery 2:00 x 3 sets:\n30/24 Calorie Row\n\nEvery 3:00 x 2 sets:\n40/32 Calorie Row\n\nEvery 4:00 x 1 sets:\n50/40 Calorie Row\n\n*Advised to just do part A and then some mobility if you're doing Weightlifting.\n*Today's WOD optional. If your muscle ups need work it's reccommended."
+        },
+        {
+          "label": "Ring MU", "accent": "lim",
+          "text": "False-grip ring pull-ups: 4 x 4\nLow-ring transitions (feet assist, minimal): 5 x 3\nKip swing to high pull (sternum to rings): 5 x 4\nEccentric lower from support: 4 x 3\n*Chase frequency, not load. → references/drills/ring-mu-kipping.md"
         }
       ]
     },
     {
       "day": "Thu", "date": "11 Jun",
       "streams": [
+        {
+          "label": "Strict Press", "accent": "lim",
+          "text": "Top single @ RPE 8, then 3 x 5 @ 75%\nStrict HSPU progression (deficit / negatives): 4 x 4\nHalf-kneeling DB press: 3 x 8/arm (overhead stability)\n*PROTECT — the box under-supplies pressing; this is priority #1 this week.",
+          "loads": [
+            { "lift": "Strict Press", "scheme": "top single @ RPE 8", "load": "65 kg (93% of 70) — /side 20+2.5" },
+            { "lift": "Strict Press", "scheme": "3 x 5 @ 75%", "load": "52.5 kg (75% of 70) — /side 15+1.25" }
+          ]
+        },
         {
           "label": "WOD",
           "text": "A. Gymnastics Cycle Week 1 – Bar Series\n1/4: Straight Arm Pulling: Ball Up, Front Lever Inverted Hang & Kip Extensions\n\nB. 16 Min AMRAP:\n2 Kip Extensions\n4 Ball Ups\n6 Candlesticks to Rolling Squat\n8 Side Lying Thoracic Rotation Press (e side)\n1 Up and Back Parallette Traverse"
@@ -99,6 +125,10 @@
         {
           "label": "Performance",
           "text": "In Pairs: 10 Rounds for time:\n300m Run\n16 DB Walking Lunges (22.5/15kg)\n5 Strict Handstand Push Ups\n*Alternate working partner after each movement\n*30 min time cap\n\n- 2 min rest -\n\nMax Calorie Ski Erg until the 30 min mark."
+        },
+        {
+          "label": "Ring MU", "accent": "lim",
+          "text": "False-grip ring pull-ups: 4 x 4\nLow-ring transitions (feet assist, minimal): 5 x 3\nKip swing to high pull (sternum to rings): 5 x 4\nEccentric lower from support: 4 x 3\n*Chase frequency, not load. → references/drills/ring-mu-kipping.md"
         }
       ]
     },

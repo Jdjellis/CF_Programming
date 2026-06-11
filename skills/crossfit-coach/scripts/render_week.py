@@ -38,7 +38,7 @@ DAYS = [
 EFFORT_SLUG = {"low": "low", "med": "med", "medium": "med", "high": "high"}
 
 CSS = """
-:root{--wl:#7c3aed;--perf:#2563eb;--comp:#0891b2;--fit:#0d9488;--rest:#94a3b8;
+:root{--wl:#7c3aed;--perf:#2563eb;--comp:#0891b2;--fit:#0d9488;--lim:#db2777;--rest:#94a3b8;
 --low:#16a34a;--med:#d97706;--high:#dc2626;--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;}
 *{box-sizing:border-box}
 body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
@@ -61,7 +61,12 @@ tbody th{background:#f8fafc;width:42px;font-size:12px;color:var(--mut)}
 .t-combo .type{background:linear-gradient(90deg,var(--perf),var(--wl));
 -webkit-background-clip:text;background-clip:text;color:transparent}
 .e-low{color:var(--low)}.e-med{color:var(--med)}.e-high{color:var(--high)}
+.cell .add{font-size:11px;font-weight:600;color:#fff;background:var(--lim);border-radius:999px;padding:1px 8px}
 .cell.empty{color:#cbd5e1}
+.decisions{background:#fdf2f8;border:1px solid #fbcfe8;border-left:4px solid var(--lim);
+border-radius:8px;padding:10px 14px;margin:16px 0 0}
+.decisions h2{margin:0 0 6px;color:var(--lim);font-size:13px}
+.decisions ul{margin:0;padding-left:18px}.decisions li{font-size:13px;margin:2px 0}
 .day{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0}
 .day.rest{opacity:.7}
 .day>h3{margin:0 0 4px;font-size:16px}
@@ -70,9 +75,11 @@ tbody th{background:#f8fafc;width:42px;font-size:12px;color:var(--mut)}
 .stream{margin:12px 0 0;padding-left:11px;border-left:3px solid var(--line)}
 .stream.s-wl{border-color:var(--wl)}.stream.s-perf{border-color:var(--perf)}
 .stream.s-comp{border-color:var(--comp)}.stream.s-fit{border-color:var(--fit)}
+.stream.s-lim{border-color:var(--lim)}
 .stream h4{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
 .s-wl h4{color:var(--wl)}.s-perf h4{color:var(--perf)}
-.s-comp h4{color:var(--comp)}.s-fit h4{color:var(--fit)}
+.s-comp h4{color:var(--comp)}.s-fit h4{color:var(--fit)}.s-lim h4{color:var(--lim)}
+.s-lim h4::after{content:" · individual";font-weight:400;text-transform:none;letter-spacing:0;color:var(--mut);font-size:11px}
 .wod{white-space:pre-wrap;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin:6px 0 0}
 .loads{margin:7px 0 0}
@@ -110,15 +117,20 @@ def grid_slugs(type_str: str):
 
 
 def render_cell(cell) -> str:
-    if not cell or not cell.get("type"):
+    """A summary grid cell: a class stream (`type`) and/or fitted individual work (`add`)."""
+    if not cell or (not cell.get("type") and not cell.get("add")):
         return '<td><div class="cell empty">—</div></td>'
-    typ = cell["type"]
-    slugs = grid_slugs(typ)
+    typ = cell.get("type")
+    slugs = grid_slugs(typ) if typ else []
     tclass = "t-combo" if len(slugs) > 1 else (f"t-{slugs[0]}" if slugs else "")
-    parts = [f'<span class="type">{esc(typ)}</span>']
-    eff = _effort_slug(cell.get("effort"))
-    if eff and "rest" not in slugs:
-        parts.append(f'<span class="eff e-{eff}">{esc(cell["effort"])}</span>')
+    parts = []
+    if typ:
+        parts.append(f'<span class="type">{esc(typ)}</span>')
+        eff = _effort_slug(cell.get("effort"))
+        if eff and "rest" not in slugs:
+            parts.append(f'<span class="eff e-{eff}">{esc(cell["effort"])}</span>')
+    if cell.get("add"):
+        parts.append(f'<span class="add">{esc(cell["add"])}</span>')
     return f'<td><div class="cell {tclass}">{"".join(parts)}</div></td>'
 
 
@@ -161,7 +173,9 @@ def render_loads(loads) -> str:
 
 
 def render_stream(st) -> str:
-    slug = _stream_slug(st.get("label", ""))
+    # `accent` (wl|perf|comp|fit|lim) overrides label-based colour — use "lim" for
+    # the athlete's own fitted individual work (strict press, ring MU, knee rehab).
+    slug = st.get("accent") or _stream_slug(st.get("label", ""))
     cls = f"stream s-{slug}" if slug else "stream"
     head = f'<h4>{esc(st.get("label", ""))}</h4>'
     text = f'<div class="wod">{esc(st["text"])}</div>' if st.get("text") else ""
@@ -189,6 +203,10 @@ def render(plan: dict) -> str:
         lis = "".join(f"<li>{esc(f)}</li>" for f in plan["focus"])
         focus = f'<ul class="focus">{lis}</ul>'
     summary = render_summary(plan.get("summary", {}))
+    decisions = ""
+    if plan.get("decisions"):
+        lis = "".join(f"<li>{esc(x)}</li>" for x in plan["decisions"])
+        decisions = f'<section class="decisions"><h2>Priority decisions</h2><ul>{lis}</ul></section>'
     days = "".join(render_day(d) for d in plan.get("days", []))
     days_section = f"<section><h2>Training days</h2>{days}</section>" if days else ""
     foot = (
@@ -200,7 +218,7 @@ def render(plan: dict) -> str:
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><style>{CSS}</style></head>
 <body><header><h1>{title}</h1>{src}{focus}</header>
-{summary}{days_section}
+{summary}{decisions}{days_section}
 <footer>{foot}</footer></body></html>
 """
 

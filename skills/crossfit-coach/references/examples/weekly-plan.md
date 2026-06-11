@@ -49,11 +49,16 @@ this folder for the canonical shapes.
   "source": "Claremont Competitors Programming — Week 8",
   "focus": ["Front Squat / Strict Press — wk 3/6", "..."],
   "summary": {
-    "mon": { "am": { "type": "WL" }, "pm": { "type": "Perf" } },
-    "thu": { "pm": { "type": "WOD + Comp" } },
-    "sat": { "am": { "type": "Perf + WL" } },
+    "mon": { "am": { "type": "WL", "add": "Ring MU" }, "pm": { "type": "Perf" } },
+    "thu": { "am": { "add": "Strict Press" }, "pm": { "type": "WOD + Comp" } },
+    "sat": { "am": { "type": "Perf + WL", "add": "Ring MU" } },
     "fri": { "am": { "type": "Rest" } }
   },
+  "decisions": [
+    "Front-squat strength deferred to class (squats heavy Mon/Wed/Sat); quad/knee support on Tue instead.",
+    "Strict press kept as the protected independent lift — Thu AM, clear of Tue's Push Press.",
+    "Ring MU placed Mon/Wed/Sat for frequency; first to flex under time pressure."
+  ],
   "days": [
     { "day": "Mon", "date": "8 Jun",
       "streams": [
@@ -63,21 +68,27 @@ this folder for the canonical shapes.
             { "lift": "Back Squat", "scheme": "6 x 2 @ 87.5%",
               "load": "144.5 kg (87.5% of 165) — /side 2×25+10+1.25+2×0.5" }
           ] },
-        { "label": "Performance", "text": "B. For time:\n50 Deadlifts\n...verbatim..." }
+        { "label": "Performance", "text": "B. For time:\n50 Deadlifts\n...verbatim..." },
+        { "label": "Ring MU", "accent": "lim",
+          "text": "False-grip ring pull-ups: 4 x 4\n...the athlete's own work..." }
       ] },
     { "day": "Fri", "date": "12 Jun", "rest_note": "REST DAY" }
   ]
 }
 ```
 
-- **`summary`** → the Week Summary grid (columns Mon–Sun, rows AM/PM). `type` is a
-  stream label/abbreviation — `WL | Perf | Comp | Fitness | Rest`, or a combo like
-  `"Performance + WL"`; the renderer colour-codes by keyword. Omit a slot for an empty
-  cell. `effort` (`Low | Med | High`) is an **optional** sub-tag — add it if you want
-  the effort shown, omit it otherwise.
+- **`summary`** → the Week Summary grid (columns Mon–Sun, rows AM/PM). `type` is the
+  class stream — `WL | Perf | Comp | Fitness | WOD | Rest`, or a combo like
+  `"Performance + WL"`; the renderer colour-codes by keyword. **`add`** is the fitted
+  individual work for that slot (strict press, ring MU, quad/knee), shown as a distinct
+  pink chip — a cell can have `type` and/or `add`. Omit a slot for an empty cell.
+  `effort` (`Low | Med | High`) is an **optional** sub-tag.
+- **`decisions`** → a list of the prioritisation choices you made fitting the personal
+  work in (what was placed, deferred, or dropped, and why). Rendered as a highlighted
+  callout under the grid. Echo the same points in the chat reply.
 - **`days[].streams[]`** → the per-day workouts, one block per stream. `label` is the
-  stream heading (drives the colour accent). `text` is the verbatim programming;
-  `loads` is the optional list of calculated weights shown underneath.
+  stream heading; `text` is the **verbatim** class programming with `loads` underneath.
+  The athlete's own blocks set `"accent": "lim"` (colours them pink, tags them
+  "individual") and carry the block's drills + any `loads`.
 - A day with no `streams` (just a `rest_note`) renders as a rest day. An optional
-  `note` on a day prints a small italic line under the heading (e.g. "gym programs
-  this for Sat — done Sun this week").
+  `note` on a day prints a small italic line under the heading.

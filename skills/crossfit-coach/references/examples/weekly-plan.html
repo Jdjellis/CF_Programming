@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Week of 8–14 Jun 2026</title><style>
-:root{--wl:#7c3aed;--perf:#2563eb;--comp:#0891b2;--fit:#0d9488;--rest:#94a3b8;
+:root{--wl:#7c3aed;--perf:#2563eb;--comp:#0891b2;--fit:#0d9488;--lim:#db2777;--rest:#94a3b8;
 --low:#16a34a;--med:#d97706;--high:#dc2626;--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;}
 *{box-sizing:border-box}
 body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
@@ -25,7 +25,12 @@ tbody th{background:#f8fafc;width:42px;font-size:12px;color:var(--mut)}
 .t-combo .type{background:linear-gradient(90deg,var(--perf),var(--wl));
 -webkit-background-clip:text;background-clip:text;color:transparent}
 .e-low{color:var(--low)}.e-med{color:var(--med)}.e-high{color:var(--high)}
+.cell .add{font-size:11px;font-weight:600;color:#fff;background:var(--lim);border-radius:999px;padding:1px 8px}
 .cell.empty{color:#cbd5e1}
+.decisions{background:#fdf2f8;border:1px solid #fbcfe8;border-left:4px solid var(--lim);
+border-radius:8px;padding:10px 14px;margin:16px 0 0}
+.decisions h2{margin:0 0 6px;color:var(--lim);font-size:13px}
+.decisions ul{margin:0;padding-left:18px}.decisions li{font-size:13px;margin:2px 0}
 .day{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0}
 .day.rest{opacity:.7}
 .day>h3{margin:0 0 4px;font-size:16px}
@@ -34,9 +39,11 @@ tbody th{background:#f8fafc;width:42px;font-size:12px;color:var(--mut)}
 .stream{margin:12px 0 0;padding-left:11px;border-left:3px solid var(--line)}
 .stream.s-wl{border-color:var(--wl)}.stream.s-perf{border-color:var(--perf)}
 .stream.s-comp{border-color:var(--comp)}.stream.s-fit{border-color:var(--fit)}
+.stream.s-lim{border-color:var(--lim)}
 .stream h4{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
 .s-wl h4{color:var(--wl)}.s-perf h4{color:var(--perf)}
-.s-comp h4{color:var(--comp)}.s-fit h4{color:var(--fit)}
+.s-comp h4{color:var(--comp)}.s-fit h4{color:var(--fit)}.s-lim h4{color:var(--lim)}
+.s-lim h4::after{content:" · individual";font-weight:400;text-transform:none;letter-spacing:0;color:var(--mut);font-size:11px}
 .wod{white-space:pre-wrap;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin:6px 0 0}
 .loads{margin:7px 0 0}
@@ -47,7 +54,7 @@ background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:9px 11
 footer{margin-top:24px;color:#94a3b8;font-size:11px;border-top:1px solid var(--line);padding-top:8px}
 </style></head>
 <body><header><h1>Week of 8–14 Jun 2026</h1><p class="src">Claremont Competitors Programming — Week 8</p><ul class="focus"><li>Front Squat / Strict Press — wk 3/6</li><li>Ring Muscle-Up — wk 3/6</li></ul></header>
-<section><h2>Week summary</h2><div class="gridwrap"><table><thead><tr><th></th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead><tbody><tr><th>AM</th><td><div class="cell t-wl"><span class="type">WL</span></div></td><td><div class="cell empty">—</div></td><td><div class="cell t-wl"><span class="type">WL</span></div></td><td><div class="cell empty">—</div></td><td><div class="cell t-rest"><span class="type">Rest</span></div></td><td><div class="cell t-combo"><span class="type">Perf + WL</span></div></td><td><div class="cell t-rest"><span class="type">Rest</span></div></td></tr><tr><th>PM</th><td><div class="cell t-perf"><span class="type">Perf</span></div></td><td><div class="cell t-perf"><span class="type">Perf</span></div></td><td><div class="cell empty">—</div></td><td><div class="cell t-combo"><span class="type">WOD + Comp</span></div></td><td><div class="cell empty">—</div></td><td><div class="cell empty">—</div></td><td><div class="cell empty">—</div></td></tr></tbody></table></div></section><section><h2>Training days</h2><article class="day"><h3>Mon <span class="date">8 Jun</span></h3><div class="stream s-wl"><h4>Weightlifting</h4><div class="wod">Week 8 of the Cycle
+<section><h2>Week summary</h2><div class="gridwrap"><table><thead><tr><th></th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead><tbody><tr><th>AM</th><td><div class="cell t-wl"><span class="type">WL</span><span class="add">Ring MU</span></div></td><td><div class="cell empty">—</div></td><td><div class="cell t-wl"><span class="type">WL</span><span class="add">Ring MU</span></div></td><td><div class="cell "><span class="add">Strict Press</span></div></td><td><div class="cell t-rest"><span class="type">Rest</span></div></td><td><div class="cell t-combo"><span class="type">Perf + WL</span><span class="add">Ring MU</span></div></td><td><div class="cell t-rest"><span class="type">Rest</span></div></td></tr><tr><th>PM</th><td><div class="cell t-perf"><span class="type">Perf</span></div></td><td><div class="cell t-perf"><span class="type">Perf</span><span class="add">Quad/knee</span></div></td><td><div class="cell empty">—</div></td><td><div class="cell t-combo"><span class="type">WOD + Comp</span></div></td><td><div class="cell empty">—</div></td><td><div class="cell empty">—</div></td><td><div class="cell empty">—</div></td></tr></tbody></table></div></section><section class="decisions"><h2>Priority decisions</h2><ul><li>Front-squat strength deferred to class — Performance/WL squats heavy Mon/Wed/Sat. No competing barbell front squat; substituted low-CNS quad/knee support on Tue (the engine/pulling day).</li><li>Strict press kept as the protected independent lift (the box under-supplies pressing) — placed Thu AM: fresh, a gymnastics day (no press clash), and clear of Tue&#x27;s Push Press.</li><li>Ring MU skill placed Mon/Wed/Sat for frequency (neurologically cheap). It is the first thing to flex if a day gets squeezed — strength is never cut for skill.</li><li>Triage if time/energy is short: PROTECT top sets → Performance class → quad/knee accessory → ring-MU skill.</li></ul></section><section><h2>Training days</h2><article class="day"><h3>Mon <span class="date">8 Jun</span></h3><div class="stream s-wl"><h4>Weightlifting</h4><div class="wod">Week 8 of the Cycle
 
 (0 - 18 min)
 A. Back Squat: 6s x 2r x 87.5%
@@ -70,7 +77,11 @@ B. For time:
 50 Front Squat
 Barbell: (60/40kg)
 *17.30 time cap
-Workout is done in the format of 90 sec on, 30 sec off until reps are completed.</div></div></article><article class="day"><h3>Tue <span class="date">9 Jun</span></h3><div class="stream s-perf"><h4>Performance</h4><div class="wod">A. 20 min AMRAP:
+Workout is done in the format of 90 sec on, 30 sec off until reps are completed.</div></div><div class="stream s-lim"><h4>Ring MU</h4><div class="wod">False-grip ring pull-ups: 4 x 4
+Low-ring transitions (feet assist, minimal): 5 x 3
+Kip swing to high pull (sternum to rings): 5 x 4
+Eccentric lower from support: 4 x 3
+*Chase frequency, not load. → references/drills/ring-mu-kipping.md</div></div></article><article class="day"><h3>Tue <span class="date">9 Jun</span></h3><div class="stream s-perf"><h4>Performance</h4><div class="wod">A. 20 min AMRAP:
 3 Rounds:
 400m Run
 15 Pull Ups
@@ -102,7 +113,11 @@ Glute Ham Raises: 3 x 10
 20 Back Extensions
 20 Bent Knee S Leg Heel Raise (e side)
 
-B. Front Squat Dips: Build to a heavy 3, then 5 x 2 x 80% of that</div></div></article><article class="day"><h3>Wed <span class="date">10 Jun</span></h3><div class="stream s-wl"><h4>Weightlifting</h4><div class="wod">(0 - 18 min)
+B. Front Squat Dips: Build to a heavy 3, then 5 x 2 x 80% of that</div></div><div class="stream s-lim"><h4>Quad / knee</h4><div class="wod">Spanish squat (banded): 3 x 20-30s isometric holds
+ATG split squat (BW → goblet): 3 x 8/leg, controlled full depth
+Zombie front squat: 3 x 5 (front-rack + quad bias)
+Tibialis raises: 3 x 15
+*Low-CNS support — class supplies the heavy squat this week. → references/drills/knee-rehab.md</div></div></article><article class="day"><h3>Wed <span class="date">10 Jun</span></h3><div class="stream s-wl"><h4>Weightlifting</h4><div class="wod">(0 - 18 min)
 Front Squat:
 5s x 3r x 87.5%
 
@@ -133,7 +148,14 @@ Every 4:00 x 1 sets:
 50/40 Calorie Row
 
 *Advised to just do part A and then some mobility if you&#x27;re doing Weightlifting.
-*Today&#x27;s WOD optional. If your muscle ups need work it&#x27;s reccommended.</div></div></article><article class="day"><h3>Thu <span class="date">11 Jun</span></h3><div class="stream s-perf"><h4>WOD</h4><div class="wod">A. Gymnastics Cycle Week 1 – Bar Series
+*Today&#x27;s WOD optional. If your muscle ups need work it&#x27;s reccommended.</div></div><div class="stream s-lim"><h4>Ring MU</h4><div class="wod">False-grip ring pull-ups: 4 x 4
+Low-ring transitions (feet assist, minimal): 5 x 3
+Kip swing to high pull (sternum to rings): 5 x 4
+Eccentric lower from support: 4 x 3
+*Chase frequency, not load. → references/drills/ring-mu-kipping.md</div></div></article><article class="day"><h3>Thu <span class="date">11 Jun</span></h3><div class="stream s-lim"><h4>Strict Press</h4><div class="wod">Top single @ RPE 8, then 3 x 5 @ 75%
+Strict HSPU progression (deficit / negatives): 4 x 4
+Half-kneeling DB press: 3 x 8/arm (overhead stability)
+*PROTECT — the box under-supplies pressing; this is priority #1 this week.</div><div class="loads"><div class="lh">% loads</div><div class="lrow"><span class="lift">Strict Press</span> <span class="scheme">top single @ RPE 8</span> <span class="load">→ 65 kg (93% of 70) — /side 20+2.5</span></div><div class="lrow"><span class="lift">Strict Press</span> <span class="scheme">3 x 5 @ 75%</span> <span class="load">→ 52.5 kg (75% of 70) — /side 15+1.25</span></div></div></div><div class="stream s-perf"><h4>WOD</h4><div class="wod">A. Gymnastics Cycle Week 1 – Bar Series
 1/4: Straight Arm Pulling: Ball Up, Front Lever Inverted Hang &amp; Kip Extensions
 
 B. 16 Min AMRAP:
@@ -189,5 +211,9 @@ E3: 12 Weighted GHD Hip Extensions
 
 - 2 min rest -
 
-Max Calorie Ski Erg until the 30 min mark.</div></div></article><article class="day rest"><h3>Sun <span class="date">14 Jun</span></h3><p class="daynote">REST DAY</p></article></section>
+Max Calorie Ski Erg until the 30 min mark.</div></div><div class="stream s-lim"><h4>Ring MU</h4><div class="wod">False-grip ring pull-ups: 4 x 4
+Low-ring transitions (feet assist, minimal): 5 x 3
+Kip swing to high pull (sternum to rings): 5 x 4
+Eccentric lower from support: 4 x 3
+*Chase frequency, not load. → references/drills/ring-mu-kipping.md</div></div></article><article class="day rest"><h3>Sun <span class="date">14 Jun</span></h3><p class="daynote">REST DAY</p></article></section>
 <footer>Workout text reproduced verbatim from the gym's programming. Loads are deterministic — every kg comes from scripts/calc.py. Judgment from references/policy.md.</footer></body></html>

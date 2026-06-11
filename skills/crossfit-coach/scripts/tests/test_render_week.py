@@ -56,6 +56,35 @@ def test_empty_slot_renders_placeholder():
     assert "cell empty" in html
 
 
+def test_cell_add_renders_individual_work_chip():
+    # class type + fitted individual work
+    both = _render({"summary": {"mon": {"am": {"type": "WL", "add": "Ring MU"}}}, "days": []})
+    assert 'class="add">Ring MU</span>' in both
+    assert "t-wl" in both
+    # add-only slot (individual work, no class) still renders the chip
+    only = _render({"summary": {"thu": {"am": {"add": "Strict Press"}}}, "days": []})
+    assert 'class="add">Strict Press</span>' in only
+
+
+def test_decisions_render_as_callout():
+    html = _render({"summary": {}, "days": [], "decisions": ["Deferred FS to class.", "Ring MU Mon/Wed/Sat."]})
+    assert 'class="decisions"' in html
+    assert "Priority decisions" in html
+    assert "Deferred FS to class." in html
+
+
+def test_stream_accent_overrides_label_colour():
+    html = _render(
+        {
+            "summary": {},
+            "days": [
+                {"day": "Thu", "streams": [{"label": "Strict Press", "accent": "lim", "text": "x"}]}
+            ],
+        }
+    )
+    assert "stream s-lim" in html
+
+
 def test_stream_reproduces_verbatim_text_and_loads():
     html = _render(
         {
