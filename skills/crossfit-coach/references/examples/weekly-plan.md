@@ -30,11 +30,11 @@ work — plus the prioritisation decisions, and ask before going further:
 
 ## 2. Generate the HTML (after confirmation)
 
-Build the JSON spec and render it, naming the file `Gym Schedule - <Monday's date>`:
+Build the JSON spec and render it, naming the file `Gym Program - Week starting <Monday's date>`:
 
 ```bash
-python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Schedule - 2026-06-08.html"
-# or stream it:  python3 .../render_week.py - -o "Gym Schedule - 2026-06-08.html" < plan.json
+python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Program - Week starting 2026-06-08.html"
+# or stream it:  python3 .../render_week.py - -o "Gym Program - Week starting 2026-06-08.html" < plan.json
 ```
 
 See **`weekly-plan.json`** (the input) and **`weekly-plan.html`** (the rendered result,
@@ -54,6 +54,7 @@ named `weekly-plan` here as the canonical example) in this folder for the shapes
 ```json
 {
   "week_of": "8–14 Jun 2026",
+  "week_start": "2026-06-08",
   "source": "Claremont Competitors Programming — Week 8",
   "focus": ["Front Squat / Strict Press — wk 3/6", "..."],
   "summary": {
@@ -74,7 +75,7 @@ named `weekly-plan` here as the canonical example) in this folder for the shapes
           "text": "(0 - 18 min)\nA. Back Squat: 6s x 2r x 87.5%\n...verbatim...",
           "loads": [
             { "lift": "Back Squat", "scheme": "6 x 2 @ 87.5%",
-              "load": "144.5 kg (87.5% of 165) — /side 2×25+10+1.25+2×0.5" }
+              "load": "144.5 kg (87.5% of 165)" }
           ] },
         { "label": "Performance", "text": "B. For time:\n50 Deadlifts\n...verbatim..." },
         { "label": "Ring MU", "accent": "lim",
@@ -85,6 +86,11 @@ named `weekly-plan` here as the canonical example) in this folder for the shapes
 }
 ```
 
+- **`week_start`** → the ISO date of the first day in `days` (the Monday, same date the
+  file is named after). The renderer derives each day's date from it so the HTML can
+  highlight **today's** session and date the sticky day-nav (which also has a **Summary**
+  pill back to the overview). Omit it and the page still renders — it just won't know
+  which day is "today".
 - **`summary`** → the Week Summary grid (columns Mon–Sun, rows AM/PM). `type` is the
   class stream — `WL | Perf | Comp | Fitness | WOD | Rest`, or a combo like
   `"Performance + WL"`; the renderer colour-codes by keyword. **`add`** is the fitted

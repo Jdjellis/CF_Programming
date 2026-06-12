@@ -99,7 +99,8 @@ def resolve_target_weight(
 ) -> Tuple[float, float, Tuple[str, ...]]:
     """Return (working_weight_kg, fraction, notes) for target against a 1RM.
 
-    working_weight_kg is the raw weight *before* plate rounding.
+    working_weight_kg is the raw weight *before* the display rounding to a
+    loadable 0.5 kg (see models.round_to_half_kg).
     """
     fraction, notes = resolve_target_fraction(target)
     return one_rm_kg * fraction, fraction, notes

@@ -1,58 +1,28 @@
-"""Data models for the load/plate calculator.
+"""Data models for the load calculator.
 
-Everything here is plain data. No arithmetic of consequence happens in this
-module beyond trivial conversions; the load math lives in `plates.py` and
-`targets.py` so it can be unit-tested in isolation.
+Everything here is plain data. The only arithmetic is a presentation-level
+rounding of the working weight to a loadable kg — the consequential percentage /
+RPE / rep-max math lives in `targets.py` so it can be unit-tested in isolation.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from decimal import ROUND_HALF_UP, Decimal
 from typing import Literal, Optional
 
 
-# ---------------------------------------------------------------------------
-# Inventory
-# ---------------------------------------------------------------------------
+def round_to_half_kg(value: float) -> float:
+    """Round to the nearest 0.5 kg, half-up.
 
-@dataclass(frozen=True)
-class Plate:
-    """A plate denomination and how many *pairs* are available.
-
-    count is the number of plates available *per side* (i.e. pairs). None means
-    effectively unlimited supply.
+    Presentation only — the weight to actually load on the bar, not a
+    re-derivation of the percentage. An experienced lifter sorts the plates;
+    the calculator just hands them a clean, loadable number.
     """
-
-    weight_kg: float
-    count: Optional[int] = None  # None => unlimited
-
-    def __post_init__(self) -> None:
-        if self.weight_kg <= 0:
-            raise ValueError(f"plate weight must be positive, got {self.weight_kg}")
-        if self.count is not None and self.count < 0:
-            raise ValueError(f"plate count must be >= 0 or None, got {self.count}")
-
-
-@dataclass(frozen=True)
-class PlateInventory:
-    """The bar plus the set of plate denominations available."""
-
-    bar_weight_kg: float
-    plates: tuple[Plate, ...]
-
-    def __post_init__(self) -> None:
-        if self.bar_weight_kg <= 0:
-            raise ValueError(f"bar weight must be positive, got {self.bar_weight_kg}")
-        if not self.plates:
-            raise ValueError("inventory must contain at least one plate denomination")
-
-    @classmethod
-    def from_dict(cls, data: dict) -> "PlateInventory":
-        plates = tuple(
-            Plate(weight_kg=float(p["weight_kg"]), count=p.get("count"))
-            for p in data["plates"]
-        )
-        return cls(bar_weight_kg=float(data["bar_weight_kg"]), plates=plates)
+    halves = (Decimal(str(value)) / Decimal("0.5")).quantize(
+        Decimal("1"), rounding=ROUND_HALF_UP
+    )
+    return float(halves * Decimal("0.5"))
 
 
 # ---------------------------------------------------------------------------
@@ -112,84 +82,28 @@ class Target:
 # ---------------------------------------------------------------------------
 
 @dataclass(frozen=True)
-class PlateCount:
-    """A denomination and how many go on *each* side."""
-
-    weight_kg: float
-    count: int  # plates per side
-
-    def __str__(self) -> str:
-        w = f"{self.weight_kg:g}"
-        return f"{self.count}x{w}"
-
-
-@dataclass(frozen=True)
-class Loadout:
-    """The result of solving plate math for a single target weight."""
-
-    target_kg: float          # the weight we were asked to load
-    achieved_kg: float        # nearest loadable total with the inventory
-    bar_weight_kg: float
-    per_side: tuple[PlateCount, ...]  # plates per side, heaviest first
-    exact: bool               # achieved == target (within rounding tolerance)
-    below_bar: bool           # target was lighter than the empty bar
-
-    @property
-    def delta_kg(self) -> float:
-        """achieved - target. Positive => rounded up, negative => rounded down."""
-        return round(self.achieved_kg - self.target_kg, 5)
-
-    @property
-    def per_side_kg(self) -> float:
-        return round((self.achieved_kg - self.bar_weight_kg) / 2.0, 5)
-
-    @property
-    def plates_per_side(self) -> int:
-        return sum(pc.count for pc in self.per_side)
-
-    def per_side_str(self) -> str:
-        if not self.per_side:
-            return "(empty bar)"
-        parts = []
-        for pc in self.per_side:
-            if pc.count > 1:
-                parts.append(f"{pc.count}×{pc.weight_kg:g}")
-            else:
-                parts.append(f"{pc.weight_kg:g}")
-        return " + ".join(parts)
-
-    def summary(self) -> str:
-        line = (
-            f"{self.achieved_kg:g} kg = {self.bar_weight_kg:g} bar "
-            f"+ [{self.per_side_str()}] per side"
-        )
-        if not self.exact:
-            sign = "+" if self.delta_kg >= 0 else ""
-            line += f"  (target {self.target_kg:g}, delta {sign}{self.delta_kg:g} kg)"
-        if self.below_bar:
-            line += "  [BELOW BAR — empty bar is heavier than target]"
-        return line
-
-
-@dataclass(frozen=True)
 class PrescriptionResult:
-    """Full record for one prescription: lift + target -> weight + loadout."""
+    """Full record for one prescription: lift + target -> working weight."""
 
     lift: str
     target: Target
     one_rm_kg: float
     target_fraction: float    # fraction of 1RM the target resolves to (e.g. 0.85)
-    working_weight_kg: float  # one_rm * fraction, before plate rounding
-    loadout: Loadout
+    working_weight_kg: float  # one_rm * fraction, before display rounding
     notes: tuple[str, ...] = field(default_factory=tuple)
 
-    def summary(self) -> str:
+    @property
+    def prescribed_kg(self) -> float:
+        """Working weight rounded to the nearest 0.5 kg (half-up) — what to load."""
+        return round_to_half_kg(self.working_weight_kg)
+
+    def load_line(self) -> str:
+        """The paste-ready load string, e.g. '144.5 kg (87.5% of 165)'."""
         pct = self.target_fraction * 100
-        head = (
-            f"{self.lift}  {self.target.describe()}  "
-            f"-> {pct:.1f}% of {self.one_rm_kg:g} = {self.working_weight_kg:.2f} kg"
-        )
-        body = f"    {self.loadout.summary()}"
+        return f"{self.prescribed_kg:g} kg ({pct:g}% of {self.one_rm_kg:g})"
+
+    def summary(self) -> str:
+        head = f"{self.lift}  {self.target.describe()}  ->  {self.load_line()}"
         if self.notes:
-            body += "\n" + "\n".join(f"    note: {n}" for n in self.notes)
-        return head + "\n" + body
+            head += "\n" + "\n".join(f"    note: {n}" for n in self.notes)
+        return head

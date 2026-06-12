@@ -1,5 +1,6 @@
 {
   "week_of": "8–14 Jun 2026",
+  "week_start": "2026-06-08",
   "source": "Claremont Competitors Programming — Week 8",
   "focus": [
     "Front Squat / Strict Press — wk 3/6",
@@ -28,9 +29,9 @@
           "label": "Weightlifting",
           "text": "Week 8 of the Cycle\n\n(0 - 18 min)\nA. Back Squat: 6s x 2r x 87.5%\n\n(18 - 32 min)\nB. Low Hang Power Clean:\n3 Waves: (3 sets of each)\n2 x 80%\n1 x 90%\n*After each set complete 3 rebounding vertical jumps.",
           "loads": [
-            { "lift": "Back Squat", "scheme": "6 x 2 @ 87.5%", "load": "144.5 kg (87.5% of 165) — /side 2×25+10+1.25+2×0.5" },
-            { "lift": "Low Hang Power Clean", "scheme": "2 @ 80%", "load": "97.5 kg (80% of 122) — /side 25+10+2.5+1.25" },
-            { "lift": "Low Hang Power Clean", "scheme": "1 @ 90%", "load": "110 kg (90% of 122) — /side 25+20" }
+            { "lift": "Back Squat", "scheme": "6 x 2 @ 87.5%", "load": "144.5 kg (87.5% of 165)" },
+            { "lift": "Low Hang Power Clean", "scheme": "2 @ 80%", "load": "97.5 kg (80% of 122)" },
+            { "lift": "Low Hang Power Clean", "scheme": "1 @ 90%", "load": "110 kg (90% of 122)" }
           ]
         },
         {
@@ -50,10 +51,10 @@
           "label": "Performance",
           "text": "A. 20 min AMRAP:\n3 Rounds:\n400m Run\n15 Pull Ups\n- into -\n2 Rounds:\n300m Run\n10 Chest to Bar Pull Ups\n- into -\nAMRAP in remaining time:\n200m Run\n5 Bar Muscle Ups\n\n(32 - 45 min)\nPush Press:\n5 x 75%\n4 x 80%\n3 x 85%\n5+ x 75%\n\nB. 21 min: alt OTM x 10 mins:\nM1: 30 sec hanging Tuck Hold\nM2: 5-10 Seated Straddle Leg Lifts\n\n*If you're able to do after, or in between your Push Press:\nGlute Ham Raises: 3 x 10\n*Use a band if you can't do 10 BW",
           "loads": [
-            { "lift": "Push Press", "scheme": "5 @ 75%", "load": "75 kg (75% of 100) — /side 25+2.5" },
-            { "lift": "Push Press", "scheme": "4 @ 80%", "load": "80 kg (80% of 100) — /side 25+5" },
-            { "lift": "Push Press", "scheme": "3 @ 85%", "load": "85 kg (85% of 100) — /side 25+5+2.5" },
-            { "lift": "Push Press", "scheme": "5+ @ 75%", "load": "75 kg (75% of 100) — /side 25+2.5" }
+            { "lift": "Push Press", "scheme": "5 @ 75%", "load": "75 kg (75% of 100)" },
+            { "lift": "Push Press", "scheme": "4 @ 80%", "load": "80 kg (80% of 100)" },
+            { "lift": "Push Press", "scheme": "3 @ 85%", "load": "85 kg (85% of 100)" },
+            { "lift": "Push Press", "scheme": "5+ @ 75%", "load": "75 kg (75% of 100)" }
           ]
         },
         {
@@ -73,9 +74,9 @@
           "label": "Weightlifting",
           "text": "(0 - 18 min)\nFront Squat:\n5s x 3r x 87.5%\n\nPower Snatch:\n(18 - 32 min)\n5s x 1r x 85-90% of your 1RM\n\n(32 - 40 min)\nBuild to a 3RM\n\n(40 - 45 min)\nSnatch Pull:\n3 x 3 x 120%",
           "loads": [
-            { "lift": "Front Squat", "scheme": "5 x 3 @ 87.5%", "load": "118 kg (87.5% of 135) — /side 25+20+2.5+3×0.5" },
+            { "lift": "Front Squat", "scheme": "5 x 3 @ 87.5%", "load": "118 kg (87.5% of 135)" },
             { "lift": "Power Snatch", "scheme": "5 x 1 @ 85-90%", "load": "70 kg (85%) → 74.5 kg (90%) of 82.5" },
-            { "lift": "Snatch Pull", "scheme": "3 x 3 @ 120% (of snatch)", "load": "105.5 kg (120% of 88) — /side 25+15+1.25+3×0.5" }
+            { "lift": "Snatch Pull", "scheme": "3 x 3 @ 120% (of snatch)", "load": "105.5 kg (120% of 88)" }
           ]
         },
         {
@@ -95,8 +96,8 @@
           "label": "Strict Press", "accent": "lim",
           "text": "Top single @ RPE 8, then 3 x 5 @ 75%\nStrict HSPU progression (deficit / negatives): 4 x 4\nHalf-kneeling DB press: 3 x 8/arm (overhead stability)\n*PROTECT — the box under-supplies pressing; this is priority #1 this week.",
           "loads": [
-            { "lift": "Strict Press", "scheme": "top single @ RPE 8", "load": "65 kg (93% of 70) — /side 20+2.5" },
-            { "lift": "Strict Press", "scheme": "3 x 5 @ 75%", "load": "52.5 kg (75% of 70) — /side 15+1.25" }
+            { "lift": "Strict Press", "scheme": "top single @ RPE 8", "load": "65 kg (93% of 70)" },
+            { "lift": "Strict Press", "scheme": "3 x 5 @ 75%", "load": "52.5 kg (75% of 70)" }
           ]
         },
         {
@@ -118,8 +119,8 @@
           "text": "(0 - 20 min)\nFront Squat: 2 x 70%, 77.5%, 82.5%, 87.5%, 92.5%, 97.5%\n\n(20 - 38 min)\nSplit Jerk: 5s x 2r x 85%\n\n(45 - 55 min)\nSnatch & Clean\n10 sets OTM;\nAt the start of the minute complete a full Snatch\nAt the 30 second mark complete a full Clean\n*This is at 70% of your 1RM Snatch. Precision and speed is the focus here.\n\n(57 - 75 min)\n4 Rounds, alt every 90 seconds\nE1: 2 barbell Z Press\nE2: 8 Prone barbell Rows\nE3: 12 Weighted GHD Hip Extensions\n*First set moderate, second set tough, third and fourth sets should be close to failure.",
           "loads": [
             { "lift": "Front Squat", "scheme": "2 @ 70 / 77.5 / 82.5 / 87.5 / 92.5 / 97.5%", "load": "94.5 / 104.5 / 111.5 / 118 / 125 / 131.5 kg (of 135)" },
-            { "lift": "Split Jerk", "scheme": "5 x 2 @ 85%", "load": "105.5 kg (85% of 124) — /side 25+15+1.25+3×0.5" },
-            { "lift": "Snatch & Clean", "scheme": "OTM 10 @ 70% of Snatch", "load": "61.5 kg (70% of 88) — /side 15+2.5+1.25+4×0.5" }
+            { "lift": "Split Jerk", "scheme": "5 x 2 @ 85%", "load": "105.5 kg (85% of 124)" },
+            { "lift": "Snatch & Clean", "scheme": "OTM 10 @ 70% of Snatch", "load": "61.5 kg (70% of 88)" }
           ]
         },
         {
