@@ -1,4 +1,4 @@
-"""Deterministic load/plate calculator — the skill's arithmetic entry point.
+"""Deterministic load calculator — the skill's arithmetic entry point.
 
     python3 calc.py front_squat --percent 85
     python3 calc.py clean --rep-max 3
@@ -6,8 +6,9 @@
     python3 calc.py --demo
 
 Arithmetic is delegated to the tested deterministic modules; this is only I/O.
-The model never computes a working weight or plate loadout in its head — it runs
-this and pastes the output (PROJECT_SPEC §8).
+The model never computes a working weight in its head — it runs this and pastes
+the output line (PROJECT_SPEC §8). Output is the loadable working weight rounded
+to the nearest 0.5 kg, e.g. `144.5 kg (87.5% of 165)`.
 """
 
 from __future__ import annotations
@@ -52,7 +53,7 @@ def _run_demo() -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Deterministic load/plate calculator.")
+    parser = argparse.ArgumentParser(description="Deterministic load calculator.")
     parser.add_argument("lift", nargs="?", help="e.g. front_squat, clean, strict_press")
     parser.add_argument("--percent", type=float, help="percent of 1RM, e.g. 85")
     parser.add_argument("--rep-max", type=int, dest="rep_max", help="rep-max target, e.g. 3")

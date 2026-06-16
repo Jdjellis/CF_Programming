@@ -68,7 +68,7 @@ adjustment:
 
 How readiness maps to load is handed to the deterministic calculator as a target
 (%1RM, rep-max, or RPE+reps) — the policy chooses the target, the calculator
-chooses the kilos and plates.
+chooses the kilos.
 
 ## 3. Interference / deconfliction rules
 
@@ -147,8 +147,8 @@ descriptive.
 
 ## 6. Hard constraints (inherited from spec Section 8)
 
-- **Plate / percentage math is deterministic, unit-tested code. This policy
-  never does arithmetic** — it emits a target; the calculator emits kilos + plates.
+- **Percentage math is deterministic, unit-tested code. This policy never does
+  arithmetic** — it emits a target; the calculator emits kilos.
 - **The Google Sheet top section is the single source of truth for maxes**
   (Sheet ID `1Q1RlKE9LfTpUYSAqwFWnknJ_g9ftTal1P4eeMBnqY_A`). Never hardcode or
   duplicate maxes in the policy.

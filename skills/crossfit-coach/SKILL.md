@@ -9,7 +9,7 @@ description: >
   a versioned programming + autoregulation policy and a personal limiter-focused
   block, and calls a deterministic calculator for every load (never does the math
   itself). Single athlete, on-demand: a brief chat summary plus an HTML weekly plan.
-version: 1.1.0
+version: 1.2.0
 ---
 
 # CrossFit Coach
@@ -22,8 +22,8 @@ minimal training log of rep-maxes. You supply **judgment**; a script supplies
 
 ## §0. Prime directive — you never do load math
 
-**Never compute a working weight, a percentage of a max, or a plate loadout in your
-head.** For every load, run the calculator and paste its output verbatim:
+**Never compute a working weight or a percentage of a max in your head.** For every
+load, run the calculator and paste its output verbatim:
 
 ```
 python3 skills/crossfit-coach/scripts/calc.py <lift> --percent 85
@@ -103,22 +103,27 @@ emit:
    %/rep-max/RPE, run `calc.py` and paste the result line. Never write a kg the script
    didn't produce.
 6. **Emit.** Build the JSON spec and render the HTML, naming the file
-   **`Gym Schedule - <Monday's date>.html`** (the Monday of the week, e.g.
-   `Gym Schedule - 2026-06-08.html`):
+   **`Gym Program - Week starting <Monday's date>.html`** (the Monday of the week, e.g.
+   `Gym Program - Week starting 2026-06-08.html`):
 
    ```
-   python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Schedule - 2026-06-08.html"
+   python3 skills/crossfit-coach/scripts/render_week.py plan.json -o "Gym Program - Week starting 2026-06-08.html"
    ```
 
    The spec carries (a) the **AM/PM summary grid including the fitted individual work**
    — each cell a class `type` and/or an `add` chip for personal work; (b) per day, one
    block per stream — class streams reproduce the workout `text` **verbatim**, the
-   athlete's own blocks set `"accent": "lim"` and carry their drills + `loads`; and
-   (c) a top-level **`decisions`** list that surfaces the prioritisation choices from
-   step 3. Every `load` line is pasted from `calc.py`. The spec shape is in
+   athlete's own blocks set `"accent": "lim"` and carry their drills + `loads`; (c) a
+   top-level **`decisions`** list that surfaces the prioritisation choices from step 3;
+   and (d) a top-level **`week_start`** — the Monday's ISO date (same as the filename),
+   which lets the HTML highlight **today's** session and date the sticky day-nav. Every
+   `load` line is pasted from `calc.py`. The spec shape is in
    `references/examples/weekly-plan.json`; the rendered result is `weekly-plan.html`
-   (a real output would be `Gym Schedule - <Monday>.html`). The renderer is
-   presentation only — it does no math. Point the athlete at the file.
+   (a real output would be `Gym Program - Week starting <Monday>.html`). The HTML is
+   built for the gym on a phone — it reflows the week summary to a tap-to-jump day list,
+   highlights today, has a sticky day-nav (with a **Summary** pill back to the overview),
+   and follows the device's dark-mode setting. The renderer is presentation only — it
+   does no math. Point the athlete at the file.
 
 ## §3. Mid-week autoregulation ("I'm beaten up, adjust today")
 
@@ -166,7 +171,7 @@ press). When a genuine new 1RM lands, remind the athlete to update
 
 Use `references/examples/weekly-plan.md` and `references/examples/daily-adjust.md`
 as the canonical templates for structure and the load-line format
-(`144.5 kg (87.5% of 165) — /side 2×25+10+1.25`). The weekly plan is rendered to HTML
+(`144.5 kg (87.5% of 165)`). The weekly plan is rendered to HTML
 via `scripts/render_week.py` (input shape: `weekly-plan.json`), reproducing each
 stream's workout text verbatim with calculated loads underneath; daily adjusts stay as
 a short chat message. Favour a short, skimmable output over prose. Lead with what to
@@ -175,6 +180,19 @@ push/cruise/skip; the athlete reads this on their phone.
 ---
 
 ## Changelog
+
+### 1.2.0
+- **Dropped per-side plate math; phone-first HTML plan.** The calculator now outputs
+  just the loadable working weight (nearest 0.5 kg), e.g. `144.5 kg (87.5% of 165)` —
+  no plate loadout, no inventory. The athlete loads the bar themselves. Removed
+  `cfprog.plates`, the plate inventory, and the plate tests; `calc.py` and the load-line
+  format updated accordingly (`scripts/calc.py` is still the only place load math
+  happens). The weekly HTML (`render_week.py`) is now built for the gym on a phone: the
+  Week Summary reflows to a tap-to-jump day list on narrow screens, a **sticky day-nav**
+  jumps straight to any day and carries a **Summary** pill back to the week overview,
+  **today's** session is highlighted (driven by a new top-level **`week_start`** ISO date
+  in the spec), and the page follows the device's **dark-mode** preference. Presentation
+  only — still no math in the renderer.
 
 ### 1.1.0
 - **Briefer output + an HTML weekly plan.** The weekly plan is now a short chat reply

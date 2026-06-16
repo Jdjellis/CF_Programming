@@ -9,7 +9,7 @@ rep-maxes.
 > **Core principle:** the model supplies *judgment*; code supplies *arithmetic*.
 > The assistant reasons out *what* to do (push/cruise/skip, how to deconflict your
 > work against class, how to autoregulate). A small deterministic calculator does
-> all the load/plate math — the model never computes a weight in its head.
+> all the load math — the model never computes a weight in its head.
 
 This repo **is** the skill: [`skills/crossfit-coach/`](skills/crossfit-coach/).
 
@@ -38,11 +38,11 @@ skills/crossfit-coach/
     drills/                 # program & drill library (squat block, ring-MU, knee rehab)
     examples/               # canonical output formats (weekly plan, daily adjust)
   scripts/
-    calc.py                 # deterministic %/rep-max/RPE -> kg -> plate loadout
+    calc.py                 # deterministic %/rep-max/RPE -> loadable kg
     estimate_1rm.py         # estimate a 1RM from a performed set (xRM)
     log_xrm.py              # minimal rep-max training log (add / list)
     cfprog/                 # the vendored arithmetic core (pure stdlib, no install)
-    data/                   # maxes fixture, plate inventory, the xRM log
+    data/                   # maxes fixture + the xRM log
     tests/                  # unit tests for the arithmetic (the part that must stay exact)
 ```
 
@@ -57,11 +57,11 @@ python3 skills/crossfit-coach/scripts/calc.py clean --rep-max 3
 python3 skills/crossfit-coach/scripts/calc.py strict_press --rpe 8 --reps 5
 ```
 
-It outputs the working weight **and** the exact per-side plate loadout for the
-configured inventory (20 kg bar + 25/20/15/10/5/2.5/1.25/0.5 kg plates), rounding to
-the nearest *loadable* weight and reporting the delta. RPE maps to a rep-max via
-reps-in-reserve, then to %1RM through the spec's rep-max table — one table shared by
-the calculator and the 1RM estimator.
+It outputs the working weight, rounded to the nearest 0.5 kg, e.g.
+`144.5 kg (87.5% of 165)` — the loadable number to put on the bar (no plate math; an
+experienced lifter sorts the plates). RPE maps to a rep-max via reps-in-reserve, then
+to %1RM through the spec's rep-max table — one table shared by the calculator and the
+1RM estimator.
 
 ## Training log
 
@@ -79,7 +79,7 @@ in v1; it can grow later.
 
 ```bash
 python3 -m pip install pytest
-python3 -m pytest        # exercises the calculator, rep-max table, plate solver, estimator
+python3 -m pytest        # exercises the calculator, rep-max table, estimator, HTML renderer
 ```
 
 ## Background & design history
