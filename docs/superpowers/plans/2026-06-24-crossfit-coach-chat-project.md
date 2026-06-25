@@ -220,6 +220,32 @@ Manual acceptance — the whole point of the build.
 
 ---
 
+## Carried over from Plan 2 execution
+
+> Recorded while executing Plan 2 on branch `claude/thirsty-cori-1d131d` (migrations `0007`–`0009`, `.mcp.json`, the planner SKILL.md edits). These were not verifiable in the Plan-2 session — they need the hosted, seeded Supabase + live sessions that **this** plan stands up — so they land here rather than being lost.
+
+### A. PENDING acceptance checks from Plan 2 (verify once Plan 3 Task 2 sets the env + connector)
+
+Plan 2's SQL was TDD-tested locally (`supabase db reset` + pytest, all green), but these *behavioural* checks require a live surface and are still unrun:
+
+- [ ] **Plan 2 Task 4 (`.mcp.json`):** in a Claude Code session on this repo with `SUPABASE_PROJECT_REF`/`SUPABASE_ACCESS_TOKEN` exported (set in Plan 3 Task 2 §4), the `supabase` MCP appears and a read tool (e.g. list tables) returns the Plan 1 objects.
+- [ ] **Plan 2 Task 5 (hydrate + archive):** in a live planning turn against the seeded DB — the planner reads `current_maxes` via the MCP and rewrites `scripts/data/maxes.fixture.json` (values match `current_maxes`); loads come from `calc.py` (no hand math); after confirm, a `plans` row exists for that Monday with `spec_json` **and** `html` populated.
+- [ ] **Plan 2 Task 6 (stewardship + flags):** (a) `focus` empty → planner asks what the focus is before proposing personal work; (b) active focus, no `is_focus_work` log for ~10 days → `decisions` carries a stay-on-focus reminder; (c) a goal lift with a max but no recent log → `decisions` raises its priority; (d) after confirming the week, `focus.current_week` incremented by 1.
+
+These overlap Plan 3 Task 5's phone verification (which already exercises `focus_status` and the `plans` row) — fold them in there rather than running a separate pass.
+
+### B. Backlog surfaced by the Plan 2 final review (Minor — not blockers)
+
+- **`focus_status` drift is not scoped to the active focus period** (`0008_focus_status.sql`): `last_focus_log` / `days_since_focus_work` take `max(date) where is_focus_work` across *all* `exercise_log` rows, not just the current focus's. A prior focus block's logs can bleed in — impact is bounded (it only ever makes drift look *smaller*, i.e. under-nudges). It was verbatim-from-plan, so a design call, not a defect. Matters here because Plan 3 Task 5's "am I behind on my focus?" reads `focus_status`. True per-focus attribution would need a schema FK from `exercise_log` → `focus` (none exists); a cheap partial fix is `and e.date >= f.started_on` in both subqueries.
+- **No test for the `focus_status` no-log fallback branch** (`test_focus_status.py`): the `coalesce(..., started_on)` path (focus with zero `is_focus_work` logs → `days_since_focus_work == days_in`) is untested. Add the assertion if `focus_status` is touched again.
+- Cosmetic only: `0009` has no trailing newline; `test_focus_trigger.py` rollback lacks an explanatory comment.
+
+### C. Cross-link to §"one real decision"
+
+Plan 2 Task 4's commit [`68a8281`] added a comment to `0009_neglected_lifts.sql` stating `neglected_lifts` is **planner-only** and must **not** be granted to `chat_remote`. Note this is a *documentary* boundary: under **Option A** (Supabase MCP, project-scoped token) the connector can read it regardless, exactly as §"one real decision" already warns. The comment becomes a *hard* boundary only under **Option B** (PostgREST + `role=chat_remote`), where the absent grant actually hides it from chat. No action needed — just keep the two consistent if the connector route changes.
+
+---
+
 ## Self-Review (spec coverage)
 
 | Spec item | Covered by |
