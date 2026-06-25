@@ -10,3 +10,7 @@ language sql stable as $$
   having max(e.date) is null
       or max(e.date) < current_date - make_interval(days => days);
 $$;
+
+-- No grant to chat_remote: neglected_lifts is planner-only intelligence, read via the
+-- Supabase MCP's privileged token. chat_remote (the restricted chat connector) must not
+-- see it — do not add a grant here.
