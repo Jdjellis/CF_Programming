@@ -5,3 +5,5 @@
 #   python3 -m pip install pytest
 #   python3 -m pytest
 pytest>=7
+# Test-only: integration/parity tests against a local Supabase Postgres.
+psycopg[binary]>=3
