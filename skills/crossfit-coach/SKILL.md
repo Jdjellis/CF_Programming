@@ -53,6 +53,18 @@ these references (they are the judgment you reason from):
 Current maxes come from `scripts/data/maxes.fixture.json` (read by the calculator,
 the single source of truth) — never hardcode maxes.
 
+### §1.5 Hydrate maxes from Supabase (start of every planning turn)
+
+Before any load math, read the current maxes from Supabase and write them to the
+local maxes file the calculator reads:
+
+1. Via the `supabase` MCP, run: `select lift, weight_kg from current_maxes`.
+2. Write those rows into `scripts/data/maxes.fixture.json` under `"maxes"` as
+   `{ "<lift>": { "one_rm": <weight_kg> } }` (the shape `FixtureMaxesProvider`
+   already reads). Do not invent or edit maxes by hand.
+3. `calc.py` then reads that file unchanged. Supabase is the source of truth;
+   the file is a per-session cache.
+
 ## §2. Producing the weekly plan
 
 The plan is produced in **two stages** (see `references/examples/weekly-plan.md`):
@@ -124,6 +136,16 @@ emit:
    highlights today, has a sticky day-nav (with a **Summary** pill back to the overview),
    and follows the device's dark-mode setting. The renderer is presentation only — it
    does no math. Point the athlete at the file.
+
+   After rendering, archive the plan via the `supabase` MCP so the chat surface
+   can query it:
+
+   ```sql
+   insert into plans (week_of, spec_json, html)
+   values ('<Monday ISO>', '<the plan JSON spec>', '<the rendered HTML>')
+   on conflict (week_of) do update
+     set spec_json = excluded.spec_json, html = excluded.html;
+   ```
 
 ## §3. Mid-week autoregulation ("I'm beaten up, adjust today")
 
