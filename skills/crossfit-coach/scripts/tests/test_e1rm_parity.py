@@ -19,7 +19,12 @@ def test_sql_e1rm_matches_cfprog(db):
                     cur.execute("select cf_est_1rm(%s::numeric, %s::integer, %s::numeric)", (weight, reps, rpe))
                     sql_val = float(cur.fetchone()[0])
                     py_val, _notes = estimate_one_rm(weight, reps, rpe)
-                    if abs(sql_val - py_val) > 0.01:
+                    # Estimates are 2-dp, so any genuine divergence is >= 0.01; a
+                    # 0.005 threshold therefore asserts exact parity while tolerating
+                    # float-representation noise. cf_est_1rm rounds half-to-even to
+                    # match cfprog exactly (a half-away mirror diverges by a cent on
+                    # half-cent ties such as 82.5 @ 8RM = 103.125).
+                    if abs(sql_val - py_val) > 0.005:
                         mismatches.append((weight, reps, rpe, sql_val, py_val))
     db.rollback()
     assert not mismatches, f"SQL/cfprog e1RM divergence: {mismatches[:5]} (+{len(mismatches)})"
