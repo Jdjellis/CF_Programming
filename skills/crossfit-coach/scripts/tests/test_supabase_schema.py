@@ -21,3 +21,13 @@ def test_max_events_roundtrip(db):
         )
         assert cur.fetchone()[0] is not None
     db.rollback()
+
+
+@pytest.mark.supabase
+def test_current_maxes_latest_wins(db):
+    with db.cursor() as cur:
+        cur.execute("insert into max_events (lift, weight_kg, date) values ('clean', 120, '2025-01-01')")
+        cur.execute("insert into max_events (lift, weight_kg, date) values ('clean', 124, '2025-06-01')")
+        cur.execute("select weight_kg from current_maxes where lift = 'clean'")
+        assert float(cur.fetchone()[0]) == 124.0
+    db.rollback()
