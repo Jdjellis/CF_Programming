@@ -89,12 +89,26 @@ emit:
    **load picture**: which patterns the class already taxes hard this week, and where
    the fresh days are. Tier the class work (policy §1): **CRUISE** is the class metcon
    (the relief valve).
-2. **Decide the individual work to fit.** From `focus-blocks.md` (the current blocks
-   and which week each is in) and the policy weakness menus (§5), pick *this week's*
-   personal work and its tier: **PROTECT** (front-squat / strict-press strength),
-   **ACCESSORY** (low-CNS quad/knee support), **SKILL** (the focus block). Read each
-   block's current `## Week N` drills from `references/drills/`. If it's unclear what
-   the athlete wants in this week, **ask before placing it.**
+2. **Read the focus, then decide the individual work.** First read `focus_status`
+   via the `supabase` MCP:
+   - **No active focus** (no row) → **stop and ask the athlete what the focus is**
+     before building the week. Do not plan personal work in a vacuum.
+   - **Active focus** → fit this week's sessions from `current_week` of its
+     `program_ref` drill file. If `days_since_focus_work` shows drift (focus work
+     not logged recently), add a gentle reminder to `decisions` that the focus is
+     `<name>` and this week's sessions matter.
+   Then pick complementary PROTECT/ACCESSORY work as before.
+
+   **Proactive flags** — read these and fold any that fire into the top-level
+   `decisions` list (phrase them, don't dump rows):
+   - **Neglect:** `select lift from neglected_lifts(14)` → raise priority of a
+     neglected goal lift this week (especially strict press, which class under-supplies).
+   - **Imbalance:** compare `current_maxes` ratios against the lift-ratio table in
+     `references/athlete-profile.md`; flag a lift that has drifted out of range.
+   - **Fatigue / overreach:** read `volume_balance`; if a pattern is already taxed
+     hard this block, back the personal work off (feeds existing deconfliction).
+   - **Focus stall:** if the focus measure isn't progressing, suggest a variation
+     rather than grinding the same drill.
 3. **Fit it in & deconflict** (policy §3, in order). Place the individual work on
    non-clashing, fresh days: if the class already covers a PROTECT lift (e.g. heavy
    squats), **defer the heavy stimulus to class** and substitute the low-CNS
@@ -146,6 +160,8 @@ emit:
    on conflict (week_of) do update
      set spec_json = excluded.spec_json, html = excluded.html;
    ```
+
+   After the week is confirmed, advance the focus: update focus set current_week = current_week + 1 where is_active (via the supabase MCP).
 
 ## §3. Mid-week autoregulation ("I'm beaten up, adjust today")
 
