@@ -1,90 +1,51 @@
-# CF_Programming — a personal CrossFit coaching skill
+# CF_Programming — a personal CrossFit coach (Claude Project)
 
-A chat-first training assistant for a CrossFit competitor. You talk to it (in
-Claude / CoWork); it turns your gym's weekly **class programming** plus your
-personal **limiter-focused blocks** into a simple, tiered, load-calculated weekly
-plan, adjusts mid-week when you're under-recovered, and keeps a minimal log of your
-rep-maxes.
+A coach that runs as a [Claude Project](https://code.claude.com/docs/en/claude-projects):
+one conversation, one thread per training week, usable from the phone. Each Sunday it
+pulls the gym's programming from Slack, reads the POLP workbook from Google Drive,
+checks in on last week, and proposes a tiered, load-calculated week that fits the
+athlete's personal programs (rowing, running, pressing…) around class.
 
-> **Core principle:** the model supplies *judgment*; code supplies *arithmetic*.
-> The assistant reasons out *what* to do (push/cruise/skip, how to deconflict your
-> work against class, how to autoregulate). A small deterministic calculator does
-> all the load math — the model never computes a weight in its head.
+> **Core principle:** the model supplies *judgment*; code (or the gym's POLP workbook)
+> supplies *arithmetic*. The coach never computes a weight in its head.
 
-This repo **is** the skill: [`skills/crossfit-coach/`](skills/crossfit-coach/).
+## How it's used
 
-## How to use it
-
-Open a chat with the `crossfit-coach` skill available and:
-
-- **Plan the week** — paste this week's class programming and ask "what's my week?"
-  You get what to push/cruise/skip, a day-by-day schedule with your focus work
-  placed around class, and calculated loads for every strength piece.
-- **Adjust mid-week** — "I'm beaten up from yesterday's squats, today's front
-  squats will be rough" → it re-tiers the day / the rest of the week.
-- **Log progress** — "front-squat triple at 122 today" → it records the set and
-  tells you your estimated 1RM and how the block is trending.
+- **Sunday 15:00 AWST** a routine starts "Week of <Monday>". The coach replies once
+  with last week as it understands it, the proposed week, and "anything missed, how
+  did it feel, is this OK?". Answer from the phone; it finishes the plan and drops the
+  HTML in the Project Library.
+- **Mid-week**, in the same thread: "what's today?", "smashed, adjust Thursday",
+  "row W1 S2 done", "triple at 122".
 
 ## Layout
 
 ```
-skills/crossfit-coach/
-  SKILL.md                  # orchestration: how the assistant plans / adjusts / logs
-  references/
-    policy.md               # the judgment brain: tiers, autoregulation, deconfliction, menus
-    athlete-profile.md      # the diagnostic (the limiters), goals, lift-ratio table
-    availability.md         # the usual training week (the day spine)
-    focus-blocks.md         # current personal blocks + which week each is in
-    drills/                 # program & drill library (squat block, ring-MU, knee rehab)
-    examples/               # canonical output formats (weekly plan, daily adjust)
-  scripts/
-    calc.py                 # deterministic %/rep-max/RPE -> loadable kg
-    estimate_1rm.py         # estimate a 1RM from a performed set (xRM)
-    log_xrm.py              # minimal rep-max training log (add / list)
-    cfprog/                 # the vendored arithmetic core (pure stdlib, no install)
-    data/                   # maxes fixture + the xRM log
-    tests/                  # unit tests for the arithmetic (the part that must stay exact)
+.claude/skills/crossfit-coach/   the skill (playbook, policy, references, scripts)
+  scripts/calc.py                %/rep-max/RPE -> loadable kg (from data/maxes.json)
+  scripts/estimate_1rm.py        e1RM from a performed set
+  scripts/render_week.py         phone-first weekly HTML
+  scripts/fetch_slack.py         the week's programming PDFs from Slack
+programs/                        personal programs + where each is up to (state)
+data/maxes.json                  the coach's max record (state)
+plans/                           each confirmed week's spec (state)
+CLAUDE.md                        repo rules — state is committed straight to main
+docs/runbooks/project-setup.md   how the Project is configured
 ```
 
-## The calculator (the one thing that must be code)
-
-Three target forms, all resolved against the current 1RM (from the maxes fixture,
-mirroring the source-of-truth Google Sheet):
-
-```bash
-python3 skills/crossfit-coach/scripts/calc.py front_squat --percent 85
-python3 skills/crossfit-coach/scripts/calc.py clean --rep-max 3
-python3 skills/crossfit-coach/scripts/calc.py strict_press --rpe 8 --reps 5
-```
-
-It outputs the working weight, rounded to the nearest 0.5 kg, e.g.
-`144.5 kg (87.5% of 165)` — the loadable number to put on the bar (no plate math; an
-experienced lifter sorts the plates). RPE maps to a rep-max via reps-in-reserve, then
-to %1RM through the spec's rep-max table — one table shared by the calculator and the
-1RM estimator.
-
-## Training log
-
-```bash
-python3 skills/crossfit-coach/scripts/log_xrm.py add --lift front_squat --weight 122 --reps 3
-python3 skills/crossfit-coach/scripts/log_xrm.py list --lift front_squat
-python3 skills/crossfit-coach/scripts/estimate_1rm.py --lift front_squat --weight 122 --reps 3
-```
-
-The log (`scripts/data/xrm_log.json`) tracks rep-maxes for the goal-driving lifts so
-progress and estimated 1RMs are visible within a block. This is intentionally minimal
-in v1; it can grow later.
+Logging lives in **BTWB** (the gym's app); maxes are cross-checked against the
+athlete's XRM sheet. There is no database.
 
 ## Tests
 
 ```bash
 python3 -m pip install pytest
-python3 -m pytest        # exercises the calculator, rep-max table, estimator, HTML renderer
+python3 -m pytest
 ```
 
-## Background & design history
+## Background
 
-[`PROJECT_SPEC.md`](PROJECT_SPEC.md) holds the full athlete profile, the training
-policy rationale, and the design history — including the earlier deterministic
-weekly-generator implementation that this chat-first skill replaced (recoverable at
-the `pre-chat-migration` git tag).
+- Design: [`docs/superpowers/specs/2026-10-07-crossfit-coach-claude-project-design.md`](docs/superpowers/specs/2026-10-07-crossfit-coach-claude-project-design.md)
+- Athlete profile and policy rationale: [`PROJECT_SPEC.md`](PROJECT_SPEC.md)
+- Earlier designs (deterministic generator → chat skill → Supabase two-surface) are in
+  `docs/superpowers/` and git history.

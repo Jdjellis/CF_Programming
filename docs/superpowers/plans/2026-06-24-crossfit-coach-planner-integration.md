@@ -1,5 +1,9 @@
 # CrossFit Coach — Planner Integration & Coaching Intelligence (Plan 2 of 3)
 
+> **Superseded (2026-10-07)** by the v3 design,
+> [`2026-10-07-crossfit-coach-claude-project-design.md`](../specs/2026-10-07-crossfit-coach-claude-project-design.md).
+> Supabase and the two-surface split were removed. Kept for history.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Wire the Cowork planner to the Supabase foundation (hydrate maxes, archive the plan) and add the coaching intelligence — focus stewardship + proactive flags — surfaced in the plan's `decisions` callout.

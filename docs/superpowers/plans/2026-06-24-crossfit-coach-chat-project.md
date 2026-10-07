@@ -1,5 +1,9 @@
 # CrossFit Coach — Chat Project Runbook (Plan 3 of 3)
 
+> **Superseded (2026-10-07)** by the v3 design,
+> [`2026-10-07-crossfit-coach-claude-project-design.md`](../specs/2026-10-07-crossfit-coach-claude-project-design.md).
+> Supabase and the two-surface split were removed. Kept for history.
+
 > **For agentic workers:** parts of this plan are **configuration in hosted dashboards / the Claude app**, not code. Code/SQL steps follow the usual TDD loop; manual steps carry an explicit verification check. Use superpowers:subagent-driven-development for the code tasks; do the manual tasks yourself with the operator.
 
 **Goal:** Stand up the gym-side surface — a hosted Supabase, the scoped chat connection, and a Claude **Project** (instructions + knowledge) — so the athlete can view history, query the plan, and log sets from their phone.

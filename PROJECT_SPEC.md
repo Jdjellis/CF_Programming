@@ -1,5 +1,10 @@
 # CrossFit Programming & Autoregulation System — Project Spec
 
+> **⚠️ Architecture update (2026-10): now a Claude Project.** See
+> [`docs/superpowers/specs/2026-10-07-crossfit-coach-claude-project-design.md`](docs/superpowers/specs/2026-10-07-crossfit-coach-claude-project-design.md).
+> The skill lives in `.claude/skills/crossfit-coach/`. The athlete profile and policy
+> rationale below remain valid; everything about architecture is history.
+
 > Personal training-support system for a CrossFit competitor. Ingests weekly box
 > programming, deconflicts a personal focus block against it, autoregulates load
 > by daily readiness, converts prescriptions to real kg, logs actuals, and tracks

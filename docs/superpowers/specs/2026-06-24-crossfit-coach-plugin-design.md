@@ -1,5 +1,9 @@
 # CrossFit Coach — Design Spec (v2: two-surface)
 
+> **Superseded (2026-10-07)** by the v3 design,
+> [`2026-10-07-crossfit-coach-claude-project-design.md`](2026-10-07-crossfit-coach-claude-project-design.md).
+> Supabase and the two-surface split were removed. Kept for history.
+
 **Date:** 2026-06-24
 **Status:** Draft for review
 **Supersedes:** the single repo-resident `skills/crossfit-coach` skill (re-platformed, not rewritten)
