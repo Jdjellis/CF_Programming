@@ -191,9 +191,11 @@ score, and note any override. If they say a class session has already wrecked a
 pattern ("the squats yesterday smoked me, today's front squats will be rough"),
 proactively move or de-load the clashing personal work for the rest of the week.
 
-**POLP lifts:** never re-run `calc.py` for them — keep the workbook row's kg and
-autoregulate by trimming sets or reps, or by dropping the session (it then repeats next
-week in the workbook). Re-render the HTML only if the athlete asks for it.
+**POLP lifts are never adjusted** — not the kg, the sets or the reps, and never via
+`calc.py`. The athlete attempts the workbook row as written and logs the reps they
+actually got; the workbook handles a missed week itself (repeat the weight, then a phase
+change). Autoregulate the rest of the day around POLP instead. Re-render the HTML only if
+the athlete asks for it.
 
 ## §6. Maxes and heavy sets
 

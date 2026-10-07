@@ -17,6 +17,9 @@ athlete logs each session in the workbook; the workbook does all load math.
   (the workbook rounds to 1 kg; never re-derive them with calc.py).
 - **Last result** = the row above it: `Result` (PASS/FAIL), `Fails at this
   weight`, `Action`, `Notes`.
+- **Never adjust a POLP session** (kg, sets or reps), even on a bad-readiness day. The
+  athlete attempts the row as written and logs the reps they got; a short week is the
+  workbook's signal to repeat the weight or change phase.
 - Deadlift ramps (sets climb to the top set); the other lifts are sets across.
 - A cycle ends with a deload row and a 1RM test row. After a test the athlete
   starts a fresh workbook copy: ask for the new file ID and update this file.
