@@ -126,20 +126,16 @@ come from the calculator; this menu chooses the movement.)
 | **Ring MU** (skill) | Transitions, false-grip work, kip swing on rings, eccentrics — frequency over load | Loading it heavy; chase frequency instead |
 | **Quad / knee support** (when class covers the squat) | Bulgarian split squats, zombie front squats (quad / upright-torso bias), Spanish-squat holds (knee/tendon health) — low-CNS, appended to a class day | A second heavy barbell front squat the same week the class squats heavy |
 
-### Current focus (per-block, reference-backed)
+### Current programs
 
 The specific drills within a menu (e.g. *which* ring-MU progression, *which* knee
 rehab) come from the active program's file in `programs/` (sessions copied from a
 `references/drills/` template when the program started), not from memory:
 
-- Each active program in `programs/` carries its own sessions and a `current:`
-  pointer to the next one; templates for new programs live in `references/drills/`.
-- For a periodised program, **read that week's `## Week N` section directly** and
-  list its drills + cue. Refine a program by editing the program file, not by
-  re-typing drills.
-- For a flat menu (rehab/mobility), there is no week marker — use the menu as-is.
-- Each block tracks its own week independently (skill + strength run concurrently).
-  When a block's stated week is stale, infer the current week from the date or ask.
+- Each active program file carries its sessions and a `current:` pointer to the next one — read the session it names.
+- A program advances only when the athlete reports sessions done or the weekly check-in confirms them (SKILL §3–§4).
+- For a flat menu (rehab/mobility), there is no pointer — use the menu as-is.
+- Templates for new programs live in `references/drills/`.
 
 Loads are **not** affected: where a drill names a lift + a percentage, the kilos
 still resolve through the calculator (`scripts/calc.py`) — the drill text is
@@ -149,11 +145,9 @@ descriptive.
 
 - **Percentage math is deterministic, unit-tested code. This policy never does
   arithmetic** — it emits a target; the calculator emits kilos.
-- **The Google Sheet top section is the single source of truth for maxes**
-  (Sheet ID `1Q1RlKE9LfTpUYSAqwFWnknJ_g9ftTal1P4eeMBnqY_A`). Never hardcode or
-  duplicate maxes in the policy.
-- **Never write to the deprecated training blocks** in the Sheet; logging goes to
-  a fresh target.
+- **Maxes come from `data/maxes.json`** (the coach's record; it checks the athlete's
+  XRM sheet and confirms with them before changing a value). POLP lifts take loads
+  from the POLP workbook. Never hardcode or duplicate maxes in the policy.
 
 ---
 

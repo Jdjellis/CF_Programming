@@ -61,9 +61,9 @@ Do these once, in order, after the v3 PR is merged. Each step ends with a check.
 - **Check:** `programs/` has the new files on `main`, each `status: active`.
 
 ## 6. Dry run
-- Ask: "Create a routine: every Sunday at 15:00 Australia/Perth, start a thread
-  named 'Week of <next Monday>' that runs the crossfit-coach weekly loop." Then run it
-  once now from the **Routines** tab.
+- Ask: "Create a routine that, every Sunday at 15:00 Australia/Perth, starts a thread
+  named 'Week of <next Monday>' that runs the crossfit-coach weekly loop, but don't
+  enable the schedule yet." Then run it once now from the **Routines** tab.
 - **Check all of:**
   - [ ] PDFs fetched (or a clear "not posted yet" wait).
   - [ ] One message with last week + proposed week + the check-in question.
@@ -72,4 +72,7 @@ Do these once, in order, after the v3 PR is merged. Each step ends with a check.
         SKILL.md §3 Step 5 to also commit the HTML under `plans/`, and open it from
         GitHub instead.
   - [ ] A mid-week message in the thread ("what's today?") gets the right day.
+  - [ ] Before its first state change, the thread is on `main` (`git branch --show-current`).
+  - [ ] The run needed no permission prompts (otherwise add allow rules to `.claude/settings.json`).
+- Enable the Sunday 15:00 Australia/Perth schedule only after every check passes.
 - After a month: **Project settings → Usage**; lower thread effort if it's heavy.

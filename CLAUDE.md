@@ -8,13 +8,14 @@ Claude Project. The playbook is `.claude/skills/crossfit-coach/SKILL.md`; follow
 `programs/`, `data/` and `plans/` are the coach's state. After **every** change to
 them, immediately:
 
+    git switch main            # only if `git branch --show-current` isn't main
     git add <the changed files>
     git commit -m "chore(state): <what changed>"
-    git push origin main
+    git push origin HEAD:main
 
 Never put state on a branch or in a pull request. Never batch state changes to the
 end of a session — a cloud sandbox can resume from a fresh clone and lose
-uncommitted work. If the push fails, say so plainly and don't carry on as if saved.
+uncommitted work. If the push is rejected (another thread pushed first): `git pull --rebase origin main`, then push once more. If it still fails, say so plainly and stop treating the change as saved.
 
 ## Code: branch and PR
 

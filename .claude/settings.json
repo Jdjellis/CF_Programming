@@ -8,7 +8,10 @@
       "Bash(python3 -m pytest:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push origin main)",
+      "Bash(git push origin HEAD:main)",
+      "Bash(git switch main)",
+      "Bash(git branch --show-current)",
+      "Bash(TZ=Australia/Perth date:*)",
       "Bash(git pull:*)"
     ]
   }

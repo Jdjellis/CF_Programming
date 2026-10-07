@@ -49,7 +49,7 @@ from the POLP workbook instead.
 ## Lift-ratio standards (for gap analysis)
 
 Use these to discuss where a lift is lagging or leading (read the actual maxes from
-the fixture, compute the ratio with the calculator's help if needed):
+`data/maxes.json`, compute the ratio with the calculator's help if needed):
 
 | Lift | of Lift | Target % |
 |---|---|---|

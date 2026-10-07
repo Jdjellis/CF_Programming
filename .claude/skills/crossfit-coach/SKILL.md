@@ -55,13 +55,13 @@ supply **judgment**; scripts and the POLP workbook supply **arithmetic**.
 After any change to `programs/`, `data/` or `plans/`:
 
 ```
+git switch main            # only if `git branch --show-current` isn't main
 git add <changed files>
 git commit -m "chore(state): <what changed>"
-git push origin main
+git push origin HEAD:main
 ```
 
-Straight to `main`, never a branch or PR, never batched. If the push fails, tell
-the athlete and stop treating the change as saved.
+Straight to `main`, never a branch or PR, never batched. If the push is rejected (another thread pushed first): `git pull --rebase origin main`, then push once more. If it still fails, tell the athlete and stop treating the change as saved.
 
 ## §3. The weekly loop
 
@@ -69,15 +69,15 @@ The Sunday routine starts a thread named **"Week of <Monday ISO>"**. The athlete
 sends every message for that week to this thread.
 
 **All dates are Australia/Perth time (AWST, UTC+8)** — the cloud sandbox runs in UTC.
-Work out "today" and the week's Monday with `TZ=Australia/Perth date +%F` (and
-`TZ=Australia/Perth date -d 'monday this week' +%F` on GNU date), never from the
-sandbox clock alone.
+Get today with `TZ=Australia/Perth date +%F`. The week's Monday is in the thread title
+("Week of <Monday>"); the Sunday routine names the thread for the *next* day's Monday.
+Never derive the Monday from the sandbox clock.
 
 ### Step 1 — Gather
 
 Don't ask the athlete anything here except in the two cases below (programming not posted yet; no active program).
 
-1. `git pull` so you have the latest state.
+1. Get onto `main` with the latest state: `git switch main && git pull --ff-only origin main`.
 2. Fetch the programming:
 
    ```
@@ -144,7 +144,7 @@ Send **one** message, then wait:
 3. Render and deliver the HTML to the Library:
 
    ```
-   python3 .claude/skills/crossfit-coach/scripts/render_week.py plans/<Monday>.json -o "out/Gym Program - Week starting <Monday>.html"
+   mkdir -p out && python3 .claude/skills/crossfit-coach/scripts/render_week.py plans/<Monday>.json -o "out/Gym Program - Week starting <Monday>.html"
    ```
 
 4. Reply with a short summary: what to push / cruise / skip, plus the file name.
@@ -219,7 +219,7 @@ week in the workbook). Re-render the HTML only if the athlete asks for it.
 - Keep rest days rest unless the athlete opts into open gym.
 - Record any readiness override the athlete makes against a wearable score.
 - If Slack, Drive or a file you need is unavailable, say exactly what's missing
-  and wait. Don't guess or substitute.
+  and wait. Don't guess or substitute. If the POLP workbook can't be read, ask the athlete for each lift's next row (sets × reps and kg) instead.
 
 ## §8. Output conventions
 

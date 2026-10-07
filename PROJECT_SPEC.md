@@ -14,7 +14,7 @@
 > (tiering, deconfliction, autoregulation, weekly planning) is no longer
 > deterministic code — it is applied **conversationally** by the assistant in
 > Claude / CoWork, reasoning from the policy and references in
-> [`skills/crossfit-coach/`](skills/crossfit-coach/). Only the **arithmetic** that
+> [`.claude/skills/crossfit-coach/`](.claude/skills/crossfit-coach/). Only the **arithmetic** that
 > must be deterministic remains as code: the load calculator and a minimal
 > rep-max log. The earlier weekly-generator + availability-resolver + SQLite
 > implementation this replaced is preserved at the `pre-chat-migration` git tag.
