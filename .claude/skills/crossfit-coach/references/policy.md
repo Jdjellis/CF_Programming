@@ -129,8 +129,8 @@ come from the calculator; this menu chooses the movement.)
 ### Current focus (per-block, reference-backed)
 
 The specific drills within a menu (e.g. *which* ring-MU progression, *which* knee
-rehab) come from the focus block's **current program** in the `references/drills/`
-library, not from memory:
+rehab) come from the active program's file in `programs/` (sessions copied from a
+`references/drills/` template when the program started), not from memory:
 
 - Each active program in `programs/` carries its own sessions and a `current:`
   pointer to the next one; templates for new programs live in `references/drills/`.

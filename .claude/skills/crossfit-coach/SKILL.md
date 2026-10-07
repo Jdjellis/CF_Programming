@@ -68,7 +68,14 @@ the athlete and stop treating the change as saved.
 The Sunday routine starts a thread named **"Week of <Monday ISO>"**. The athlete
 sends every message for that week to this thread.
 
-### Step 1 — Gather (no questions yet)
+**All dates are Australia/Perth time (AWST, UTC+8)** — the cloud sandbox runs in UTC.
+Work out "today" and the week's Monday with `TZ=Australia/Perth date +%F` (and
+`TZ=Australia/Perth date -d 'monday this week' +%F` on GNU date), never from the
+sandbox clock alone.
+
+### Step 1 — Gather
+
+Don't ask the athlete anything here except in the two cases below (programming not posted yet; no active program).
 
 1. `git pull` so you have the latest state.
 2. Fetch the programming:
@@ -184,9 +191,9 @@ score, and note any override. If they say a class session has already wrecked a
 pattern ("the squats yesterday smoked me, today's front squats will be rough"),
 proactively move or de-load the clashing personal work for the rest of the week.
 
-Re-emit the affected day(s) as a short chat message (template:
-`references/examples/daily-adjust.md`). Re-render the HTML only if the athlete
-asks for it.
+**POLP lifts:** never re-run `calc.py` for them — keep the workbook row's kg and
+autoregulate by trimming sets or reps, or by dropping the session (it then repeats next
+week in the workbook). Re-render the HTML only if the athlete asks for it.
 
 ## §6. Maxes and heavy sets
 
