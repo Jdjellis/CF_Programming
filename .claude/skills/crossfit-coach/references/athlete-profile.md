@@ -40,11 +40,11 @@ accessory work, reason from this diagnostic — it explains every rule in
 
 ## Current maxes — single source of truth
 
-Current 1RMs live in **`scripts/data/maxes.fixture.json`** (mirroring the Google
-Sheet top section). **Read them from there; do not duplicate or hardcode maxes in
-this file.** The calculator reads the same fixture, so a prescription and the
-profile never drift. When the athlete hits a new max, update the fixture (and, when
-Sheets is wired, the Sheet) — not this document.
+Current 1RMs live in **`data/maxes.json`** at the repo root — the coach's record,
+which the calculator reads. **Do not duplicate or hardcode maxes in this file.** When
+the athlete hits a new max, the coach confirms it and updates `data/maxes.json` (and
+the athlete updates their XRM sheet) — not this document. POLP lifts take their loads
+from the POLP workbook instead.
 
 ## Lift-ratio standards (for gap analysis)
 

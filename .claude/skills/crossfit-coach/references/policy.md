@@ -110,8 +110,8 @@ Deconfliction decision order when placing focus-block work:
 - **Default block shape:** a 6-week ring-MU block, 3×/week (SKILL tier) **+** a
   front-squat / strict-press strength emphasis (PROTECT tier).
 - A block is defined by: a name, length in weeks, days per week, tier, and a
-  session template you slot around the class plan. The athlete's current blocks
-  live in `references/focus-blocks.md`.
+  session template you slot around the class plan. The athlete's current programs
+  live in `programs/` at the repo root (see `programs/README.md`).
 
 ## 5. Weakness-specific exercise logic
 
@@ -132,8 +132,8 @@ The specific drills within a menu (e.g. *which* ring-MU progression, *which* kne
 rehab) come from the focus block's **current program** in the `references/drills/`
 library, not from memory:
 
-- Each block in `references/focus-blocks.md` names a drill/program file in
-  `references/drills/` and the block's **current week** (e.g. "week 3 of 6").
+- Each active program in `programs/` carries its own sessions and a `current:`
+  pointer to the next one; templates for new programs live in `references/drills/`.
 - For a periodised program, **read that week's `## Week N` section directly** and
   list its drills + cue. Refine a program by editing the program file, not by
   re-typing drills.

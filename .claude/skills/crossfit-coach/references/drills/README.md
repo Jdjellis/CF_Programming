@@ -1,9 +1,8 @@
 # References — program & drill library
 
-These Markdown files are the **source of truth for a focus block's drills**. A
-focus block in `../focus-blocks.md` points at one of these by path and states the
-week it's in; the assistant reads *this week's* drills straight from here, so you
-refine the program by editing the program — not by hand-typing drills each week.
+These Markdown files are **templates** for personal programs. When the athlete
+starts one, the coach copies the sessions into a dated file in `programs/` (see
+`programs/README.md`), which then tracks where they're up to.
 
 See `../policy.md` §4–§5 for how this fits the policy.
 
@@ -31,8 +30,7 @@ Cue: One-line focus for the week.
   length (the `wk X/Y` marker).
 - A `Cue:` line (optionally `> Cue:`) sets that week's cue.
 - `- ` / `* ` bullets are the week's drills.
-- The assistant reads the week stated for the block in `../focus-blocks.md` (bump
-  it as the weeks pass, or infer it from the date / training log).
+- Position is tracked in the program's file in `programs/`, not here.
 
 ### Flat drill menu (non-periodised — rehab, mobility)
 
