@@ -6,7 +6,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import pytest
 
@@ -31,12 +31,13 @@ class FakeSlack:
         self.channel_pages = channel_pages
         self.history = history
         self.requests: List[urllib.request.Request] = []
+        self.file_bytes = PDF_BYTES
 
-    def __call__(self, req: urllib.request.Request) -> io.BytesIO:
+    def __call__(self, req: urllib.request.Request, timeout: Optional[float] = None) -> io.BytesIO:
         self.requests.append(req)
         url = urllib.parse.urlparse(req.full_url)
         if url.netloc == "files.slack.com":
-            return io.BytesIO(PDF_BYTES)
+            return io.BytesIO(self.file_bytes)
         params = dict(urllib.parse.parse_qsl(url.query))
         method = url.path.rsplit("/", 1)[-1]
         if method == "conversations.list":
@@ -166,3 +167,56 @@ def test_main_with_unknown_channel_exits_2(monkeypatch: pytest.MonkeyPatch, tmp_
     channels.write_text("endurance\n")
     assert main(["--channels-file", str(channels), "--out", str(tmp_path)], opener=two_channel_slack()) == 2
     assert "endurance" in capsys.readouterr().err
+
+
+def single_channel_slack(messages: List[dict]) -> FakeSlack:
+    return FakeSlack(channel_pages=[[{"id": "C1", "name": "performance"}]], history={"C1": messages})
+
+
+def run_main(monkeypatch: pytest.MonkeyPatch, tmp_path: Path, opener, extra: Optional[List[str]] = None) -> int:
+    monkeypatch.setenv("SLACK_BOT_TOKEN", "xoxb-test")
+    channels = tmp_path / "channels.txt"
+    channels.write_text("performance\n")
+    argv = ["--channels-file", str(channels), "--since", "2026-10-11", "--out", str(tmp_path / "out")]
+    return main(argv + (extra or []), opener=opener)
+
+
+def test_main_exits_0_when_every_channel_has_a_pdf(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
+    assert run_main(monkeypatch, tmp_path, single_channel_slack([pdf_message("week.pdf")])) == 0
+
+
+def test_main_with_bad_since_exits_2(monkeypatch: pytest.MonkeyPatch, tmp_path: Path, capsys):
+    opener = single_channel_slack([pdf_message("week.pdf")])
+    assert run_main(monkeypatch, tmp_path, opener, ["--since", "2026-13-45"]) == 2
+    assert "YYYY-MM-DD" in capsys.readouterr().err
+
+
+def test_main_exits_2_when_the_opener_times_out(monkeypatch: pytest.MonkeyPatch, tmp_path: Path, capsys):
+    def timing_out(req: urllib.request.Request, timeout: Optional[float] = None) -> io.BytesIO:
+        raise TimeoutError("timed out")
+
+    assert run_main(monkeypatch, tmp_path, timing_out) == 2
+    assert "timed out" in capsys.readouterr().err
+
+
+def test_main_exits_2_when_download_is_not_a_pdf(monkeypatch: pytest.MonkeyPatch, tmp_path: Path, capsys):
+    fake = single_channel_slack([pdf_message("week.pdf")])
+    fake.file_bytes = b"<html>sign in</html>"
+    assert run_main(monkeypatch, tmp_path, fake) == 2
+    assert "files:read" in capsys.readouterr().err
+
+
+def test_fetch_keeps_both_same_named_pdfs(tmp_path: Path):
+    fake = single_channel_slack([pdf_message("week.pdf"), pdf_message("week.pdf")])
+    since = datetime(2026, 10, 11, 0, 0, tzinfo=AWST)
+    saved, _ = fetch(SlackClient("xoxb-test", opener=fake), ["performance"], since, tmp_path)
+    assert sorted(path.name for _, path in saved) == ["performance-week-2.pdf", "performance-week.pdf"]
+
+
+def test_fetch_keeps_a_hostile_file_name_inside_out_dir(tmp_path: Path):
+    out = tmp_path / "out"
+    fake = single_channel_slack([pdf_message("../../evil.pdf")])
+    since = datetime(2026, 10, 11, 0, 0, tzinfo=AWST)
+    saved, _ = fetch(SlackClient("xoxb-test", opener=fake), ["performance"], since, out)
+    assert [path.parent for _, path in saved] == [out]
+    assert not (tmp_path / "evil.pdf").exists()

@@ -28,11 +28,12 @@ from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
 API_BASE = "https://slack.com/api/"
+HTTP_TIMEOUT_SECONDS = 30
 AWST = timezone(timedelta(hours=8), "AWST")
 # .claude/skills/crossfit-coach/scripts/fetch_slack.py -> parents[4] is the repo root.
 DEFAULT_CHANNELS_FILE = Path(__file__).resolve().parents[4] / "data" / "slack_channels.txt"
 
-Opener = Callable[[urllib.request.Request], Any]
+Opener = Callable[..., Any]
 
 
 class SlackError(RuntimeError):
@@ -58,7 +59,7 @@ class SlackClient:
 
     def _get(self, url: str) -> bytes:
         req = urllib.request.Request(url, headers={"Authorization": f"Bearer {self._token}"})
-        with self._opener(req) as resp:
+        with self._opener(req, timeout=HTTP_TIMEOUT_SECONDS) as resp:
             return resp.read()
 
     def api(self, method: str, **params: str) -> Dict[str, Any]:
@@ -71,7 +72,12 @@ class SlackClient:
 
     def download(self, url: str) -> bytes:
         """Download a private file URL (url_private_download)."""
-        return self._get(url)
+        data = self._get(url)
+        if not data.startswith(b"%PDF"):
+            raise SlackError(
+                "downloaded file is not a PDF; the bot token may lack the files:read scope"
+            )
+        return data
 
 
 def most_recent_sunday(now: datetime) -> datetime:
@@ -122,6 +128,17 @@ def pdfs_since(client: SlackClient, channel: str, channel_id: str, since: dateti
     return sorted(files, key=lambda f: f.posted)
 
 
+def unique_path(out_dir: Path, filename: str) -> Path:
+    """out_dir/filename, or with -2, -3, ... before the suffix if that name is taken."""
+    candidate = out_dir / filename
+    stem, suffix = candidate.stem, candidate.suffix
+    counter = 2
+    while candidate.exists():
+        candidate = out_dir / f"{stem}-{counter}{suffix}"
+        counter += 1
+    return candidate
+
+
 def fetch(
     client: SlackClient, channels: List[str], since: datetime, out_dir: Path
 ) -> Tuple[List[Tuple[SlackFile, Path]], List[str]]:
@@ -139,7 +156,7 @@ def fetch(
             empty.append(name)
             continue
         for pdf in pdfs:
-            path = out_dir / f"{name}-{pdf.name}"
+            path = unique_path(out_dir, f"{name}-{Path(pdf.name).name}")
             path.write_bytes(client.download(pdf.url))
             saved.append((pdf, path))
     return saved, empty
@@ -173,7 +190,11 @@ def main(argv: Optional[List[str]] = None, opener: Optional[Opener] = None) -> i
         return 2
 
     if args.since:
-        since = datetime.strptime(args.since, "%Y-%m-%d").replace(tzinfo=AWST)
+        try:
+            since = datetime.strptime(args.since, "%Y-%m-%d").replace(tzinfo=AWST)
+        except ValueError:
+            print(f"invalid --since {args.since!r}: expected YYYY-MM-DD", file=sys.stderr)
+            return 2
     else:
         since = most_recent_sunday(datetime.now(AWST))
     out_dir = Path(args.out) if args.out else Path(tempfile.mkdtemp(prefix="slack-pdfs-"))
@@ -185,6 +206,15 @@ def main(argv: Optional[List[str]] = None, opener: Optional[Opener] = None) -> i
         return 2
     except urllib.error.URLError as exc:
         print(f"network error reaching Slack (is slack.com allowed?): {exc}", file=sys.stderr)
+        return 2
+    except TimeoutError as exc:
+        print(f"timed out talking to Slack: {exc}", file=sys.stderr)
+        return 2
+    except json.JSONDecodeError as exc:
+        print(f"unexpected non-JSON response from Slack: {exc}", file=sys.stderr)
+        return 2
+    except OSError as exc:
+        print(f"file error: {exc}", file=sys.stderr)
         return 2
 
     for pdf, path in saved:
