@@ -1,8 +1,8 @@
-# This repo is now a Claude skill (skills/crossfit-coach), not an installable
-# package. The deterministic calculator is vendored under the skill and run
-# directly (the scripts put it on the path themselves) — no build/install step.
-# This file only configures the test run for the surviving arithmetic core.
+# This repo is a Claude skill (.claude/skills/crossfit-coach) plus the coach's
+# state (programs/, data/, plans/), not an installable package. The scripts put
+# their vendored `cfprog` package on the path themselves — no build/install step.
+# This file only configures the test run.
 
 [tool.pytest.ini_options]
-testpaths = ["skills/crossfit-coach/scripts/tests"]
+testpaths = [".claude/skills/crossfit-coach/scripts/tests"]
 addopts = "-q"
