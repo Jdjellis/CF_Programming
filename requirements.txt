@@ -1,9 +1,7 @@
 # The skill itself needs nothing beyond the Python standard library — the
-# deterministic calculator is pure stdlib and runs without an install step.
-# The only dependency is the test runner for the calculator's unit tests:
+# deterministic calculator and the Slack fetcher are pure stdlib, no install.
+# The only dependency is the test runner:
 #
 #   python3 -m pip install pytest
 #   python3 -m pytest
 pytest>=7
-# Test-only: integration/parity tests against a local Supabase Postgres.
-psycopg[binary]>=3
