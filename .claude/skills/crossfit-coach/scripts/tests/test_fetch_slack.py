@@ -220,3 +220,11 @@ def test_fetch_keeps_a_hostile_file_name_inside_out_dir(tmp_path: Path):
     saved, _ = fetch(SlackClient("xoxb-test", opener=fake), ["performance"], since, out)
     assert [path.parent for _, path in saved] == [out]
     assert not (tmp_path / "evil.pdf").exists()
+
+
+def test_fetch_skips_pdf_entries_missing_name_or_url_and_saves_the_valid_one(tmp_path: Path):
+    malformed = {"ts": SUNDAY_10AM, "files": [{"filetype": "pdf"}]}
+    fake = single_channel_slack([malformed, pdf_message("week.pdf")])
+    since = datetime(2026, 10, 11, 0, 0, tzinfo=AWST)
+    saved, _ = fetch(SlackClient("xoxb-test", opener=fake), ["performance"], since, tmp_path)
+    assert [path.name for _, path in saved] == ["performance-week.pdf"]

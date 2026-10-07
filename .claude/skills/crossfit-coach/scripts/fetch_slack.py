@@ -120,8 +120,13 @@ def pdfs_since(client: SlackClient, channel: str, channel_id: str, since: dateti
         for message in data.get("messages", []):
             posted = datetime.fromtimestamp(float(message["ts"]), AWST)
             for shared in message.get("files", []):
-                if shared.get("filetype") == "pdf":
-                    files.append(SlackFile(channel, shared["name"], shared["url_private_download"], posted))
+                if shared.get("filetype") != "pdf":
+                    continue
+                name = shared.get("name")
+                url = shared.get("url_private_download")
+                if not name or not url:
+                    continue
+                files.append(SlackFile(channel, name, url, posted))
         cursor = data.get("response_metadata", {}).get("next_cursor", "")
         if not cursor:
             break
