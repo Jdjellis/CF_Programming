@@ -27,3 +27,6 @@ credentials.json
 token.json
 service_account*.json
 *.secret.*
+
+# Rendered weekly HTML (delivered to the Project Library, not committed)
+out/
