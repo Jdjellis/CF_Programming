@@ -5,16 +5,22 @@ a loadable `prescribed_kg` rounded to the nearest 0.5 kg. There is no plate
 math — an experienced lifter loads the bar themselves.
 """
 
+from pathlib import Path
+
 import pytest
 
 from cfprog.calculator import LoadCalculator
-from cfprog.maxes import FixtureMaxesProvider, GoogleSheetsMaxesProvider
+from cfprog.maxes import DEFAULT_MAXES_PATH, FixtureMaxesProvider
 from cfprog.models import Target
+
+REPO_ROOT = Path(__file__).resolve().parents[5]
+TEST_MAXES = Path(__file__).resolve().parent / "fixtures" / "maxes.json"
 
 
 @pytest.fixture(scope="module")
-def calc():
-    return LoadCalculator()
+def calc() -> LoadCalculator:
+    # Frozen maxes: the real data/maxes.json changes as the athlete gets stronger.
+    return LoadCalculator(FixtureMaxesProvider(TEST_MAXES))
 
 
 def test_front_squat_85pct(calc):
@@ -63,16 +69,16 @@ def test_clean_and_jerk_alias(calc):
 def test_unknown_lift_raises(calc):
     with pytest.raises(KeyError):
         calc.prescribe("turkish_getup", Target.percent_of_1rm(80))
-
-
-def test_fixture_documents_sheet_source():
-    prov = FixtureMaxesProvider()
-    maxes = prov.all_maxes()
+def test_test_fixture_maxes_are_readable():
+    maxes = FixtureMaxesProvider(TEST_MAXES).all_maxes()
     assert maxes["back_squat"] == 165
     assert maxes["power_snatch"] == 82.5
 
 
-def test_sheets_provider_not_wired_yet():
-    prov = GoogleSheetsMaxesProvider()
-    with pytest.raises(NotImplementedError):
-        prov.get_max("front_squat")
+def test_default_maxes_file_is_repo_root_data_maxes_json():
+    assert DEFAULT_MAXES_PATH == REPO_ROOT / "data" / "maxes.json"
+    assert DEFAULT_MAXES_PATH.is_file()
+
+
+def test_default_provider_reads_the_coach_maxes_record():
+    assert FixtureMaxesProvider().all_maxes()

@@ -8,8 +8,7 @@ skill's scripts put this package on the path and import it directly.
 Surface:
     - Deterministic load calculator (cfprog.targets, cfprog.calculator): resolves
       a %/RPE/rep-max target against the current 1RM to a loadable working weight.
-    - Maxes read behind an interface (cfprog.maxes), sourced from the Google Sheet
-      top section (stubbed to a local fixture until Sheets auth is wired).
+    - Maxes read behind an interface (cfprog.maxes) from the repo's data/maxes.json.
     - Estimated 1RM from a performed set (cfprog.estimate) — the inverse of the
       same rep-max table the calculator uses.
 """
@@ -24,8 +23,7 @@ from cfprog.calculator import LoadCalculator
 from cfprog.maxes import (
     MaxesProvider,
     FixtureMaxesProvider,
-    GoogleSheetsMaxesProvider,
-    SHEET_ID,
+    DEFAULT_MAXES_PATH,
     normalize_lift,
 )
 from cfprog.estimate import estimate_one_rm
@@ -40,8 +38,7 @@ __all__ = [
     "LoadCalculator",
     "MaxesProvider",
     "FixtureMaxesProvider",
-    "GoogleSheetsMaxesProvider",
-    "SHEET_ID",
+    "DEFAULT_MAXES_PATH",
     "normalize_lift",
     "estimate_one_rm",
 ]

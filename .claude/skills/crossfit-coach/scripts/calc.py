@@ -45,7 +45,7 @@ DEMO_CASES = [
 
 def _run_demo() -> int:
     calc = LoadCalculator()
-    print("Load calculator — demo cases (maxes from fixture mirroring the Sheet)\n")
+    print("Load calculator — demo cases (maxes from data/maxes.json)\n")
     for lift, target in DEMO_CASES:
         print(calc.prescribe(lift, target).summary())
         print()
