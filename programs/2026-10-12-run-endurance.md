@@ -1,7 +1,7 @@
 ---
 name: Run Endurance
 status: active
-started: 2026-10-12       # provisional, set 2026-10-12; athlete starts "this week or next depending on fatigue"
+started: 2026-10-12
 source: Endurance channel PDFs ("RUN ENDURANCE", Thursdays), W1 = week of 21 Sep 2026. Later weeks are appended as the gym posts them.
 current: W1 S1
 sessions_per_week: 1

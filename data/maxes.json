@@ -16,6 +16,7 @@
     "power_clean": { "one_rm": 122, "year": 2025 },
     "snatch": { "one_rm": 88, "year": 2025 },
     "power_snatch": { "one_rm": 85, "year": 2025 },
-    "clean_and_jerk": { "one_rm": 124, "year": 2025 }
+    "clean_and_jerk": { "one_rm": 124, "year": 2025 },
+    "power_clean_push_jerk": { "one_rm": 110, "year": 2026 }
   }
 }
