@@ -6,10 +6,10 @@ description: >
   athlete's check-in, mid-week questions ("what's today?", "I'm smashed, adjust
   Thursday"), reporting sessions done in a self-paced program, reporting a heavy
   set, or designing / updating a program block. Fetches the gym's programming
-  PDFs from Slack, reads the POLP workbook from Google Drive, tracks programs in
+  PDFs from Slack (via the Slack connector), reads the POLP workbook from Google Drive, tracks programs in
   programs/, and calls a deterministic calculator for every load (never does the
   math itself).
-version: 2.0.0
+version: 2.1.0
 ---
 
 # CrossFit Coach
@@ -47,7 +47,7 @@ supply **judgment**; scripts and the POLP workbook supply **arithmetic**.
 | POLP position and loads | POLP workbook in Drive (ID in `programs/polp.md`) | Google Drive connector, read only |
 | Current maxes | `data/maxes.json` | `calc.py` reads it; update + commit (§6) |
 | Last week's confirmed plan | `plans/<Monday>.json` | Read; write + commit (§3 step 5) |
-| Class programming | Slack PDFs | `fetch_slack.py` (§3 step 1) |
+| Class programming | Slack PDFs | Slack connector (§3 step 1) |
 | Training log | BTWB | Not reachable — ask the athlete |
 
 ## §2. Commit every state change immediately
@@ -78,17 +78,16 @@ Never derive the Monday from the sandbox clock.
 Don't ask the athlete anything here except in the two cases below (programming not posted yet; no active program).
 
 1. Get onto `main` with the latest state: `git switch main && git pull --ff-only origin main`.
-2. Fetch the programming:
+2. Fetch the programming with the **Slack connector** (channels in
+   `data/slack_channels.txt`: name and ID). For each channel, `slack_read_channel`
+   (limit ~5) and find the PDF posted since the most recent Sunday 00:00 AWST,
+   then `slack_read_file` on its file ID. That saves the PDF to disk; extract it
+   with `pdftotext -layout`.
 
-   ```
-   python3 .claude/skills/crossfit-coach/scripts/fetch_slack.py --out out/pdfs
-   ```
-
-   - Exit `0`: read every listed PDF. Deliver them to the Library as outputs.
-   - Exit `3`: some channels have nothing yet. Tell the athlete which, and wait
-     for "go" (then re-run). Don't plan from partial programming unless they
-     say to.
-   - Exit `2`: configuration / network problem. Quote the error and stop.
+   - Every channel has this week's PDF: read them all. Deliver them to the Library as outputs.
+   - A channel has nothing yet: tell the athlete which, and wait for "go" (then
+     re-check). Don't plan from partial programming unless they say to.
+   - The connector isn't available: say so and stop.
 3. Read the POLP workbook (§4.2): each lift's last logged row and next row.
 4. Read every `programs/*.md` with `status: active`, and last week's
    `plans/<previous Monday>.json` if it exists.
@@ -234,6 +233,11 @@ only and does no math.
 ---
 
 ## Changelog
+
+### 2.1.0
+- **Slack via the connector.** `fetch_slack.py`, its tests and the Slack bot
+  token setup are gone: the Slack MCP connector already reads the private
+  `competitorsclub` and `endurancetrack` channels and saves PDFs to disk.
 
 ### 2.0.0
 - **Re-platformed as a Claude Project.** The skill moved to `.claude/skills/` so
