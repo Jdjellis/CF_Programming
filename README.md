@@ -25,7 +25,6 @@ athlete's personal programs (rowing, running, pressing…) around class.
   scripts/calc.py                %/rep-max/RPE -> loadable kg (from data/maxes.json)
   scripts/estimate_1rm.py        e1RM from a performed set
   scripts/render_week.py         phone-first weekly HTML
-  scripts/fetch_slack.py         the week's programming PDFs from Slack
 programs/                        personal programs + where each is up to (state)
 data/maxes.json                  the coach's max record (state)
 plans/                           each confirmed week's spec (state)

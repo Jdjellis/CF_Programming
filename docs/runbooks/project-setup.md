@@ -8,14 +8,11 @@ Do these once, in order, after the v3 PR is merged. Each step ends with a check.
   (Settings → Branches). Threads commit state straight to `main`.
 - **Check:** the repo appears in the Project's **New project** dialog.
 
-## 2. Slack app
-- Bot token scopes: `channels:read`, `groups:read`, `channels:history`,
-  `groups:history`, `files:read`. Reinstall the app if scopes changed.
-- Invite the bot to each programming channel (`/invite @<bot>`).
-- Write the exact channel names, one per line, to `data/slack_channels.txt`;
-  commit and push to `main`.
-- **Check (locally):** `SLACK_BOT_TOKEN=<token> python3 .claude/skills/crossfit-coach/scripts/fetch_slack.py --since <last Sunday> --out /tmp/pdfs`
-  lists last week's PDFs (exit 0, or 3 naming a channel that genuinely had none).
+## 2. Slack connector
+- claude.ai/customize/connectors: **Slack** connected, signed in as a member of the
+  private `competitorsclub` channel.
+- `data/slack_channels.txt` lists each programming channel's name and ID.
+- **Check:** a thread can `slack_read_channel` both channels and `slack_read_file` last week's PDFs.
 
 ## 3. Create the Project
 - claude.ai/code → **Projects → New project**. Name: `CrossFit Coach`. Goal:
@@ -41,11 +38,9 @@ Do these once, in order, after the v3 PR is merged. Each step ends with a check.
 - **Check:** settings saved; the repo is listed under Environment.
 
 ## 4. Environment and connectors
-- **Project settings → Environment → cloud environment:** add secret
-  `SLACK_BOT_TOKEN`; allow network domains `slack.com` and `files.slack.com`.
-- claude.ai/customize/connectors: **Google Drive** connected.
+- claude.ai/customize/connectors: **Google Drive** and **Slack** connected.
 - **Check:** in the project conversation, ask: "Start a thread that runs
-  `fetch_slack.py --out out/pdfs` and reads the POLP workbook from programs/polp.md,
+  fetches this week's programming PDFs from Slack and reads the POLP workbook from programs/polp.md,
   then reports what it found. Don't plan anything." It lists the PDFs and each POLP
   lift's next row.
 

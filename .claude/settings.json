@@ -4,7 +4,6 @@
       "Bash(python3 .claude/skills/crossfit-coach/scripts/calc.py:*)",
       "Bash(python3 .claude/skills/crossfit-coach/scripts/estimate_1rm.py:*)",
       "Bash(python3 .claude/skills/crossfit-coach/scripts/render_week.py:*)",
-      "Bash(python3 .claude/skills/crossfit-coach/scripts/fetch_slack.py:*)",
       "Bash(python3 -m pytest:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
