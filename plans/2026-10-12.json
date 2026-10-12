@@ -1,0 +1,233 @@
+{
+ "week_of": "12–18 Oct 2026",
+ "week_start": "2026-10-12",
+ "source": "Claremont Competitors Programming 12–18 Oct 26; CFC Fortnightly Fulls WL block wk 1/9; CFC Endurance",
+ "focus": [
+  "First week back after flu + pneumonia: class metcons at 60–70%",
+  "Row 5K 12-wk — W1",
+  "Run Endurance — W1"
+ ],
+ "summary": {
+  "mon": {
+   "pm": {
+    "type": "Perf + WL",
+    "add": "POLP BS"
+   }
+  },
+  "tue": {
+   "am": {
+    "type": "Perf",
+    "add": "POLP Bench"
+   },
+   "pm": {
+    "type": "Row W1 S1"
+   }
+  },
+  "wed": {
+   "am": {
+    "type": "WL",
+    "add": "POLP Press + DL"
+   },
+   "pm": {
+    "type": "Perf"
+   }
+  },
+  "thu": {
+   "pm": {
+    "type": "Gymnastics",
+    "add": "Strict MU + HSPU"
+   }
+  },
+  "fri": {
+   "am": {
+    "type": "Run W1"
+   }
+  },
+  "sat": {
+   "am": {
+    "type": "WL",
+    "add": "Row W1 S2"
+   }
+  },
+  "sun": {
+   "am": {
+    "type": "Rest"
+   }
+  }
+ },
+ "decisions": [
+  "Illness week: every class metcon is CRUISE at 60–70% (Jason's own Mon/Wed advice). Thursday comp class and the Saturday Performance chipper are skipped.",
+  "POLP rows are exactly as the workbook has them. Back squat 3×10 @ 140 is a big step, and stopping a set short is a logged FAIL that the workbook repeats.",
+  "Monday back squat goes in the WL session after the snatch work, so the snatches are fresh. Monday and Wednesday Performance are the metcon (B) only, because the POLP lift is done in WL.",
+  "Endurance is 3 sessions (Josh's choice): Row S1 Tue PM, Run Fri, easy Row S2 after Sat WL. Row S3 is dropped so Sunday stays a full rest day. Rowing paces come off the 19:19 5k (1:55.9/500m).",
+  "No pressing block yet. The press is failing at 52 and the shoulder is niggly, so Thursday's strict HSPU is this week's extra pressing.",
+  "POLP front squat isn't programmed this week. Saturday's pause front squat (WL) covers it."
+ ],
+ "days": [
+  {
+   "day": "Mon",
+   "date": "12 Oct",
+   "streams": [
+    {
+     "label": "Performance — CRUISE (B only)",
+     "text": "B. For time:\n30 Deadlifts (60/40kg)\n30/24 Calorie Row\n15 Thrusters (60/40kg)\n*Time Cap: 9 mins, Top Scores: Sub 4\n*There has been a lot of long workouts\nrecently, this is a max intensity piece.\nChoose a weight where you can do both\nlifts in 3 sets or less.\n\n→ This week: 60–70% effort."
+    },
+    {
+     "label": "Weightlifting",
+     "text": "(0 - 20 min)\nA. Power Snatch:\n3r x 75%, 76%, 78%, 79%, 80%\n\n(20 - 25 min)\nB. Snatch Pull from Riser (2'):\n3 x 90%, 95%, 100%\n\n(25 - 45 min)\nC. POLP Back Squats:\n*If you did the Squats in class:\n3 Rounds for quality:\n10-20 sec Star Side Plank Hold\n5 Zercher Banded Jumps",
+     "loads": [
+      {
+       "lift": "Power Snatch",
+       "scheme": "3 @ 75/76/78/79/80%",
+       "load": "64 / 64.5 / 66.5 / 67 / 68 kg (of 85)"
+      },
+      {
+       "lift": "Snatch Pull from Riser",
+       "scheme": "3 @ 90/95/100%",
+       "load": "79 / 83.5 / 88 kg (of 88)"
+      },
+      {
+       "lift": "POLP Back Squat",
+       "scheme": "3 × 10",
+       "load": "140 kg (POLP wk5, 3 × 10)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day": "Tue",
+   "date": "13 Oct",
+   "streams": [
+    {
+     "label": "Performance — CRUISE",
+     "text": "A. Weighted Pull Ups: (OT2M)\n4-4-4-4-4\n*If you can't do these with Bodyweight\nUnbroken, use a band.\n\nB. Every 3 minutes x 8 sets (4 rounds)\nEach set is for time:\n*2.00 min cap on each set, score is total time.\nSet 1:\n25/18 Calorie Echo Bike\n\nSet 2:\n12 Toes to Bar\n12 Bar Touching Burpees"
+    },
+    {
+     "label": "Comp Extras — POLP Bench",
+     "text": "A. POLP Bench Press",
+     "loads": [
+      {
+       "lift": "POLP Bench Press",
+       "scheme": "3 × 10",
+       "load": "88 kg (POLP wk4, 3 × 10)"
+      }
+     ]
+    },
+    {
+     "label": "Row 5K — W1 S1 (PM)",
+     "accent": "lim",
+     "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 5k PR 19:19 = 1:55.9/500m, so the 4-min sets are at 1:57.9/500m."
+    }
+   ]
+  },
+  {
+   "day": "Wed",
+   "date": "14 Oct",
+   "streams": [
+    {
+     "label": "Weightlifting",
+     "text": "(0 - 15 min)\nA. Pause (at knee) Clean + Pause (in catch)\nSplit Jerk:\n5 x 2 x (1 + 1) x 70%, 72%, 75%, 78%, 80%\n\n(15 - 30 min)\nB. POLP Pressing:\n\n(30 - 45 min)\nC. POLP Deadlift:\n*If you did the Deadlifts in class:\n4x 20-40 sec Single Leg Sorensen Hold",
+     "loads": [
+      {
+       "lift": "Pause Clean + Pause Split Jerk",
+       "scheme": "2×(1+1) @ 70/72/75/78/80%",
+       "load": "87 / 89.5 / 93 / 96.5 / 99 kg (of 124)"
+      },
+      {
+       "lift": "POLP Press",
+       "scheme": "3 × 10",
+       "load": "52 kg (POLP wk4, 3 × 10)"
+      },
+      {
+       "lift": "POLP Deadlift (ramp)",
+       "scheme": "3 × 10",
+       "load": "135 / 147 / 159 kg (POLP wk1, 3 × 10)"
+      }
+     ]
+    },
+    {
+     "label": "Performance — CRUISE (B only)",
+     "text": "B. 15 min AMRAP:\n20 Box Jump Overs (24/20\")\n20 alt DB Hang Snatches\n20 1x DB alt Step Ups\nDB: (22.5/15kg)\n\n→ This week: 60–70% effort."
+    }
+   ]
+  },
+  {
+   "day": "Thu",
+   "date": "15 Oct",
+   "streams": [
+    {
+     "label": "Skill & Strength — PUSH",
+     "accent": "lim",
+     "text": "A. Gymnastics Week 14: Floor Series 1/4:\nFloor Basics: Bridge Up, Forward Roll & Wall\nWalk.\n\nB. 20 Min AMRAP for quality:\n1 Wall Walk + 10 Wall Facing Shoulder Taps\n2 Strict Muscle Ups (2 False Grip Chest to\nRing + 2 dips)\n3 Wall Facing Strict HSPU (Pike)\n4 Strict L to Toes to Ring\n6 Rolling Candlestick to Squat\n*Modifications in brackets."
+    },
+    {
+     "label": "Comp class — SKIP",
+     "text": "Skipped this week (first week back after pneumonia)."
+    }
+   ]
+  },
+  {
+   "day": "Fri",
+   "date": "16 Oct",
+   "streams": [
+    {
+     "label": "Run Endurance — W1 (open gym)",
+     "accent": "lim",
+     "text": "A. Run Warm Up\n\nB.4-5 Continous sets:\nRun 1:30 @ RPE 5-6, Jog 1:30 @ RPE 3\nRun 1:00 @ RPE 5-6, Jog 1:00 @ RPE 3\nRun 0:30 @ RPE 6-7, Jog 2:30 @ RPE 3\n*32-40 min total time\n\n*Perform on any machine at the same effort and time structure as needed if you need to avoid running.\n\n→ First run since pneumonia: stop at 4 sets, and go to the low end if your breathing lags."
+    }
+   ]
+  },
+  {
+   "day": "Sat",
+   "date": "17 Oct",
+   "streams": [
+    {
+     "label": "Weightlifting",
+     "text": "(0 - 20 min)\nA. Pause (at knee) Snatch:\n3r x 70%, 72%, 75%, 78%, 80%\n\n(20 - 40 min)\nB. Power Clean + Push Jerk:\n5 x 2 x (1+1) x 75%, 76%, 78%, 79%, 80%\n\n(40 - 50 min)\nC. Clean Pull from Riser (2') 3r x 90%, 95%,\n100%\n\n(50 - 70 min)\nD. Pause (3 sec) Front Squat: 5 x 5 x 55%",
+     "loads": [
+      {
+       "lift": "Pause Snatch",
+       "scheme": "3 @ 70/72/75/78/80%",
+       "load": "61.5 / 63.5 / 66 / 68.5 / 70.5 kg (of 88)"
+      },
+      {
+       "lift": "Power Clean + Push Jerk",
+       "scheme": "2×(1+1) @ 75/76/78/79/80%",
+       "load": "82.5 / 83.5 / 86 / 87 / 88 kg (of 110)"
+      },
+      {
+       "lift": "Clean Pull from Riser",
+       "scheme": "3 @ 90/95/100%",
+       "load": "111.5 / 118 / 124 kg (of 124)"
+      },
+      {
+       "lift": "Pause Front Squat",
+       "scheme": "5 × 5 @ 55%",
+       "load": "77 kg (55% of 140)"
+      }
+     ]
+    },
+    {
+     "label": "Row 5K — W1 S2",
+     "accent": "lim",
+     "text": "Row 30 min @ Z1 building to Z3 through the 30 min."
+    },
+    {
+     "label": "Performance — SKIP",
+     "text": "Skipped this week (35-min chipper: strict HSPU, bar MUs, burpees)."
+    }
+   ]
+  },
+  {
+   "day": "Sun",
+   "date": "18 Oct",
+   "streams": [
+    {
+     "label": "Rest",
+     "text": "Full rest day."
+    }
+   ]
+  }
+ ]
+}
