@@ -22,8 +22,8 @@
   },
   "wed": {
    "pm": {
-    "type": "Perf",
-    "add": "POLP DL"
+    "type": "Strength",
+    "add": "PSn + POLP DL + Bench"
    }
   },
   "thu": {
@@ -37,8 +37,7 @@
   },
   "fri": {
    "am": {
-    "type": "Run W1",
-    "add": "POLP Bench"
+    "type": "Run W1"
    }
   },
   "sat": {
@@ -57,6 +56,7 @@
  "decisions": [
   "Updated Wed 14 Oct. Monday: only 1 set of back squat (out of time), and the WL class was missed. Tuesday: POLP back squat redone as the full row, 10/10/9 @ 140, logged as a FAIL so the workbook repeats 140. Bench was missed Tuesday and the WL session Wednesday AM.",
   "Rest of the week: the POLP deadlift moves to Wed PM Performance (part A). Row S1 moves to Thu AM. Bench moves to Fri before the run. Press goes to Sun open gym, so it isn't the day after Thursday's strict HSPU. Monday's and Wednesday morning's WL sessions are dropped, not made up.",
+  "Wed PM: Josh swapped the class AMRAP for strength. Power snatch (Monday's, if time), then POLP deadlift, then POLP bench. Friday is just Run W1. The row stays Thu AM.",
   "Illness week: every class metcon is CRUISE at 60–70% (Jason's own Mon/Wed advice). Thursday comp class and the Saturday Performance chipper are skipped.",
   "POLP rows are exactly as the workbook has them. Back squat 3×10 @ 140 is a big step, and stopping a set short is a logged FAIL that the workbook repeats.",
   "Monday back squat goes in the WL session after the snatch work, so the snatches are fresh. Monday and Wednesday Performance are the metcon (B) only, because the POLP lift is done in WL.",
@@ -126,13 +126,24 @@
      "text": "Pause clean + pause split jerk skipped (week 1 volume; Saturday has power clean + push jerk)."
     },
     {
-     "label": "Performance — A: POLP Deadlift, B: CRUISE",
-     "text": "A. POLP Deadlift: *You are either already\ndoing these and hopefully know what you're\ndoing or are doing the first week which is 3 x\n10 x 65%.\n\nB. 15 min AMRAP:\n20 Box Jump Overs (24/20\")\n20 alt DB Hang Snatches\n20 1x DB alt Step Ups\nDB: (22.5/15kg)\n\n→ AMRAP at 60–70% effort.",
+     "label": "Wed PM — strength instead of the WOD",
+     "accent": "lim",
+     "text": "1. Power Snatch (from Monday, if time): 3r x 75%, 76%, 78%, 79%, 80%\n2. POLP Deadlift\n3. POLP Bench Press\n\nThe class AMRAP is skipped for this.",
      "loads": [
+      {
+       "lift": "Power Snatch",
+       "scheme": "3 @ 75/76/78/79/80%",
+       "load": "64 / 64.5 / 66.5 / 67 / 68 kg (of 85)"
+      },
       {
        "lift": "POLP Deadlift (ramp)",
        "scheme": "3 × 10",
        "load": "135 / 147 / 159 kg (POLP wk1, 3 × 10)"
+      },
+      {
+       "lift": "POLP Bench Press",
+       "scheme": "3 × 10",
+       "load": "88 kg (POLP wk4, 3 × 10)"
       }
      ]
     }
@@ -162,17 +173,6 @@
    "day": "Fri",
    "date": "16 Oct",
    "streams": [
-    {
-     "label": "POLP Bench (moved from Tue) — before the run",
-     "text": "POLP Bench Press, then Run W1.",
-     "loads": [
-      {
-       "lift": "POLP Bench Press",
-       "scheme": "3 × 10",
-       "load": "88 kg (POLP wk4, 3 × 10)"
-      }
-     ]
-    },
     {
      "label": "Run Endurance — W1 (open gym)",
      "accent": "lim",
