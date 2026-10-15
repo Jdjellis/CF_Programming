@@ -27,17 +27,15 @@
       }
     },
     "thu": {
-      "am": {
-        "type": "Row W1 S1"
-      },
       "pm": {
-        "type": "Gymnastics",
-        "add": "Strict MU + HSPU"
+        "type": "Missed",
+        "add": "moved to Fri"
       }
     },
     "fri": {
       "am": {
-        "type": "Run W1"
+        "type": "Row W1 S1",
+        "add": "+ Gymnastics"
       }
     },
     "sat": {
@@ -49,7 +47,7 @@
     "sun": {
       "am": {
         "type": "Open gym",
-        "add": "POLP Press"
+        "add": "POLP Press + Run W1"
       }
     }
   },
@@ -62,7 +60,8 @@
     "Monday back squat goes in the WL session after the snatch work, so the snatches are fresh. Monday and Wednesday Performance are the metcon (B) only, because the POLP lift is done in WL.",
     "Endurance is 3 sessions (Josh's choice): Row S1 Tue PM, Run Fri, easy Row S2 after Sat WL. Row S3 is dropped so Sunday stays a full rest day. Rowing paces come off the 19:19 5k (1:55.9/500m).",
     "No pressing block yet. The press is failing at 52 and the shoulder is niggly, so Thursday's strict HSPU is this week's extra pressing.",
-    "POLP front squat isn't programmed this week. Saturday's pause front squat (WL) covers it."
+    "POLP front squat isn't programmed this week. Saturday's pause front squat (WL) covers it.",
+    "Thu missed (busy day, feeling good). Fri: Row W1 S1 then Thursday's gymnastics piece. Sat unchanged (WL + Row S2). Sun: POLP press then Run W1. Still 3 endurance sessions this week."
   ],
   "days": [
     {
@@ -154,14 +153,8 @@
       "date": "15 Oct",
       "streams": [
         {
-          "label": "Row 5K — W1 S1 (AM, moved from Tue)",
-          "accent": "lim",
-          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 5k PR 19:19 = 1:55.9/500m, so the 4-min sets are at 1:57.9/500m."
-        },
-        {
-          "label": "Skill & Strength — PUSH",
-          "accent": "lim",
-          "text": "A. Gymnastics Week 14: Floor Series 1/4:\nFloor Basics: Bridge Up, Forward Roll & Wall\nWalk.\n\nB. 20 Min AMRAP for quality:\n1 Wall Walk + 10 Wall Facing Shoulder Taps\n2 Strict Muscle Ups (2 False Grip Chest to\nRing + 2 dips)\n3 Wall Facing Strict HSPU (Pike)\n4 Strict L to Toes to Ring\n6 Rolling Candlestick to Squat\n*Modifications in brackets."
+          "label": "Thu — MISSED (row + gymnastics moved to Fri)",
+          "text": "Nothing done. Row W1 S1 and the gymnastics piece move to Friday."
         },
         {
           "label": "Comp class — SKIP",
@@ -174,9 +167,14 @@
       "date": "16 Oct",
       "streams": [
         {
-          "label": "Run Endurance — W1 (open gym)",
+          "label": "Row 5K — W1 S1 (AM, moved from Thu)",
           "accent": "lim",
-          "text": "A. Run Warm Up\n\nB.4-5 Continous sets:\nRun 1:30 @ RPE 5-6, Jog 1:30 @ RPE 3\nRun 1:00 @ RPE 5-6, Jog 1:00 @ RPE 3\nRun 0:30 @ RPE 6-7, Jog 2:30 @ RPE 3\n*32-40 min total time\n\n*Perform on any machine at the same effort and time structure as needed if you need to avoid running.\n\n→ First run since pneumonia: stop at 4 sets, and go to the low end if your breathing lags."
+          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 5k PR 19:19 = 1:55.9/500m, so the 4-min sets are at 1:57.9/500m."
+        },
+        {
+          "label": "Skill & Strength — PUSH (moved from Thu, after the row)",
+          "accent": "lim",
+          "text": "A. Gymnastics Week 14: Floor Series 1/4:\nFloor Basics: Bridge Up, Forward Roll & Wall\nWalk.\n\nB. 20 Min AMRAP for quality:\n1 Wall Walk + 10 Wall Facing Shoulder Taps\n2 Strict Muscle Ups (2 False Grip Chest to\nRing + 2 dips)\n3 Wall Facing Strict HSPU (Pike)\n4 Strict L to Toes to Ring\n6 Rolling Candlestick to Squat\n*Modifications in brackets."
         }
       ]
     },
@@ -236,6 +234,11 @@
               "load": "52 kg (POLP wk4, 3 × 10)"
             }
           ]
+        },
+        {
+          "label": "Run Endurance — W1 (after the press, moved from Fri)",
+          "accent": "lim",
+          "text": "A. Run Warm Up\n\nB.4-5 Continous sets:\nRun 1:30 @ RPE 5-6, Jog 1:30 @ RPE 3\nRun 1:00 @ RPE 5-6, Jog 1:00 @ RPE 3\nRun 0:30 @ RPE 6-7, Jog 2:30 @ RPE 3\n*32-40 min total time\n\n*Perform on any machine at the same effort and time structure as needed if you need to avoid running.\n\n→ First run since pneumonia: stop at 4 sets, and go to the low end if your breathing lags."
         }
       ]
     }
