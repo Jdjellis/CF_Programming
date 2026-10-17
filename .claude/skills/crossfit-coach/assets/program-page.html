@@ -1,0 +1,276 @@
+<title>Josh's Training Week</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: phone-first day board. Sticky day strip, one day at a time, loads as big plate-numbers, a log under each session. Stream colours follow competition plates (blue 20, yellow 15, green 10, red 25). */
+:root{
+  --bg:#eef0f3; --surface:#ffffff; --sunk:#f5f6f8; --ink:#15171c; --muted:#5a6170; --line:#dcdfe5;
+  --accent:#d22a2a; --accent-ink:#ffffff;
+  --wl:#1d5bc2; --perf:#a67c00; --comp:#2b8446; --ind:#d22a2a; --other:#6b7280;
+  --ok:#23804a; --ok-bg:#e4f3ea; --warn:#a86500; --warn-bg:#fbf0dc; --off:#7a808c; --off-bg:#eceef1;
+  --f-display:"Big Shoulders Display","Arial Narrow","Roboto Condensed",Impact,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1115; --surface:#181b21; --sunk:#13161b; --ink:#eceef2; --muted:#9aa1ae; --line:#2a2f38;
+  --accent:#ff5b4f; --accent-ink:#1a0606;
+  --wl:#6aa2ff; --perf:#f0c531; --comp:#5cc581; --ind:#ff5b4f; --other:#9aa1ae;
+  --ok:#62cf8c; --ok-bg:#16301f; --warn:#f2b44a; --warn-bg:#33270f; --off:#8d939e; --off-bg:#22262d;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1115; --surface:#181b21; --sunk:#13161b; --ink:#eceef2; --muted:#9aa1ae; --line:#2a2f38;
+  --accent:#ff5b4f; --accent-ink:#1a0606;
+  --wl:#6aa2ff; --perf:#f0c531; --comp:#5cc581; --ind:#ff5b4f; --other:#9aa1ae;
+  --ok:#62cf8c; --ok-bg:#16301f; --warn:#f2b44a; --warn-bg:#33270f; --off:#8d939e; --off-bg:#22262d;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* masthead */
+.mast{padding-block:22px 14px;display:grid;gap:8px}
+.eyebrow{font:600 11px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mast h1{font:900 clamp(40px,11vw,64px)/.9 var(--f-display);letter-spacing:.01em;margin:0;text-transform:uppercase;text-wrap:balance}
+.mast h1 span{color:var(--accent)}
+.blocks{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 0;padding:0;list-style:none}
+.blocks li{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:3px 8px;background:var(--surface)}
+
+/* day strip */
+.strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;padding-block:8px}
+.dbtn{display:grid;justify-items:center;gap:3px;padding:6px 0 7px;border:1px solid transparent;border-radius:6px;background:none;cursor:pointer;color:var(--muted)}
+.dbtn .dw{font:600 10px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase}
+.dbtn .dn{font:800 22px/1 var(--f-display);color:var(--ink)}
+.dbtn .pips{display:flex;gap:2px;height:4px}
+.dbtn .pip{width:7px;height:4px;border-radius:1px;background:var(--line)}
+.dbtn[aria-pressed="true"]{background:var(--surface);border-color:var(--line);color:var(--ink)}
+.dbtn.today .dn{color:var(--accent)}
+.dbtn.today .dw::after{content:" •";color:var(--accent)}
+
+/* day */
+main{padding-block:16px 40px;display:grid;gap:14px}
+.dayhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.dayhead h2{font:800 34px/1 var(--f-display);text-transform:uppercase;margin:0;letter-spacing:.01em}
+.dayhead .tag{font:600 11px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:5px 8px;border-radius:3px}
+.empty{color:var(--muted);padding:18px;border:1px dashed var(--line);border-radius:8px;text-align:center}
+
+.sess{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:grid}
+.sess>.top{display:grid;grid-template-columns:6px 1fr;}
+.sess .plate{background:var(--k)}
+.sess .hd{padding:12px 14px 10px;display:grid;gap:4px;min-width:0}
+.sess .kind{font:600 10.5px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--k)}
+.sess h3{font:600 17px/1.25 var(--f-body);margin:0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sess .sub{font-size:13px;color:var(--muted)}
+.k-wl{--k:var(--wl)} .k-perf{--k:var(--perf)} .k-comp{--k:var(--comp)} .k-ind{--k:var(--ind)} .k-other{--k:var(--other)}
+.sess.is-skip,.sess.is-missed{opacity:.72}
+
+.badge{font:600 10.5px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:3px;white-space:nowrap}
+.b-done{background:var(--ok-bg);color:var(--ok)} .b-missed{background:var(--warn-bg);color:var(--warn)} .b-skip{background:var(--off-bg);color:var(--off)}
+
+/* loads */
+.loads{display:grid;border-top:1px solid var(--line)}
+.load{display:grid;gap:4px;padding:11px 14px;border-top:1px solid var(--line)}
+.load:first-child{border-top:0}
+.load .lname{display:flex;justify-content:space-between;gap:10px;font-size:13px;flex-wrap:wrap}
+.load .lname b{font-weight:600}
+.load .scheme{color:var(--muted);font-family:var(--f-mono);font-size:12px}
+.kg{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 0;font:800 28px/1.05 var(--f-display);font-variant-numeric:tabular-nums}
+.kg .n+ .n::before{content:"/";color:var(--line);font-weight:700;padding:0 6px}
+.kg .u{font:500 13px/1 var(--f-body);color:var(--muted);margin-left:6px}
+.load .of{font-size:12px;color:var(--muted)}
+.load .of b{color:var(--ink);font-weight:600}
+
+/* workout text */
+details.wod{border-top:1px solid var(--line)}
+details.wod summary{cursor:pointer;padding:10px 14px;font:600 12px/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);list-style:none;display:flex;justify-content:space-between}
+details.wod summary::-webkit-details-marker{display:none}
+details.wod summary::after{content:"+";font-size:16px;line-height:.7}
+details.wod[open] summary::after{content:"–"}
+details.wod pre{margin:0;padding:0 14px 14px;white-space:pre-wrap;font:13px/1.55 var(--f-mono);overflow-wrap:anywhere}
+
+/* log */
+.log{border-top:1px solid var(--line);background:var(--sunk)}
+.log .lh{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;list-style:none;font:600 12px/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.log .lh::-webkit-details-marker{display:none}
+.log .lh>span:first-child::before{content:"+";display:inline-block;width:1.1em;color:var(--accent);font-size:15px}
+.log[open] .lh>span:first-child::before{content:"–"}
+.logbody{display:grid;gap:10px;padding:0 14px 14px}
+.log .saved{font:500 11px/1 var(--f-body);letter-spacing:0;text-transform:none}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;min-height:34px}
+.seg button[aria-pressed="true"][data-v="done"]{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.seg button[aria-pressed="true"][data-v="partial"]{background:var(--warn-bg);border-color:var(--warn);color:var(--warn)}
+.seg button[aria-pressed="true"][data-v="skipped"]{background:var(--off-bg);border-color:var(--off);color:var(--off)}
+.field{display:grid;gap:4px}
+.field label{font-size:12px;color:var(--muted)}
+.field input,.field textarea{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:9px 10px;font-size:15px}
+.field textarea{min-height:64px;resize:vertical}
+.rpe{display:flex;align-items:center;gap:10px}
+.rpe input{flex:1;accent-color:var(--accent)}
+.rpe output{font:800 22px/1 var(--f-display);min-width:2.2em;text-align:right;font-variant-numeric:tabular-nums}
+.lognote{font-size:12px;color:var(--muted)}
+
+/* coach notes */
+.notes{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.notes summary{cursor:pointer;padding:12px 14px;font:800 18px/1 var(--f-display);text-transform:uppercase;letter-spacing:.02em}
+.notes ol{margin:0;padding:0 14px 14px 34px;display:grid;gap:8px;font-size:14px}
+footer{font-size:12px;color:var(--muted);padding-block:0 28px}
+footer b{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion:no-preference){.sess{animation:rise .25s ease both}@keyframes rise{from{transform:translateY(4px)}to{transform:none}}}
+</style>
+
+<script type="application/json" id="plan">%%PLAN%%</script>
+
+<header class="mast wrap">
+  <div class="eyebrow" id="eyebrow">Training week</div>
+  <h1 id="title">Week</h1>
+  <ul class="blocks" id="blocks"></ul>
+</header>
+<nav class="strip" aria-label="Days"><div class="wrap" id="strip"></div></nav>
+<main class="wrap" id="day"></main>
+<div class="wrap">
+  <details class="notes" id="notes"><summary>Coach notes</summary><ol id="notelist"></ol></details>
+</div>
+<footer class="wrap" id="foot"></footer>
+
+<script>
+(function(){
+var P=JSON.parse(document.getElementById('plan').textContent);
+var DAYS=['mon','tue','wed','thu','fri','sat','sun'];
+var FULL={Mon:'Monday',Tue:'Tuesday',Wed:'Wednesday',Thu:'Thursday',Fri:'Friday',Sat:'Saturday',Sun:'Sunday'};
+var logs={}, openLogs={}, db=null, canWrite=false, dbState='loading';
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function isoAdd(iso,n){var d=new Date(iso+'T12:00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
+function todayIso(){var t=new Date(),p=function(n){return (n<10?'0':'')+n;};return t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());}
+
+function kindOf(s){var l=s.label.toLowerCase();
+  if(s.accent==='lim')return ['ind','Your work'];
+  if(/^weightlifting/.test(l))return ['wl','Weightlifting'];
+  if(/^performance/.test(l))return ['perf','Performance class'];
+  if(/^comp/.test(l))return ['comp','Comp class'];
+  if(/polp/.test(l))return ['ind','Your work'];
+  return ['other','Note'];}
+function parseLabel(label){var parts=label.split(' — '),title=parts.shift(),rest=parts.join(' — '),st=null;
+  if(/\bdone\b/i.test(rest))st='done';else if(/missed/i.test(rest)||/missed/i.test(title))st='missed';else if(/\bskip/i.test(rest))st='skip';
+  if(/MISSED/.test(title)){title=title.replace(/\s*—?\s*MISSED.*/,'');}
+  return {title:title,sub:rest,st:st};}
+function parseLoad(s){var m=s.match(/^(.*?)\s*kg\s*(.*)$/);if(!m)return {nums:[s],of:''};
+  return {nums:m[1].split('/').map(function(x){return x.trim();}),of:m[2].replace(/^\(|\)$/g,'')};}
+
+var start=P.week_start, today=todayIso();
+var idx=DAYS.indexOf((location.hash||'').slice(1));
+if(idx<0){for(var i=0;i<7;i++)if(isoAdd(start,i)===today)idx=i;}
+if(idx<0)idx=today<start?0:6;
+
+// masthead
+var d0=P.days[0].date, d6=P.days[P.days.length-1].date;
+document.getElementById('title').innerHTML=esc(d0.split(' ')[0])+'<span>–</span>'+esc(d6);
+document.getElementById('eyebrow').textContent='Josh · Road to Torian Pro 2028';
+document.getElementById('blocks').innerHTML=(P.focus||[]).map(function(f){return '<li>'+esc(f)+'</li>';}).join('');
+document.getElementById('notelist').innerHTML=(P.decisions||[]).map(function(f){return '<li>'+esc(f)+'</li>';}).join('');
+document.getElementById('foot').innerHTML='Workout text is the gym\'s, word for word. Every kg comes from the coach\'s calculator or the POLP workbook. Current maxes: '+esc(P.maxes_note||'')+'.';
+
+function key(di,si){return start+'_'+DAYS[di]+'_'+si;}
+function logStatus(di,si){var l=logs[key(di,si)];return l&&l.status;}
+
+function renderStrip(){
+  document.getElementById('strip').innerHTML=P.days.map(function(d,i){
+    var pips=d.streams.map(function(s,si){var ls=logStatus(i,si),pl=parseLabel(s.label),st=ls||pl.st;
+      var c=st==='done'?'var(--ok)':st==='partial'?'var(--warn)':(st==='missed'||st==='skip'||st==='skipped')?'var(--off)':'var(--'+kindOf(s)[0]+')';
+      return '<span class="pip" style="background:'+c+'"></span>';}).join('');
+    return '<button class="dbtn'+(isoAdd(start,i)===today?' today':'')+'" data-i="'+i+'" aria-pressed="'+(i===idx)+'" aria-label="'+FULL[d.day]+' '+esc(d.date)+'"><span class="dw">'+esc(d.day)+'</span><span class="dn">'+esc(d.date.split(' ')[0])+'</span><span class="pips">'+pips+'</span></button>';
+  }).join('');
+}
+document.getElementById('strip').addEventListener('click',function(e){var b=e.target.closest('.dbtn');if(!b)return;
+  idx=+b.dataset.i;try{history.replaceState(null,'','#'+DAYS[idx]);}catch(_){}
+  renderStrip();renderDay();window.scrollTo({top:0});});
+
+function logHtml(di,si,s){
+  var k=key(di,si),l=logs[k]||{},lifts=l.lifts||{};
+  var dis=(dbState!=='ready'||!canWrite)?' disabled':'';
+  var sum=l.status?({done:'Done',partial:'Partly done',skipped:'Skipped'})[l.status]+(l.rpe?' · RPE '+l.rpe:''):(l.updatedAt?'Saved':'');
+  var h='<details class="log" data-k="'+k+'" data-di="'+di+'" data-si="'+si+'"'+(openLogs[k]?' open':'')+'><summary class="lh"><span>Log result</span><span class="saved" id="sv-'+k+'">'+esc(sum)+'</span></summary><div class="logbody">';
+  h+='<div class="seg" role="group" aria-label="How did it go">'+[['done','Done'],['partial','Partly'],['skipped','Skipped']].map(function(o){
+    return '<button type="button" data-v="'+o[0]+'" aria-pressed="'+(l.status===o[0])+'"'+dis+'>'+o[1]+'</button>';}).join('')+'</div>';
+  (s.loads||[]).forEach(function(ld,li){var id='in-'+k+'-'+li;
+    h+='<div class="field"><label for="'+id+'">'+esc(ld.lift)+': what you lifted</label><input id="'+id+'" data-lift="'+esc(ld.lift)+'" placeholder="e.g. '+esc(parseLoad(ld.load).nums.slice(-1)[0])+' kg, all reps" value="'+esc(lifts[ld.lift]||'')+'"'+dis+'></div>';});
+  var rid='rpe-'+k;
+  h+='<div class="field"><label for="'+rid+'">Effort (RPE)</label><div class="rpe"><input type="range" id="'+rid+'" min="0" max="10" step="0.5" value="'+(l.rpe!=null?l.rpe:0)+'"'+dis+'><output for="'+rid+'">'+(l.rpe?l.rpe:'–')+'</output></div></div>';
+  var nid='note-'+k;
+  h+='<div class="field"><label for="'+nid+'">Notes for the coach</label><textarea id="'+nid+'" placeholder="Score, time, how it felt, anything that hurt"'+dis+'>'+esc(l.note||'')+'</textarea></div>';
+  if(dbState==='off')h+='<div class="lognote">Logging works when you open this page signed in to claude.ai.</div>';
+  else if(dbState==='ready'&&!canWrite)h+='<div class="lognote">You can read this log but not change it.</div>';
+  else if(dbState==='loading')h+='<div class="lognote">Connecting your log…</div>';
+  return h+'</div></details>';
+}
+
+function renderDay(){
+  var d=P.days[idx],di=idx,isT=isoAdd(start,di)===today;
+  var h='<div class="dayhead"><h2>'+FULL[d.day]+' '+esc(d.date)+'</h2>'+(isT?'<span class="tag">Today</span>':'')+'</div>';
+  if(!d.streams.length)h+='<div class="empty">Rest day. Nothing programmed.</div>';
+  d.streams.forEach(function(s,si){
+    var k=kindOf(s),pl=parseLabel(s.label);
+    h+='<article class="sess k-'+k[0]+(pl.st?' is-'+pl.st:'')+'"><div class="top"><div class="plate"></div><div class="hd">'+(k[1]!==pl.title?'<div class="kind">'+k[1]+'</div>':'')+'<h3>'+esc(pl.title)+(pl.st?' <span class="badge b-'+pl.st+'">'+(pl.st==='skip'?'Skip':pl.st)+'</span>':'')+'</h3>'+(pl.sub?'<div class="sub">'+esc(pl.sub)+'</div>':'')+'</div></div>';
+    if(s.loads&&s.loads.length){h+='<div class="loads">'+s.loads.map(function(ld){var p=parseLoad(ld.load);
+      return '<div class="load"><div class="lname"><b>'+esc(ld.lift)+'</b><span class="scheme">'+esc(ld.scheme)+'</span></div><div class="kg">'+p.nums.map(function(n){return '<span class="n">'+esc(n)+'</span>';}).join('')+'<span class="u">kg</span></div>'+((ld.base||p.of)?'<div class="of">'+(ld.base?'Based on <b>'+esc(ld.base)+'</b>':esc(p.of))+'</div>':'')+'</div>';}).join('')+'</div>';}
+    if(s.text)h+='<details class="wod"'+((!s.loads||!s.loads.length)||isT?' open':'')+'><summary>Workout</summary><pre>'+esc(s.text)+'</pre></details>';
+    if(!/^(Comp class|Performance)\b/.test(pl.title)||pl.st!=='skip')h+=logHtml(di,si,s);
+    h+='</article>';
+  });
+  document.getElementById('day').innerHTML=h;
+}
+
+// saving
+var timers={},writing={},pending={};
+function collect(box){
+  var o={week:start,day:DAYS[+box.dataset.di],session:+box.dataset.si,label:P.days[+box.dataset.di].streams[+box.dataset.si].label,lifts:{}};
+  var on=box.querySelector('.seg [aria-pressed="true"]');o.status=on?on.dataset.v:null;
+  box.querySelectorAll('input[data-lift]').forEach(function(i){if(i.value.trim())o.lifts[i.dataset.lift]=i.value.trim();});
+  var r=+box.querySelector('input[type=range]').value;o.rpe=r||null;
+  o.note=box.querySelector('textarea').value.trim();
+  return o;}
+function save(box,delay){var k=box.dataset.k;clearTimeout(timers[k]);
+  var sv=document.getElementById('sv-'+k);if(sv)sv.textContent='Saving…';
+  timers[k]=setTimeout(function(){pending[k]=collect(box);flush(k);},delay);}
+function flush(k){if(writing[k]||!pending[k])return;var data=pending[k];pending[k]=null;writing[k]=true;
+  data.updatedAt=new Date().toISOString();logs[k]=data;
+  db.collection('logs').doc(k).set(data).then(function(){var sv=document.getElementById('sv-'+k);if(sv)sv.textContent='Saved';renderStrip();},function(e){
+    var sv=document.getElementById('sv-'+k);if(sv)sv.textContent=e&&e.code==='invalid_argument'?'Not allowed to save':'Not saved. Check your connection and try again.';
+    if(e&&e.code==='invalid_argument'){canWrite=false;}}).then(function(){writing[k]=false;if(pending[k])flush(k);});}
+
+var main=document.getElementById('day');
+main.addEventListener('click',function(e){var b=e.target.closest('.seg button');if(!b||b.disabled)return;var box=b.closest('.log');
+  var was=b.getAttribute('aria-pressed')==='true';box.querySelectorAll('.seg button').forEach(function(x){x.setAttribute('aria-pressed','false');});
+  if(!was)b.setAttribute('aria-pressed','true');save(box,0);});
+main.addEventListener('toggle',function(e){var d=e.target;if(d.classList&&d.classList.contains('log'))openLogs[d.dataset.k]=d.open;},true);
+main.addEventListener('input',function(e){var box=e.target.closest('.log');if(!box)return;
+  if(e.target.type==='range'){var o=box.querySelector('output');o.textContent=+e.target.value?e.target.value:'–';}
+  save(box,900);});
+
+renderStrip();renderDay();
+
+// connect the log store
+(async function(){
+  try{
+    db=window.claude&&window.claude.use?await window.claude.use('db'):null;
+    if(!db){dbState='off';renderDay();return;}
+    var u=await window.claude.use('user');var w=u&&u.can?await u.can('data.write'):null;canWrite=w!==false;
+    var first=true;
+    db.collection('logs').where('week','==',start).onSnapshot(function(snap){
+      snap.docs.forEach(function(d){if(!writing[d.id]&&!pending[d.id])logs[d.id]=d.data();});
+      var active=document.activeElement&&document.activeElement.closest&&document.activeElement.closest('.log');
+      dbState='ready';renderStrip();
+      if(first||!active){renderDay();}
+      first=false;
+    },function(){dbState='off';renderDay();});
+  }catch(e){dbState='off';renderDay();}
+})();
+})();
+</script>
