@@ -41,12 +41,12 @@
     "sat": {
       "am": {
         "type": "WL",
-        "add": "Row W1 S2"
+        "add": "+ Comp run"
       }
     },
     "sun": {
       "am": {
-        "type": "Run W1"
+        "type": "Rest"
       }
     }
   },
@@ -61,7 +61,8 @@
     "No pressing block yet. The press is failing at 52 and the shoulder is niggly, so Thursday's strict HSPU is this week's extra pressing.",
     "POLP front squat isn't programmed this week. Saturday's pause front squat (WL) covers it.",
     "Thu missed (busy day, feeling good). Fri: Row W1 S1 then Thursday's gymnastics piece. Sat unchanged (WL + Row S2). Sun: POLP press then Run W1. Still 3 endurance sessions this week.",
-    "Rule from Josh (17 Oct): no more than 2 POLP lifts in one day, and never bench and press on the same day. Wed had all three, and the press failed (8/5/4 @ 53) after bench."
+    "Rule from Josh (17 Oct): no more than 2 POLP lifts in one day, and never bench and press on the same day. Wed had all three, and the press failed (8/5/4 @ 53) after bench.",
+    "Sat 17 Oct: Josh ran the comp 5k run progression W1 (from 18 Sep: 3 × 6 min threshold + 4 × 400m). It counts as this week's run, so Sunday's Run W1 is dropped and the endurance track run starts at W1 next week. The comp 5k run block (Fridays, 18 Sep to the 6 Oct 5k test) is separate from the endurance track's Run Endurance and is already finished."
   ],
   "days": [
     {
@@ -227,6 +228,11 @@
         {
           "label": "Performance — SKIP",
           "text": "Skipped this week (35-min chipper: strict HSPU, bar MUs, burpees)."
+        },
+        {
+          "label": "Comp 5k Run progression W1 (from 18 Sep) — done",
+          "accent": "lim",
+          "text": "Week 1/4 of our 5k Run progressions:\nA. Threshold: 3 x 6 min, 90 sec easy jog between.\n- 2 min rest -\nB. 4 x 400m Run (OT3M)\n\n→ Josh did this instead of the endurance track's Run W1. It counts as this week's run."
         }
       ]
     },
@@ -248,7 +254,7 @@
           ]
         },
         {
-          "label": "Run Endurance — W1 (after the press, moved from Fri)",
+          "label": "Run Endurance — W1 — SKIP (ran Sat; starts next week)",
           "accent": "lim",
           "text": "A. Run Warm Up\n\nB.4-5 Continous sets:\nRun 1:30 @ RPE 5-6, Jog 1:30 @ RPE 3\nRun 1:00 @ RPE 5-6, Jog 1:00 @ RPE 3\nRun 0:30 @ RPE 6-7, Jog 2:30 @ RPE 3\n*32-40 min total time\n\n*Perform on any machine at the same effort and time structure as needed if you need to avoid running.\n\n→ First run since pneumonia: stop at 4 sets, and go to the low end if your breathing lags."
         }

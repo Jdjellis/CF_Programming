@@ -51,3 +51,4 @@ Run 2:00 @ RPE 6-7, Jog 2:00 @ RPE 3
 
 ## Log
 - 2026-10-12 — Transcribed W1–W4 from the Endurance PDFs. Start date provisional pending the athlete's check-in (returning from flu + pneumonia).
+- 2026-10-17 — Week of 12 Oct run was the comp 5k run progression W1 instead (separate block). Run Endurance W1 S1 moves to the week of 19 Oct.
