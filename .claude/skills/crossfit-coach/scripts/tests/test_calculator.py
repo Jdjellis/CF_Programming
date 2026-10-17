@@ -68,18 +68,32 @@ def test_clean_and_jerk_is_off_the_limiter(calc):
     assert res.base == "split jerk 1RM 124, the limiter over clean 124"
 
 
-@pytest.mark.parametrize("lift", ["power_snatch", "Pause Snatch", "snatch_pull_from_riser", "hang_power_snatch"])
-def test_snatch_variations_use_snatch(calc, lift):
+@pytest.mark.parametrize("lift", ["Pause Snatch", "block_snatch", "snatch_pull_from_riser", "hang snatch"])
+def test_full_snatch_variations_use_snatch(calc, lift):
     res = calc.prescribe(lift, Target.percent_of_1rm(80))
-    assert res.one_rm_kg == 88  # not power_snatch's own 82.5
+    assert res.one_rm_kg == 88
     assert res.base == "snatch 1RM 88"
 
 
-@pytest.mark.parametrize("lift", ["power_clean", "clean_pull_from_riser", "pause_clean"])
-def test_clean_variations_use_clean(calc, lift):
+@pytest.mark.parametrize("lift", ["power_snatch", "Block Power Snatch", "hang_power_snatch"])
+def test_power_snatch_variations_use_power_snatch(calc, lift):
     res = calc.prescribe(lift, Target.percent_of_1rm(80))
-    assert res.one_rm_kg == 124  # not power_clean's own 122
+    assert res.one_rm_kg == 82.5
+    assert res.base == "power snatch 1RM 82.5"
+
+
+@pytest.mark.parametrize("lift", ["clean_pull_from_riser", "pause_clean", "block clean"])
+def test_full_clean_variations_use_clean(calc, lift):
+    res = calc.prescribe(lift, Target.percent_of_1rm(80))
+    assert res.one_rm_kg == 124
     assert res.base == "clean 1RM 124"
+
+
+@pytest.mark.parametrize("lift", ["power_clean", "hang_power_clean", "block power clean"])
+def test_power_clean_variations_use_power_clean(calc, lift):
+    res = calc.prescribe(lift, Target.percent_of_1rm(80))
+    assert res.one_rm_kg == 122
+    assert res.base == "power clean 1RM 122"
 
 
 def test_push_jerk_never_comes_from_split_jerk(calc):
@@ -90,8 +104,13 @@ def test_push_jerk_never_comes_from_split_jerk(calc):
 
 def test_clean_plus_push_jerk_is_off_the_push_jerk(calc):
     res = calc.prescribe("Power Clean + Push Jerk", Target.percent_of_1rm(75))
-    assert res.base == "push jerk 1RM 105, the limiter over clean 124"
-    assert res.load_line() == "79 kg (75% of push jerk 1RM 105, the limiter over clean 124)"
+    assert res.base == "push jerk 1RM 105, the limiter over power clean 122"
+    assert res.load_line() == "79 kg (75% of push jerk 1RM 105, the limiter over power clean 122)"
+
+
+def test_full_clean_plus_split_jerk_uses_the_full_clean(calc):
+    res = calc.prescribe("pause clean + pause split jerk", Target.percent_of_1rm(80))
+    assert res.base == "split jerk 1RM 124, the limiter over clean 124"
 
 
 def test_pause_front_squat_uses_front_squat(calc):

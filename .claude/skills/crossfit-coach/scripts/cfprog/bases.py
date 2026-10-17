@@ -1,16 +1,20 @@
 """Which 1RM a lift is loaded off — the athlete's base-lift rules.
 
-    snatch variations (power, pause, hang, pulls, ...)  -> snatch 1RM
-    clean variations (power, pause, hang, pulls, ...)   -> clean 1RM
+    power snatch variations (block, hang, pause, ...)   -> power snatch 1RM
+    other snatch variations (block, pause, pulls, ...)  -> snatch 1RM
+    power clean variations (block, hang, pause, ...)    -> power clean 1RM
+    other clean variations (block, pause, pulls, ...)   -> clean 1RM
     jerks are specific: push jerk -> push jerk 1RM, split jerk -> split jerk 1RM
                         (a plain "jerk" is a split jerk)
     clean + jerk complexes -> the limiter: the lower of the clean 1RM and that
-                        jerk's 1RM (power clean + push jerk -> min(clean, push jerk))
+                        jerk's 1RM, the clean part following the power/full
+                        rule (power clean + push jerk -> min(power clean, push jerk))
     anything else        -> its own 1RM, or the 1RM of the lift with a leading
                         pause/tempo/paused modifier stripped (pause front squat
                         -> front squat)
 
-A variation's own recorded max (e.g. power_snatch) is deliberately NOT used.
+Power vs full is the only split: a block, hang or pause variation's own recorded
+max is never used.
 """
 
 from __future__ import annotations
@@ -54,13 +58,15 @@ def resolve_base(lift: str, maxes: MaxesProvider) -> Base:
     jerk = _jerk_base(key)
 
     if "snatch" in key:
-        return Base(maxes.get_max("snatch"), "snatch")
+        snatch = "power_snatch" if "power_snatch" in key else "snatch"
+        return Base(maxes.get_max(snatch), snatch)
+    clean = "power_clean" if "power_clean" in key else "clean"
     if has_clean and jerk:
-        parts = sorted(((maxes.get_max(name), name) for name in ("clean", jerk)), key=lambda p: (p[0], p[1] != jerk))
+        parts = sorted(((maxes.get_max(name), name) for name in (clean, jerk)), key=lambda p: (p[0], p[1] != jerk))
         (kg, name), (other_kg, other) = parts
         return Base(kg, name, ((other, other_kg),))
     if has_clean:
-        return Base(maxes.get_max("clean"), "clean")
+        return Base(maxes.get_max(clean), clean)
     if jerk:
         return Base(maxes.get_max(jerk), jerk)
 

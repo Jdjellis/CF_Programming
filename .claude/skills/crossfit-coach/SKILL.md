@@ -34,9 +34,9 @@ supply **judgment**; scripts and the POLP workbook supply **arithmetic**.
 
 - Pass the lift as programmed (`pause_snatch`, `power_clean_push_jerk`); the
   calculator picks the 1RM it's off (`cfprog/bases.py`) and names it in the line:
-  snatch variations off the snatch, clean variations off the clean, jerks off that
-  exact jerk (push jerk never from split jerk), clean + jerk complexes off the
-  limiter. Never pass a variation's own max to get around this.
+  power variations off the power lift (block power snatch -> power snatch), other
+  variations off the full lift (block snatch -> snatch), jerks off that exact jerk
+  (push jerk never from split jerk), clean + jerk complexes off the limiter. Never pass a variation's own max to get around this.
 - If a lift isn't in `data/maxes.json`, the calculator errors: follow §6, never
   invent a max.
 
@@ -243,8 +243,8 @@ only and does no math.
 
 ### 2.2.0
 - **Base lifts and the program page.** `calc.py` loads variations off their base
-  lift (`cfprog/bases.py`: snatch / clean families, jerk-specific, complexes off the
-  limiter) and names that 1RM in every load line. The week is published to one
+  lift (`cfprog/bases.py`: power vs full snatch / clean, jerk-specific, complexes
+  off the limiter) and names that 1RM in every load line. The week is published to one
   artifact page with an on-page session log (`assets/program-page.html`) instead of
   a rendered HTML file.
 
