@@ -23,7 +23,7 @@
     "wed": {
       "pm": {
         "type": "Strength ✓",
-        "add": "DL + Bench ✓, PSn skipped"
+        "add": "DL + Bench + Press"
       }
     },
     "thu": {
@@ -46,8 +46,7 @@
     },
     "sun": {
       "am": {
-        "type": "Open gym",
-        "add": "POLP Press + Run W1"
+        "type": "Run W1"
       }
     }
   },
@@ -61,7 +60,8 @@
     "Endurance is 3 sessions (Josh's choice): Row S1 Tue PM, Run Fri, easy Row S2 after Sat WL. Row S3 is dropped so Sunday stays a full rest day. Rowing paces come off the 19:19 5k (1:55.9/500m).",
     "No pressing block yet. The press is failing at 52 and the shoulder is niggly, so Thursday's strict HSPU is this week's extra pressing.",
     "POLP front squat isn't programmed this week. Saturday's pause front squat (WL) covers it.",
-    "Thu missed (busy day, feeling good). Fri: Row W1 S1 then Thursday's gymnastics piece. Sat unchanged (WL + Row S2). Sun: POLP press then Run W1. Still 3 endurance sessions this week."
+    "Thu missed (busy day, feeling good). Fri: Row W1 S1 then Thursday's gymnastics piece. Sat unchanged (WL + Row S2). Sun: POLP press then Run W1. Still 3 endurance sessions this week.",
+    "Rule from Josh (17 Oct): no more than 2 POLP lifts in one day, and never bench and press on the same day. Wed had all three, and the press failed (8/5/4 @ 53) after bench."
   ],
   "days": [
     {
@@ -129,9 +129,9 @@
           "text": "Pause clean + pause split jerk skipped (week 1 volume; Saturday has power clean + push jerk)."
         },
         {
-          "label": "Wed PM — strength instead of the WOD — done (power snatch skipped)",
+          "label": "Wed PM — strength instead of the WOD — done (DL, bench, press; power snatch skipped)",
           "accent": "lim",
-          "text": "1. Power Snatch (from Monday, if time): 3r x 75%, 76%, 78%, 79%, 80%\n2. POLP Deadlift\n3. POLP Bench Press\n\nThe class AMRAP is skipped for this.",
+          "text": "1. Power Snatch (from Monday, if time): 3r x 75%, 76%, 78%, 79%, 80%\n2. POLP Deadlift\n3. POLP Bench Press\n\nThe class AMRAP is skipped for this.\n\nAlso did the POLP press: 8 / 5 / 4 @ 53, a FAIL. That's the second fail at 53, so press moves to Phase 2 (3 × 5) next week.",
           "loads": [
             {
               "lift": "Power Snatch",
@@ -235,9 +235,9 @@
       "date": "18 Oct",
       "streams": [
         {
-          "label": "POLP Press — open gym before noon (moved from Wed)",
+          "label": "POLP Press — SKIP (already done Wed)",
           "accent": "lim",
-          "text": "POLP Press, then rest.",
+          "text": "Done Wednesday after bench. Nothing to do today except the run.",
           "loads": [
             {
               "lift": "POLP Press",
