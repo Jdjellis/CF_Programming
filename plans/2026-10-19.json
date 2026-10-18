@@ -1,0 +1,256 @@
+{
+  "week_of": "19–25 Oct 2026",
+  "week_start": "2026-10-19",
+  "source": "Claremont Competitors Programming 19–25 Oct 26; CFC Fortnightly Fulls WL block wk 2/9; CFC Endurance 19–25 Oct 26",
+  "focus": [
+    "Row 5K 12-wk — W1 (restart)",
+    "Comp 5k run progression",
+    "Front squat accessory",
+    "Class metcons at 60–70%"
+  ],
+  "summary": {
+    "mon": {
+      "pm": {
+        "type": "Perf + WL",
+        "add": "POLP BS"
+      }
+    },
+    "tue": {
+      "am": {
+        "type": "Perf A",
+        "add": "Row W1 S1"
+      }
+    },
+    "wed": {
+      "am": {
+        "type": "WL",
+        "add": "POLP DL + Press"
+      },
+      "pm": {
+        "type": "FS accessory",
+        "add": "+ Perf B (opt)"
+      }
+    },
+    "thu": {
+      "pm": {
+        "type": "Gymnastics + Comp",
+        "add": "POLP Bench + Row W1 S3"
+      }
+    },
+    "fri": {
+      "am": {
+        "type": "Comp run",
+        "add": "open gym"
+      }
+    },
+    "sat": {
+      "am": {
+        "type": "WL",
+        "add": "+ Row W1 S2"
+      }
+    },
+    "sun": {
+      "am": {
+        "type": "Rest"
+      }
+    }
+  },
+  "decisions": [
+    "Rowing restarts at W1, not the class's W6, because nothing was rowed last week. Row S1 replaces Tue Concept Golf (both are machine intervals). Row S3 replaces the Thu comp-class row, after bench. Row S2 is an easy 30 min after Sat WL.",
+    "POLP: Mon back squat 140 (repeat after last week's fail), Wed deadlift wk2 + press Phase 2, Thu bench wk5 94 (wk4 was 10/10/10). Max 2 a day; bench and press on different days.",
+    "Saturday front squat follows the class (pause FS 4×5 @ 84). POLP front squat stays unstarted (Josh, 18 Oct).",
+    "Extra squatting: a front squat accessory block Wed PM (zombie FS, Bulgarian split squat, Spanish squat holds). Wed is two days from both Mon and Sat squats, and the WL deadlift is a hinge.",
+    "Run: the comp 5k run progression on Fri open gym. Josh did W1 on 17 Oct. Week 2 (21–27 Sep PDF) isn't in Slack, so the plan uses week 3 from the 28 Sep PDF until Josh sends week 2.",
+    "Run Endurance (endurance track) is off this week; Josh is deciding whether to keep it.",
+    "Mon and Wed class metcons: half reps at 60–70% (Jason's 'strength focus' note). Wed Performance part A is skipped because the deadlift is done in WL. Tue Comp Extras and Sat Performance are skipped.",
+    "Pressing load: Wed press, Thu HSPU eccentrics + bench, Sat jerks. If the shoulder is niggly Thursday, cut the HSPU eccentrics before the bench.",
+    "Sat pause jerk behind the neck is off the split jerk 1RM (124), assuming you split it."
+  ],
+  "days": [
+    {
+      "day": "Mon",
+      "date": "19 Oct",
+      "streams": [
+        {
+          "label": "Performance — B only (CRUISE)",
+          "text": "*If strength is a focus:\nHalve the Pull Up and Step Over reps in the WOD and go through that workout at about 60-70% of max effort.\n\nA. Snatch: 3 x 77%, 78%, 80%, 81%, 82%\n*If you don't know %s just work some technical sets of 3.\n\nB. For time:\n20 Pull Ups\n20 Lateral Step Up & Overs (24/20\")\n10 Squat Snatches (50/35kg)\n16 Pull Ups\n16 Lateral Step Up & Overs\n8 Squat Snatches (60/40kg)\n12 Pull Ups\n12 Lateral Step Up & Overs\n6 Squat Snatches (70/45kg)\n8 Pull Ups\n8 Lateral Step Up & Overs\n4 Squat Snatches (80/55kg)\n4 Pull Ups\n4 Lateral Step Up & Overs\n2 Squat Snatches (90/60kg)\n*If if the final weight is past your max use these %s: 50, 6, 70, 80, 90% or use the last weight you did in Part A and work backwards\n*15 min cap\n\n→ This week: B only (you snatch in WL). Halve the pull-ups and step-overs, 60–70% effort. The last round's 90 kg is your 1RM, so cap the squat snatches well under it."
+        },
+        {
+          "label": "Weightlifting",
+          "text": "(0 - 18 min)\nA. Snatch:\n3 x 77%, 78%, 80%, 81%, 82%\n\n(18 - 28 min)\nB. Tall Snatch:\n3 x 40%, 45%, 50%, 55%\n*%s done off your Snatch. These numbers are a guide, it's more important to be fast and move well than be strict on the %s.\n\n(28 - 45 min)\nC. POLP Back Squat:\n*If you did the Snatches in class move everything forward and do:\n3 Rounds for quality:\n20 Zercher Twister alt Reverse Lunges\n15 Overhead Banded Side Bends\n10 Single Leg Weighted GHD Hip Extensions",
+          "loads": [
+            {
+              "lift": "Snatch",
+              "scheme": "3 @ 77/78/80/81/82%",
+              "load": "69.5 / 70 / 72 / 73 / 74 kg (of snatch 90)",
+              "base": "snatch 1RM 90 kg"
+            },
+            {
+              "lift": "Tall Snatch",
+              "scheme": "3 @ 40/45/50/55%",
+              "load": "36 / 40.5 / 45 / 49.5 kg (of snatch 90)",
+              "base": "snatch 1RM 90 kg"
+            },
+            {
+              "lift": "POLP Back Squat",
+              "scheme": "3 × 10",
+              "load": "140 kg (POLP wk6, 3 × 10)",
+              "base": "POLP workbook, week 6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": "Tue",
+      "date": "20 Oct",
+      "streams": [
+        {
+          "label": "Performance — A only",
+          "text": "A. Row technique work.\n\nB. \"Concept Golf\"\n18 Rounds: 1 min work, 1 min rest\nalt between\nRow\nSki\nBike\n(6 of each machine)\n\n→ This week: do A, then your Row W1 S1 instead of Concept Golf."
+        },
+        {
+          "label": "Row 5K — W1 S1",
+          "accent": "lim",
+          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 5k PR 19:19 = 1:55.9/500m, so the 4-min sets are at 1:57.9/500m."
+        }
+      ]
+    },
+    {
+      "day": "Wed",
+      "date": "21 Oct",
+      "streams": [
+        {
+          "label": "Weightlifting AM",
+          "text": "(0 - 15 min)\nA. Power Clean & Push Jerk:\n2 x (1 +1) x 77%, 78%, 80%, 81%, 82%\n\n(15 - 30 min)\nB. POLP Deadlift\n\n(30 - 45 min)\nC. POLP Press or Bench Press\n*If you're more interested in overhead shoulder function and great carryover then do the Press. If you would rather Bench then do that.\n\n*If you did the Deadlifts in class:\n3 Rounds for quality:\n8 Side Lying Thoracic Rotation Press (e side)\n6 Single Leg Lateral Box Step down touches (e side)\n4 Jefferson Curls\n\n→ This week: Press (bench is Thursday).",
+          "loads": [
+            {
+              "lift": "Power Clean & Push Jerk",
+              "scheme": "2×(1+1) @ 77/78/80/81/82%",
+              "load": "84.5 / 86 / 88 / 89 / 90 kg (of PC+PJ 110)",
+              "base": "power clean + push jerk 1RM 110 kg (push jerk is the limiter)"
+            },
+            {
+              "lift": "POLP Deadlift (ramp)",
+              "scheme": "3 × 10",
+              "load": "147 / 159 / 172 kg (POLP wk2, 3 × 10)",
+              "base": "POLP workbook, week 2"
+            },
+            {
+              "lift": "POLP Press",
+              "scheme": "2 builds + 3 × 5",
+              "load": "39 / 46 / 53 kg (POLP wk5, builds 39 & 46, 3 × 5 @ 53)",
+              "base": "POLP workbook, week 5 (Phase 2)"
+            }
+          ]
+        },
+        {
+          "label": "Front squat accessory — PM",
+          "accent": "lim",
+          "text": "Front squat accessory (after WL deadlift, two days clear of Mon and Sat squats):\n1. Zombie front squat: 3 × 5 (front rack + upright torso)\n2. Bulgarian split squat: 3 × 8/leg\n3. Spanish squat (banded): 3 × 20 s holds (knee/tendon health)\n\n→ Controlled reps, 2 in the tank. Drop 2 before the Spanish squats if short on time.",
+          "loads": [
+            {
+              "lift": "Zombie Front Squat",
+              "scheme": "3 × 5 @ 55%",
+              "load": "77 kg (55% of 140)",
+              "base": "front squat 1RM 140 kg"
+            }
+          ]
+        },
+        {
+          "label": "Performance — B only, optional (CRUISE)",
+          "text": "*If strength is a focus:\nHalve tthe reps in the WOD and go through that workout at about 60-70% of max effort.\n\nA. POLP Deadlifts:\n*If it's your first week: 10 x 55%, 60%, 65%\n*If you were successful last week, move up 5% on all 3 sets.\n\nB. For total time:\n2 Rounds:\n80 Double Unders\n20 alt DB Goblet Reverse Lunges\n15 Lateral Burpees Over DB\n3 PVC lateral hurdle under and over (e direction)\n- rest 90 sec -\n2 Rounds:\n80 Double Unders\n20 Single Arm DB Thrusters\n15 Lateral Burpees over DB.\n3 PVC lateral hurdle under and over (e direction)\nDB: (22.5/15kg)\n*18 min cap\n\n→ This week: skip A (deadlift done in WL). Do your front squat accessory first, then B at half reps and 60–70% effort if you still want it."
+        }
+      ]
+    },
+    {
+      "day": "Thu",
+      "date": "22 Oct",
+      "streams": [
+        {
+          "label": "Gymnastics — PUSH",
+          "accent": "lim",
+          "text": "If you feel you can recovery / work on hands needs improvement do WOD before comp class.\n\nA. Gymnastics Week 15: Floor Series 2/4:\nHand Balancing: Frog Stand, Tucked Parallette Handstand, Handstand Hold.\n\nB. 12 Min AMRAP for quality\n3 Strict Muscle Ups\n20 sec Arch Hold\n3 Parallette HSPU Eccentric (3 sec)\n*Go as deep as you can control\n20 sec Hollow Hold\n- directly into -\n8 min AMRAP:\n5 sec Chin over Bar Hold\n10 sec Bottom of Ring Support\n15 Tuck Hang\n20 sec Top of Ring Support\n\n→ PUSH: this is your muscle-up and HSPU work. If the shoulder is niggly, cut the HSPU eccentrics so the bench stays intact."
+        },
+        {
+          "label": "Comp class — POLP bench",
+          "text": "A. POLP Bench Press:\n\nB. ROW 5K 12 WEEK CYCLE: Meso 2/3, Week 6/12\n3 sets:\nRow 4 min @ 5k PR pace -2 sec, rest 30 seconds\nThen, rest 5 min, into\n3 sets:\nRow 4 min @ 5k PR pace -2 sec, rest 30 seconds\n\n→ This week: A, then your Row W1 S3 instead of the class's W6 row.",
+          "loads": [
+            {
+              "lift": "POLP Bench Press",
+              "scheme": "3 × 10",
+              "load": "94 kg (POLP wk5, 3 × 10)",
+              "base": "POLP workbook, week 5"
+            }
+          ]
+        },
+        {
+          "label": "Row 5K — W1 S3",
+          "accent": "lim",
+          "text": "12 sets of:\nRow 30 sec @ 85%\nRow 30 sec @ 50%\n\nThen, rest 5 min, into\n\n10 sets of:\nRow 30 sec @ 85%\nRow 30 sec @ 50%\n\n%s are percieved effort."
+        }
+      ]
+    },
+    {
+      "day": "Fri",
+      "date": "23 Oct",
+      "streams": [
+        {
+          "label": "Comp 5k Run progression — open gym",
+          "accent": "lim",
+          "text": "Week 3/4 of our 5k Run progressions:\n*Can be modified if unable to run.\n\nA. Threshold: 1 x 12 min, 90 sec easy jog between.\n'Comfortably hard' — could get out a short sentence, not a conversation.\n\n- 2 min rest -\n\nB. 3 x 1000m (OT7M)\n*Easy jog between\n*Run as fast as you're able, but something you can sustain across the sets,\n*If the first set takes more than 6 minutes, next interval do a 500m.\n\n→ From the 28 Sep Competitors PDF. Week 2 (21–27 Sep) isn't in Slack, so this is week 3 unless you send me week 2."
+        }
+      ]
+    },
+    {
+      "day": "Sat",
+      "date": "24 Oct",
+      "streams": [
+        {
+          "label": "Weightlifting",
+          "text": "3 Rounds:\n5 Clean Grip Sotts Press\n5 Snatch Grip Monkey F******s\n\n(0 - 20 min)\nA. Power Snatch:\n3 x 77%, 78%, 80%, 81%, 82%\n\n(20 - 40 min)\nB. Clean & Split Jerk:\n2 x (1 + 1 ) x 77%, 78%, 80%, 81%, 82%\n\n(40 - 50 min)\nC. Pause (2 sec) Jerk Behind the Neck:\n2 x 60%, 65%, 70%, 75%\n\n(50 - 65 min)\nD. Pause (3 sec) Front Squat:\n4s x 5r x 60%\n*If you're not doing the WOD and didn't get both of the accessory pieces done from Monday or Wednesdays WL, do it after for some body maintenance.",
+          "loads": [
+            {
+              "lift": "Power Snatch",
+              "scheme": "3 @ 77/78/80/81/82%",
+              "load": "65.5 / 66.5 / 68 / 69 / 69.5 kg (of power snatch 85)",
+              "base": "power snatch 1RM 85 kg"
+            },
+            {
+              "lift": "Clean & Split Jerk",
+              "scheme": "2×(1+1) @ 77/78/80/81/82%",
+              "load": "95.5 / 96.5 / 99 / 100.5 / 101.5 kg (of clean & jerk 124)",
+              "base": "clean & jerk 1RM 124 kg (split jerk 124 is the limiter; clean is 130)"
+            },
+            {
+              "lift": "Pause Jerk Behind the Neck",
+              "scheme": "2 @ 60/65/70/75%",
+              "load": "74.5 / 80.5 / 87 / 93 kg (of split jerk 124)",
+              "base": "split jerk 1RM 124 kg"
+            },
+            {
+              "lift": "Pause Front Squat",
+              "scheme": "4 × 5 @ 60%",
+              "load": "84 kg (60% of 140)",
+              "base": "front squat 1RM 140 kg"
+            }
+          ]
+        },
+        {
+          "label": "Row 5K — W1 S2",
+          "accent": "lim",
+          "text": "Row 30 min @ Z1 building to Z3 through the 30 min."
+        },
+        {
+          "label": "Performance — SKIP",
+          "text": "In Pairs: 35 min AMRAP: One person working at a time\n80/60 Calorie Row\n80 Toes to Bar\n60/45 Calorie Bike Erg\n60 Chest to Bar Pull Ups\n40/30 Calorie Ski\n30 Bar Muscle Ups\n\n→ Skipped: WL is the priority and you row afterwards."
+        }
+      ]
+    },
+    {
+      "day": "Sun",
+      "date": "25 Oct",
+      "streams": []
+    }
+  ]
+}
