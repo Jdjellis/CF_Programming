@@ -126,8 +126,8 @@
       "date": "14 Oct",
       "streams": [
         {
-          "label": "Weightlifting AM — MISSED",
-          "text": "Pause clean + pause split jerk skipped (week 1 volume; Saturday has power clean + push jerk)."
+          "label": "Weightlifting AM — done",
+          "text": "Josh did the Wed WL class after all (reported at the Sunday check-in)."
         },
         {
           "label": "Wed PM — strength instead of the WOD — done (DL, bench, press; power snatch skipped)",
@@ -175,12 +175,12 @@
       "date": "16 Oct",
       "streams": [
         {
-          "label": "Row 5K — W1 S1 (AM, moved from Thu)",
+          "label": "Row 5K — W1 S1 — MISSED (carries into next week)",
           "accent": "lim",
           "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 5k PR 19:19 = 1:55.9/500m, so the 4-min sets are at 1:57.9/500m."
         },
         {
-          "label": "Skill & Strength — PUSH (moved from Thu, after the row)",
+          "label": "Skill & Strength — MISSED",
           "accent": "lim",
           "text": "A. Gymnastics Week 14: Floor Series 1/4:\nFloor Basics: Bridge Up, Forward Roll & Wall\nWalk.\n\nB. 20 Min AMRAP for quality:\n1 Wall Walk + 10 Wall Facing Shoulder Taps\n2 Strict Muscle Ups (2 False Grip Chest to\nRing + 2 dips)\n3 Wall Facing Strict HSPU (Pike)\n4 Strict L to Toes to Ring\n6 Rolling Candlestick to Squat\n*Modifications in brackets."
         }
@@ -191,7 +191,7 @@
       "date": "17 Oct",
       "streams": [
         {
-          "label": "Weightlifting",
+          "label": "Weightlifting — done",
           "text": "(0 - 20 min)\nA. Pause (at knee) Snatch:\n3r x 70%, 72%, 75%, 78%, 80%\n\n(20 - 40 min)\nB. Power Clean + Push Jerk:\n5 x 2 x (1+1) x 75%, 76%, 78%, 79%, 80%\n\n(40 - 50 min)\nC. Clean Pull from Riser (2') 3r x 90%, 95%,\n100%\n\n(50 - 70 min)\nD. Pause (3 sec) Front Squat: 5 x 5 x 55%",
           "loads": [
             {
@@ -221,7 +221,7 @@
           ]
         },
         {
-          "label": "Row 5K — W1 S2",
+          "label": "Row 5K — W1 S2 — MISSED",
           "accent": "lim",
           "text": "Row 30 min @ Z1 building to Z3 through the 30 min."
         },
