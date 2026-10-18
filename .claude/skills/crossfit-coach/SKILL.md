@@ -9,7 +9,7 @@ description: >
   PDFs from Slack (via the Slack connector), reads the POLP workbook from Google Drive, tracks programs in
   programs/, and calls a deterministic calculator for every load (never does the
   math itself).
-version: 2.1.0
+version: 2.2.0
 ---
 
 # CrossFit Coach
@@ -32,6 +32,11 @@ supply **judgment**; scripts and the POLP workbook supply **arithmetic**.
   python3 .claude/skills/crossfit-coach/scripts/calc.py <lift> --rpe 8 --reps 5
   ```
 
+- Pass the lift as programmed (`pause_snatch`, `power_clean_push_jerk`); the
+  calculator picks the 1RM it's off (`cfprog/bases.py`) and names it in the line:
+  power variations off the power lift (block power snatch -> power snatch), other
+  variations off the full lift (block snatch -> snatch), jerks off that exact jerk
+  (push jerk never from split jerk), clean + jerk complexes off the limiter. Never pass a variation's own max to get around this.
 - If a lift isn't in `data/maxes.json`, the calculator errors: follow §6, never
   invent a max.
 
@@ -138,15 +143,17 @@ Send **one** message, then wait:
 1. Resolve every load: POLP rows verbatim; everything else via `calc.py`.
 2. Write the plan spec (shape: `references/examples/weekly-plan.json`, including
    `week_start` and the `decisions` list; class workout text **verbatim** from the
-   PDFs; the athlete's own blocks `"accent": "lim"`) to `plans/<Monday>.json`.
+   PDFs; the athlete's own blocks `"accent": "lim"`; each load's `base` names the
+   1RM it is off, e.g. `"snatch 1RM 90 kg"`, or `"POLP workbook, week 5"`) to
+   `plans/<Monday>.json`.
    Commit (§2).
-3. Render and deliver the HTML to the Library:
-
-   ```
-   mkdir -p out && python3 .claude/skills/crossfit-coach/scripts/render_week.py plans/<Monday>.json -o "out/Gym Program - Week starting <Monday>.html"
-   ```
-
-4. Reply with a short summary: what to push / cruise / skip, plus the file name.
+3. Publish the week to the athlete's one program page, a new version on the same
+   artifact link (project memory has the URL; never create a second one). Build it
+   from `assets/program-page.html`, replacing `%%PLAN%%` with the plan JSON (escape
+   `</` as `<\/`) plus a `maxes_note` naming the 1RMs the week is off. Publish with
+   that `url` and no `capabilities`, so the page keeps its session log. The athlete
+   logs results on the page (artifact db, collection `logs`); read them at check-in.
+4. Reply with a short summary: what to push / cruise / skip, plus the page link.
 
 ## §4. Programs
 
@@ -225,7 +232,7 @@ the athlete asks for it.
 ## §8. Output conventions
 
 Canonical templates: `references/examples/weekly-plan.md` and
-`references/examples/daily-adjust.md`; load-line format `144.5 kg (87.5% of 165)`
+`references/examples/daily-adjust.md`; load-line format `144.5 kg (87.5% of back squat 1RM 165)`
 (POLP lines: `<kg> kg (POLP wk<N>, <sets × reps>)`). The athlete reads on a phone:
 short and skimmable, lead with push / cruise / skip. The renderer is presentation
 only and does no math.
@@ -233,6 +240,13 @@ only and does no math.
 ---
 
 ## Changelog
+
+### 2.2.0
+- **Base lifts and the program page.** `calc.py` loads variations off their base
+  lift (`cfprog/bases.py`: power vs full snatch / clean, jerk-specific, complexes
+  off the limiter) and names that 1RM in every load line. The week is published to one
+  artifact page with an on-page session log (`assets/program-page.html`) instead of
+  a rendered HTML file.
 
 ### 2.1.0
 - **Slack via the connector.** `fetch_slack.py`, its tests and the Slack bot

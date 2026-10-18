@@ -91,6 +91,7 @@ class PrescriptionResult:
     target_fraction: float    # fraction of 1RM the target resolves to (e.g. 0.85)
     working_weight_kg: float  # one_rm * fraction, before display rounding
     notes: tuple[str, ...] = field(default_factory=tuple)
+    base: str = ""            # which 1RM it is off, e.g. "snatch 1RM 90" (see cfprog.bases)
 
     @property
     def prescribed_kg(self) -> float:
@@ -98,9 +99,9 @@ class PrescriptionResult:
         return round_to_half_kg(self.working_weight_kg)
 
     def load_line(self) -> str:
-        """The paste-ready load string, e.g. '144.5 kg (87.5% of 165)'."""
+        """The paste-ready load string, e.g. '144.5 kg (87.5% of back squat 1RM 165)'."""
         pct = self.target_fraction * 100
-        return f"{self.prescribed_kg:g} kg ({pct:g}% of {self.one_rm_kg:g})"
+        return f"{self.prescribed_kg:g} kg ({pct:g}% of {self.base or f'{self.one_rm_kg:g}'})"
 
     def summary(self) -> str:
         head = f"{self.lift}  {self.target.describe()}  ->  {self.load_line()}"
