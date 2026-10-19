@@ -3,9 +3,9 @@
   "week_start": "2026-10-19",
   "source": "Claremont Competitors Programming 19–25 Oct 26; CFC Fortnightly Fulls WL block wk 2/9; CFC Endurance 19–25 Oct 26",
   "focus": [
-    "Row 5K 12-wk — W1 (restart)",
-    "Comp 5k run progression",
-    "Front squat accessory",
+    "WL comp peak (12 Dec): WL block wk 2/9",
+    "Row 5K 12-wk — W1, S1 + S2 only",
+    "Strict MUs Thu + HSPU skill Sun",
     "Class metcons at 60–70%"
   ],
   "summary": {
@@ -38,13 +38,12 @@
     "thu": {
       "pm": {
         "type": "Gymnastics + Comp",
-        "add": "POLP Bench + Row W1 S3"
+        "add": "strict MUs + POLP Bench"
       }
     },
     "fri": {
       "am": {
-        "type": "Comp run",
-        "add": "open gym"
+        "type": "Rest"
       }
     },
     "sat": {
@@ -55,19 +54,21 @@
     },
     "sun": {
       "am": {
-        "type": "Rest"
+        "type": "HSPU skill",
+        "add": "open gym, 20 min"
       }
     }
   },
   "decisions": [
-    "Rowing restarts at W1, not the class's W6, because nothing was rowed last week. Row S1 replaces Tue Concept Golf (both are machine intervals). Row S3 replaces the Thu comp-class row, after bench. Row S2 is an easy 30 min after Sat WL.",
-    "POLP: Mon back squat 140 (repeat after last week's fail), Wed deadlift wk2 + press Phase 2, Thu bench wk5 94 (wk4 was 10/10/10). Max 2 a day; bench and press on different days.",
+    "Block plan (Josh, 19 Oct): until the 12 Dec weightlifting comp, the WL block is the priority. Rowing is S1 + S2 a week, there's no running, and POLP follows the class programming. Thursday's strict ring muscle-ups stay, and there's one separate HSPU skill session a week.",
+    "HSPU skill goes Sunday at open gym (about 20 min, strict triples, stop short). Every other day is next to pressing: Tue is the day before the POLP press, and Fri sits between Thu bench and Sat jerks. Sunday is furthest from both, at the cost of a little of the rest day.",
+    "Rowing restarts at W1, not the class's W6, because nothing was rowed last week. Row S1 replaces Tue Concept Golf (both are machine intervals). Row S2 is an easy 30 min after Sat WL. S3 and the Thu comp-class row are skipped.",
+    "Friday is a full rest day now that the run is dropped.",
+    "Pressing load: Wed press, Thu HSPU eccentrics + bench, Sat jerks, Sun HSPU triples. If the shoulder is niggly Thursday, cut the eccentrics before the bench. If it's niggly Sunday, do holds only.",
+    "POLP (as the class schedules it): Mon back squat 140 (repeat after last week's fail), Wed deadlift wk2 + press Phase 2, Thu bench wk5 94 (wk4 was 10/10/10). Max 2 a day; bench and press on different days.",
     "Saturday front squat follows the class (pause FS 4×5 @ 84). POLP front squat stays unstarted (Josh, 18 Oct).",
     "Extra squatting: a front squat accessory block Wed PM (zombie FS, Bulgarian split squat, Spanish squat holds). Wed is two days from both Mon and Sat squats, and the WL deadlift is a hinge.",
-    "Run: the comp 5k run progression on Fri open gym. Josh did W1 on 17 Oct. Week 2 (21–27 Sep PDF) isn't in Slack, so the plan uses week 3 from the 28 Sep PDF until Josh sends week 2.",
-    "Run Endurance (endurance track) is off this week; Josh is deciding whether to keep it.",
     "Mon and Wed class metcons: half reps at 60–70% (Jason's 'strength focus' note). Wed Performance part A is skipped because the deadlift is done in WL. Tue Comp Extras and Sat Performance are skipped.",
-    "Pressing load: Wed press, Thu HSPU eccentrics + bench, Sat jerks. If the shoulder is niggly Thursday, cut the HSPU eccentrics before the bench.",
     "Sat pause jerk behind the neck is off the split jerk 1RM (124), assuming you split it."
   ],
   "days": [
@@ -172,13 +173,13 @@
       "date": "22 Oct",
       "streams": [
         {
-          "label": "Gymnastics — PUSH",
+          "label": "Gymnastics — strict muscle-ups (PUSH)",
           "accent": "lim",
-          "text": "If you feel you can recovery / work on hands needs improvement do WOD before comp class.\n\nA. Gymnastics Week 15: Floor Series 2/4:\nHand Balancing: Frog Stand, Tucked Parallette Handstand, Handstand Hold.\n\nB. 12 Min AMRAP for quality\n3 Strict Muscle Ups\n20 sec Arch Hold\n3 Parallette HSPU Eccentric (3 sec)\n*Go as deep as you can control\n20 sec Hollow Hold\n- directly into -\n8 min AMRAP:\n5 sec Chin over Bar Hold\n10 sec Bottom of Ring Support\n15 Tuck Hang\n20 sec Top of Ring Support\n\n→ PUSH: this is your muscle-up and HSPU work. If the shoulder is niggly, cut the HSPU eccentrics so the bench stays intact."
+          "text": "If you feel you can recovery / work on hands needs improvement do WOD before comp class.\n\nA. Gymnastics Week 15: Floor Series 2/4:\nHand Balancing: Frog Stand, Tucked Parallette Handstand, Handstand Hold.\n\nB. 12 Min AMRAP for quality\n3 Strict Muscle Ups\n20 sec Arch Hold\n3 Parallette HSPU Eccentric (3 sec)\n*Go as deep as you can control\n20 sec Hollow Hold\n- directly into -\n8 min AMRAP:\n5 sec Chin over Bar Hold\n10 sec Bottom of Ring Support\n15 Tuck Hang\n20 sec Top of Ring Support\n\n→ As written, strict muscle-ups included. Keep the parallette HSPU eccentrics only if the shoulder feels fine, so the bench stays intact."
         },
         {
           "label": "Comp class — POLP bench",
-          "text": "A. POLP Bench Press:\n\nB. ROW 5K 12 WEEK CYCLE: Meso 2/3, Week 6/12\n3 sets:\nRow 4 min @ 5k PR pace -2 sec, rest 30 seconds\nThen, rest 5 min, into\n3 sets:\nRow 4 min @ 5k PR pace -2 sec, rest 30 seconds\n\n→ This week: A, then your Row W1 S3 instead of the class's W6 row.",
+          "text": "A. POLP Bench Press:\n\nB. ROW 5K 12 WEEK CYCLE: Meso 2/3, Week 6/12\n3 sets:\nRow 4 min @ 5k PR pace -2 sec, rest 30 seconds\nThen, rest 5 min, into\n3 sets:\nRow 4 min @ 5k PR pace -2 sec, rest 30 seconds\n\n→ This week: A only. Row S3 is dropped this block (rowing is S1 + S2 until the 12 Dec comp), so skip B.",
           "loads": [
             {
               "lift": "POLP Bench Press",
@@ -187,24 +188,13 @@
               "base": "POLP workbook, week 5"
             }
           ]
-        },
-        {
-          "label": "Row 5K — W1 S3",
-          "accent": "lim",
-          "text": "12 sets of:\nRow 30 sec @ 85%\nRow 30 sec @ 50%\n\nThen, rest 5 min, into\n\n10 sets of:\nRow 30 sec @ 85%\nRow 30 sec @ 50%\n\n%s are percieved effort."
         }
       ]
     },
     {
       "day": "Fri",
       "date": "23 Oct",
-      "streams": [
-        {
-          "label": "Comp 5k Run progression — open gym",
-          "accent": "lim",
-          "text": "Week 3/4 of our 5k Run progressions:\n*Can be modified if unable to run.\n\nA. Threshold: 1 x 12 min, 90 sec easy jog between.\n'Comfortably hard' — could get out a short sentence, not a conversation.\n\n- 2 min rest -\n\nB. 3 x 1000m (OT7M)\n*Easy jog between\n*Run as fast as you're able, but something you can sustain across the sets,\n*If the first set takes more than 6 minutes, next interval do a 500m.\n\n→ From the 28 Sep Competitors PDF. Week 2 (21–27 Sep) isn't in Slack, so this is week 3 unless you send me week 2."
-        }
-      ]
+      "streams": []
     },
     {
       "day": "Sat",
@@ -254,7 +244,13 @@
     {
       "day": "Sun",
       "date": "25 Oct",
-      "streams": []
+      "streams": [
+        {
+          "label": "HSPU skill — open gym, before noon",
+          "accent": "lim",
+          "text": "About 20 minutes, the week's one HSPU session.\n\n1. Shoulder warm-up + 2 × 20 s wall-facing handstand hold\n2. Strict HSPU: 5 sets of 3, 2 min rest. Stop the set as soon as a rep slows. No grinders, no kipping.\n3. 3 × 20 s freestanding or wall handstand hold\n\n→ Sunday sits furthest from both Wed POLP press and Sat jerks, so it doesn't eat into either."
+        }
+      ]
     }
   ]
 }
