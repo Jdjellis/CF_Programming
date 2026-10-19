@@ -1,6 +1,6 @@
 ---
 name: Run Endurance
-status: active
+status: done
 started: 2026-10-12
 source: Endurance channel PDFs ("RUN ENDURANCE", Thursdays), W1 = week of 21 Sep 2026. Later weeks are appended as the gym posts them.
 current: W1 S1
@@ -53,3 +53,4 @@ Run 2:00 @ RPE 6-7, Jog 2:00 @ RPE 3
 - 2026-10-12 — Transcribed W1–W4 from the Endurance PDFs. Start date provisional pending the athlete's check-in (returning from flu + pneumonia).
 - 2026-10-17 — Week of 12 Oct run was the comp 5k run progression W1 instead (separate block). Run Endurance W1 S1 moves to the week of 19 Oct.
 - 2026-10-18 — W1 not done (the Sat comp 5k run stood in for it). Josh may drop Run Endurance; deciding during the week of 19 Oct. current stays W1 S1.
+- 2026-10-19 — Dropped. Periodisation plan: rowing is the only engine progression until the 12 Dec weightlifting comp; the comp 5k run progression is dropped too. Never started.
