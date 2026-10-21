@@ -21,18 +21,17 @@
     },
     "tue": {
       "am": {
-        "type": "Perf A",
-        "add": "Row W1 S1"
+        "type": "Missed"
       }
     },
     "wed": {
       "am": {
-        "type": "WL",
+        "type": "WL ✓",
         "add": "POLP DL + Press"
       },
       "pm": {
-        "type": "FS accessory",
-        "add": "+ Perf B (opt)"
+        "type": "Row W1 S1",
+        "add": "+ FS accessory"
       }
     },
     "thu": {
@@ -60,6 +59,7 @@
     }
   },
   "decisions": [
+    "Tue 20 Oct missed. Wed PM: Row W1 S1 replaces the optional class WOD, after the front squat accessories (drop those first if flat). Friday stays rest.",
     "Block plan (Josh, 19 Oct): until the 12 Dec weightlifting comp, the WL block is the priority. Rowing is S1 + S2 a week, there's no running, and POLP follows the class programming. Thursday's strict ring muscle-ups stay, and there's one separate HSPU skill session a week.",
     "HSPU skill goes Sunday at open gym (strict HSPU EMOM 8 min × 3, stopping if a rep slows). Every other day is next to pressing: Tue is the day before the POLP press, and Fri sits between Thu bench and Sat jerks. Sunday is furthest from both, at the cost of a little of the rest day.",
     "Rowing restarts at W1, not the class's W6, because nothing was rowed last week. Row S1 replaces Tue Concept Golf (both are machine intervals). Row S2 is an easy 30 min after Sat WL. S3 and the Thu comp-class row are skipped.",
@@ -111,11 +111,11 @@
       "date": "20 Oct",
       "streams": [
         {
-          "label": "Performance — A only",
+          "label": "Performance — MISSED",
           "text": "A. Row technique work.\n\nB. \"Concept Golf\"\n18 Rounds: 1 min work, 1 min rest\nalt between\nRow\nSki\nBike\n(6 of each machine)\n\n→ This week: do A, then your Row W1 S1 instead of Concept Golf."
         },
         {
-          "label": "Row 5K — W1 S1",
+          "label": "Row 5K — MISSED (row moved to Wed PM)",
           "accent": "lim",
           "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 5k PR 19:19 = 1:55.9/500m, so the 4-min sets are at 1:57.9/500m."
         }
@@ -126,7 +126,7 @@
       "date": "21 Oct",
       "streams": [
         {
-          "label": "Weightlifting AM",
+          "label": "Weightlifting AM — done",
           "text": "(0 - 15 min)\nA. Power Clean & Push Jerk:\n2 x (1 +1) x 77%, 78%, 80%, 81%, 82%\n\n(15 - 30 min)\nB. POLP Deadlift\n\n(30 - 45 min)\nC. POLP Press or Bench Press\n*If you're more interested in overhead shoulder function and great carryover then do the Press. If you would rather Bench then do that.\n\n*If you did the Deadlifts in class:\n3 Rounds for quality:\n8 Side Lying Thoracic Rotation Press (e side)\n6 Single Leg Lateral Box Step down touches (e side)\n4 Jefferson Curls\n\n→ This week: Press (bench is Thursday).",
           "loads": [
             {
@@ -150,9 +150,9 @@
           ]
         },
         {
-          "label": "Front squat accessory — PM",
+          "label": "Front squat accessory + Row W1 S1 — PM (row moved from Tue)",
           "accent": "lim",
-          "text": "Front squat accessory (after WL deadlift, two days clear of Mon and Sat squats):\n1. Zombie front squat: 3 × 5 (front rack + upright torso)\n2. Bulgarian split squat: 3 × 8/leg\n3. Spanish squat (banded): 3 × 20 s holds (knee/tendon health)\n\n→ Controlled reps, 2 in the tank. Drop 2 before the Spanish squats if short on time.",
+          "text": "Front squat accessory (after WL deadlift, two days clear of Mon and Sat squats):\n1. Zombie front squat: 3 × 5 (front rack + upright torso)\n2. Bulgarian split squat: 3 × 8/leg\n3. Spanish squat (banded): 3 × 20 s holds (knee/tendon health)\n\n→ Controlled reps, 2 in the tank. Drop 2 before the Spanish squats if short on time.\n\nThen Row W1 S1 (moved from Tue, which was missed):\n5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n\n→ 4-min sets at 1:57.9/500m (5k PR 1:55.9 + 2 s). If flat after the morning deadlifts, drop the accessories and just row.",
           "loads": [
             {
               "lift": "Zombie Front Squat",
@@ -163,7 +163,7 @@
           ]
         },
         {
-          "label": "Performance — B only, optional (CRUISE)",
+          "label": "Performance — SKIP (row instead)",
           "text": "*If strength is a focus:\nHalve tthe reps in the WOD and go through that workout at about 60-70% of max effort.\n\nA. POLP Deadlifts:\n*If it's your first week: 10 x 55%, 60%, 65%\n*If you were successful last week, move up 5% on all 3 sets.\n\nB. For total time:\n2 Rounds:\n80 Double Unders\n20 alt DB Goblet Reverse Lunges\n15 Lateral Burpees Over DB\n3 PVC lateral hurdle under and over (e direction)\n- rest 90 sec -\n2 Rounds:\n80 Double Unders\n20 Single Arm DB Thrusters\n15 Lateral Burpees over DB.\n3 PVC lateral hurdle under and over (e direction)\nDB: (22.5/15kg)\n*18 min cap\n\n→ This week: skip A (deadlift done in WL). Do your front squat accessory first, then B at half reps and 60–70% effort if you still want it."
         }
       ]
