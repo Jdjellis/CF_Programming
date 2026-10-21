@@ -30,11 +30,15 @@
         "add": "POLP DL + Press"
       },
       "pm": {
-        "type": "Row W1 S1",
-        "add": "+ FS accessory"
+        "type": "Perf ✓",
+        "add": "light, DUs"
       }
     },
     "thu": {
+      "am": {
+        "type": "Row W1 S1",
+        "add": "+ FS accessory"
+      },
       "pm": {
         "type": "Gymnastics + Comp",
         "add": "strict MUs + POLP Bench"
@@ -59,6 +63,7 @@
     }
   },
   "decisions": [
+    "Wed 21 Oct PM: Josh did the class WOD light (DU practice) instead of the row. Thu is a double (Josh feels good): AM Row W1 S1, then the front squat accessories if the legs allow. PM gymnastics + POLP bench. Fri stays rest; Sat WL + Row S2; Sun HSPU EMOM.",
     "Tue 20 Oct missed. Wed PM: Row W1 S1 replaces the optional class WOD, after the front squat accessories (drop those first if flat). Friday stays rest.",
     "Block plan (Josh, 19 Oct): until the 12 Dec weightlifting comp, the WL block is the priority. Rowing is S1 + S2 a week, there's no running, and POLP follows the class programming. Thursday's strict ring muscle-ups stay, and there's one separate HSPU skill session a week.",
     "HSPU skill goes Sunday at open gym (strict HSPU EMOM 8 min × 3, stopping if a rep slows). Every other day is next to pressing: Tue is the day before the POLP press, and Fri sits between Thu bench and Sat jerks. Sunday is furthest from both, at the cost of a little of the rest day.",
@@ -150,7 +155,7 @@
           ]
         },
         {
-          "label": "Front squat accessory + Row W1 S1 — PM (row moved from Tue)",
+          "label": "Front squat accessory + Row W1 S1 — moved to Thu AM",
           "accent": "lim",
           "text": "Front squat accessory (after WL deadlift, two days clear of Mon and Sat squats):\n1. Zombie front squat: 3 × 5 (front rack + upright torso)\n2. Bulgarian split squat: 3 × 8/leg\n3. Spanish squat (banded): 3 × 20 s holds (knee/tendon health)\n\n→ Controlled reps, 2 in the tank. Drop 2 before the Spanish squats if short on time.\n\nThen Row W1 S1 (moved from Tue, which was missed):\n5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n\n→ 4-min sets at 1:57.9/500m (5k PR 1:55.9 + 2 s). If flat after the morning deadlifts, drop the accessories and just row.",
           "loads": [
@@ -163,7 +168,7 @@
           ]
         },
         {
-          "label": "Performance — SKIP (row instead)",
+          "label": "Performance — done (light, DU practice)",
           "text": "*If strength is a focus:\nHalve tthe reps in the WOD and go through that workout at about 60-70% of max effort.\n\nA. POLP Deadlifts:\n*If it's your first week: 10 x 55%, 60%, 65%\n*If you were successful last week, move up 5% on all 3 sets.\n\nB. For total time:\n2 Rounds:\n80 Double Unders\n20 alt DB Goblet Reverse Lunges\n15 Lateral Burpees Over DB\n3 PVC lateral hurdle under and over (e direction)\n- rest 90 sec -\n2 Rounds:\n80 Double Unders\n20 Single Arm DB Thrusters\n15 Lateral Burpees over DB.\n3 PVC lateral hurdle under and over (e direction)\nDB: (22.5/15kg)\n*18 min cap\n\n→ This week: skip A (deadlift done in WL). Do your front squat accessory first, then B at half reps and 60–70% effort if you still want it."
         }
       ]
@@ -172,6 +177,19 @@
       "day": "Thu",
       "date": "22 Oct",
       "streams": [
+        {
+          "label": "Row W1 S1 + front squat accessory — AM (double)",
+          "accent": "lim",
+          "text": "Row W1 S1 (missed Tue, moved again from Wed):\n5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n\n→ 4-min sets at 1:57.9/500m (5k PR 1:55.9 + 2 s).\n\nThen, if the legs are good, front squat accessory:\n1. Zombie front squat: 3 × 5\n2. Bulgarian split squat: 3 × 8/leg\n3. Spanish squat (banded): 3 × 20 s holds\n\n→ Row first, it's the priority. The accessories are optional and can go if time is short. Saturday's pause front squat is two days later, so keep them at 2 in the tank.",
+          "loads": [
+            {
+              "lift": "Zombie Front Squat",
+              "scheme": "3 × 5 @ 55%",
+              "load": "77 kg (55% of 140)",
+              "base": "front squat 1RM 140 kg"
+            }
+          ]
+        },
         {
           "label": "Gymnastics — strict muscle-ups (PUSH)",
           "accent": "lim",
