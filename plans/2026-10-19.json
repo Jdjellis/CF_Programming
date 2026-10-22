@@ -36,17 +36,17 @@
     },
     "thu": {
       "am": {
-        "type": "Row W1 S1",
-        "add": "+ FS accessory"
+        "type": "Missed"
       },
       "pm": {
-        "type": "Gymnastics + Comp",
-        "add": "strict MUs + POLP Bench"
+        "type": "Gym ✓ + Comp ✓",
+        "add": "kipping RMUs; bench 7/6/6"
       }
     },
     "fri": {
       "am": {
-        "type": "Rest"
+        "type": "Row W1 S1",
+        "add": "open gym"
       }
     },
     "sat": {
@@ -57,12 +57,13 @@
     },
     "sun": {
       "am": {
-        "type": "HSPU skill",
-        "add": "open gym, 20 min"
+        "type": "HSPU + RMU drills",
+        "add": "open gym, 30 min"
       }
     }
   },
   "decisions": [
+    "Thu 22 Oct AM missed. Row W1 S1 goes to Fri open gym, and the front squat accessories are dropped this week (Sat pause FS is the next day). Sunday adds 10 min of ring MU drills after the HSPU EMOM (Josh's call).",
     "Wed 21 Oct PM: Josh did the class WOD light (DU practice) instead of the row. Thu is a double (Josh feels good): AM Row W1 S1, then the front squat accessories if the legs allow. PM gymnastics + POLP bench. Fri stays rest; Sat WL + Row S2; Sun HSPU EMOM.",
     "Tue 20 Oct missed. Wed PM: Row W1 S1 replaces the optional class WOD, after the front squat accessories (drop those first if flat). Friday stays rest.",
     "Block plan (Josh, 19 Oct): until the 12 Dec weightlifting comp, the WL block is the priority. Rowing is S1 + S2 a week, there's no running, and POLP follows the class programming. Thursday's strict ring muscle-ups stay, and there's one separate HSPU skill session a week.",
@@ -178,7 +179,7 @@
       "date": "22 Oct",
       "streams": [
         {
-          "label": "Row W1 S1 + front squat accessory — AM (double)",
+          "label": "Row W1 S1 + front squat accessory — MISSED (row moved to Fri)",
           "accent": "lim",
           "text": "Row W1 S1 (missed Tue, moved again from Wed):\n5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n\n→ 4-min sets at 1:57.9/500m (5k PR 1:55.9 + 2 s).\n\nThen, if the legs are good, front squat accessory:\n1. Zombie front squat: 3 × 5\n2. Bulgarian split squat: 3 × 8/leg\n3. Spanish squat (banded): 3 × 20 s holds\n\n→ Row first, it's the priority. The accessories are optional and can go if time is short. Saturday's pause front squat is two days later, so keep them at 2 in the tank.",
           "loads": [
@@ -212,7 +213,13 @@
     {
       "day": "Fri",
       "date": "23 Oct",
-      "streams": []
+      "streams": [
+        {
+          "label": "Row 5K — W1 S1 (open gym, moved from Thu)",
+          "accent": "lim",
+          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m (5k PR 1:55.9 + 2 s). The front squat accessories are dropped this week, because Saturday's pause front squat is the next day."
+        }
+      ]
     },
     {
       "day": "Sat",
@@ -264,9 +271,9 @@
       "date": "25 Oct",
       "streams": [
         {
-          "label": "HSPU skill — open gym, before noon",
+          "label": "HSPU skill + ring MU drills — open gym, before noon",
           "accent": "lim",
-          "text": "About 20 minutes, the week's one HSPU session.\n\n1. Shoulder warm-up + 2 × 20 s wall-facing handstand hold\n2. Strict HSPU EMOM 8 min × 3 reps (24 reps). Stop the EMOM as soon as a rep slows. No grinders, no kipping.\n\n→ If the 3s feel easy, the next step is sets of 5 (Josh, 19 Oct). Sunday sits furthest from both Wed POLP press and Sat jerks."
+          "text": "About 30 minutes, the week's skill session.\n\n1. Shoulder warm-up + 2 × 20 s wall-facing handstand hold\n2. Strict HSPU EMOM 8 min × 3 reps (24 reps). Stop the EMOM as soon as a rep slows. No grinders, no kipping.\n\n→ If the 3s feel easy, the next step is sets of 5 (Josh, 19 Oct). Sunday sits furthest from both Wed POLP press and Sat jerks.\n\nThen ring muscle-up drills (about 10 min):\n4. Kip swings on rings: 3 × 6. Tight hollow/arch, feet stay under you.\n5. False-grip kip to hips: 3 × 3. Pull the rings back to your hips, no turnover.\n6. Low-ring transitions: 3 × 5"
         }
       ]
     }
