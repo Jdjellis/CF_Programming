@@ -45,14 +45,13 @@
     },
     "fri": {
       "am": {
-        "type": "Row W1 S1",
-        "add": "open gym"
+        "type": "Missed"
       }
     },
     "sat": {
       "am": {
-        "type": "WL",
-        "add": "+ Row W1 S2"
+        "type": "WL ✓",
+        "add": "row missed"
       }
     },
     "sun": {
@@ -215,7 +214,7 @@
       "date": "23 Oct",
       "streams": [
         {
-          "label": "Row 5K — W1 S1 (open gym, moved from Thu)",
+          "label": "Row 5K — W1 S1 — MISSED",
           "accent": "lim",
           "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m (5k PR 1:55.9 + 2 s). The front squat accessories are dropped this week, because Saturday's pause front squat is the next day."
         }
@@ -226,7 +225,7 @@
       "date": "24 Oct",
       "streams": [
         {
-          "label": "Weightlifting",
+          "label": "Weightlifting — done",
           "text": "3 Rounds:\n5 Clean Grip Sotts Press\n5 Snatch Grip Monkey F******s\n\n(0 - 20 min)\nA. Power Snatch:\n3 x 77%, 78%, 80%, 81%, 82%\n\n(20 - 40 min)\nB. Clean & Split Jerk:\n2 x (1 + 1 ) x 77%, 78%, 80%, 81%, 82%\n\n(40 - 50 min)\nC. Pause (2 sec) Jerk Behind the Neck:\n2 x 60%, 65%, 70%, 75%\n\n(50 - 65 min)\nD. Pause (3 sec) Front Squat:\n4s x 5r x 60%\n*If you're not doing the WOD and didn't get both of the accessory pieces done from Monday or Wednesdays WL, do it after for some body maintenance.",
           "loads": [
             {
@@ -256,7 +255,7 @@
           ]
         },
         {
-          "label": "Row 5K — W1 S2",
+          "label": "Row 5K — W1 S2 — MISSED",
           "accent": "lim",
           "text": "Row 30 min @ Z1 building to Z3 through the 30 min."
         },
