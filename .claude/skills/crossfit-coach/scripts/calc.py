@@ -8,7 +8,9 @@
 Arithmetic is delegated to the tested deterministic modules; this is only I/O.
 The model never computes a working weight in its head — it runs this and pastes
 the output line (PROJECT_SPEC §8). Output is the loadable working weight rounded
-to the nearest 0.5 kg, e.g. `144.5 kg (87.5% of 165)`.
+to the nearest 0.5 kg, naming the 1RM it is off, e.g.
+`144.5 kg (87.5% of back squat 1RM 165)`. Variations resolve to their base lift
+(cfprog.bases): `calc.py pause_snatch --percent 70` loads off the snatch.
 """
 
 from __future__ import annotations
