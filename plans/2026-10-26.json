@@ -1,7 +1,7 @@
 {
   "week_of": "26 Oct – 1 Nov 2026",
   "week_start": "2026-10-26",
-  "source": "CFC Weightlifting 26 Oct – 1 Nov 26 (Fortnightly Fulls WL block wk 3/9); CFC Endurance 26 Oct – 1 Nov 26. Competitors Programming PDF not posted.",
+  "source": "CFC Weightlifting + Endurance PDFs 26 Oct – 1 Nov 26 (WL block wk 3/9); class WODs from the CrossFit Claremont blog (condensed).",
   "maxes_note": "snatch 90, power snatch 85, clean 130, clean & jerk 124, power clean + push jerk 110, front squat 140",
   "focus": [
     "WL comp peak (12 Dec): WL block wk 3/9 (wk 4 deload next)",
@@ -13,13 +13,13 @@
     "mon": {
       "pm": {
         "type": "Class + WL",
-        "add": "POLP DL + press"
+        "add": "class B only; POLP DL + press"
       }
     },
     "tue": {
       "am": {
         "type": "Class",
-        "add": "POLP bench"
+        "add": "POLP bench before class"
       }
     },
     "wed": {
@@ -30,7 +30,8 @@
     },
     "thu": {
       "pm": {
-        "type": "Gym + Comp"
+        "type": "Gym + Comp",
+        "add": "HSPU-heavy, keep crisp"
       }
     },
     "fri": {
@@ -54,6 +55,7 @@
   },
   "decisions": [
     "Your week (26 Oct): Mon double tonight (5:30pm class + 6:30pm WL), Tue and Wed mornings only, Wed is a 5:30–7:30am double. Thu, Sat and Sun as usual.",
+    "Thursday is HSPU-heavy (strict and kipping HSPU in gymnastics, 10 strict HSPU a round in comp B). Keep every set crisp and cap the comp-class HSPU. Sunday's EMOM stays, but if the shoulders are sore Sunday, do handstand holds and the MU drills only.",
     "Press Monday, bench Tuesday, as Jason wrote it (about 13 hours apart). Bench is the lift that failed, so it gets Tuesday morning with nothing pressing before it in that session. Last week it failed straight after ring work. The press is only 3 × 5 @ 54.",
     "Row W1 S1 goes in the Wed double after WL, instead of the 6:30am class. It's been missed two weeks running. It's pacing work at +2 s, so it's fine after the back squats.",
     "Mon class comes before WL, so keep it at 60–70% (Jason's note) to protect the lifts and the POLP.",
@@ -62,7 +64,7 @@
     "HSPU EMOM stays at 8 × 3 because last Sunday was missed. Sunday is furthest from both the Mon press and the Sat jerks.",
     "POLP: Mon deadlift wk3 + press wk6, Tue bench wk6 (repeat 94), Wed back squat wk7 (Phase 2). Max 2 a day; bench and press on different days. Skip any POLP bench in Thursday's comp class.",
     "The endurance track is skipped (bike, pyramid cycle, Run Endurance, class Row W7). You're on Row W1, and running is parked until after the comp.",
-    "The Competitors Programming PDF (class WODs, Thu gymnastics) wasn't posted in Slack this week. If it turns up, those sessions get added."
+    "Class WODs come from the gym blog this week (no Competitors PDF in Slack), condensed rather than word for word. Mon: skip part A (POLP deadlift is in WL), do B at 60–70%. Tue: bench isn't in the class, so do POLP bench before class. Wed and Sat Performance are skipped."
   ],
   "days": [
     {
@@ -70,8 +72,8 @@
       "date": "26 Oct",
       "streams": [
         {
-          "label": "Performance PM — 5:30pm class at 60–70%",
-          "text": "The Competitors Programming PDF wasn't posted in Slack this week, so the class workout isn't here yet.\n\n→ It's before WL in the same session, so go through it at about 60–70% effort (Jason: \"maximise your Strength work - Mondays and Wednesdays go through the workouts at a moderate effort\")."
+          "label": "Performance PM — B only, at 60–70%",
+          "text": "(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nA. POLP Deadlift: 10s @ 55/60/65% (or +5% if you passed last week). Stop-and-reset the first 2 sets, touch-and-go the last.\n\nB. 3 rounds, 3 min work / 3 min rest:\n15 Wall Balls (10/9 ft)\n15 Med Ball Clean & Jerks (30/20 lb)\nMax Cal Row\n\n→ Skip A: your POLP deadlift is in WL straight after. Do B at 60–70% so the clean + split jerk and POLP lifts aren't compromised."
         },
         {
           "label": "Weightlifting PM — POLP deadlift + press",
@@ -104,8 +106,8 @@
       "date": "27 Oct",
       "streams": [
         {
-          "label": "Performance AM — POLP bench, then class at cruise",
-          "text": "A. POLP Bench Press:\n\nThe Competitors Programming PDF wasn't posted in Slack this week, so the class workout isn't here yet.\n\n→ Bench first, fresh. Then the rest of the class at cruise effort.",
+          "label": "Performance AM — POLP bench first, then AMRAP steady",
+          "text": "(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nBench isn't in Tuesday's class, so do it yourself before class (arrive ~5:05) or straight after.\nA. POLP Bench Press\n\nClass: \"Uncommon work\", 30 min AMRAP at a steady intensity:\n100 m Farmers Carry (32/24 kg)\n2 Rope Climbs\n30 m Sled Push (125/100 kg)\n400 m Ski\n5 Sandbag Over Shoulder (65/45 kg)\n6 Burpee Box-Overs with dead ball (40\", 15/12 kg)\n700 m Bike Erg\n\n→ Bench first and fresh. If you can only fit it after class, keep the AMRAP genuinely steady (the farmers carry and sandbag tax grip and upper back, not the press much).",
           "loads": [
             {
               "lift": "POLP Bench Press",
@@ -149,6 +151,10 @@
           "label": "Row 5K — W1 S1 (Wed double, after WL)",
           "accent": "lim",
           "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 5k PR 19:19 = 1:55.9/500m, so the 4-min sets are at 1:57.9/500m. About 35 min. Priority session: it's been missed two weeks running."
+        },
+        {
+          "label": "Performance — SKIP",
+          "text": "(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nA. Back Squat 3 × 10 (POLP-style progression)\nB. 3 rounds for time, 1 min rest between, 15 min cap:\n10/8 Chest-to-Bar Pull-ups (Performance: Bar Muscle-ups, a number you can do in 2 sets)\n150 m Run\n15 alt weighted Box Step-ups\n150 m Run\n\n→ Skipped: your Wed double is WL (with POLP back squat) + Row W1 S1."
         }
       ]
     },
@@ -157,13 +163,13 @@
       "date": "29 Oct",
       "streams": [
         {
-          "label": "Gymnastics PM",
+          "label": "Gymnastics PM — HSPU-focused, quality only",
           "accent": "lim",
-          "text": "The Competitors Programming PDF wasn't posted in Slack this week, so the class workout isn't here yet.\n\n→ Do it as written when it's posted. Strict or kipping ring muscle-ups as usual."
+          "text": "(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nSkill: Week 16, Floor Series 3/4: Handstand pressing (headstands, headstand to press, strict and kipping HSPU).\n\nB.\n0–6 min: 2 Strict HSPU for depth (no floor access: 2 × 5 s eccentrics)\n7–12 min: 2 Kipping HSPU for depth\n12–20 min: 1–3 Freestanding Handstand attempts, 3 × 3 s False Grip Chest-to-Ring Hold, 3 Headstand to Press, 3 Strict Toes-to-Ring\n*If doing the comp class, take 12–20 min easy.\n\n→ Heavy HSPU day. Stop each set while reps are crisp. The false-grip chest-to-ring holds are great RMU work."
         },
         {
-          "label": "Comp class PM",
-          "text": "The Competitors Programming PDF wasn't posted in Slack this week, so the class workout isn't here yet.\n\n→ If it has POLP bench, skip it (done Tuesday). If it has a class row, skip it (you're on Row W1)."
+          "label": "Comp class PM — A as written, B HSPU capped",
+          "text": "(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nA. 13 min AMRAP (top 5 rounds, minimum 3):\n5 Muscle-ups\n7 Front Squats (60/42.5 kg)\n9 Lateral Burpees\n\nB. 20 min for quality:\n1 Legless Rope Climb\n10 m Handstand Walk\n10 GHD Sit-ups\n10 Strict HSPU\n*Don't push the HSPU too hard if you're doing the class.\n\n→ Ring muscle-ups in A: kipping, sets you can hold good shape in. In B, cap the strict HSPU at crisp reps (split the 10 into small sets), since the gymnastics class just did HSPU too."
         }
       ]
     },
@@ -215,6 +221,10 @@
           "label": "Row 5K — W1 S2 (after WL)",
           "accent": "lim",
           "text": "Row 30 min @ Z1 building to Z3 through the 30 min.\n\n→ Easy. If it didn't happen Friday, it happens here."
+        },
+        {
+          "label": "Performance — SKIP",
+          "text": "(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nTeams of 3, 30 min AMRAP (one on the AMRAP, one on the Echo bike, one resting):\n9 Deadlifts (125/85 kg Performance)\n15 Toes-to-Bar\n21 Hand-Release Push-ups\n\n→ Skipped: WL is the priority and you row afterwards."
         }
       ]
     },
