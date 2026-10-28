@@ -27,14 +27,14 @@
         "add": "BS skipped (back)"
       },
       "pm": {
-        "type": "Bench + Row",
-        "add": "POLP bench; Row W1 S1; WOD optional"
+        "type": "Perf ✓",
+        "add": "POLP BS 5/5/5 ✓"
       }
     },
     "thu": {
       "am": {
-        "type": "BS + Perf",
-        "add": "POLP BS; HSPU gymnastics"
+        "type": "Bench + Perf",
+        "add": "POLP bench; HSPU gymnastics"
       }
     },
     "fri": {
@@ -46,7 +46,7 @@
     "sat": {
       "am": {
         "type": "WL + Row",
-        "add": "Row W1 S2"
+        "add": "Row W1 S1"
       }
     },
     "sun": {
@@ -57,6 +57,7 @@
     }
   },
   "decisions": [
+    "Wed 28 Oct PM: Josh did the class's back squat instead (POLP wk7 3 × 5 @ 140, all reps) and took the WOD easy. Bench moves to Thu 5:00am before the 5:30am class. Row W1 S1 moves to after Sat WL, replacing S2 this week.",
     "Mid-week (28 Oct): Tue missed and Wed AM was rough (two late nights, sore lower back), so the back squat and bench were skipped. Wed PM: POLP bench, then Row W1 S1, then the class WOD only if the back is good. Thu is an AM session: POLP back squat at 5:00, then the 5:30am Performance class; the comp class is dropped. Fri rest. Sat WL stays as written, pause front squat included (Josh). Mon POLP deadlift wk3 and press wk6 both passed.",
     "Your week (26 Oct): Mon double tonight (5:30pm class + 6:30pm WL), Tue and Wed mornings only, Wed is a 5:30–7:30am double. Thu, Sat and Sun as usual.",
     "Thursday is HSPU-heavy (strict and kipping HSPU in gymnastics, 10 strict HSPU a round in comp B). Keep every set crisp and cap the comp-class HSPU. Sunday's EMOM stays, but if the shoulders are sore Sunday, do handstand holds and the MU drills only.",
@@ -152,7 +153,7 @@
           ]
         },
         {
-          "label": "POLP bench + Row W1 S1 (Wed PM)",
+          "label": "POLP bench + Row W1 S1 — MISSED (did the back squat instead; bench → Thu AM, row → Sat)",
           "accent": "lim",
           "text": "1. POLP Bench Press 3 × 10 (missed Tue). Feet flat, don't over-arch with the sore back.\n\n2. Row W1 S1:\n5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m. If your lower back tightens in the catch, stop after the 300s.",
           "loads": [
@@ -165,8 +166,16 @@
           ]
         },
         {
-          "label": "Performance PM — optional, last, 60–70% (only if back is good)",
-          "text": "(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nA. Back Squat 3 × 10 (POLP-style progression)\nB. 3 rounds for time, 1 min rest between, 15 min cap:\n10/8 Chest-to-Bar Pull-ups (Performance: Bar Muscle-ups, a number you can do in 2 sets)\n150 m Run\n15 alt weighted Box Step-ups\n150 m Run\n\n→ Optional after bench + row, at 60–70%, only if your back feels good. Skip A (back squat moves to Thu AM). The row matters more than this."
+          "label": "Performance PM — done (POLP back squat 5/5/5 @ 140, WOD easy)",
+          "text": "(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nA. Back Squat 3 × 10 (POLP-style progression)\nB. 3 rounds for time, 1 min rest between, 15 min cap:\n10/8 Chest-to-Bar Pull-ups (Performance: Bar Muscle-ups, a number you can do in 2 sets)\n150 m Run\n15 alt weighted Box Step-ups\n150 m Run\n\n→ Optional after bench + row, at 60–70%, only if your back feels good. Skip A (back squat moves to Thu AM). The row matters more than this.",
+          "loads": [
+            {
+              "lift": "POLP Back Squat",
+              "scheme": "2 builds + 3 × 5",
+              "load": "107 / 124 / 140 kg (POLP wk7, builds 107 & 124, 3 × 5 @ 140)",
+              "base": "POLP workbook, week 7 (Phase 2)"
+            }
+          ]
         }
       ]
     },
@@ -175,15 +184,15 @@
       "date": "29 Oct",
       "streams": [
         {
-          "label": "POLP back squat + 5:30am Performance (gymnastics)",
+          "label": "POLP bench + 5:30am Performance (gymnastics)",
           "accent": "lim",
-          "text": "5:00am: POLP Back Squat (Phase 2), before class.\n\n(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nThen the 5:30am class.\nSkill: Week 16, Floor Series 3/4: Handstand pressing (headstands, headstand to press, strict and kipping HSPU).\n20 min AMRAP: Pike HSPU, Ski Erg cals (15/12), Toes-to-Rings, Echo Bike cals (20/15), 20 s Wall Handstand Hold.\n\nPerformance gymnastics:\n0–6 min: 2 Strict HSPU for depth\n7–12 min: 2 Kipping HSPU for depth\n12–20 min: 1–3 Freestanding Handstand attempts, 3 × 3 s False Grip Chest-to-Ring Hold, 3 Headstand to Press, 3 Strict Toes-to-Ring\n\n→ Moved from Sat so Saturday's WL stays as written (Josh, 28 Oct), and from Fri so the back gets a day off before Saturday's pulls. If the back is still sore at the warm-up, skip the squats: the workbook repeats the row next week. HSPU sets crisp only.",
+          "text": "5:00am: POLP Bench Press 3 × 10, before class (back squat was done Wed night).\n\n(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nThen the 5:30am class.\nSkill: Week 16, Floor Series 3/4: Handstand pressing (headstands, headstand to press, strict and kipping HSPU).\n20 min AMRAP: Pike HSPU, Ski Erg cals (15/12), Toes-to-Rings, Echo Bike cals (20/15), 20 s Wall Handstand Hold.\n\nPerformance gymnastics:\n0–6 min: 2 Strict HSPU for depth\n7–12 min: 2 Kipping HSPU for depth\n12–20 min: 1–3 Freestanding Handstand attempts, 3 × 3 s False Grip Chest-to-Ring Hold, 3 Headstand to Press, 3 Strict Toes-to-Ring\n\n→ Bench first, while fresh. Then the class. Keep the HSPU sets crisp: your triceps will have just done 30 bench reps.",
           "loads": [
             {
-              "lift": "POLP Back Squat",
-              "scheme": "2 builds + 3 × 5",
-              "load": "107 / 124 / 140 kg (POLP wk7, builds 107 & 124, 3 × 5 @ 140)",
-              "base": "POLP workbook, week 7 (Phase 2)"
+              "lift": "POLP Bench Press",
+              "scheme": "3 × 10",
+              "load": "94 kg (POLP wk6, 3 × 10)",
+              "base": "POLP workbook, week 6 (repeat after last week's fail)"
             }
           ]
         },
@@ -238,9 +247,9 @@
           ]
         },
         {
-          "label": "Row 5K — W1 S2 (after WL)",
+          "label": "Row 5K — W1 S1 (after WL)",
           "accent": "lim",
-          "text": "Row 30 min @ Z1 building to Z3 through the 30 min.\n\n→ Easy. If it didn't happen Friday, it happens here."
+          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m. S1 replaces S2 this week, because Wednesday's row didn't happen and S1 is the priority session."
         },
         {
           "label": "Performance — SKIP",
