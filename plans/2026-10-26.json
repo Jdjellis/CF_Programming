@@ -51,12 +51,13 @@
     },
     "sun": {
       "am": {
-        "type": "Open gym",
-        "add": "HSPU + MU drills"
+        "type": "Rest",
+        "add": "not trained (HSPU, MU drills, Row S1 carry over)"
       }
     }
   },
   "decisions": [
+    "Sun 1 Nov: Josh rested. Row W1 S1, the HSPU EMOM and the ring MU drills carry into the week of 2 Nov. Bench wk6 (94) wasn't done this week, so it goes back in its normal slot.",
     "Sat 31 Oct: WL done, with power clean + push jerk at the prescribed weights. The Saturday WOD was skipped. POLP this week: deadlift wk3, press wk6 and back squat wk7 all done. Bench wk6 (94) wasn't reported. It isn't made up on Sunday, because Monday's press is the next day; bench resumes at 94 in its normal slot next week.",
     "Wed 28 Oct PM: Josh did the class's back squat instead (POLP wk7 3 × 5 @ 140, all reps) and took the WOD easy. Bench moves to Thu 5:00am before the 5:30am class. Row W1 S1 moves to after Sat WL, replacing S2 this week.",
     "Mid-week (28 Oct): Tue missed and Wed AM was rough (two late nights, sore lower back), so the back squat and bench were skipped. Wed PM: POLP bench, then Row W1 S1, then the class WOD only if the back is good. Thu is an AM session: POLP back squat at 5:00, then the 5:30am Performance class; the comp class is dropped. Fri rest. Sat WL stays as written, pause front squat included (Josh). Mon POLP deadlift wk3 and press wk6 both passed.",
@@ -263,7 +264,7 @@
       "date": "1 Nov",
       "streams": [
         {
-          "label": "HSPU skill + ring MU drills",
+          "label": "HSPU skill + ring MU drills — SKIP (rest day, carries into next week)",
           "accent": "lim",
           "text": "About 40 minutes at open gym, the week's skill session.\n\n1. Shoulder warm-up + 2 × 20 s wall-facing handstand hold\n2. Strict HSPU EMOM 8 min × 3 reps (24 reps). Stop the EMOM as soon as a rep slows. No grinders, no kipping.\n\n→ Still 3s, because last Sunday was missed. Move to 5s only once every minute is crisp.\n\nThen ring muscle-up drills (about 10 min):\n3. Kip swings on rings: 3 × 6. Tight hollow/arch, feet stay under you.\n4. False-grip kip to hips: 3 × 3. Pull the rings back to your hips, no turnover.\n5. Low-ring transitions: 3 × 5"
         }
