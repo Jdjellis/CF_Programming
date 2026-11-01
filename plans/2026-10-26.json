@@ -45,8 +45,8 @@
     },
     "sat": {
       "am": {
-        "type": "WL + Row",
-        "add": "Row W1 S1"
+        "type": "WL ✓",
+        "add": "PC+PJ ✓; WOD skipped"
       }
     },
     "sun": {
@@ -57,6 +57,7 @@
     }
   },
   "decisions": [
+    "Sat 31 Oct: WL done, with power clean + push jerk at the prescribed weights. The Saturday WOD was skipped. POLP this week: deadlift wk3, press wk6 and back squat wk7 all done. Bench wk6 (94) wasn't reported. It isn't made up on Sunday, because Monday's press is the next day; bench resumes at 94 in its normal slot next week.",
     "Wed 28 Oct PM: Josh did the class's back squat instead (POLP wk7 3 × 5 @ 140, all reps) and took the WOD easy. Bench moves to Thu 5:00am before the 5:30am class. Row W1 S1 moves to after Sat WL, replacing S2 this week.",
     "Mid-week (28 Oct): Tue missed and Wed AM was rough (two late nights, sore lower back), so the back squat and bench were skipped. Wed PM: POLP bench, then Row W1 S1, then the class WOD only if the back is good. Thu is an AM session: POLP back squat at 5:00, then the 5:30am Performance class; the comp class is dropped. Fri rest. Sat WL stays as written, pause front squat included (Josh). Mon POLP deadlift wk3 and press wk6 both passed.",
     "Your week (26 Oct): Mon double tonight (5:30pm class + 6:30pm WL), Tue and Wed mornings only, Wed is a 5:30–7:30am double. Thu, Sat and Sun as usual.",
@@ -217,7 +218,7 @@
       "date": "31 Oct",
       "streams": [
         {
-          "label": "Weightlifting",
+          "label": "Weightlifting — done (power clean + push jerk at the prescribed 86–93.5 kg)",
           "text": "(0 - 20 min)\nA. Snatch:\n2 x 78%, 80%, 82%, 84%, 85%\n\n(20 - 40 min)\nB. Power Clean & Push Jerk:\n(1+1) x 78%, 80%, 82%, 84%, 85%\n\n(40 - 50 min)\nC. Clean Pull:\n3 x 95%, 100%, 105%\n\n(50 - 65 min)\nD. Pause (3 sec) Front Squat:\n5 x 60%, 65%, 65%\n\n(65 - 70 min)\n3 Rounds:\n10 SA Upright DB Row\n3 Rebounding Vertical Jumps (hands on hips)",
           "loads": [
             {
@@ -252,7 +253,7 @@
           "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m. S1 replaces S2 this week, because Wednesday's row didn't happen and S1 is the priority session."
         },
         {
-          "label": "Performance — SKIP",
+          "label": "Performance — SKIP (not done)",
           "text": "(From the gym blog, condensed: crossfitclaremont.com.au/blog-1)\n\nTeams of 3, 30 min AMRAP (one on the AMRAP, one on the Echo bike, one resting):\n9 Deadlifts (125/85 kg Performance)\n15 Toes-to-Bar\n21 Hand-Release Push-ups\n\n→ Skipped: WL is the priority and you row afterwards."
         }
       ]
