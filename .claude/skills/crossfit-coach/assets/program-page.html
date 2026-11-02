@@ -2,29 +2,29 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&family=DM+Mono:wght@400;500&display=swap">
 <style>
-/* Style: coach's notebook (warm paper, serif headings, typewriter numbers; picked by Josh 2 Nov 2026). Layout: phone-first day board. Sticky day strip, one day at a time, loads as big plate-numbers, a log under each session. Stream colours follow competition plates (blue 20, yellow 15, green 10, red 25). */
+/* Style: Cobalt (picked by Josh 2 Nov 2026). Navy/grey neutrals; colour only marks session type: gym classes in slate (Weightlifting deep, Performance light), your work and comp in orange (your work deep, comp light), rest/other grey. The coach label takes its family's deep shade; there is no separate highlight colour. Layout: phone-first day board, sticky day strip, one day at a time, a log under each session. */
 :root{
-  --bg:#f3eee3; --surface:#fbf8f1; --sunk:#f6f1e6; --ink:#211c16; --muted:#6d6457; --line:#d9cfbd; --rule:rgba(120,100,70,.08); --margin:rgba(184,54,31,.35);
-  --accent:#b8361f; --accent-ink:#ffffff;
-  --wl:#2b4d8c; --perf:#9a6b00; --comp:#3f7a4a; --ind:#b8361f; --other:#857b6c;
-  --ok:#3f7a4a; --ok-bg:#e3eedc; --warn:#9a6b00; --warn-bg:#f4e8c9; --off:#857b6c; --off-bg:#ebe4d6;
-  --f-display:"Fraunces",Georgia,serif;
-  --f-body:"Source Serif 4",Georgia,serif;
-  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --bg:#f4f6f9; --surface:#ffffff; --sunk:#f7f9fb; --ink:#14213d; --muted:#5b6780; --line:#d8dfe9;
+  --accent:#14213d; --accent-ink:#ffffff;
+  --wl:#334766; --perf:#8b9bb5; --ind:#c2410c; --comp:#f28c4b; --other:#b6bfcc;
+  --ok:#14213d; --ok-bg:#eef1f6; --warn:#14213d; --warn-bg:#eef1f6; --off:#7a8599; --off-bg:#eef1f6;
+  --f-display:"Space Grotesk",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#1b1813; --surface:#24201a; --sunk:#201c17; --ink:#efe7d8; --muted:#a89d8b; --line:#3a342b; --rule:rgba(239,231,216,.05); --margin:rgba(240,120,95,.35);
-  --accent:#f0785f; --accent-ink:#1b1813;
-  --wl:#8fb0ec; --perf:#e0b452; --comp:#8cc597; --ind:#f0785f; --other:#a89d8b;
-  --ok:#8cc597; --ok-bg:#1f2e22; --warn:#e0b452; --warn-bg:#33290f; --off:#a89d8b; --off-bg:#2b2620;
+  --bg:#0f1420; --surface:#161d2c; --sunk:#131a27; --ink:#e6ebf5; --muted:#93a0b8; --line:#26304a;
+  --accent:#e6ebf5; --accent-ink:#0f1420;
+  --wl:#c6d2e6; --perf:#6d7f9c; --ind:#ffb38a; --comp:#e8763a; --other:#3a4560;
+  --ok:#e6ebf5; --ok-bg:#1e2738; --warn:#e6ebf5; --warn-bg:#1e2738; --off:#93a0b8; --off-bg:#1e2738;
   color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#1b1813; --surface:#24201a; --sunk:#201c17; --ink:#efe7d8; --muted:#a89d8b; --line:#3a342b; --rule:rgba(239,231,216,.05); --margin:rgba(240,120,95,.35);
-  --accent:#f0785f; --accent-ink:#1b1813;
-  --wl:#8fb0ec; --perf:#e0b452; --comp:#8cc597; --ind:#f0785f; --other:#a89d8b;
-  --ok:#8cc597; --ok-bg:#1f2e22; --warn:#e0b452; --warn-bg:#33290f; --off:#a89d8b; --off-bg:#2b2620;
+  --bg:#0f1420; --surface:#161d2c; --sunk:#131a27; --ink:#e6ebf5; --muted:#93a0b8; --line:#26304a;
+  --accent:#e6ebf5; --accent-ink:#0f1420;
+  --wl:#c6d2e6; --perf:#6d7f9c; --ind:#ffb38a; --comp:#e8763a; --other:#3a4560;
+  --ok:#e6ebf5; --ok-bg:#1e2738; --warn:#e6ebf5; --warn-bg:#1e2738; --off:#93a0b8; --off-bg:#1e2738;
   color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);margin:0}
@@ -62,8 +62,7 @@ button,input,textarea{font:inherit;color:inherit}
 .legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--muted);padding-block:2px 6px}
 .legend i{display:inline-block;width:10px;height:4px;border-radius:1px;margin-right:4px;vertical-align:middle}
 .dbtn[aria-pressed="true"]{background:var(--surface);border-color:var(--line);color:var(--ink)}
-.dbtn.today .dn{color:var(--accent)}
-.dbtn.today .dw::after{content:" •";color:var(--accent)}
+.dbtn.today .dw{background:var(--ink);color:var(--bg);border-radius:3px;padding:2px 4px;margin-top:-2px}
 
 /* day */
 main{padding-block:16px 40px;display:grid;gap:14px}
@@ -136,28 +135,33 @@ details.wod pre{margin:0;padding:0 14px 14px;white-space:pre-wrap;font:14px/1.5 
 footer{font-size:12px;color:var(--muted);padding-block:0 28px}
 footer b{color:var(--ink);font-weight:600}
 
-/* notebook style */
-body{background:var(--bg) repeating-linear-gradient(transparent 0 27px,var(--rule) 27px 28px)}
-.mast h1{font:italic 700 clamp(34px,9vw,54px)/1 var(--f-display);text-transform:none;letter-spacing:-.01em}
+/* cobalt style */
+.mast h1{font:700 clamp(34px,9vw,54px)/1 var(--f-display);text-transform:none;letter-spacing:-.02em}
+.mast h1 span{color:var(--muted)}
 .eyebrow{font-family:var(--f-mono);letter-spacing:.06em}
 .dbtn .dn{font:700 22px/1 var(--f-display)}
 .dbtn .dw{font-family:var(--f-mono);letter-spacing:.04em}
-.dbtn[aria-pressed="true"]{background:none;border:0;border-bottom:3px solid var(--accent);border-radius:0}
-.dayhead h2{font:italic 700 32px/1.05 var(--f-display);text-transform:none}
-.sess{border-radius:2px;box-shadow:0 1px 0 var(--line),0 6px 14px -10px rgba(60,40,10,.35)}
+.dbtn[aria-pressed="true"]{background:none;border:0;border-bottom:3px solid var(--ink);border-radius:0}
+.dbtn .ck{color:var(--ink)}
+.dayhead h2{font:700 32px/1.05 var(--f-display);text-transform:none;letter-spacing:-.02em}
+.sess{border-radius:4px}
 .sess>.top{grid-template-columns:1fr}
 .sess .plate{display:none}
 .sess .hd{border-left:3px solid var(--k);margin-left:20px;padding-left:12px}
-.sess .kind{font-family:var(--f-mono);letter-spacing:.06em}
-.sess h3{font:700 22px/1.15 var(--f-display)}
+.sess .kind{font-family:var(--f-mono);letter-spacing:.06em;color:var(--muted)}
+.sess h3{font:700 22px/1.15 var(--f-display);letter-spacing:-.01em}
+.k-wl,.k-perf{--kh:var(--wl)} .k-ind,.k-comp{--kh:var(--ind)} .k-other{--kh:var(--ink)}
 .sess .cue{font-style:italic;border-left:0;padding-left:0;color:var(--ink)}
-.sess .cue::before{content:"Coach: ";font-style:normal;font-weight:600;color:var(--accent)}
+.sess .cue::before{content:"Coach: ";font-style:normal;font-weight:600;color:var(--kh)}
 .load{border-top:1px dashed var(--line)}
 .kg{font:500 25px/1.15 var(--f-mono);letter-spacing:-.03em}
 .kg .n{white-space:nowrap}
 .kg .n+ .n::before{content:"→";color:var(--muted);font-size:14px;font-weight:400;padding:0 4px}
-.badge{border:1.5px solid currentColor;background:none;transform:rotate(-3deg);font-family:var(--f-mono)}
-.notes summary{font:italic 700 20px/1 var(--f-display);text-transform:none}
+.badge{border:1.5px solid currentColor;background:none;font-family:var(--f-mono)}
+.b-done,.b-missed{color:var(--ink)} .b-skip{color:var(--muted)}
+.focus summary::after,.log .lh>span:first-child::before{color:var(--muted)}
+.notes summary{font:700 20px/1 var(--f-display);text-transform:none;letter-spacing:-.01em}
+.rpe input{accent-color:var(--ink)}
 .rpe output{font:500 20px/1 var(--f-mono)}
 @media (prefers-reduced-motion:no-preference){.sess{animation:rise .25s ease both}@keyframes rise{from{transform:translateY(4px)}to{transform:none}}}
 </style>
@@ -168,7 +172,7 @@ body{background:var(--bg) repeating-linear-gradient(transparent 0 27px,var(--rul
   <div class="eyebrow" id="eyebrow">Training week</div>
   <h1 id="title">Week</h1>
   <details class="focus" id="focus"><summary><b>This week</b><span class="first" id="focus1"></span></summary><ul class="blocks" id="blocks"></ul></details>
-  <div class="legend" aria-hidden="true"><span><i style="background:var(--wl)"></i>Weightlifting</span><span><i style="background:var(--perf)"></i>Performance</span><span><i style="background:var(--comp)"></i>Comp</span><span><i style="background:var(--ind)"></i>Your work</span><span><i style="background:var(--muted);opacity:.3"></i>Skipped</span><span style="color:var(--ok)">✓ all done</span></div>
+  <div class="legend" aria-hidden="true"><span><i style="background:var(--wl)"></i>Weightlifting</span><span><i style="background:var(--perf)"></i>Performance</span><span><i style="background:var(--ind)"></i>Your work</span><span><i style="background:var(--comp)"></i>Comp</span><span><i style="background:var(--muted);opacity:.3"></i>Skipped</span><span style="color:var(--ok)">✓ all done</span></div>
 </header>
 <nav class="strip" aria-label="Days"><div class="wrap" id="strip"></div></nav>
 <main class="wrap" id="day"></main>
@@ -194,6 +198,8 @@ function kindOf(s){var l=s.label.toLowerCase();
   if(/^performance/.test(l))return ['perf','Performance class'];
   if(/^comp/.test(l))return ['comp','Comp class'];
   if(/polp/.test(l))return ['ind','Your work'];
+  if(/^rest\b/.test(l))return ['other','Rest'];
+  if(/\b(am|pm)\b|class/.test(l))return ['other','Gym class'];
   return ['other','Note'];}
 function parseLabel(label){var parts=label.split(' — '),title=parts.shift(),rest=parts.join(' — '),st=null;
   if(/missed/i.test(rest)||/missed/i.test(title))st='missed';else if(/\bskip/i.test(rest)||/\bnot done\b/i.test(rest))st='skip';else if(/\bdone\b/i.test(rest))st='done';
@@ -226,7 +232,7 @@ function logStatus(di,si){var l=logs[key(di,si)];return l&&l.status;}
 function renderStrip(){
   document.getElementById('strip').innerHTML=P.days.map(function(d,i){
     var nDone=0,nDo=0;
-    var pips=d.streams.map(function(s,si){var ls=logStatus(i,si),pl=parseLabel(s.label),st=ls||pl.st,off=(st==='missed'||st==='skip'||st==='skipped');
+    var pips=d.streams.map(function(s,si){var ls=logStatus(i,si),pl=parseLabel(s.label),st=ls||pl.st,off=(st==='missed'||st==='skip'||st==='skipped'||kindOf(s)[1]==='Rest');
       if(!off){nDo++;if(st==='done')nDone++;}
       return '<span class="pip'+(off?' off':'')+'" style="background:var(--'+kindOf(s)[0]+')"></span>';}).join('');
     var ck=(nDo&&nDone===nDo)?'✓':(nDone?nDone+'/'+nDo:'');
@@ -261,6 +267,7 @@ function renderDay(){
   var h='<div class="dayhead"><h2>'+FULL[d.day]+' '+esc(d.date)+'</h2>'+(isT?'<span class="tag">Today</span>':'')+'</div>';
   if(!d.streams.length)h+='<div class="empty">Rest day. Nothing programmed.</div>';
   d.streams.forEach(function(s,si){
+    if(kindOf(s)[1]==='Rest'){h+='<div class="empty">'+esc(s.text||'Rest day.')+'</div>';return;}
     var k=kindOf(s),pl=parseLabel(s.label),tx=splitText(s.text),hasLoads=!!(s.loads&&s.loads.length);
     h+='<article class="sess k-'+k[0]+(pl.st?' is-'+pl.st:'')+'"><div class="top"><div class="plate"></div><div class="hd">'+(k[1]!==pl.title?'<div class="kind">'+k[1]+'</div>':'')+'<h3>'+esc(pl.title)+(pl.st?' <span class="badge b-'+pl.st+'">'+(pl.st==='skip'?'Skip':pl.st)+'</span>':'')+'</h3>'+(pl.sub?'<div class="sub">'+esc(pl.sub)+'</div>':'')+(tx.cue?'<div class="cue">'+esc(tx.cue)+'</div>':'')+'</div></div>';
     if(s.loads&&s.loads.length){h+='<div class="loads">'+s.loads.map(function(ld){var p=parseLoad(ld.load);
