@@ -21,6 +21,35 @@
     "Ring MU skill placed Mon/Wed/Sat for frequency (neurologically cheap). It is the first thing to flex if a day gets squeezed — strength is never cut for skill.",
     "Triage if time/energy is short: PROTECT top sets → Performance class → quad/knee accessory → ring-MU skill."
   ],
+  "week_card": {
+    "block": {
+      "name": "Block 1 · Strength + ring MU",
+      "types": ["build", "build", "build", "heavy", "heavy", "backoff"],
+      "current": 3,
+      "label": "build",
+      "intent": "Last build week: top sets on front squat and strict press, ring MU three times. Heavy weeks start Mon 15 Jun.",
+      "next": "Block 2 · engine from 20 Jul"
+    },
+    "events": [{ "name": "Gym comp", "date": "2026-07-18" }],
+    "priorities": [
+      { "name": "Front squat", "dose": "class squats Mon, Wed, Sat" },
+      { "name": "Strict press", "dose": "Thu AM, protected" },
+      { "name": "Ring MU", "dose": "skill Mon, Wed, Sat" }
+    ],
+    "parked": "running (Block 2)",
+    "protect": [
+      { "day": "thu", "si": 0, "text": "Strict press top sets" }
+    ],
+    "limiters": [
+      { "name": "Ring MU", "touches": [
+        { "day": "mon", "si": 2, "text": "skill" },
+        { "day": "wed", "si": 2, "text": "skill" },
+        { "day": "sat", "si": 2, "text": "skill" }
+      ] },
+      { "name": "Quad / knee", "touches": [{ "day": "tue", "si": 2, "text": "accessory" }] }
+    ],
+    "season_link": { "label": "Season plan and goals", "url": "https://claude.ai/artifact/<season-page>" }
+  },
   "days": [
     {
       "day": "Mon", "date": "8 Jun",

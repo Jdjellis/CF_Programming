@@ -135,6 +135,47 @@ details.wod pre{margin:0;padding:0 14px 14px;white-space:pre-wrap;font:14px/1.5 
 footer{font-size:12px;color:var(--muted);padding-block:0 28px}
 footer b{color:var(--ink);font-weight:600}
 
+/* this-week card: periodisation, priorities, protect, limiters (neutral only: no session hues) */
+.wk{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin-top:4px}
+.wk>summary{list-style:none;cursor:pointer;display:block}
+.wk>summary::-webkit-details-marker{display:none}
+.wk .more{font:500 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:10px;display:flex;justify-content:space-between}
+.wk .more::after{content:"+"}
+.wk[open] .more::after{content:"–"}
+.wk .body{display:grid;gap:14px;margin-top:14px}
+.wk h4{font:500 10.5px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+.wk .blk{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.wk .blk b{font:700 15px/1.2 var(--f-display);letter-spacing:-.01em}
+.wk .blk span{font-size:12px;color:var(--muted)}
+.tl{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:3px;align-items:end;margin-top:8px}
+.tl i{display:block;height:8px;border-radius:2px;background:var(--line)}
+.tl i.heavy{background:var(--muted)}
+.tl i.backoff{background:none;border:1.5px dashed var(--muted)}
+.tl i.comp{background:var(--ink)}
+.tl i.past{background:var(--muted);border:0;opacity:.35}
+.tl i.now{height:16px;outline:2px solid var(--ink);outline-offset:1px}
+.tlk{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:3px;font:500 10px/1 var(--f-mono);color:var(--muted);margin-top:5px;text-align:center}
+.tlk .now{color:var(--ink);font-weight:600}
+.wk .intent{font-size:14px;line-height:1.45;margin:8px 0 0}
+.wk .ev{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted);margin-top:6px}
+.wk .ev b{color:var(--ink);font-weight:600}
+.wk .season{display:inline-flex;align-items:center;min-height:36px;margin-top:6px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.wk ol,.wk ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.wk .pri li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:6px;font-size:13.5px;line-height:1.35}
+.wk .pri li::before{content:counter(p);counter-increment:p;font:500 12px/1.4 var(--f-mono);color:var(--muted)}
+.wk .pri{counter-reset:p}
+.wk .pri b{font-weight:600}
+.wk .pri span{color:var(--muted)}
+.wk .parked{font-size:12px;color:var(--muted);margin-top:6px}
+.wk .row{display:grid;grid-template-columns:38px minmax(0,1fr) 16px;gap:6px;font-size:13.5px;line-height:1.35;align-items:baseline}
+.wk .row .d{font:500 11px/1.3 var(--f-mono);text-transform:uppercase;color:var(--muted)}
+.wk .row .t{font-weight:600;color:var(--ink);text-align:right}
+.wk .lim li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;font-size:13.5px;line-height:1.35;align-items:baseline}
+.wk .lim li>b{font-weight:600}
+.wk .lim .tc{display:flex;flex-wrap:wrap;gap:4px}
+.wk .lim .tc span{border:1px solid var(--line);border-radius:999px;padding:1px 8px;font-size:12px;color:var(--muted);white-space:nowrap}
+.wk .lim .tc span.done{border-color:var(--ink);color:var(--ink)}
+.wk .lim .tc span.none{border:0;padding:0;font-style:italic}
 /* cobalt style */
 .mast h1{font:700 clamp(34px,9vw,54px)/1 var(--f-display);text-transform:none;letter-spacing:-.02em}
 .mast h1 span{color:var(--muted)}
@@ -171,6 +212,7 @@ footer b{color:var(--ink);font-weight:600}
 <header class="mast wrap">
   <div class="eyebrow" id="eyebrow">Training week</div>
   <h1 id="title">Week</h1>
+  <details class="wk" id="wk" hidden></details>
   <details class="focus" id="focus"><summary><b>This week</b><span class="first" id="focus1"></span></summary><ul class="blocks" id="blocks"></ul></details>
   <div class="legend" aria-hidden="true"><span><i style="background:var(--wl)"></i>Weightlifting</span><span><i style="background:var(--perf)"></i>Performance</span><span><i style="background:var(--ind)"></i>Your work</span><span><i style="background:var(--comp)"></i>Comp</span><span><i style="background:var(--muted);opacity:.3"></i>Skipped</span><span style="color:var(--ok)">✓ all done</span></div>
 </header>
@@ -229,7 +271,30 @@ document.getElementById('foot').innerHTML='Workout text is the gym\'s, word for 
 function key(di,si){return start+'_'+DAYS[di]+'_'+si;}
 function logStatus(di,si){var l=logs[key(di,si)];return l&&l.status;}
 
+
+// this-week card (plan.week_card): block timeline, priorities, sets to protect, limiter touches; ticks come from the session log
+function daysTo(iso){return Math.round((new Date(iso+'T12:00:00')-new Date(today+'T12:00:00'))/864e5);}
+function tick(t){var di=DAYS.indexOf(t.day);return di>=0&&logStatus(di,t.si||0)==='done';}
+function renderWk(){var W=P.week_card,el=document.getElementById('wk');if(!W){return;}
+  document.getElementById('focus').hidden=true;el.hidden=false;var h='';
+  var B=W.block;if(B){var n=B.types.length;
+    h+='<summary><h4>Where you are</h4><div class="blk"><b>'+esc(B.name)+'</b><span>Week '+B.current+' of '+n+(B.label?' · '+esc(B.label):'')+'</span></div>';
+    h+='<div class="tl" style="--n:'+n+'" aria-hidden="true">'+B.types.map(function(t,i){var w=i+1;return '<i class="'+esc(t)+(w<B.current?' past':'')+(w===B.current?' now':'')+'" title="Week '+w+': '+esc(t)+'"></i>';}).join('')+'</div>';
+    h+='<div class="tlk" style="--n:'+n+'" aria-hidden="true">'+B.types.map(function(t,i){var w=i+1;return '<span'+(w===B.current?' class="now"':'')+'>'+(w===B.current||t==='comp'||w===1?(t==='comp'?'Comp':'W'+w):'')+'</span>';}).join('')+'</div>';
+    h+='<div class="more"><span>Priorities, key sets, limiters</span></div></summary><div class="body"><div>';
+    if(B.intent)h+='<p class="intent" style="margin:0">'+esc(B.intent)+'</p>';
+    var ev=(W.events||[]).map(function(e){var d=daysTo(e.date);return d>=0?'<span><b>'+esc(e.name)+'</b> · '+(d===0?'today':d===1?'tomorrow':'in '+d+' days')+'</span>':'';}).join('');
+    if(B.next)ev+='<span>Then: '+esc(B.next)+'</span>';
+    if(ev)h+='<div class="ev">'+ev+'</div>';
+    if(W.season_link&&/^https:\/\//.test(W.season_link.url||''))h+='<a class="season" href="'+esc(W.season_link.url)+'" target="_blank" rel="noopener">'+esc(W.season_link.label||'Long-term plan')+' →</a>';
+    h+='</div>';}
+  if(W.priorities&&W.priorities.length){h+='<div><h4>Priorities this block</h4><ol class="pri">'+W.priorities.map(function(p){return '<li><div><b>'+esc(p.name)+'</b>'+(p.dose?' <span>· '+esc(p.dose)+'</span>':'')+'</div></li>';}).join('')+'</ol>'+(W.parked?'<div class="parked">Parked: '+esc(W.parked)+'</div>':'')+'</div>';}
+  if(W.protect&&W.protect.length){h+='<div><h4>Protect this week</h4><ul>'+W.protect.map(function(t){return '<li class="row"><span class="d">'+esc(t.day)+'</span><span>'+esc(t.text)+'</span><span class="t">'+(tick(t)?'✓':'')+'</span></li>';}).join('')+'</ul></div>';}
+  if(W.limiters&&W.limiters.length){h+='<div><h4>Limiters · Torian 2028</h4><ul class="lim">'+W.limiters.map(function(l){var tc=(l.touches||[]).map(function(t){var ok=tick(t);return '<span'+(ok?' class="done"':'')+'>'+esc(t.day.charAt(0).toUpperCase()+t.day.slice(1))+' '+esc(t.text)+(ok?' ✓':'')+'</span>';}).join('');return '<li><b>'+esc(l.name)+'</b><div class="tc">'+(tc||'<span class="none">Not this week</span>')+'</div></li>';}).join('')+'</ul></div>';}
+  if(B)h+='</div>';
+  el.innerHTML=h;}
 function renderStrip(){
+  renderWk();
   document.getElementById('strip').innerHTML=P.days.map(function(d,i){
     var nDone=0,nDo=0;
     var pips=d.streams.map(function(s,si){var ls=logStatus(i,si),pl=parseLabel(s.label),st=ls||pl.st,off=(st==='missed'||st==='skip'||st==='skipped'||kindOf(s)[1]==='Rest');
