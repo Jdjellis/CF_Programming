@@ -2,7 +2,7 @@
   "week_of": "2 – 8 Nov 2026",
   "week_start": "2026-11-02",
   "source": "CFC Competitors Programming + Endurance PDFs 2 – 8 Nov 26 (WL block wk 4/9, back-off week).",
-  "maxes_note": "snatch 90, power snatch 85, clean 130, split jerk 124, push jerk 110, power clean + push jerk 110, front squat 140, back squat 165, deadlift 245",
+  "maxes_note": "snatch 90, power snatch 85, clean 130, split jerk 124, push jerk 115, front squat 140, back squat 165, deadlift 245",
   "focus": [
     "WL comp peak (12 Dec): wk 4/9 back-off week; heavy wks 5–8 from 9 Nov",
     "POLP deloads for DL, press, BS; bench continues at 94",
@@ -58,6 +58,7 @@
   },
   "decisions": [
     "Agreed with Josh 2 Nov: Tue moves to the 5:30pm class; Fri is rest (not training); Sun is optional.",
+    "Push jerk 1RM updated to 115 kg (Josh, 2 Nov); Monday's power clean + push jerk recalculated off it.",
     "POLP deloads for deadlift, press and back squat (done 3 weeks running, per Jason's note). Bench was missed last week, so it continues at 94 × 3 × 10. Don't log the deload sessions in the workbook; next week picks up at the next blank row.",
     "Row W1 S1 goes straight after Wed AM WL (5:30–7:15 double). WL is light this week, so the legs are fine for it. Tuesday's 3200m row race stays as written (Josh).",
     "Tuesday's HSPU OTM (max deficit + strict HSPU) is this week's HSPU session, replacing the Sunday EMOM. Leave 1–2 reps in the tank and note your best strict set as a baseline.",
@@ -83,8 +84,8 @@
             {
               "lift": "Power Clean & Push Jerk",
               "scheme": "(1+1) @ 70/72/74/76/77%",
-              "load": "77 / 79 / 81.5 / 83.5 / 84.5 kg",
-              "base": "push jerk 1RM 110 kg (the limiter over power clean 122)"
+              "load": "80.5 / 83 / 85 / 87.5 / 88.5 kg",
+              "base": "push jerk 1RM 115 kg (the limiter over power clean 122)"
             },
             {
               "lift": "Banded Deadlift (deload)",
