@@ -9,7 +9,7 @@ description: >
   PDFs from Slack (via the Slack connector), reads the POLP workbook from Google Drive, tracks programs in
   programs/, and calls a deterministic calculator for every load (never does the
   math itself).
-version: 2.2.0
+version: 2.2.1
 ---
 
 # CrossFit Coach
@@ -126,9 +126,19 @@ Send **one** message, then wait:
 > logged">. <Program>: <sessions> assumed done. <Anything from last week's plan
 > not covered above.>
 >
-> **Proposed week:** <grid> <decisions>
+> **Proposed week:**
+> Mon — <sessions, key lifts and weights, one line>
+> Tue — …
+> (one line per day, Mon–Sun; rest days say "Rest")
+>
+> <decisions: only the trade-offs worth a call, a few bullets>
 >
 > **Anything missed, how did the week feel, and is this plan OK?**
+
+The proposed week is a **concise summary in chat**, one line per day with the key
+lifts and weights, so the athlete can OK it on a phone. Never update the program
+page (Step 5) before the athlete has agreed to the plan; answering open questions
+is not agreement. If the plan changes after their reply, send the summary again.
 
 ### Step 4 — Apply the reply
 
@@ -240,6 +250,11 @@ only and does no math.
 ---
 
 ## Changelog
+
+### 2.2.1
+- **Week summary before publishing.** The Step 3 proposal is a concise one-line-per-day
+  summary of the week in chat, and the program page is only updated after the
+  athlete OKs it.
 
 ### 2.2.0
 - **Base lifts and the program page.** `calc.py` loads variations off their base

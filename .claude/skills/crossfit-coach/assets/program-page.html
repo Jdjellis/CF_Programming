@@ -34,10 +34,18 @@ button,input,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* masthead */
-.mast{padding-block:22px 14px;display:grid;gap:8px}
+.mast{padding-block:14px 8px;display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
 .eyebrow{font:600 11px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.mast h1{font:900 clamp(40px,11vw,64px)/.9 var(--f-display);letter-spacing:.01em;margin:0;text-transform:uppercase;text-wrap:balance}
+.mast h1{font:900 clamp(34px,9vw,56px)/.9 var(--f-display);letter-spacing:.01em;margin:0;text-transform:uppercase;text-wrap:balance}
 .mast h1 span{color:var(--accent)}
+.focus{font-size:13px;color:var(--muted);min-width:0}
+.focus summary{cursor:pointer;list-style:none;display:flex;gap:6px;align-items:baseline;min-height:28px}
+.focus summary::-webkit-details-marker{display:none}
+.focus summary b{color:var(--ink);font-weight:600;white-space:nowrap}
+.focus summary .first{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1}
+.focus summary::after{content:"+";color:var(--accent);font-weight:600}
+.focus[open] summary::after{content:"–"}
+.focus[open] summary .first{visibility:hidden}
 .blocks{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 0;padding:0;list-style:none}
 .blocks li{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:3px 8px;background:var(--surface)}
 
@@ -47,8 +55,12 @@ button,input,textarea{font:inherit;color:inherit}
 .dbtn{display:grid;justify-items:center;gap:3px;padding:6px 0 7px;border:1px solid transparent;border-radius:6px;background:none;cursor:pointer;color:var(--muted)}
 .dbtn .dw{font:600 10px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase}
 .dbtn .dn{font:800 22px/1 var(--f-display);color:var(--ink)}
+.dbtn .ck{font:600 10px/1 var(--f-body);color:var(--ok);height:10px}
 .dbtn .pips{display:flex;gap:2px;height:4px}
 .dbtn .pip{width:7px;height:4px;border-radius:1px;background:var(--line)}
+.dbtn .pip.off{opacity:.3}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--muted);padding-block:2px 6px}
+.legend i{display:inline-block;width:10px;height:4px;border-radius:1px;margin-right:4px;vertical-align:middle}
 .dbtn[aria-pressed="true"]{background:var(--surface);border-color:var(--line);color:var(--ink)}
 .dbtn.today .dn{color:var(--accent)}
 .dbtn.today .dw::after{content:" •";color:var(--accent)}
@@ -67,6 +79,7 @@ main{padding-block:16px 40px;display:grid;gap:14px}
 .sess .kind{font:600 10.5px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--k)}
 .sess h3{font:600 17px/1.25 var(--f-body);margin:0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .sess .sub{font-size:13px;color:var(--muted)}
+.sess .cue{font-size:14px;line-height:1.45;border-left:3px solid var(--k);padding:2px 0 2px 9px;margin-top:4px;color:var(--ink)}
 .k-wl{--k:var(--wl)} .k-perf{--k:var(--perf)} .k-comp{--k:var(--comp)} .k-ind{--k:var(--ind)} .k-other{--k:var(--other)}
 .sess.is-skip,.sess.is-missed{opacity:.72}
 
@@ -92,7 +105,7 @@ details.wod summary{cursor:pointer;padding:10px 14px;font:600 12px/1 var(--f-bod
 details.wod summary::-webkit-details-marker{display:none}
 details.wod summary::after{content:"+";font-size:16px;line-height:.7}
 details.wod[open] summary::after{content:"–"}
-details.wod pre{margin:0;padding:0 14px 14px;white-space:pre-wrap;font:13px/1.55 var(--f-mono);overflow-wrap:anywhere}
+details.wod pre{margin:0;padding:0 14px 14px;white-space:pre-wrap;font:14px/1.5 var(--f-body);overflow-wrap:anywhere}
 
 /* log */
 .log{border-top:1px solid var(--line);background:var(--sunk)}
@@ -103,7 +116,7 @@ details.wod pre{margin:0;padding:0 14px 14px;white-space:pre-wrap;font:13px/1.55
 .logbody{display:grid;gap:10px;padding:0 14px 14px}
 .log .saved{font:500 11px/1 var(--f-body);letter-spacing:0;text-transform:none}
 .seg{display:flex;gap:6px;flex-wrap:wrap}
-.seg button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;min-height:34px}
+.seg button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:44px}
 .seg button[aria-pressed="true"][data-v="done"]{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
 .seg button[aria-pressed="true"][data-v="partial"]{background:var(--warn-bg);border-color:var(--warn);color:var(--warn)}
 .seg button[aria-pressed="true"][data-v="skipped"]{background:var(--off-bg);border-color:var(--off);color:var(--off)}
@@ -130,7 +143,8 @@ footer b{color:var(--ink);font-weight:600}
 <header class="mast wrap">
   <div class="eyebrow" id="eyebrow">Training week</div>
   <h1 id="title">Week</h1>
-  <ul class="blocks" id="blocks"></ul>
+  <details class="focus" id="focus"><summary><b>This week</b><span class="first" id="focus1"></span></summary><ul class="blocks" id="blocks"></ul></details>
+  <div class="legend" aria-hidden="true"><span><i style="background:var(--wl)"></i>Weightlifting</span><span><i style="background:var(--perf)"></i>Performance</span><span><i style="background:var(--comp)"></i>Comp</span><span><i style="background:var(--ind)"></i>Your work</span><span><i style="background:var(--muted);opacity:.3"></i>Skipped</span><span style="color:var(--ok)">✓ all done</span></div>
 </header>
 <nav class="strip" aria-label="Days"><div class="wrap" id="strip"></div></nav>
 <main class="wrap" id="day"></main>
@@ -158,9 +172,12 @@ function kindOf(s){var l=s.label.toLowerCase();
   if(/polp/.test(l))return ['ind','Your work'];
   return ['other','Note'];}
 function parseLabel(label){var parts=label.split(' — '),title=parts.shift(),rest=parts.join(' — '),st=null;
-  if(/\bdone\b/i.test(rest))st='done';else if(/missed/i.test(rest)||/missed/i.test(title))st='missed';else if(/\bskip/i.test(rest))st='skip';
+  if(/missed/i.test(rest)||/missed/i.test(title))st='missed';else if(/\bskip/i.test(rest)||/\bnot done\b/i.test(rest))st='skip';else if(/\bdone\b/i.test(rest))st='done';
   if(/MISSED/.test(title)){title=title.replace(/\s*—?\s*MISSED.*/,'');}
+  if(st){rest=rest.replace(/^\s*(done|missed|skip(ped)?)\b[\s:,.-]*/i,'').replace(/^\((.*)\)$/,'$1').replace(/^(not done|skipped)$/i,'').trim();}
   return {title:title,sub:rest,st:st};}
+function splitText(t){var cue=[],body=[];String(t||'').split('\n').forEach(function(l){if(/^\s*→/.test(l))cue.push(l.replace(/^\s*→\s*/,''));else body.push(l);});
+  return {cue:cue.join(' '),body:body.join('\n').replace(/\n{3,}/g,'\n\n').trim()};}
 function parseLoad(s){var m=s.match(/^(.*?)\s*kg\s*(.*)$/);if(!m)return {nums:[s],of:''};
   return {nums:m[1].split('/').map(function(x){return x.trim();}),of:m[2].replace(/^\(|\)$/g,'')};}
 
@@ -174,6 +191,8 @@ var d0=P.days[0].date, d6=P.days[P.days.length-1].date;
 document.getElementById('title').innerHTML=esc(d0.split(' ')[0])+'<span>–</span>'+esc(d6);
 document.getElementById('eyebrow').textContent='Josh · Road to Torian Pro 2028';
 document.getElementById('blocks').innerHTML=(P.focus||[]).map(function(f){return '<li>'+esc(f)+'</li>';}).join('');
+document.getElementById('focus1').textContent=(P.focus||[])[0]||'';
+if(!(P.focus||[]).length)document.getElementById('focus').hidden=true;
 document.getElementById('notelist').innerHTML=(P.decisions||[]).map(function(f){return '<li>'+esc(f)+'</li>';}).join('');
 document.getElementById('foot').innerHTML='Workout text is the gym\'s, word for word. Every kg comes from the coach\'s calculator or the POLP workbook. Current maxes: '+esc(P.maxes_note||'')+'.';
 
@@ -182,10 +201,12 @@ function logStatus(di,si){var l=logs[key(di,si)];return l&&l.status;}
 
 function renderStrip(){
   document.getElementById('strip').innerHTML=P.days.map(function(d,i){
-    var pips=d.streams.map(function(s,si){var ls=logStatus(i,si),pl=parseLabel(s.label),st=ls||pl.st;
-      var c=st==='done'?'var(--ok)':st==='partial'?'var(--warn)':(st==='missed'||st==='skip'||st==='skipped')?'var(--off)':'var(--'+kindOf(s)[0]+')';
-      return '<span class="pip" style="background:'+c+'"></span>';}).join('');
-    return '<button class="dbtn'+(isoAdd(start,i)===today?' today':'')+'" data-i="'+i+'" aria-pressed="'+(i===idx)+'" aria-label="'+FULL[d.day]+' '+esc(d.date)+'"><span class="dw">'+esc(d.day)+'</span><span class="dn">'+esc(d.date.split(' ')[0])+'</span><span class="pips">'+pips+'</span></button>';
+    var nDone=0,nDo=0;
+    var pips=d.streams.map(function(s,si){var ls=logStatus(i,si),pl=parseLabel(s.label),st=ls||pl.st,off=(st==='missed'||st==='skip'||st==='skipped');
+      if(!off){nDo++;if(st==='done')nDone++;}
+      return '<span class="pip'+(off?' off':'')+'" style="background:var(--'+kindOf(s)[0]+')"></span>';}).join('');
+    var ck=(nDo&&nDone===nDo)?'✓':(nDone?nDone+'/'+nDo:'');
+    return '<button class="dbtn'+(isoAdd(start,i)===today?' today':'')+'" data-i="'+i+'" aria-pressed="'+(i===idx)+'" aria-label="'+FULL[d.day]+' '+esc(d.date)+'"><span class="dw">'+esc(d.day)+'</span><span class="dn">'+esc(d.date.split(' ')[0])+'</span><span class="pips">'+pips+'</span><span class="ck">'+ck+'</span></button>';
   }).join('');
 }
 document.getElementById('strip').addEventListener('click',function(e){var b=e.target.closest('.dbtn');if(!b)return;
@@ -202,7 +223,7 @@ function logHtml(di,si,s){
   (s.loads||[]).forEach(function(ld,li){var id='in-'+k+'-'+li;
     h+='<div class="field"><label for="'+id+'">'+esc(ld.lift)+': what you lifted</label><input id="'+id+'" data-lift="'+esc(ld.lift)+'" placeholder="e.g. '+esc(parseLoad(ld.load).nums.slice(-1)[0])+' kg, all reps" value="'+esc(lifts[ld.lift]||'')+'"'+dis+'></div>';});
   var rid='rpe-'+k;
-  h+='<div class="field"><label for="'+rid+'">Effort (RPE)</label><div class="rpe"><input type="range" id="'+rid+'" min="0" max="10" step="0.5" value="'+(l.rpe!=null?l.rpe:0)+'"'+dis+'><output for="'+rid+'">'+(l.rpe?l.rpe:'–')+'</output></div></div>';
+  h+='<div class="field"><label for="'+rid+'">Effort (RPE)</label><div class="rpe"><input type="range" id="'+rid+'" min="1" max="10" step="0.5" value="'+(l.rpe!=null?l.rpe:7)+'"'+(l.rpe!=null?' data-set="1"':'')+dis+'><output for="'+rid+'">'+(l.rpe?l.rpe:'–')+'</output></div></div>';
   var nid='note-'+k;
   h+='<div class="field"><label for="'+nid+'">Notes for the coach</label><textarea id="'+nid+'" placeholder="Score, time, how it felt, anything that hurt"'+dis+'>'+esc(l.note||'')+'</textarea></div>';
   if(dbState==='off')h+='<div class="lognote">Logging works when you open this page signed in to claude.ai.</div>';
@@ -216,11 +237,11 @@ function renderDay(){
   var h='<div class="dayhead"><h2>'+FULL[d.day]+' '+esc(d.date)+'</h2>'+(isT?'<span class="tag">Today</span>':'')+'</div>';
   if(!d.streams.length)h+='<div class="empty">Rest day. Nothing programmed.</div>';
   d.streams.forEach(function(s,si){
-    var k=kindOf(s),pl=parseLabel(s.label);
-    h+='<article class="sess k-'+k[0]+(pl.st?' is-'+pl.st:'')+'"><div class="top"><div class="plate"></div><div class="hd">'+(k[1]!==pl.title?'<div class="kind">'+k[1]+'</div>':'')+'<h3>'+esc(pl.title)+(pl.st?' <span class="badge b-'+pl.st+'">'+(pl.st==='skip'?'Skip':pl.st)+'</span>':'')+'</h3>'+(pl.sub?'<div class="sub">'+esc(pl.sub)+'</div>':'')+'</div></div>';
+    var k=kindOf(s),pl=parseLabel(s.label),tx=splitText(s.text),hasLoads=!!(s.loads&&s.loads.length);
+    h+='<article class="sess k-'+k[0]+(pl.st?' is-'+pl.st:'')+'"><div class="top"><div class="plate"></div><div class="hd">'+(k[1]!==pl.title?'<div class="kind">'+k[1]+'</div>':'')+'<h3>'+esc(pl.title)+(pl.st?' <span class="badge b-'+pl.st+'">'+(pl.st==='skip'?'Skip':pl.st)+'</span>':'')+'</h3>'+(pl.sub?'<div class="sub">'+esc(pl.sub)+'</div>':'')+(tx.cue?'<div class="cue">'+esc(tx.cue)+'</div>':'')+'</div></div>';
     if(s.loads&&s.loads.length){h+='<div class="loads">'+s.loads.map(function(ld){var p=parseLoad(ld.load);
       return '<div class="load"><div class="lname"><b>'+esc(ld.lift)+'</b><span class="scheme">'+esc(ld.scheme)+'</span></div><div class="kg">'+p.nums.map(function(n){return '<span class="n">'+esc(n)+'</span>';}).join('')+'<span class="u">kg</span></div>'+((ld.base||p.of)?'<div class="of">'+(ld.base?'Based on <b>'+esc(ld.base)+'</b>':esc(p.of))+'</div>':'')+'</div>';}).join('')+'</div>';}
-    if(s.text)h+='<details class="wod"'+((!s.loads||!s.loads.length)||isT?' open':'')+'><summary>Workout</summary><pre>'+esc(s.text)+'</pre></details>';
+    if(tx.body)h+='<details class="wod"'+(!hasLoads&&(k[0]==='ind'||!tx.cue)?' open':'')+'><summary>Workout</summary><pre>'+esc(tx.body)+'</pre></details>';
     if(!/^(Comp class|Performance)\b/.test(pl.title)||pl.st!=='skip')h+=logHtml(di,si,s);
     h+='</article>';
   });
@@ -233,7 +254,7 @@ function collect(box){
   var o={week:start,day:DAYS[+box.dataset.di],session:+box.dataset.si,label:P.days[+box.dataset.di].streams[+box.dataset.si].label,lifts:{}};
   var on=box.querySelector('.seg [aria-pressed="true"]');o.status=on?on.dataset.v:null;
   box.querySelectorAll('input[data-lift]').forEach(function(i){if(i.value.trim())o.lifts[i.dataset.lift]=i.value.trim();});
-  var r=+box.querySelector('input[type=range]').value;o.rpe=r||null;
+  var rg=box.querySelector('input[type=range]');o.rpe=rg.dataset.set?+rg.value:null;
   o.note=box.querySelector('textarea').value.trim();
   return o;}
 function save(box,delay){var k=box.dataset.k;clearTimeout(timers[k]);
@@ -251,7 +272,7 @@ main.addEventListener('click',function(e){var b=e.target.closest('.seg button');
   if(!was)b.setAttribute('aria-pressed','true');save(box,0);});
 main.addEventListener('toggle',function(e){var d=e.target;if(d.classList&&d.classList.contains('log'))openLogs[d.dataset.k]=d.open;},true);
 main.addEventListener('input',function(e){var box=e.target.closest('.log');if(!box)return;
-  if(e.target.type==='range'){var o=box.querySelector('output');o.textContent=+e.target.value?e.target.value:'–';}
+  if(e.target.type==='range'){e.target.dataset.set='1';box.querySelector('output').textContent=e.target.value;}
   save(box,900);});
 
 renderStrip();renderDay();
