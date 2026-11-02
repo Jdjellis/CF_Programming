@@ -58,6 +58,7 @@
   },
   "decisions": [
     "Agreed with Josh 2 Nov: Tue moves to the 5:30pm class; Fri is rest (not training); Sun is optional.",
+    "Heart rate (Josh, 2 Nov; watch zones off threshold HR 160, zone 2 = 128–144 bpm): Sun long session 130–140, cap 144. Row W1 S2 starts under 128 and finishes 145–152. Row W1 S1 goes by pace, not HR. Tue 3200 m race: note your average HR for the second half (checks the 160 threshold).",
     "Sun 8 Nov is now a planned long zone 2 session (Josh, 2 Nov, prep for The Long Hard Night, Sat 21 Nov): ring MU drills first, then 60 min easy: Row W1 S2 (30 min), ~15 min ski, ~15 min bike, conversational pace. No HSPU (Tuesday covers it), no running.",
     "Push jerk 1RM updated to 115 kg (Josh, 2 Nov); Monday's power clean + push jerk recalculated off it.",
     "POLP deloads for deadlift, press and back squat (done 3 weeks running, per Jason's note). Bench was missed last week, so it continues at 94 × 3 × 10. Don't log the deload sessions in the workbook; next week picks up at the next blank row.",
@@ -104,7 +105,7 @@
       "streams": [
         {
           "label": "Performance PM (5:30pm) — HSPU session",
-          "text": "A. OTM x 12 mins:\n2 rounds:\nM1: Max Deficit Strict Deficit Handstand Push Ups (2\")\nM2: Rest\n- directly into -\n2 rounds:\nM1: Max Strict Handstand Push Ups\nM2: Rest\n- directly into -\n2 rounds:\nM1: Max Push Ups\nM2: Rest\n\nB. \"The Race that stops Sensation\"\nFor time: Row 3200m\nOT2M (not including 0:00) 10 Lateral Burpees\n\nCompare to 2/11/21\nNate S: 15.16\nMilla K: 21.42\n\n→ Part A is this week's HSPU session (no Sunday EMOM). Leave 1–2 reps in the tank each set and note your best strict set. Part B as written."
+          "text": "A. OTM x 12 mins:\n2 rounds:\nM1: Max Deficit Strict Deficit Handstand Push Ups (2\")\nM2: Rest\n- directly into -\n2 rounds:\nM1: Max Strict Handstand Push Ups\nM2: Rest\n- directly into -\n2 rounds:\nM1: Max Push Ups\nM2: Rest\n\nB. \"The Race that stops Sensation\"\nFor time: Row 3200m\nOT2M (not including 0:00) 10 Lateral Burpees\n\nCompare to 2/11/21\nNate S: 15.16\nMilla K: 21.42\n\n→ Part A is this week's HSPU session (no Sunday EMOM). Leave 1–2 reps in the tank each set and note your best strict set. Part B as written.\n\n→ HR: note your average heart rate for the second half of the 3200 m. It checks your threshold (160)."
         }
       ]
     },
@@ -139,7 +140,7 @@
         {
           "label": "Row 5K — W1 S1 (after WL)",
           "accent": "lim",
-          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m (PR 1:55.9 + 2 s). About 35 min, so it's a 5:30–7:15 double."
+          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m (PR 1:55.9 + 2 s). About 35 min, so it's a 5:30–7:15 double.\n\n→ Go by pace, not heart rate."
         },
         {
           "label": "Performance PM — strength focus, ~70%",
@@ -226,7 +227,7 @@
         {
           "label": "Long Z2 + ring MU drills",
           "accent": "lim",
-          "text": "1. Ring muscle-up drills (~15 min), fresh:\n- Kip swings on rings: 3 × 6. Tight hollow/arch, feet stay under you.\n- False-grip kip to hips: 3 × 3. Pull the rings back to your hips, no turnover.\n- Low-ring transitions: 3 × 5\n\n2. 60 min easy, conversational pace throughout:\n- Row W1 S2: Row 30 min @ Z1 building to Z3 through the 30 min.\n- Ski ~15 min easy\n- Bike ~15 min easy\n\n→ Prep for The Long Hard Night (Sat 21 Nov). No HSPU today: Tuesday's class was the HSPU session. No running."
+          "text": "1. Ring muscle-up drills (~15 min), fresh:\n- Kip swings on rings: 3 × 6. Tight hollow/arch, feet stay under you.\n- False-grip kip to hips: 3 × 3. Pull the rings back to your hips, no turnover.\n- Low-ring transitions: 3 × 5\n\n2. 60 min easy, conversational pace throughout:\n- Row W1 S2: Row 30 min @ Z1 building to Z3 through the 30 min. HR: start under 128, finish 145–152.\n- Ski ~15 min easy, HR 130–140 (cap 144)\n- Bike ~15 min easy, HR 130–140 (cap 144)\n\n→ Prep for The Long Hard Night (Sat 21 Nov). No HSPU today: Tuesday's class was the HSPU session. No running."
         }
       ]
     }
