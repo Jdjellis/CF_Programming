@@ -70,6 +70,132 @@
     "Mon class comes before WL, so 60–70% (Jason's note). Do the strict ring muscle-ups on M4.",
     "Endurance track skipped (bike, pyramid cycle, run, class Row W8). You're on Row W1."
   ],
+  "week_card": {
+    "block": {
+      "name": "Block 1 · Weightlifting peak",
+      "types": [
+        "build",
+        "build",
+        "build",
+        "backoff",
+        "heavy",
+        "heavy",
+        "heavy",
+        "heavy",
+        "comp"
+      ],
+      "current": 4,
+      "intent": "Back-off week: lighter lifting at 70–77% and POLP deloads, so you start the heavy weeks fresh. Heavy weeks 5–8 begin Mon 9 Nov.",
+      "next": "Block 2 · gymnastics + strength from 14 Dec",
+      "label": "back-off"
+    },
+    "events": [
+      {
+        "name": "Long Hard Night",
+        "date": "2026-11-21"
+      },
+      {
+        "name": "WL comp",
+        "date": "2026-12-12"
+      }
+    ],
+    "priorities": [
+      {
+        "name": "Weightlifting",
+        "dose": "Mon, Wed, Sat at 70–77%"
+      },
+      {
+        "name": "POLP",
+        "dose": "DL, press, BS deload · bench 94 × 3 × 10"
+      },
+      {
+        "name": "Row 5K",
+        "dose": "S1 Wed · S2 inside Sunday's long zone 2"
+      },
+      {
+        "name": "HSPU",
+        "dose": "Tue class OTM"
+      },
+      {
+        "name": "Front squat extras",
+        "dose": "Wed split squats, light"
+      }
+    ],
+    "parked": "running, full ring MU blocks (Block 2)",
+    "protect": [
+      {
+        "day": "sat",
+        "si": 0,
+        "text": "Pause front squat 112 × 5, two sets"
+      },
+      {
+        "day": "thu",
+        "si": 1,
+        "text": "Bench 94 × 3 × 10, first in class"
+      },
+      {
+        "day": "wed",
+        "si": 1,
+        "text": "Row S1: 4-min sets at 1:57.9"
+      }
+    ],
+    "limiters": [
+      {
+        "name": "Ring MU",
+        "touches": [
+          {
+            "day": "mon",
+            "si": 0,
+            "text": "strict M4"
+          },
+          {
+            "day": "sun",
+            "si": 0,
+            "text": "drills"
+          }
+        ]
+      },
+      {
+        "name": "HSPU",
+        "touches": [
+          {
+            "day": "tue",
+            "si": 0,
+            "text": "OTM"
+          }
+        ]
+      },
+      {
+        "name": "Front squat",
+        "touches": [
+          {
+            "day": "wed",
+            "si": 2,
+            "text": "split squats"
+          },
+          {
+            "day": "sat",
+            "si": 0,
+            "text": "pause 112"
+          }
+        ]
+      },
+      {
+        "name": "Overhead press",
+        "touches": [
+          {
+            "day": "mon",
+            "si": 1,
+            "text": "landmine (deload)"
+          }
+        ]
+      }
+    ],
+    "season_link": {
+      "label": "Season plan and goals",
+      "url": "https://claude.ai/artifact/7nJT873MwgDdJxqVM2vU7q"
+    }
+  },
   "days": [
     {
       "day": "Mon",
