@@ -32,7 +32,8 @@ Sunday = HSPU EMOM + MU drills first, then long easy row/ski/bike at conversatio
 - Sun 15 Nov: 75–90 min as relay-style shifts (20 min per machine), event fuelling
 - Sat 21 Nov: the event; Sat WL light, Sun 22 off, Mon 23 easy
 - Sun 29 Nov, 6 Dec: Row S2 30 min only
-The long part is cut before anything else on a flat week. Week review page: https://claude.ai/artifact/EkudBdg91pUaxkxJP39DFq
+The long part is cut before anything else on a flat week.
+HR (Josh's watch, lactate-threshold zones off a default threshold HR of 160; age 33): zone 2 = 128–144 bpm, aim 130–140, hard cap 144. Row S2 "Z1→Z3" = start under 128, finish 145–152. Row S1 and relay shifts go by pace, not HR. Check the threshold from the Tue 3 Nov 3200 m race (average HR of the second half); if it's well above 163, re-set zones. Week review page: https://claude.ai/artifact/EkudBdg91pUaxkxJP39DFq
 
 ## Block 2: gymnastics + strength, from 14 Dec to the 2027 Open
 - Ring MU: references/drills/ring-mu-kipping.md, 2–3 short fresh sessions/wk.
