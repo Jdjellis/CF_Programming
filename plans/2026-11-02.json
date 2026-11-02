@@ -1,0 +1,232 @@
+{
+  "week_of": "2 – 8 Nov 2026",
+  "week_start": "2026-11-02",
+  "source": "CFC Competitors Programming + Endurance PDFs 2 – 8 Nov 26 (WL block wk 4/9, back-off week).",
+  "maxes_note": "snatch 90, power snatch 85, clean 130, split jerk 124, push jerk 110, power clean + push jerk 110, front squat 140, back squat 165, deadlift 245",
+  "focus": [
+    "WL comp peak (12 Dec): wk 4/9 back-off week; heavy wks 5–8 from 9 Nov",
+    "POLP deloads for DL, press, BS; bench continues at 94",
+    "Row 5K: W1 S1 Wed AM, S2 optional Sun",
+    "HSPU: Tue class OTM is this week's session"
+  ],
+  "summary": {
+    "mon": {
+      "pm": {
+        "type": "Perf + WL",
+        "add": "POLP press + DL deloads"
+      }
+    },
+    "tue": {
+      "pm": {
+        "type": "Perf",
+        "add": "HSPU OTM + row race"
+      }
+    },
+    "wed": {
+      "am": {
+        "type": "WL + Row",
+        "add": "BS deload; Row W1 S1"
+      },
+      "pm": {
+        "type": "Perf",
+        "add": "light BSS"
+      }
+    },
+    "thu": {
+      "pm": {
+        "type": "Gym + Comp",
+        "add": "POLP bench 94"
+      }
+    },
+    "fri": {
+      "am": {
+        "type": "Rest"
+      }
+    },
+    "sat": {
+      "am": {
+        "type": "WL",
+        "add": "pause FS 112"
+      }
+    },
+    "sun": {
+      "am": {
+        "type": "Optional",
+        "add": "Row S2 + MU drills"
+      }
+    }
+  },
+  "decisions": [
+    "Agreed with Josh 2 Nov: Tue moves to the 5:30pm class; Fri is rest (not training); Sun is optional.",
+    "POLP deloads for deadlift, press and back squat (done 3 weeks running, per Jason's note). Bench was missed last week, so it continues at 94 × 3 × 10. Don't log the deload sessions in the workbook; next week picks up at the next blank row.",
+    "Row W1 S1 goes straight after Wed AM WL (5:30–7:15 double). WL is light this week, so the legs are fine for it. Tuesday's 3200m row race stays as written (Josh).",
+    "Tuesday's HSPU OTM (max deficit + strict HSPU) is this week's HSPU session, replacing the Sunday EMOM. Leave 1–2 reps in the tank and note your best strict set as a baseline.",
+    "Thursday as written, tricep work included (Josh). Bench is first in the comp class.",
+    "Saturday is WL only: the partner WOD has 2 miles of running (parked until after the comp). The pause front squat at 112 is the set to protect.",
+    "Front squat extra = Wednesday PM's Bulgarian split squats kept light, plus Spanish squat holds if you have a band.",
+    "Mon class comes before WL, so 60–70% (Jason's note). Do the strict ring muscle-ups on M4.",
+    "Endurance track skipped (bike, pyramid cycle, run, class Row W8). You're on Row W1."
+  ],
+  "days": [
+    {
+      "day": "Mon",
+      "date": "2 Nov",
+      "streams": [
+        {
+          "label": "Performance PM — at 60–70% (before WL)",
+          "text": "A. 2x DB Kickstand Romanian Deadlift:\n(OT3M)\n4 x 10-12\n\n*Similar to last week weeks, if strength is a focus do this at about 70%\n\nB. OTM x 20:\nM1: 6-20 Cal Echo Bike\nM2: 10-15 Hang Power Cleans (60/42.5kg)\nM3: 10-15 GHD Sit Ups.\n*If you don't have the ability to touch your toes on V Ups, stick with those today.\nM4: 1-5 Strict Muscle Ups\n*Modify to feet on ground.\nM5: Rest\n\n→ 60–70% so the WL after isn't compromised. The strict ring muscle-ups on M4 are good skill work: crisp reps, feet on the ground if needed."
+        },
+        {
+          "label": "Weightlifting PM — wk 4/9 back-off",
+          "text": "Week 4/9 of the Cycle (back off week)\n*For all of the POLP work this week if you have been following the program consistently do prescribed deloads. If your training hasn't been super consistent this week just continue along with your POLP Progressions.\n\n(0 - 15 min)\nA. Power Clean & Push Jerk:\n(1+1) x 70%, 72%, 74%, 76%, 77%\n\n(15 - 30 min)\nB. POLP Pressing: if you haven't done 3 weeks in a Row as prescribed:\nif you have:\n4 x 10 (-2) Half Kneeling Kneeling Landmine Press\n\n(30 - 45 min)\nC. POLP Deadlifts: if you haven't done 3 weeks in a Row as prescribed:\nif you have: Banded Deadlift 3s x 5r x 50%.\n*Stop and reset, focus on speed.\nOrange/Yellow Band\n\n→ You've done press and deadlift 3 weeks running, so both are deloads. Landmine press: pick a weight you'd get 12+ on the first set. Don't log either in the workbook.",
+          "loads": [
+            {
+              "lift": "Power Clean & Push Jerk",
+              "scheme": "(1+1) @ 70/72/74/76/77%",
+              "load": "77 / 79 / 81.5 / 83.5 / 84.5 kg",
+              "base": "push jerk 1RM 110 kg (the limiter over power clean 122)"
+            },
+            {
+              "lift": "Banded Deadlift (deload)",
+              "scheme": "3 × 5 @ 50%",
+              "load": "122.5 kg + orange band",
+              "base": "deadlift 1RM 245 kg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": "Tue",
+      "date": "3 Nov",
+      "streams": [
+        {
+          "label": "Performance PM (5:30pm) — HSPU session",
+          "text": "A. OTM x 12 mins:\n2 rounds:\nM1: Max Deficit Strict Deficit Handstand Push Ups (2\")\nM2: Rest\n- directly into -\n2 rounds:\nM1: Max Strict Handstand Push Ups\nM2: Rest\n- directly into -\n2 rounds:\nM1: Max Push Ups\nM2: Rest\n\nB. \"The Race that stops Sensation\"\nFor time: Row 3200m\nOT2M (not including 0:00) 10 Lateral Burpees\n\nCompare to 2/11/21\nNate S: 15.16\nMilla K: 21.42\n\n→ Part A is this week's HSPU session (no Sunday EMOM). Leave 1–2 reps in the tank each set and note your best strict set. Part B as written."
+        }
+      ]
+    },
+    {
+      "day": "Wed",
+      "date": "4 Nov",
+      "streams": [
+        {
+          "label": "Weightlifting AM — wk 4/9 back-off",
+          "text": "(0 - 18 min)\nA. Snatch:\n2 x 70%, 72%, 74%, 76%, 77%\n\n(18 - 30 min)\nB. Snatch Balance:\n3 x 60%, 65%, 70%, 75% (of Snatch)\n\n(30 - 45 min)\nC. POLP Back Squat: if you haven't done 3 weeks in a Row as prescribed:\nif you have: Banded Back Squat: 3s x 5r x 50%. Male Orange, Female Yellow.\n\n→ Back squat deload (3 weeks done). Don't log it in the workbook.",
+          "loads": [
+            {
+              "lift": "Snatch",
+              "scheme": "2 @ 70/72/74/76/77%",
+              "load": "63 / 65 / 66.5 / 68.5 / 69.5 kg",
+              "base": "snatch 1RM 90 kg"
+            },
+            {
+              "lift": "Snatch Balance",
+              "scheme": "3 @ 60/65/70/75%",
+              "load": "54 / 58.5 / 63 / 67.5 kg",
+              "base": "snatch 1RM 90 kg"
+            },
+            {
+              "lift": "Banded Back Squat (deload)",
+              "scheme": "3 × 5 @ 50%",
+              "load": "82.5 kg + orange band",
+              "base": "back squat 1RM 165 kg"
+            }
+          ]
+        },
+        {
+          "label": "Row 5K — W1 S1 (after WL)",
+          "accent": "lim",
+          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m (PR 1:55.9 + 2 s). About 35 min, so it's a 5:30–7:15 double."
+        },
+        {
+          "label": "Performance PM — strength focus, ~70%",
+          "text": "A. Front Foot Elevated (2\") Back Rack Bulgarian Split Squats: (OT3M)\n4s x 8r\n*Focus on stability and range. Back knee just off the ground.\n\nB. *If strength is a focus do this at about 70%\n12 min AMRAP:\nBuy in: 800m Run\nthen AMRAP:\n20 Australian Pull Ups\n20 Box Jumps (24/20\")\n20 Front Squat (42.5/30kg)\n\n→ A is your front squat extra this week: keep it light (bodyweight or empty bar). Add 3 × 20 s Spanish squat holds if there's a band. B at 70%, row 1000 m instead of the 800 m run."
+        }
+      ]
+    },
+    {
+      "day": "Thu",
+      "date": "5 Nov",
+      "streams": [
+        {
+          "label": "Skill & Strength PM (5:30pm)",
+          "text": "A. Gymnastics Week 17: Floor Series 4/4:\nDynamic Hand Balancing: Cartwheels & Handstand Walking\n\nB. 0 - 10 min:\n10 Min AMREP:\n1m Unbroken Handstand Walk\n2m Unbroken Handstand Walk\n3m Unbroken Handstand Walk\netc\nCompare to 15/5/25\nLawson B: 22's\nShannon C: 13's\n\n10 - 20 mim:\n10 min AMRAP for quality:\n8 Lying DB Tricep Extension\n8 Rope Pull Ups (4 each grip)\n8 Strict Leg Raises\nParallette Traverse with max Bar Dips\n\n→ As written."
+        },
+        {
+          "label": "Comp class PM (6:30pm) — POLP bench",
+          "text": "*Do the class today. The Handstand Walk workout is a good test, If you can't get to 10m your Handstand Walks need attention.\n\nWeightlifting:\nA. POLP Bench Press: if you haven't done 3 weeks in a Row as prescribed:\nif you have: Banded Bench Press: 3s x 5r x 50%.\n\nB. 3 Rounds\n5 (-1) Banded KB Press:\n30 Seated Banded Abductions (failure)\n\nC. 3 sets each for time, OT5M\n20 sec Rope Hang\n40 sec DB Farmers Hold (32.5/22.5kg)\n60 sec Bar Hang\n*If you break a set, you must rest for 30 seconds\n\n→ Bench was missed last week, so no deload: POLP wk6, 94 × 3 × 10, first. It comes after the tricep work, so expect it to feel heavier.",
+          "loads": [
+            {
+              "lift": "POLP Bench Press",
+              "scheme": "3 × 10",
+              "load": "94 kg (POLP wk6, 3 × 10)",
+              "base": "POLP workbook, week 6 (repeat after the wk5 fail)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": "Fri",
+      "date": "6 Nov",
+      "streams": [
+        {
+          "label": "Rest",
+          "text": "Rest day. Not training this week."
+        }
+      ]
+    },
+    {
+      "day": "Sat",
+      "date": "7 Nov",
+      "streams": [
+        {
+          "label": "Weightlifting — wk 4/9 back-off",
+          "text": "(0 - 15 min)\n3 rounds for quality:\n5 SA DB Overhead Squat (e side)\n5 Jefferson Curls\n10 alt Reverse Zercher Lunges\n\n(15 - 30 min)\nA. Power Snatch:\n2 x 70%, 72%, 74%, 76%, 77%\n\n(30 - 45 min)\nB. Clean + Split Jerk:\n(1+1) x 70%, 72% 74%, 76%, 77%\n\n(45 - 60 min)\nC. Push Press + Split Jerk:\n(1+1) x 50%, 55%, 60%, 65%\n*Work off Split Jerk 1RM\n\n(60 - 75 min)\nD. Pause (3 sec) Front Squat:\n5 x 80%, 80%\n\n→ The pause front squat at 112 is the heaviest this block: that's the set to protect.",
+          "loads": [
+            {
+              "lift": "Power Snatch",
+              "scheme": "2 @ 70/72/74/76/77%",
+              "load": "59.5 / 61 / 63 / 64.5 / 65.5 kg",
+              "base": "power snatch 1RM 85 kg"
+            },
+            {
+              "lift": "Clean + Split Jerk",
+              "scheme": "(1+1) @ 70/72/74/76/77%",
+              "load": "87 / 89.5 / 92 / 94 / 95.5 kg",
+              "base": "split jerk 1RM 124 kg (the limiter over clean 130)"
+            },
+            {
+              "lift": "Push Press + Split Jerk",
+              "scheme": "(1+1) @ 50/55/60/65%",
+              "load": "62 / 68 / 74.5 / 80.5 kg",
+              "base": "split jerk 1RM 124 kg"
+            },
+            {
+              "lift": "Pause Front Squat",
+              "scheme": "5 @ 80%, 80%",
+              "load": "112 / 112 kg",
+              "base": "front squat 1RM 140 kg"
+            }
+          ]
+        },
+        {
+          "label": "Performance — SKIP (WL only)",
+          "text": "In Pairs for time: One person working at a time:\nBuy In: 1 Mile Run\nthen, 6 rounds for time:\n10 Power Snatch\n16 Front Rack alt Reverse Lunge\nCash out: 1 Mile Run\n*Runs must be done in 400s.\n*30 min time cap\nBarbell: (60/40kg)\n\n→ Skipped: 2 miles of running (parked until after the comp)."
+        }
+      ]
+    },
+    {
+      "day": "Sun",
+      "date": "8 Nov",
+      "streams": [
+        {
+          "label": "Optional — Row W1 S2 + ring MU drills",
+          "accent": "lim",
+          "text": "Only if you train.\n\n1. Row W1 S2: Row 30 min @ Z1 building to Z3 through the 30 min.\n\n2. Ring muscle-up drills (~15 min):\n- Kip swings on rings: 3 × 6. Tight hollow/arch, feet stay under you.\n- False-grip kip to hips: 3 × 3. Pull the rings back to your hips, no turnover.\n- Low-ring transitions: 3 × 5\n\nNo HSPU today: Tuesday's class was the HSPU session."
+        }
+      ]
+    }
+  ]
+}
