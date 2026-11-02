@@ -2,29 +2,29 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: phone-first day board. Sticky day strip, one day at a time, loads as big plate-numbers, a log under each session. Stream colours follow competition plates (blue 20, yellow 15, green 10, red 25). */
+/* Style: coach's notebook (warm paper, serif headings, typewriter numbers; picked by Josh 2 Nov 2026). Layout: phone-first day board. Sticky day strip, one day at a time, loads as big plate-numbers, a log under each session. Stream colours follow competition plates (blue 20, yellow 15, green 10, red 25). */
 :root{
-  --bg:#eef0f3; --surface:#ffffff; --sunk:#f5f6f8; --ink:#15171c; --muted:#5a6170; --line:#dcdfe5;
-  --accent:#d22a2a; --accent-ink:#ffffff;
-  --wl:#1d5bc2; --perf:#a67c00; --comp:#2b8446; --ind:#d22a2a; --other:#6b7280;
-  --ok:#23804a; --ok-bg:#e4f3ea; --warn:#a86500; --warn-bg:#fbf0dc; --off:#7a808c; --off-bg:#eceef1;
-  --f-display:"Big Shoulders Display","Arial Narrow","Roboto Condensed",Impact,sans-serif;
-  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --bg:#f3eee3; --surface:#fbf8f1; --sunk:#f6f1e6; --ink:#211c16; --muted:#6d6457; --line:#d9cfbd; --rule:rgba(120,100,70,.08); --margin:rgba(184,54,31,.35);
+  --accent:#b8361f; --accent-ink:#ffffff;
+  --wl:#2b4d8c; --perf:#9a6b00; --comp:#3f7a4a; --ind:#b8361f; --other:#857b6c;
+  --ok:#3f7a4a; --ok-bg:#e3eedc; --warn:#9a6b00; --warn-bg:#f4e8c9; --off:#857b6c; --off-bg:#ebe4d6;
+  --f-display:"Fraunces",Georgia,serif;
+  --f-body:"Source Serif 4",Georgia,serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f1115; --surface:#181b21; --sunk:#13161b; --ink:#eceef2; --muted:#9aa1ae; --line:#2a2f38;
-  --accent:#ff5b4f; --accent-ink:#1a0606;
-  --wl:#6aa2ff; --perf:#f0c531; --comp:#5cc581; --ind:#ff5b4f; --other:#9aa1ae;
-  --ok:#62cf8c; --ok-bg:#16301f; --warn:#f2b44a; --warn-bg:#33270f; --off:#8d939e; --off-bg:#22262d;
+  --bg:#1b1813; --surface:#24201a; --sunk:#201c17; --ink:#efe7d8; --muted:#a89d8b; --line:#3a342b; --rule:rgba(239,231,216,.05); --margin:rgba(240,120,95,.35);
+  --accent:#f0785f; --accent-ink:#1b1813;
+  --wl:#8fb0ec; --perf:#e0b452; --comp:#8cc597; --ind:#f0785f; --other:#a89d8b;
+  --ok:#8cc597; --ok-bg:#1f2e22; --warn:#e0b452; --warn-bg:#33290f; --off:#a89d8b; --off-bg:#2b2620;
   color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0f1115; --surface:#181b21; --sunk:#13161b; --ink:#eceef2; --muted:#9aa1ae; --line:#2a2f38;
-  --accent:#ff5b4f; --accent-ink:#1a0606;
-  --wl:#6aa2ff; --perf:#f0c531; --comp:#5cc581; --ind:#ff5b4f; --other:#9aa1ae;
-  --ok:#62cf8c; --ok-bg:#16301f; --warn:#f2b44a; --warn-bg:#33270f; --off:#8d939e; --off-bg:#22262d;
+  --bg:#1b1813; --surface:#24201a; --sunk:#201c17; --ink:#efe7d8; --muted:#a89d8b; --line:#3a342b; --rule:rgba(239,231,216,.05); --margin:rgba(240,120,95,.35);
+  --accent:#f0785f; --accent-ink:#1b1813;
+  --wl:#8fb0ec; --perf:#e0b452; --comp:#8cc597; --ind:#f0785f; --other:#a89d8b;
+  --ok:#8cc597; --ok-bg:#1f2e22; --warn:#e0b452; --warn-bg:#33290f; --off:#a89d8b; --off-bg:#2b2620;
   color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);margin:0}
@@ -135,6 +135,30 @@ details.wod pre{margin:0;padding:0 14px 14px;white-space:pre-wrap;font:14px/1.5 
 .notes ol{margin:0;padding:0 14px 14px 34px;display:grid;gap:8px;font-size:14px}
 footer{font-size:12px;color:var(--muted);padding-block:0 28px}
 footer b{color:var(--ink);font-weight:600}
+
+/* notebook style */
+body{background:var(--bg) repeating-linear-gradient(transparent 0 27px,var(--rule) 27px 28px)}
+.mast h1{font:italic 700 clamp(34px,9vw,54px)/1 var(--f-display);text-transform:none;letter-spacing:-.01em}
+.eyebrow{font-family:var(--f-mono);letter-spacing:.06em}
+.dbtn .dn{font:700 22px/1 var(--f-display)}
+.dbtn .dw{font-family:var(--f-mono);letter-spacing:.04em}
+.dbtn[aria-pressed="true"]{background:none;border:0;border-bottom:3px solid var(--accent);border-radius:0}
+.dayhead h2{font:italic 700 32px/1.05 var(--f-display);text-transform:none}
+.sess{border-radius:2px;box-shadow:0 1px 0 var(--line),0 6px 14px -10px rgba(60,40,10,.35)}
+.sess>.top{grid-template-columns:1fr}
+.sess .plate{display:none}
+.sess .hd{border-left:3px solid var(--k);margin-left:20px;padding-left:12px}
+.sess .kind{font-family:var(--f-mono);letter-spacing:.06em}
+.sess h3{font:700 22px/1.15 var(--f-display)}
+.sess .cue{font-style:italic;border-left:0;padding-left:0;color:var(--ink)}
+.sess .cue::before{content:"Coach: ";font-style:normal;font-weight:600;color:var(--accent)}
+.load{border-top:1px dashed var(--line)}
+.kg{font:500 25px/1.15 var(--f-mono);letter-spacing:-.03em}
+.kg .n{white-space:nowrap}
+.kg .n+ .n::before{content:"→";color:var(--muted);font-size:14px;font-weight:400;padding:0 4px}
+.badge{border:1.5px solid currentColor;background:none;transform:rotate(-3deg);font-family:var(--f-mono)}
+.notes summary{font:italic 700 20px/1 var(--f-display);text-transform:none}
+.rpe output{font:500 20px/1 var(--f-mono)}
 @media (prefers-reduced-motion:no-preference){.sess{animation:rise .25s ease both}@keyframes rise{from{transform:translateY(4px)}to{transform:none}}}
 </style>
 
@@ -240,7 +264,7 @@ function renderDay(){
     var k=kindOf(s),pl=parseLabel(s.label),tx=splitText(s.text),hasLoads=!!(s.loads&&s.loads.length);
     h+='<article class="sess k-'+k[0]+(pl.st?' is-'+pl.st:'')+'"><div class="top"><div class="plate"></div><div class="hd">'+(k[1]!==pl.title?'<div class="kind">'+k[1]+'</div>':'')+'<h3>'+esc(pl.title)+(pl.st?' <span class="badge b-'+pl.st+'">'+(pl.st==='skip'?'Skip':pl.st)+'</span>':'')+'</h3>'+(pl.sub?'<div class="sub">'+esc(pl.sub)+'</div>':'')+(tx.cue?'<div class="cue">'+esc(tx.cue)+'</div>':'')+'</div></div>';
     if(s.loads&&s.loads.length){h+='<div class="loads">'+s.loads.map(function(ld){var p=parseLoad(ld.load);
-      return '<div class="load"><div class="lname"><b>'+esc(ld.lift)+'</b><span class="scheme">'+esc(ld.scheme)+'</span></div><div class="kg">'+p.nums.map(function(n){return '<span class="n">'+esc(n)+'</span>';}).join('')+'<span class="u">kg</span></div>'+((ld.base||p.of)?'<div class="of">'+(ld.base?'Based on <b>'+esc(ld.base)+'</b>':esc(p.of))+'</div>':'')+'</div>';}).join('')+'</div>';}
+      return '<div class="load"><div class="lname"><b>'+esc(ld.lift)+'</b><span class="scheme">'+esc(ld.scheme)+'</span></div><div class="kg">'+p.nums.map(function(n,ni){return '<span class="n">'+esc(n)+(ni===p.nums.length-1?'<span class="u">kg</span>':'')+'</span>';}).join('')+'</div>'+((ld.base||p.of)?'<div class="of">'+(ld.base?'Based on <b>'+esc(ld.base)+'</b>':esc(p.of))+'</div>':'')+'</div>';}).join('')+'</div>';}
     if(tx.body)h+='<details class="wod"'+(!hasLoads&&(k[0]==='ind'||!tx.cue)?' open':'')+'><summary>Workout</summary><pre>'+esc(tx.body)+'</pre></details>';
     if(!/^(Comp class|Performance)\b/.test(pl.title)||pl.st!=='skip')h+=logHtml(di,si,s);
     h+='</article>';
