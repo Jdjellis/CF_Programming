@@ -6,7 +6,7 @@
   "focus": [
     "WL comp peak (12 Dec): wk 4/9 back-off week; heavy wks 5–8 from 9 Nov",
     "POLP deloads for DL, press, BS; bench continues at 94",
-    "Row 5K: W1 S1 Wed AM, S2 optional Sun",
+    "Row 5K: W1 S1 Wed AM, S2 inside Sunday's long Z2 session",
     "HSPU: Tue class OTM is this week's session"
   ],
   "summary": {
@@ -51,13 +51,14 @@
     },
     "sun": {
       "am": {
-        "type": "Optional",
-        "add": "Row S2 + MU drills"
+        "type": "Long Z2",
+        "add": "MU drills + 60 min easy"
       }
     }
   },
   "decisions": [
     "Agreed with Josh 2 Nov: Tue moves to the 5:30pm class; Fri is rest (not training); Sun is optional.",
+    "Sun 8 Nov is now a planned long zone 2 session (Josh, 2 Nov, prep for The Long Hard Night, Sat 21 Nov): ring MU drills first, then 60 min easy: Row W1 S2 (30 min), ~15 min ski, ~15 min bike, conversational pace. No HSPU (Tuesday covers it), no running.",
     "Push jerk 1RM updated to 115 kg (Josh, 2 Nov); Monday's power clean + push jerk recalculated off it.",
     "POLP deloads for deadlift, press and back squat (done 3 weeks running, per Jason's note). Bench was missed last week, so it continues at 94 × 3 × 10. Don't log the deload sessions in the workbook; next week picks up at the next blank row.",
     "Row W1 S1 goes straight after Wed AM WL (5:30–7:15 double). WL is light this week, so the legs are fine for it. Tuesday's 3200m row race stays as written (Josh).",
@@ -223,9 +224,9 @@
       "date": "8 Nov",
       "streams": [
         {
-          "label": "Optional — Row W1 S2 + ring MU drills",
+          "label": "Long Z2 + ring MU drills",
           "accent": "lim",
-          "text": "Only if you train.\n\n1. Row W1 S2: Row 30 min @ Z1 building to Z3 through the 30 min.\n\n2. Ring muscle-up drills (~15 min):\n- Kip swings on rings: 3 × 6. Tight hollow/arch, feet stay under you.\n- False-grip kip to hips: 3 × 3. Pull the rings back to your hips, no turnover.\n- Low-ring transitions: 3 × 5\n\nNo HSPU today: Tuesday's class was the HSPU session."
+          "text": "1. Ring muscle-up drills (~15 min), fresh:\n- Kip swings on rings: 3 × 6. Tight hollow/arch, feet stay under you.\n- False-grip kip to hips: 3 × 3. Pull the rings back to your hips, no turnover.\n- Low-ring transitions: 3 × 5\n\n2. 60 min easy, conversational pace throughout:\n- Row W1 S2: Row 30 min @ Z1 building to Z3 through the 30 min.\n- Ski ~15 min easy\n- Bike ~15 min easy\n\n→ Prep for The Long Hard Night (Sat 21 Nov). No HSPU today: Tuesday's class was the HSPU session. No running."
         }
       ]
     }
