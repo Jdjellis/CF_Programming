@@ -9,7 +9,7 @@ description: >
   PDFs from Slack (via the Slack connector), reads the POLP workbook from Google Drive, tracks programs in
   programs/, and calls a deterministic calculator for every load (never does the
   math itself).
-version: 2.2.1
+version: 2.3.0
 ---
 
 # CrossFit Coach
@@ -155,7 +155,14 @@ is not agreement. If the plan changes after their reply, send the summary again.
    `week_start` and the `decisions` list; class workout text **verbatim** from the
    PDFs; the athlete's own blocks `"accent": "lim"`; each load's `base` names the
    1RM it is off, e.g. `"snatch 1RM 90 kg"`, or `"POLP workbook, week 5"`) to
-   `plans/<Monday>.json`.
+   `plans/<Monday>.json`. Include a `week_card` (the page's "This week" card): the
+   current training block (`types` per week: build / backoff / heavy / comp, the
+   1-based `current` week, an `intent` line for this week, what comes `next`),
+   dated `events` for countdowns, ranked `priorities` with this week's dose plus
+   what is `parked`, the sessions to `protect` and the `limiters` with the
+   sessions that touch them (`day` + stream index `si`, so the page ticks them off
+   from the log), and a `season_link` to the long-term plan page. Take blocks and
+   priorities from `plans/season-*.md`; keep it to the current block and week.
    Commit (§2).
 3. Publish the week to the athlete's one program page, a new version on the same
    artifact link (project memory has the URL; never create a second one). Build it
@@ -250,6 +257,13 @@ only and does no math.
 ---
 
 ## Changelog
+
+### 2.3.0
+- **"This week" card.** The plan's `week_card` drives a collapsible card at the top
+  of the program page: where you are in the block (timeline, event countdowns, link
+  to the season page), ranked priorities and what's parked, sessions to protect and
+  limiter touches, ticked off as the athlete logs them. Without it the page falls
+  back to `focus`.
 
 ### 2.2.1
 - **Week summary before publishing.** The Step 3 proposal is a concise one-line-per-day
