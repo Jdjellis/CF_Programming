@@ -25,6 +25,15 @@ Move up only when every minute last week was crisp; step back a row if a minute 
 - 7 Dec: none
 Source: policy.md §5 (quad/knee support), references/drills/knee-rehab.md.
 
+### Long Hard Night prep: Sunday long zone 2 (agreed with Josh 2 Nov)
+LSKD The Long Hard Night (Movember overnight erg relay, team of 3): Sat 21 Nov, 8pm–8am.
+Sunday = HSPU EMOM + MU drills first, then long easy row/ski/bike at conversational pace; Row S2 is the first 30 min. No running.
+- Sun 8 Nov: 60 min total
+- Sun 15 Nov: 75–90 min as relay-style shifts (20 min per machine), event fuelling
+- Sat 21 Nov: the event; Sat WL light, Sun 22 off, Mon 23 easy
+- Sun 29 Nov, 6 Dec: Row S2 30 min only
+The long part is cut before anything else on a flat week. Week review page: https://claude.ai/artifact/EkudBdg91pUaxkxJP39DFq
+
 ## Block 2: gymnastics + strength, from 14 Dec to the 2027 Open
 - Ring MU: references/drills/ring-mu-kipping.md, 2–3 short fresh sessions/wk.
 - HSPU: continue the EMOM from where it got to, lengthen to 10–12 min or chase bigger sets; holds; deficit once POLP press is in 3x3.
