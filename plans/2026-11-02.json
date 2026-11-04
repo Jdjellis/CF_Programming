@@ -24,12 +24,12 @@
     },
     "wed": {
       "am": {
-        "type": "WL + Row",
-        "add": "BS deload; Row W1 S1"
+        "type": "WL ✓",
+        "add": "snatch 2 @ 72"
       },
       "pm": {
-        "type": "Perf",
-        "add": "light BSS"
+        "type": "Perf + Row",
+        "add": "Row W1 S1 after class"
       }
     },
     "thu": {
@@ -57,6 +57,7 @@
     }
   },
   "decisions": [
+    "Wed 4 Nov: Row W1 S1 wasn't done after AM WL, so it moves to straight after the 5:30pm class (Josh). Keep the class at 60–70% and bike the buy-in instead of rowing it.",
     "Wed 4 Nov AM: WL done. Snatch built to 2 @ 72 kg (above the 69.5 top), no misses, stable but a little weak; early snatching never feels great.",
     "Tue 3 Nov: class done. Strict HSPU best set 5 (rough), deficit HSPU skipped. Josh added seated pin presses. Baseline for the HSPU EMOM: stays at 3s.",
     "Agreed with Josh 2 Nov: Tue moves to the 5:30pm class; Fri is rest (not training); Sun is optional.",
@@ -266,13 +267,13 @@
           ]
         },
         {
-          "label": "Row 5K — W1 S1 (after WL)",
+          "label": "Row 5K — W1 S1 (moved to PM, after the class)",
           "accent": "lim",
-          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m (PR 1:55.9 + 2 s). About 35 min, so it's a 5:30–7:15 double.\n\n→ Go by pace, not heart rate."
+          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m (PR 1:55.9 + 2 s). About 35 min, straight after the 5:30pm class.\n\n→ Go by pace, not heart rate."
         },
         {
           "label": "Performance PM — strength focus, ~70%",
-          "text": "A. Front Foot Elevated (2\") Back Rack Bulgarian Split Squats: (OT3M)\n4s x 8r\n*Focus on stability and range. Back knee just off the ground.\n\nB. *If strength is a focus do this at about 70%\n12 min AMRAP:\nBuy in: 800m Run\nthen AMRAP:\n20 Australian Pull Ups\n20 Box Jumps (24/20\")\n20 Front Squat (42.5/30kg)\n\n→ A is your front squat extra this week: keep it light (bodyweight or empty bar). Add 3 × 20 s Spanish squat holds if there's a band. B at 70%, row 1000 m instead of the 800 m run."
+          "text": "A. Front Foot Elevated (2\") Back Rack Bulgarian Split Squats: (OT3M)\n4s x 8r\n*Focus on stability and range. Back knee just off the ground.\n\nB. *If strength is a focus do this at about 70%\n12 min AMRAP:\nBuy in: 800m Run\nthen AMRAP:\n20 Australian Pull Ups\n20 Box Jumps (24/20\")\n20 Front Squat (42.5/30kg)\n\n→ A is your front squat extra this week: keep it light (bodyweight or empty bar). Add 3 × 20 s Spanish squat holds if there's a band. B at 60–70%: bike ~2 km instead of the 800 m run, to save your legs for Row S1 straight after."
         }
       ]
     },
