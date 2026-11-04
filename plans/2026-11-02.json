@@ -18,8 +18,8 @@
     },
     "tue": {
       "pm": {
-        "type": "Perf",
-        "add": "HSPU OTM + row race"
+        "type": "Perf ✓",
+        "add": "HSPU max 5; pin presses"
       }
     },
     "wed": {
@@ -57,6 +57,7 @@
     }
   },
   "decisions": [
+    "Tue 3 Nov: class done. Strict HSPU best set 5 (rough), deficit HSPU skipped. Josh added seated pin presses. Baseline for the HSPU EMOM: stays at 3s.",
     "Agreed with Josh 2 Nov: Tue moves to the 5:30pm class; Fri is rest (not training); Sun is optional.",
     "Heart rate (Josh, 2 Nov; watch zones off threshold HR 160, zone 2 = 128–144 bpm): Sun long session 130–140, cap 144. Row W1 S2 starts under 128 and finishes 145–152. Row W1 S1 goes by pace, not HR. Tue 3200 m race: note your average HR for the second half (checks the 160 threshold).",
     "Sun 8 Nov is now a planned long zone 2 session (Josh, 2 Nov, prep for The Long Hard Night, Sat 21 Nov): ring MU drills first, then 60 min easy: Row W1 S2 (30 min), ~15 min ski, ~15 min bike, conversational pace. No HSPU (Tuesday covers it), no running.",
@@ -230,7 +231,7 @@
       "date": "3 Nov",
       "streams": [
         {
-          "label": "Performance PM (5:30pm) — HSPU session",
+          "label": "Performance PM (5:30pm) — done (strict HSPU max 5, no deficit; + seated pin presses)",
           "text": "A. OTM x 12 mins:\n2 rounds:\nM1: Max Deficit Strict Deficit Handstand Push Ups (2\")\nM2: Rest\n- directly into -\n2 rounds:\nM1: Max Strict Handstand Push Ups\nM2: Rest\n- directly into -\n2 rounds:\nM1: Max Push Ups\nM2: Rest\n\nB. \"The Race that stops Sensation\"\nFor time: Row 3200m\nOT2M (not including 0:00) 10 Lateral Burpees\n\nCompare to 2/11/21\nNate S: 15.16\nMilla K: 21.42\n\n→ Part A is this week's HSPU session (no Sunday EMOM). Leave 1–2 reps in the tank each set and note your best strict set. Part B as written.\n\n→ HR: note your average heart rate for the second half of the 3200 m. It checks your threshold (160)."
         }
       ]
