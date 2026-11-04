@@ -57,6 +57,7 @@
     }
   },
   "decisions": [
+    "Tue 3 Nov row race HR (watch): ~16.5 min, avg 161, max 182; the back half sat at ~170–178. That points to a threshold nearer 165 than 160. Zones left as they are for now (conservative on easy days); re-check after a clean test.",
     "Wed 4 Nov: Row W1 S1 wasn't done after AM WL, so it moves to straight after the 5:30pm class (Josh). Keep the class at 60–70% and bike the buy-in instead of rowing it.",
     "Wed 4 Nov AM: WL done. Snatch built to 2 @ 72 kg (above the 69.5 top), no misses, stable but a little weak; early snatching never feels great.",
     "Tue 3 Nov: class done. Strict HSPU best set 5 (rough), deficit HSPU skipped. Josh added seated pin presses. Baseline for the HSPU EMOM: stays at 3s.",
@@ -243,7 +244,7 @@
       "date": "4 Nov",
       "streams": [
         {
-          "label": "Weightlifting AM — done (snatch built to 2 @ 72, no misses)",
+          "label": "Weightlifting AM — done (snatch 2 @ 72, no misses; snatch balance + banded BS very easy)",
           "text": "(0 - 18 min)\nA. Snatch:\n2 x 70%, 72%, 74%, 76%, 77%\n\n(18 - 30 min)\nB. Snatch Balance:\n3 x 60%, 65%, 70%, 75% (of Snatch)\n\n(30 - 45 min)\nC. POLP Back Squat: if you haven't done 3 weeks in a Row as prescribed:\nif you have: Banded Back Squat: 3s x 5r x 50%. Male Orange, Female Yellow.\n\n→ Back squat deload (3 weeks done). Don't log it in the workbook.",
           "loads": [
             {
