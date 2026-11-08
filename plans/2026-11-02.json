@@ -57,6 +57,7 @@
     }
   },
   "decisions": [
+    "Week wrap-up (9 Nov, from Josh's page log): Mon class + WL done (DOMS from kickstand RDLs). Tue done. Wed AM WL done; Row W1 S1 skipped again, so Row 5K stays at W1 S1. Wed PM done (BSS up to 70 kg, heavy DOMS after). Thu gymnastics skipped; POLP bench 94 × 6/6/6, 2nd fail at 94, so Phase 2 from next week. Fri rest. Sat WL done at a drop-in while travelling, pause front squat skipped (left adductor pain near the hamstring). Sun long Z2 + MU drills skipped (travel).",
     "Tue 3 Nov WOD done on the bike erg (6400 m, doubled to save legs for Row S1) + 10 burpees every 2 min: 15:58. HR (watch): ~16.5 min, avg 161, max 182; the back half sat at ~170–178. That points to a threshold nearer 165 than 160. Zones left as they are for now (conservative on easy days); re-check after a clean test.",
     "Wed 4 Nov: Row W1 S1 wasn't done after AM WL, so it moves to straight after the 5:30pm class (Josh). Keep the class at 60–70% and bike the buy-in instead of rowing it.",
     "Wed 4 Nov AM: WL done. Snatch built to 2 @ 72 kg (above the 69.5 top), no misses, stable but a little weak; early snatching never feels great.",
@@ -268,7 +269,7 @@
           ]
         },
         {
-          "label": "Row 5K — W1 S1 (moved to PM, after the class)",
+          "label": "Row 5K — W1 S1 — MISSED (carries to next week)",
           "accent": "lim",
           "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m (PR 1:55.9 + 2 s). About 35 min, straight after the 5:30pm class.\n\n→ Go by pace, not heart rate."
         },
@@ -283,11 +284,11 @@
       "date": "5 Nov",
       "streams": [
         {
-          "label": "Skill & Strength PM (5:30pm)",
+          "label": "Skill & Strength PM (5:30pm) — SKIP (not done)",
           "text": "A. Gymnastics Week 17: Floor Series 4/4:\nDynamic Hand Balancing: Cartwheels & Handstand Walking\n\nB. 0 - 10 min:\n10 Min AMREP:\n1m Unbroken Handstand Walk\n2m Unbroken Handstand Walk\n3m Unbroken Handstand Walk\netc\nCompare to 15/5/25\nLawson B: 22's\nShannon C: 13's\n\n10 - 20 mim:\n10 min AMRAP for quality:\n8 Lying DB Tricep Extension\n8 Rope Pull Ups (4 each grip)\n8 Strict Leg Raises\nParallette Traverse with max Bar Dips\n\n→ As written."
         },
         {
-          "label": "Comp class PM (6:30pm) — POLP bench",
+          "label": "Comp class PM (6:30pm) — done (POLP bench 94 × 6/6/6, FAIL)",
           "text": "*Do the class today. The Handstand Walk workout is a good test, If you can't get to 10m your Handstand Walks need attention.\n\nWeightlifting:\nA. POLP Bench Press: if you haven't done 3 weeks in a Row as prescribed:\nif you have: Banded Bench Press: 3s x 5r x 50%.\n\nB. 3 Rounds\n5 (-1) Banded KB Press:\n30 Seated Banded Abductions (failure)\n\nC. 3 sets each for time, OT5M\n20 sec Rope Hang\n40 sec DB Farmers Hold (32.5/22.5kg)\n60 sec Bar Hang\n*If you break a set, you must rest for 30 seconds\n\n→ Bench was missed last week, so no deload: POLP wk6, 94 × 3 × 10, first. It comes after the tricep work, so expect it to feel heavier.",
           "loads": [
             {
@@ -315,7 +316,7 @@
       "date": "7 Nov",
       "streams": [
         {
-          "label": "Weightlifting — wk 4/9 back-off",
+          "label": "Weightlifting — done (drop-in; pause FS skipped, left adductor)",
           "text": "(0 - 15 min)\n3 rounds for quality:\n5 SA DB Overhead Squat (e side)\n5 Jefferson Curls\n10 alt Reverse Zercher Lunges\n\n(15 - 30 min)\nA. Power Snatch:\n2 x 70%, 72%, 74%, 76%, 77%\n\n(30 - 45 min)\nB. Clean + Split Jerk:\n(1+1) x 70%, 72% 74%, 76%, 77%\n\n(45 - 60 min)\nC. Push Press + Split Jerk:\n(1+1) x 50%, 55%, 60%, 65%\n*Work off Split Jerk 1RM\n\n(60 - 75 min)\nD. Pause (3 sec) Front Squat:\n5 x 80%, 80%\n\n→ The pause front squat at 112 is the heaviest this block: that's the set to protect.",
           "loads": [
             {
@@ -355,7 +356,7 @@
       "date": "8 Nov",
       "streams": [
         {
-          "label": "Long Z2 + ring MU drills",
+          "label": "Long Z2 + ring MU drills — SKIP (travelling)",
           "accent": "lim",
           "text": "1. Ring muscle-up drills (~15 min), fresh:\n- Kip swings on rings: 3 × 6. Tight hollow/arch, feet stay under you.\n- False-grip kip to hips: 3 × 3. Pull the rings back to your hips, no turnover.\n- Low-ring transitions: 3 × 5\n\n2. 60 min easy, conversational pace throughout:\n- Row W1 S2: Row 30 min @ Z1 building to Z3 through the 30 min. HR: start under 128, finish 145–152.\n- Ski ~15 min easy, HR 130–140 (cap 144)\n- Bike ~15 min easy, HR 130–140 (cap 144)\n\n→ Prep for The Long Hard Night (Sat 21 Nov). No HSPU today: Tuesday's class was the HSPU session. No running."
         }
