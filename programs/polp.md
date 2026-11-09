@@ -27,3 +27,4 @@ athlete logs each session in the workbook; the workbook does all load math.
 ## Notes
 - 2026-10-07 — Press wk1 note in workbook: "This was way too hard..."; Setup
   notes shoulder niggles on the press 1RM. Factor into any extra pressing.
+- 2026-11-09 — Deadlift ramp per set changed 5% → 10% on the workbook Setup tab (Josh): glutes/lower back cooked for days after wk3. Wk4 now 147 / 172 / 196 × 10.
