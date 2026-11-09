@@ -13,7 +13,7 @@
     "mon": {
       "pm": {
         "type": "Perf + WL",
-        "add": "POLP BS 144"
+        "add": "POLP BS 144 in class"
       }
     },
     "tue": {
@@ -55,9 +55,9 @@
   "decisions": [
     "Week of 2 Nov wrap-up (Josh's page log): Mon, Tue, Wed AM + PM done; Sat WL done at a drop-in, pause FS skipped (left adductor); Row W1 S1 missed again; Thu gymnastics and Sun skipped; bench 94 × 6/6/6, 2nd fail → Phase 2.",
     "Left adductor feels all good (Josh, 9 Nov), so Mon back squat and Sat front squat go ahead as written.",
-    "Mon: double tonight (Josh). Performance first at 60–70%: POLP back squat goes in WL, so skip class part A; bike ~1 km for each 400 m run (running parked); wall balls optional (Jason's note).",
+    "Mon: double tonight (Josh). The POLP back squat is class part A, done first (the gym puts the main strength piece before the WOD on purpose); WOD at 60–70% with bike for the runs, wall balls optional; WL then swaps its back squat for the accessory (front rack support + monkeyfoot knee raises).",
     "Tue: Josh does the comp extras (AM or PM). Part A adds HSPU volume; part B is Row W1 S1 instead of the class's W9 row. S1 has slipped two weeks running, so it's the session to protect.",
-    "Wed: PM double instead of 5:30am WL (Josh). POLP deadlift in the 5:30 class, step-ups steady at 60–70%, then 6:30 WL: clean & jerk + POLP press; WL's deadlift and its accessory alt skipped. 2 POLP lifts (DL + press), no bench.",
+    "Wed: PM double instead of 5:30am WL (Josh). POLP deadlift as class part A, step-ups steady at 60–70%, then 6:30 WL: clean & jerk, the deadlift accessory (bent knee hip extensions + Pendlay rows) and POLP press. 2 POLP lifts (DL + press), no bench.",
     "Deadlift ramp changed from 5% to 10% per set on the workbook Setup tab (Josh, 9 Nov): glutes and lower back were cooked for days after wk3. Top set unchanged (196); sets 1–2 now 147 / 172. Could go back to 5% in Phase 2 (3 × 5).",
     "Front squat extras: zombie FS cut this week (Wed is full and squat extras are first on the cut list); Spanish squat holds 3 × 30 s stay, at home is fine. Step-ups cover single-leg work.",
     "Thu as written. Bench is Phase 2 now: builds 72 × 5, 83 × 3, then 94 × 3 × 5 (workbook wk7).",
@@ -126,7 +126,7 @@
       },
       {
         "day": "mon",
-        "si": 1,
+        "si": 0,
         "text": "POLP back squat 144 × 3×5"
       },
       {
@@ -203,12 +203,20 @@
       "date": "9 Nov",
       "streams": [
         {
-          "label": "Performance PM (5:30pm) — at 60–70% (before WL)",
-          "text": "A. POLP Back Squat:\n*First week 3s x 10r x 65%, add 5% for every successful week. If you fail the 10s twice chat to a coach.\n\nB. 15 min AMRAP:\n400m Run\n20 Wall Balls (10/9ft, 30/20lbs)\n100m Farmers Carry (32/24kg)\n\n*If the legs are feeling it, feel free to skip the Wall Balls in today's WOD. Focus on smooth and fast runs and do your best on the Farmers.\n\n→ Skip A: your back squat is in the WL class after. B at 60–70%: bike ~1 km for each 400 m run. Wall balls optional."
+          "label": "Performance PM (5:30pm) — POLP back squat, then WOD at 60–70%",
+          "text": "A. POLP Back Squat:\n*First week 3s x 10r x 65%, add 5% for every successful week. If you fail the 10s twice chat to a coach.\n\nB. 15 min AMRAP:\n400m Run\n20 Wall Balls (10/9ft, 30/20lbs)\n100m Farmers Carry (32/24kg)\n\n*If the legs are feeling it, feel free to skip the Wall Balls in today's WOD. Focus on smooth and fast runs and do your best on the Farmers.\n\n→ A is your POLP back squat (wk8 row): two builds, then 144 × 3 × 5. B at 60–70%: bike ~1 km for each 400 m run. Wall balls optional.",
+          "loads": [
+            {
+              "lift": "POLP Back Squat",
+              "scheme": "111 × 5, 128 × 3, then 3 × 5",
+              "load": "144 kg (POLP wk8, 3 × 5)",
+              "base": "POLP workbook, week 8"
+            }
+          ]
         },
         {
           "label": "Weightlifting PM (6:30pm) — wk 5/9 heavy",
-          "text": "Week 5/9 of the Cycle\n\n(0 - 20 min)\nA. Power Snatch:\nBuild to a Heavy 2.\n\n(20 - 25 min)\nB. Snatch High Pull:\n3 x 3 x 70%\n\n(25 - 45 min)\nC. POLP Back Squat:\n*First week 3s x 10r x 65%, add 5% for every successful week. If you fail the 10s twice chat to a coach.\n\n*If you did the back Squats in class:\n4 sets: 10 sec Front Rack Support. Start at 100% of 1RM and build\ninto:\n3 x 10-12 Monkeyfoot Knee Raise\n\n→ Back squat is your POLP wk8 row: two builds, then 144 × 3 × 5.",
+          "text": "Week 5/9 of the Cycle\n\n(0 - 20 min)\nA. Power Snatch:\nBuild to a Heavy 2.\n\n(20 - 25 min)\nB. Snatch High Pull:\n3 x 3 x 70%\n\n(25 - 45 min)\nC. POLP Back Squat:\n*First week 3s x 10r x 65%, add 5% for every successful week. If you fail the 10s twice chat to a coach.\n\n*If you did the back Squats in class:\n4 sets: 10 sec Front Rack Support. Start at 100% of 1RM and build\ninto:\n3 x 10-12 Monkeyfoot Knee Raise\n\n→ Back squat was done in class, so do the accessory instead: front rack support 4 × 10 s building from 140, then monkeyfoot knee raises 3 × 10–12.",
           "loads": [
             {
               "lift": "Power Snatch",
@@ -223,10 +231,10 @@
               "base": "snatch 1RM 90 kg"
             },
             {
-              "lift": "POLP Back Squat",
-              "scheme": "111 × 5, 128 × 3, then 3 × 5",
-              "load": "144 kg (POLP wk8, 3 × 5)",
-              "base": "POLP workbook, week 8"
+              "lift": "Front Rack Support",
+              "scheme": "4 × 10 s, building from 100%",
+              "load": "140 kg start",
+              "base": "front squat 1RM 140 kg"
             }
           ]
         }
@@ -253,7 +261,7 @@
       "streams": [
         {
           "label": "Performance PM (5:30pm) — POLP deadlift + step-ups at 60–70%",
-          "text": "A. POLP Deadlift:\n*First week 10r x 55%, 60%, 65%, add 5% to each lift for every successful week. If you fail the 10s twice chat to a coach.\n\nB. \"Quarter .25\"\n250 Box Step Ups (20\") for time.\n*Use a 20/15kg Backpack\n\n→ POLP deadlift here, not in WL. Step-ups steady at 60–70%, not raced: WL is straight after. Spanish squat holds 3 × 30 s later (home is fine).",
+          "text": "A. POLP Deadlift:\n*First week 10r x 55%, 60%, 65%, add 5% to each lift for every successful week. If you fail the 10s twice chat to a coach.\n\nB. \"Quarter .25\"\n250 Box Step Ups (20\") for time.\n*Use a 20/15kg Backpack\n\n→ POLP deadlift here, first. Step-ups steady at 60–70%, not raced: WL is straight after. Spanish squat holds 3 × 30 s later (home is fine).",
           "loads": [
             {
               "lift": "POLP Deadlift",
@@ -265,7 +273,7 @@
         },
         {
           "label": "Weightlifting PM (6:30pm) — wk 5/9 heavy",
-          "text": "(0 - 15 min)\nA. Clean + Jerk\n(1+1) x 78%, 80%, 82%, 83%, 84%\n\n(15 - 30 min)\nB. POLP Deadlift:\n*First week 10r x 55%, 60%, 65%, add 5% to each lift for every successful week. If you fail the 10s twice chat to a coach.\n\n(30 - 45 min)\nC. POLP Press:\n*First week 3s x 10r x 65%, add 5% for every successful week. If you fail the 10s twice chat to a coach.\n\n*If you did the Deadlifts in class:\n3 x 10 Bent Knee Hip Extensions\n+\n3 x 5 Pendlay Rows\n\n→ Skip B and the deadlift alt (done in class). Press is POLP wk7: two builds, then 56 × 3 × 5.",
+          "text": "(0 - 15 min)\nA. Clean + Jerk\n(1+1) x 78%, 80%, 82%, 83%, 84%\n\n(15 - 30 min)\nB. POLP Deadlift:\n*First week 10r x 55%, 60%, 65%, add 5% to each lift for every successful week. If you fail the 10s twice chat to a coach.\n\n(30 - 45 min)\nC. POLP Press:\n*First week 3s x 10r x 65%, add 5% for every successful week. If you fail the 10s twice chat to a coach.\n\n*If you did the Deadlifts in class:\n3 x 10 Bent Knee Hip Extensions\n+\n3 x 5 Pendlay Rows\n\n→ Deadlift was done in class, so swap B for the accessory: bent knee hip extensions 3 × 10 + Pendlay rows 3 × 5. Press is POLP wk7: two builds, then 56 × 3 × 5.",
           "loads": [
             {
               "lift": "Clean + Jerk",
