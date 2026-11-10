@@ -19,7 +19,7 @@
     "tue": {
       "am": {
         "type": "Perf + extras",
-        "add": "HSPU AMREP + Row W1 S1"
+        "add": "extras missed"
       }
     },
     "wed": {
@@ -36,7 +36,8 @@
     },
     "fri": {
       "am": {
-        "type": "Rest"
+        "type": "Row",
+        "add": "Row W1 S1 (from Tue)"
       }
     },
     "sat": {
@@ -64,7 +65,8 @@
     "Sat: 8am WL only; the partner WOD is skipped to keep Sunday's long session fresh.",
     "Sun: Long Hard Night rehearsal (season plan): strict HSPU EMOM 8 min × 3 (kept, Josh: plenty of recovery from Tuesday) + ring MU drills, then 75–90 min of 20-min shifts.",
     "Endurance track skipped (you're on Row W1, not the class's W9).",
-    "Next week: Melbourne drop-ins Wed 18 + Thu 19 Nov; Long Hard Night Sat 21 Nov."
+    "Next week: Melbourne drop-ins Wed 18 + Thu 19 Nov; Long Hard Night Sat 21 Nov.",
+    "Tue 10 Nov: comp extras skipped. Row W1 S1 moves to Fri open gym (the free day: Wed and Thu are full, Sat is heavy WL). Legs should be fine for Sat WL after ~35 min of rowing at 5k pace. The HSPU/MU AMREP isn't made up: Thu deficit HSPU + strict MU and the Sun EMOM cover it."
   ],
   "week_card": {
     "block": {
@@ -106,7 +108,7 @@
       },
       {
         "name": "Row 5K",
-        "dose": "S1 Tue · S2 inside Sunday's long session"
+        "dose": "S1 Fri (moved from Tue) · S2 inside Sunday's long session"
       },
       {
         "name": "HSPU",
@@ -120,8 +122,8 @@
     "parked": "running, zombie FS this week, full ring MU blocks (Block 2)",
     "protect": [
       {
-        "day": "tue",
-        "si": 1,
+        "day": "fri",
+        "si": 0,
         "text": "Row W1 S1: 4-min sets at 1:57.9"
       },
       {
@@ -249,7 +251,7 @@
           "text": "A. Weighted Chin Up (OT2M)\n6-5-4-3-2-1\n*Start moderate and build to a heavy\n**If you don't have BW. Do a 3 sec chin over bar hold immediately followed by the reps banded.\n\nB. 4 Rounds for max reps:\n30 seconds work / 30 seconds rest\nM1: Strict Pull Ups\nM2: Med Ball Sit Ups (20/14lbs)\nM3: Strict Box Dips\nM4: Calorie Ski\n\n→ As written."
         },
         {
-          "label": "Comp extras — HSPU AMREP + Row W1 S1",
+          "label": "Comp extras — MISSED (Row W1 S1 moved to Fri)",
           "accent": "lim",
           "text": "A. 5 min AMREP:\n30 Push Ups\n20 Kipping HSPU\n10 Strict Wall Facing HSPU\nMax Muscle Ups\n*If you don't get at least 10 MU's accumulate them after.\n\nB. Row 5K W1 S1 (in place of the class's Week 9 row):\n5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ A: keep the strict reps crisp, leave a rep or two in the tank (Sunday's EMOM). B: 4-min sets at 1:57.9/500m (PR 1:55.9 + 2 s), go by pace, not heart rate. This is the session to protect this week."
         }
@@ -318,8 +320,9 @@
       "date": "13 Nov",
       "streams": [
         {
-          "label": "Rest",
-          "text": "Rest day."
+          "label": "Row 5K — W1 S1 (open gym, moved from Tue)",
+          "accent": "lim",
+          "text": "5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\n→ 4-min sets at 1:57.9/500m (PR 1:55.9 + 2 s), go by pace, not heart rate. About 35 min. Moved from Tuesday's extras; it's the session to protect this week.\n\n→ HSPU AMREP from Tuesday isn't made up: Thursday's deficit HSPU and Sunday's EMOM cover it."
         }
       ]
     },
