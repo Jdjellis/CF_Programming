@@ -12,7 +12,7 @@ Cut order on a flat day: class metcon effort → squat extras → Row S2 → HSP
 - 26 Oct: EMOM 10 min x 3 (30)
 - 2 Nov (deload): EMOM 6 min x 3 (18) + holds
 - 9 Nov: EMOM 10 min alternating 5/3 (40)
-- 16 Nov: EMOM 8 min x 5 (40)
+- 16 Nov: EMOM 8 min x 5 (40) — NOT taken: Sun 15 Nov EMOM at 3s was a struggle (Josh), so it stays at 8 min x 3 until every minute is crisp
 - 23 Nov–6 Dec: repeat the best week owned; no progression in heavy jerk weeks
 - 7 Dec: holds only
 Move up only when every minute last week was crisp; step back a row if a minute broke; cut the EMOM short if a rep slows. Bad shoulder: box pike push-ups or holds. Josh chose EMOMs and building to 5s (19 Oct). Source: knowledge/claude/supplementary-sessions.md (HSPU), policy.md §5.
