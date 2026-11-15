@@ -1,0 +1,342 @@
+{
+ "week_of": "16 – 22 Nov 2026",
+ "week_start": "2026-11-16",
+ "source": "CFC Weightlifting + Endurance PDFs 16 – 22 Nov 26 (WL block wk 6/9, heavy). No Competitors PDF this week: class WODs summarised from the gym blog.",
+ "maxes_note": "snatch 90, power snatch 85, split jerk 124, push jerk 115, clean 130, front squat 140, back squat 165, deadlift 245",
+ "focus": [
+  "WL comp peak (12 Dec): wk 6/9, heavy",
+  "POLP: BS wk9 149, press wk8 58 + DL wk5 208 (Melbourne Wed), bench wk8 96 (Melbourne Thu)",
+  "Long Hard Night Sat 8pm–8am",
+  "Row 5K parked this week; HSPU EMOM back next week at 3s"
+ ],
+ "summary": {
+  "mon": {
+   "pm": {
+    "type": "Perf + WL",
+    "add": "POLP BS 149 in class"
+   }
+  },
+  "tue": {
+   "am": {
+    "type": "Perf",
+    "add": "wall walk + HSPU complex"
+   }
+  },
+  "wed": {
+   "am": {
+    "type": "WL drop-in (Melb)",
+    "add": "POLP press 58 + DL 208"
+   }
+  },
+  "thu": {
+   "am": {
+    "type": "Drop-in (Melb)",
+    "add": "POLP bench 96"
+   }
+  },
+  "fri": {
+   "am": {
+    "type": "Travel",
+    "add": "rest"
+   }
+  },
+  "sat": {
+   "am": {
+    "type": "WL",
+    "add": "C&J 2RM, FS 3RM"
+   },
+   "pm": {
+    "type": "Long Hard Night",
+    "add": "8pm–8am"
+   }
+  },
+  "sun": {
+   "am": {
+    "type": "Rest",
+    "add": "sleep"
+   }
+  }
+ },
+ "decisions": [
+  "Week of 9 Nov (your page log): Mon, Wed, Thu, Sat done; bench 94 × 3×5 passed → 96; deadlift wk4 172/184/196 passed; Sat FS 115 × 5 kept easy, power C&J 105 × 2 (missed 110). Tue extras skipped; Fri Row W1 S1 not logged (assumed missed); Sun long ski/row + HSPU EMOM done, ring drills skipped.",
+  "Melbourne: Wed and Thu at drop-ins. Wed = the WL session (jerks + POLP press + POLP deadlift: 2 POLP lifts, no bench). Thu = POLP bench, plus the drop-in's class at 60–70% if you want it.",
+  "Deadlift: the workbook's ramp reads 5% again (wk4 was 172/184/196, which is what you lifted), so wk5 is 184/196/208 × 10 verbatim.",
+  "Sat WL in full (Josh: back in Perth Fri, don't hold off). Leave a rep in the tank on misses; eat well between WL and the 8pm start.",
+  "Row 5K W1 S1 parked this week: Saturday night is a big erg dose. It restarts week of 23 Nov.",
+  "HSPU EMOM stays at 8 min × 3 (Josh: Sunday's was a struggle). No slot this week; Tuesday's wall walk + wall-facing HSPU complex is the touch.",
+  "Front squat extras cut this week (travel + event): Saturday's FS 3RM covers it.",
+  "Sun 22 off; Mon 23 easy."
+ ],
+ "week_card": {
+  "block": {
+   "name": "Block 1 · Weightlifting peak",
+   "types": [
+    "build",
+    "build",
+    "build",
+    "backoff",
+    "heavy",
+    "heavy",
+    "heavy",
+    "heavy",
+    "comp"
+   ],
+   "current": 6,
+   "intent": "Second heavy week, on the road: hit the WL sessions and POLP rows, hold everything else, then the Long Hard Night.",
+   "next": "Block 2 · gymnastics + strength from 14 Dec",
+   "label": "heavy"
+  },
+  "events": [
+   {
+    "name": "Long Hard Night",
+    "date": "2026-11-21"
+   },
+   {
+    "name": "WL comp",
+    "date": "2026-12-12"
+   }
+  ],
+  "priorities": [
+   {
+    "name": "Weightlifting",
+    "dose": "Mon, Wed (Melbourne), Sat at 78–84% + 2RMs"
+   },
+   {
+    "name": "POLP",
+    "dose": "BS Mon · press + DL Wed · bench Thu"
+   },
+   {
+    "name": "Long Hard Night",
+    "dose": "Sat 8pm–8am, team of 3"
+   },
+   {
+    "name": "HSPU",
+    "dose": "Tue class complex; EMOM back next week at 3s"
+   },
+   {
+    "name": "Row 5K",
+    "dose": "parked this week"
+   }
+  ],
+  "parked": "Row 5K S1/S2 this week, front squat extras, running, full ring MU blocks (Block 2)",
+  "protect": [
+   {
+    "day": "mon",
+    "si": 0,
+    "text": "POLP back squat 149 × 3×5"
+   },
+   {
+    "day": "wed",
+    "si": 0,
+    "text": "POLP press 58 + deadlift 208"
+   },
+   {
+    "day": "thu",
+    "si": 0,
+    "text": "POLP bench 96 × 3×5"
+   },
+   {
+    "day": "sat",
+    "si": 0,
+    "text": "C&J 2RM + FS 3RM"
+   }
+  ],
+  "limiters": [
+   {
+    "name": "HSPU",
+    "touches": [
+     {
+      "day": "tue",
+      "si": 0,
+      "text": "wall walk + WFHSPU complex"
+     }
+    ]
+   },
+   {
+    "name": "Front squat",
+    "touches": [
+     {
+      "day": "sat",
+      "si": 0,
+      "text": "3RM"
+     }
+    ]
+   },
+   {
+    "name": "Overhead press",
+    "touches": [
+     {
+      "day": "wed",
+      "si": 0,
+      "text": "POLP press 58"
+     }
+    ]
+   },
+   {
+    "name": "Ring MU",
+    "touches": []
+   }
+  ],
+  "season_link": {
+   "label": "Season plan and goals",
+   "url": "https://claude.ai/artifact/7nJT873MwgDdJxqVM2vU7q"
+  }
+ },
+ "days": [
+  {
+   "day": "Mon",
+   "date": "16 Nov",
+   "streams": [
+    {
+     "label": "Performance PM (5:30pm) — POLP back squat, then WOD at 60–70%",
+     "text": "A. POLP Back Squat (3s x 10r x 65% in week 1, +5% for every successful week).\n\nB. 12 min AMRAP:\n12 Power Cleans\n12 Toes to Bar\n9 Hang Squat Cleans\n9 Chest to Bar Pull Ups\n6 Thrusters\n6 Bar Muscle Ups\nBarbell 60/42.5 kg\n\n(Summary of the gym blog post; the Competitors PDF wasn't posted this week. Full text: https://www.crossfitclaremont.com.au/post/monday-16-11-2026)\n\n→ A is your POLP back squat (wk9 row): builds 116 × 5, 132 × 3, then 149 × 3 × 5. B at 60–70%: WL is straight after.",
+     "loads": [
+      {
+       "lift": "POLP Back Squat",
+       "scheme": "116 × 5, 132 × 3, then 3 × 5",
+       "load": "149 kg (POLP wk9, 3 × 5)",
+       "base": "POLP workbook, week 9"
+      }
+     ]
+    },
+    {
+     "label": "Weightlifting PM (6:30pm) — wk 6/9 heavy",
+     "text": "Week 6/9 of the Cycle\n\n(0 - 20 min)\nA. Snatch: Build to a 2RM\n\n(20 - 30 min)\nB. Snatch Balance:\n2 x 70%, 75%, 80%, 85%\n\n(30 - 45 min)\nC. POLP Back Squat:\n*First week 3s x 10r x 65%, add 5% for every successful week. If you fail the 10s twice chat to a coach.\n\n*If you did the Squats in class or have time after:\n4 x 5 Band Assissted Natural Leg Extensions\n+\n3 x 1 min banded march\n\n→ Back squat was done in class, so do the accessory instead: band-assisted leg extensions 4 × 5 + banded march 3 × 1 min. Snatch 2RM: last week's best was 78, so let the warm-ups decide.",
+     "loads": [
+      {
+       "lift": "Snatch",
+       "scheme": "build to a 2RM",
+       "load": "~85.5 kg (guide)",
+       "base": "snatch 1RM 90 kg (2RM ≈ 95%)"
+      },
+      {
+       "lift": "Snatch Balance",
+       "scheme": "2 @ 70/75/80/85%",
+       "load": "63 / 67.5 / 72 / 76.5 kg",
+       "base": "snatch 1RM 90 kg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day": "Tue",
+   "date": "17 Nov",
+   "streams": [
+    {
+     "label": "Performance AM (5:30am)",
+     "text": "A. 4 rounds:\n4 min AMRAP:\n6 Wall Walk Complex (1 wall walk + 1 wall-facing HSPU)\n12 Hanging DB Box Step Ups (20\", 22.5/15 kg)\nMax Cal Row in the remaining time\n*3 min cap on the wall walks + step ups\nRest 1 min between rounds\n*Mod: 6 wall walks + 6 banded WFHSPU\n\n(Summary of the gym blog post; the Competitors PDF wasn't posted this week. Full text: https://www.crossfitclaremont.com.au/post/tuesday-17-11-2026)\n\n→ The wall-facing HSPU here is this week's HSPU work: smooth and strict, stop short of grinding. Row at a strong, repeatable effort, not all-out.",
+     "loads": []
+    }
+   ]
+  },
+  {
+   "day": "Wed",
+   "date": "18 Nov",
+   "streams": [
+    {
+     "label": "Weightlifting — Melbourne drop-in (wk 6/9)",
+     "accent": "lim",
+     "text": "(0 - 15 min)\nA. Split Jerk Behind the Neck:\n2 x 78%, 80%, 82%, 83%, 84%\n\n(15 - 30 min)\nB. POLP Press:\n*First week 3s x 10r x 65%, add 5% for every successful week. If you fail the 10s twice chat to a coach.\n\n(30 - 45 min)\nC. POLP Deadlift:\n*First week 10r x 55%, 60%, 65%, add 5% to each lift for every successful week. If you fail the 10s twice chat to a coach.\n\n*If you did the Squats in class or have time after:\n3 x 12 Bent Knee Hip Extensions\n+\n3 x 6 Pendlay Rows\n*Use the same loads as last week on both.\n\n→ Travel day: do this at the drop-in. Press wk8: builds 44 × 5, 51 × 3, then 58 × 3 × 5. Deadlift wk5 ramps 184 / 196 / 208 × 10. Accessory only if there's time.",
+     "loads": [
+      {
+       "lift": "Split Jerk BTN",
+       "scheme": "2 @ 78/80/82/83/84%",
+       "load": "96.5 / 99 / 101.5 / 103 / 104 kg",
+       "base": "split jerk 1RM 124 kg"
+      },
+      {
+       "lift": "POLP Press",
+       "scheme": "44 × 5, 51 × 3, then 3 × 5",
+       "load": "58 kg (POLP wk8, 3 × 5)",
+       "base": "POLP workbook, week 8"
+      },
+      {
+       "lift": "POLP Deadlift",
+       "scheme": "3 × 10 ramped",
+       "load": "184 / 196 / 208 kg (POLP wk5, 3 × 10)",
+       "base": "POLP workbook, week 5"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day": "Thu",
+   "date": "19 Nov",
+   "streams": [
+    {
+     "label": "POLP bench — Melbourne drop-in",
+     "accent": "lim",
+     "text": "A. POLP Bench Press\n\nB. The drop-in's class WOD, at 60–70% (optional)\n\n→ Bench wk8: builds 74 × 5, 85 × 3, then 96 × 3 × 5.",
+     "loads": [
+      {
+       "lift": "POLP Bench Press",
+       "scheme": "74 × 5, 85 × 3, then 3 × 5",
+       "load": "96 kg (POLP wk8, 3 × 5)",
+       "base": "POLP workbook, week 8"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day": "Fri",
+   "date": "20 Nov",
+   "streams": [
+    {
+     "label": "Rest — travel back to Perth",
+     "text": "Rest. Hydrate and sleep well: Saturday is a big day.",
+     "loads": []
+    }
+   ]
+  },
+  {
+   "day": "Sat",
+   "date": "21 Nov",
+   "streams": [
+    {
+     "label": "Weightlifting (8am) — wk 6/9 heavy",
+     "text": "(0 - 15 min)\nA. Power Snatch:\n2 x 78%, 80%, 82%, 83%, 84%\n*Lighter accounting for next 2RM.\n\n(15 - 40 min)\nB. Clean & Jerk: Build to a 2RM\n\n(40 - 60 min)\nC. Front Squat: Build to a 3RM\n\n(60 - 65 min)\nD. Front Squat (back off)\n2s x 3r x 80% (of today's 3RM)\n\nAccessories:\n9 Arm Bar Press\n16 Banded Archer Pull\n\n→ Full session (you're back Friday). Last C&J double was 105, so let the day decide; leave a rep in the tank on misses. Eat well before the 8pm start.",
+     "loads": [
+      {
+       "lift": "Power Snatch",
+       "scheme": "2 @ 78/80/82/83/84%",
+       "load": "66.5 / 68 / 69.5 / 70.5 / 71.5 kg",
+       "base": "power snatch 1RM 85 kg"
+      },
+      {
+       "lift": "Clean & Jerk",
+       "scheme": "build to a 2RM",
+       "load": "~118 kg (guide)",
+       "base": "split jerk 1RM 124 kg (the limiter over clean 130; 2RM ≈ 95%)"
+      },
+      {
+       "lift": "Front Squat",
+       "scheme": "build to a 3RM, then 2 × 3 @ 80% of it",
+       "load": "~130 kg (guide)",
+       "base": "front squat 1RM 140 kg (3RM ≈ 93%)"
+      }
+     ]
+    },
+    {
+     "label": "LSKD Long Hard Night (8pm – 8am)",
+     "accent": "lim",
+     "text": "Overnight erg relay, team of 3: one person working at all times, ~4 h of work each across row, ski, bike and run stations.\n\n→ Pace each shift at an effort you can repeat all night: first shifts HR under 152, settle into it. Eat and drink every break as you rehearsed. Warm layers between shifts.",
+     "loads": []
+    }
+   ]
+  },
+  {
+   "day": "Sun",
+   "date": "22 Nov",
+   "streams": [
+    {
+     "label": "Rest",
+     "text": "Off. Sleep, eat, walk. Mon 23 is easy.",
+     "loads": []
+    }
+   ]
+  }
+ ]
+}
