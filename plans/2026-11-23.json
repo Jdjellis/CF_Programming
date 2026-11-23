@@ -1,0 +1,360 @@
+{
+ "week_of": "23 – 29 Nov 2026",
+ "week_start": "2026-11-23",
+ "source": "Competitors Programming + CFC Endurance PDFs 23 – 29 Nov 26 (WL block wk 7/9, heavy).",
+ "maxes_note": "snatch 90, power snatch 85, split jerk 124, push jerk 115, clean 130, front squat 140, back squat 165, deadlift 245",
+ "focus": [
+  "WL comp peak (12 Dec): wk 7/9, heavy",
+  "POLP: press wk8 58 Mon · BS wk10 153 Wed · bench wk8 96 + DL wk5 208 Thu",
+  "Recovering from the Long Hard Night: Mon WL only",
+  "Row 5K W1 S1 Fri, S2 Sun; HSPU EMOM 8 × 3s Sun"
+ ],
+ "summary": {
+  "mon": {
+   "pm": {
+    "type": "WL",
+    "add": "POLP press 58"
+   }
+  },
+  "tue": {
+   "pm": {
+    "type": "Perf",
+    "add": "moderate"
+   }
+  },
+  "wed": {
+   "pm": {
+    "type": "Perf + WL",
+    "add": "POLP BS 153"
+   }
+  },
+  "thu": {
+   "pm": {
+    "type": "Gym + Comp",
+    "add": "POLP bench 96 + DL 208"
+   }
+  },
+  "fri": {
+   "am": {
+    "type": "Open gym",
+    "add": "Row W1 S1 + Spanish holds"
+   }
+  },
+  "sat": {
+   "am": {
+    "type": "WL",
+    "add": "snatch, PC+PJ, FS heavy 2"
+   }
+  },
+  "sun": {
+   "am": {
+    "type": "Open gym",
+    "add": "HSPU EMOM + Row S2"
+   }
+  }
+ },
+ "decisions": [
+  "Last week: Mon BS 149 passed (rough, niggly knee) + WL; Tue Performance done (best score in the gym, HSPUs held); Wed WOD at the Melbourne drop-in (push press 3RM 100, a PB) but no POLP press/DL; Thu bench missed; Sat WL done (power snatch to 75, C&J 110, FS 3RM 130); Long Hard Night Sat night.",
+  "Press wk8 58, deadlift wk5 208 and bench wk8 96 weren't done, so this week repeats those workbook rows.",
+  "Monday after the Long Hard Night: WL only, C&J + POLP press. The 5:30 class (1.4 km of running) and the deadlift are skipped.",
+  "Deadlift moves to Thursday's comp class after bench, in place of the AGQ test: 2 POLP lifts, no bench + press, and two days clear of Saturday's pulls.",
+  "Tuesday's class moves to 5:30pm (Josh). Comp extras skipped: muscle-up blocks wait for Block 2.",
+  "Row W1 S1 gets a fixed Friday slot. If it misses again, park rowing until after the comp.",
+  "HSPU EMOM stays at 8 min × 3s; Wednesday's strict HSPU ladder is an extra touch."
+ ],
+ "week_card": {
+  "block": {
+   "name": "Block 1 · Weightlifting peak",
+   "types": [
+    "build",
+    "build",
+    "build",
+    "backoff",
+    "heavy",
+    "heavy",
+    "heavy",
+    "heavy",
+    "comp"
+   ],
+   "current": 7,
+   "label": "heavy",
+   "intent": "Third heavy week, starting tired: ease in Monday, hit the WL singles and POLP rows, keep the class metcons moderate.",
+   "next": "Block 2 · gymnastics + strength from 14 Dec"
+  },
+  "events": [
+   {
+    "name": "WL comp",
+    "date": "2026-12-12"
+   }
+  ],
+  "priorities": [
+   {
+    "name": "Weightlifting",
+    "dose": "Mon, Wed, Sat: singles at 85–92%"
+   },
+   {
+    "name": "POLP",
+    "dose": "press Mon · BS Wed · bench + DL Thu"
+   },
+   {
+    "name": "Row 5K",
+    "dose": "W1 S1 Fri, S2 Sun"
+   },
+   {
+    "name": "HSPU",
+    "dose": "EMOM 8 × 3s Sun + Wed WOD"
+   },
+   {
+    "name": "Front squat extras",
+    "dose": "Spanish squat holds Fri"
+   }
+  ],
+  "parked": "Running, full ring MU blocks (Block 2), comp extras",
+  "protect": [
+   {
+    "day": "mon",
+    "si": 0,
+    "text": "POLP press 58 × 3×5"
+   },
+   {
+    "day": "wed",
+    "si": 0,
+    "text": "POLP back squat 153 × 3×5"
+   },
+   {
+    "day": "thu",
+    "si": 1,
+    "text": "POLP bench 96 + deadlift 208"
+   },
+   {
+    "day": "sat",
+    "si": 0,
+    "text": "Snatch, PC + PJ singles, FS heavy 2"
+   }
+  ],
+  "limiters": [
+   {
+    "name": "HSPU",
+    "touches": [
+     {
+      "day": "wed",
+      "si": 0,
+      "text": "strict HSPU ladder"
+     },
+     {
+      "day": "sun",
+      "si": 0,
+      "text": "EMOM 8 × 3s"
+     }
+    ]
+   },
+   {
+    "name": "Front squat",
+    "touches": [
+     {
+      "day": "wed",
+      "si": 0,
+      "text": "FS in the WOD"
+     },
+     {
+      "day": "fri",
+      "si": 0,
+      "text": "Spanish holds"
+     },
+     {
+      "day": "sat",
+      "si": 0,
+      "text": "heavy 2"
+     }
+    ]
+   },
+   {
+    "name": "Overhead press",
+    "touches": [
+     {
+      "day": "mon",
+      "si": 0,
+      "text": "POLP press 58"
+     }
+    ]
+   },
+   {
+    "name": "Ring MU",
+    "touches": [
+     {
+      "day": "sun",
+      "si": 0,
+      "text": "MU drills"
+     }
+    ]
+   }
+  ],
+  "season_link": {
+   "label": "Season plan and goals",
+   "url": "https://claude.ai/artifact/7nJT873MwgDdJxqVM2vU7q"
+  }
+ },
+ "days": [
+  {
+   "day": "Mon",
+   "date": "23 Nov",
+   "streams": [
+    {
+     "label": "Weightlifting PM (6:30pm) — wk 7/9 heavy",
+     "text": "Week 7/9 of the Cycle\n(0 - 18 mins)\nA. Clean + Jerk:\n5 x (1+1) x 85%, 87%, 89%, 90%, 92%,\n\n(18 - 32 min)\nB. POLP Deadlift:\n\n(32 - 45 min)\nC. POLP Press:\n\n*If you did the Deadlifts in class:\n4 Rounds:\n30 sec Weighted Plank\n10 Reverse Hypers at 40% of 1RM back\nSquat\n\n→ Day after the Long Hard Night: skip the 5:30 class and the deadlift (moved to Thursday). C&J singles, lighter if the warm-ups feel flat. Press wk8: builds 44 × 5, 51 × 3, then 58 × 3 × 5.",
+     "loads": [
+      {
+       "lift": "Clean + Jerk",
+       "scheme": "(1+1) @ 85/87/89/90/92%",
+       "load": "105.5 / 108 / 110.5 / 111.5 / 114 kg",
+       "base": "split jerk 1RM 124 kg (the limiter over clean 130)"
+      },
+      {
+       "lift": "POLP Press",
+       "scheme": "44 × 5, 51 × 3, then 3 × 5",
+       "load": "58 kg (POLP wk8, 3 × 5)",
+       "base": "POLP workbook, week 8"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day": "Tue",
+   "date": "24 Nov",
+   "streams": [
+    {
+     "label": "Performance PM (5:30pm)",
+     "text": "If not able to break up the sessions do a ski instead of the Row.\n\nA. 3 Rounds for time:\n1500/1300m Echo Bike\n30 Toes to Bar\n500/400m Row\n*25 min time cap\n\n→ Moderate effort: you're still recovering from Saturday night.",
+     "loads": []
+    }
+   ]
+  },
+  {
+   "day": "Wed",
+   "date": "25 Nov",
+   "streams": [
+    {
+     "label": "Performance PM (5:30pm) — POLP back squat, then WOD",
+     "text": "If doing the WOD before WL do Box Jumps (24/20\")\n\nA. POLP Back Squat:\n*First week 3s x 10r x 65%, add 5% for every successful week. If you fail the 10s twice chat to a coach.\n\nB. 10 min AMRAP:\n2-4-6-8-10-etc\nFront Squat (60/42.5kg)\nStrict Handstand Push Up\n\n- 2 min rest -\n\n1 min max lateral Burpees over the bar\n\n→ Back squat wk10: builds 120 × 5, 136 × 3, then 153 × 3 × 5. Box jumps instead of the burpees (WL follows). Keep the strict HSPUs crisp: stop a set before it grinds.",
+     "loads": [
+      {
+       "lift": "POLP Back Squat",
+       "scheme": "120 × 5, 136 × 3, then 3 × 5",
+       "load": "153 kg (POLP wk10, 3 × 5)",
+       "base": "POLP workbook, week 10"
+      }
+     ]
+    },
+    {
+     "label": "Weightlifting PM (6:30pm) — wk 7/9 heavy",
+     "text": "(0 - 18 mins)\nA Power Snatch:\n1 x 82%, 87%, 89%, 90%, 92%\n\n(18 - 26 mins)\nB. Snatch Pull:\n3 x 100%, 105%, 110%\n\n(26 - 45 mins)\nC. POLP Back Squat:\n\n*If you did the Back Squats in class:\n4 Rounds:\n10 Bent Knee GHD Hip Extensions\n30 sec Suitcase Hold w Farmers Handle (e side)\n\n→ Back squat was done in class, so do the accessory.",
+     "loads": [
+      {
+       "lift": "Power Snatch",
+       "scheme": "1 @ 82/87/89/90/92%",
+       "load": "69.5 / 74 / 75.5 / 76.5 / 78 kg",
+       "base": "power snatch 1RM 85 kg"
+      },
+      {
+       "lift": "Snatch Pull",
+       "scheme": "3 @ 100/105/110%",
+       "load": "90 / 94.5 / 99 kg",
+       "base": "snatch 1RM 90 kg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day": "Thu",
+   "date": "26 Nov",
+   "streams": [
+    {
+     "label": "Skill & Strength (5:30pm)",
+     "text": "A. Gymnastics Week 19: Accessories:\nalt OTM for 3 rounds\nM1: 5 DB Lying Pull Overs\nM2: 5 no touch shoot throughs\nM3: 3 5 sec bottom of Pistol Hold (use pole if needed)\nM4: 8 DB External Rotations (left)\nM5: 8 DB External Rotations (right)\nM6: 3 Seated Single Leg Lifts Holds (5 sec) (e side)\n\nB. 18 min AMRAP:\n1-3 Max Freestanding Shoulder tap attempts\n*If you don't go above 10 on your first 2 attempts, 3rd attempt go on the wall.\n3 Strict Chest to bar Pull Ups (10 secs minimum between each, be explosive)\n10 sec Bottom Of Bar Dip Hold (aim for max depth)\n15 sec L/Tuck Hold\n20 Hollow Rocks",
+     "loads": []
+    },
+    {
+     "label": "Comp class (6:30pm) — POLP bench + POLP deadlift",
+     "accent": "lim",
+     "text": "A. POLP Bench Press:\n\nB. 2023 AGQ Test 3:\nFor time:\n50 Shuttle Runs, 50ft\n7 Rope Climbs 15ft\n25 Bench Press (83/56kg)\n7 Rope Climbs\n50 Shuttle Runs, 50ft\n*30 min time cap\n\n→ Bench wk8: builds 74 × 5, 85 × 3, then 96 × 3 × 5. Then POLP deadlift (moved from Monday) in place of the AGQ test: ramps 184 / 196 / 208 × 10.",
+     "loads": [
+      {
+       "lift": "POLP Bench Press",
+       "scheme": "74 × 5, 85 × 3, then 3 × 5",
+       "load": "96 kg (POLP wk8, 3 × 5)",
+       "base": "POLP workbook, week 8"
+      },
+      {
+       "lift": "POLP Deadlift",
+       "scheme": "3 × 10 ramped",
+       "load": "184 / 196 / 208 kg (POLP wk5, 3 × 10)",
+       "base": "POLP workbook, week 5"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day": "Fri",
+   "date": "27 Nov",
+   "streams": [
+    {
+     "label": "Open gym — Row 5K W1 S1 + Spanish squats",
+     "accent": "lim",
+     "text": "Row 5K W1 S1:\n5 x 300m, rest 1 min between. 70%, 75%, 80%, 85%, 90% efforts respectively.\n+\n4 Sets;\nRow 4 min @ 5k PR Pace + 2 sec, rest 60 seconds between.\n*+2 seconds means +2 seconds slower than your set pace.\n\nSpanish squat holds 3 × 30s\n\n→ 5k PR pace 1:55.9/500m, so the 4-min sets are at 1:57.9. Go by pace, not HR. Spanish holds are for the knee.",
+     "loads": []
+    }
+   ]
+  },
+  {
+   "day": "Sat",
+   "date": "28 Nov",
+   "streams": [
+    {
+     "label": "Weightlifting (8am) — wk 7/9 heavy",
+     "text": "(0 - 20 min)\nA. Snatch:\n1 x 85%, 87%, 89%, 90%, 92%\n\n(20 - 40 min)\nB. Power Clean + Push Jerk:\n5 x (1+1) x 85%, 87%, 89%, 90%, 92%\n\n(40 - 45 min)\nC. Clean Pull:\n2 x 100%, 105%, 110%\n\n(45 - 65 min)\nD. Front Squat:\nBuild to a heavy 2:\n\n(65 - 70 min)\nC. Front Squat:\n2 x 2 x 80%\n\n→ Front squat back-off is 80% of today's heavy 2.",
+     "loads": [
+      {
+       "lift": "Snatch",
+       "scheme": "1 @ 85/87/89/90/92%",
+       "load": "76.5 / 78.5 / 80 / 81 / 83 kg",
+       "base": "snatch 1RM 90 kg"
+      },
+      {
+       "lift": "Power Clean + Push Jerk",
+       "scheme": "(1+1) @ 85/87/89/90/92%",
+       "load": "98 / 100 / 102.5 / 103.5 / 106 kg",
+       "base": "push jerk 1RM 115 kg (the limiter over power clean 122)"
+      },
+      {
+       "lift": "Clean Pull",
+       "scheme": "2 @ 100/105/110%",
+       "load": "130 / 136.5 / 143 kg",
+       "base": "clean 1RM 130 kg"
+      },
+      {
+       "lift": "Front Squat",
+       "scheme": "build to a heavy 2, then 2 × 2 @ 80% of it",
+       "load": "~133 kg (guide)",
+       "base": "front squat 1RM 140 kg (2RM ≈ 95%)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day": "Sun",
+   "date": "29 Nov",
+   "streams": [
+    {
+     "label": "Open gym — HSPU EMOM + MU drills, then Row S2",
+     "accent": "lim",
+     "text": "HSPU EMOM: 8 min × 3 strict HSPU\n+ ~10 min ring MU drills (kip swings, false-grip kip to hips, low-ring transitions)\n\nRow 5K W1 S2:\nRow 30 min @ Z1 building to Z3 through the 30 min.\n\n→ Move up only if every minute is crisp; cut the EMOM short if a rep slows. Row: start under 128 bpm, finish 145–152.",
+     "loads": []
+    }
+   ]
+  }
+ ]
+}
