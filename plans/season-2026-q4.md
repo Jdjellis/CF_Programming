@@ -3,7 +3,8 @@
 Page: https://claude.ai/artifact/7nJT873MwgDdJxqVM2vU7q (source: /mnt/project-files/plans/season-plan.html).
 Weekly plans follow this. Change it here (and republish the page) before changing a week.
 
-## Block 1: weightlifting peak, to the WL comp Sat 12 Dec (WL block wk 2–9)
+## Block 1: weightlifting peak, to the gym's in-house comp Sat 12 Dec (WL block wk 2–9)
+(24 Nov: Josh will do the in-house comp, not an actual WL comp. Skill work is not reduced in comp week.)
 Priority: 1 WL block (Mon/Wed/Sat as written) · 2 POLP as class programs (all 5 lifts; max 2/day; never bench+press together; wk 4 = 3x5 @ 65%) · 3 Row 5K S1+S2 (comp week S2 only; no running) · 4 HSPU 1x/wk · 5 front squat extras 1x/wk.
 Cut order on a flat day: class metcon effort → squat extras → Row S2 → HSPU volume. Never the WL sessions.
 
@@ -13,8 +14,8 @@ Cut order on a flat day: class metcon effort → squat extras → Row S2 → HSP
 - 2 Nov (deload): EMOM 6 min x 3 (18) + holds
 - 9 Nov: EMOM 10 min alternating 5/3 (40)
 - 16 Nov: EMOM 8 min x 5 (40) — NOT taken: Sun 15 Nov EMOM at 3s was a struggle (Josh), so it stays at 8 min x 3 until every minute is crisp
-- 23 Nov–6 Dec: repeat the best week owned; no progression in heavy jerk weeks
-- 7 Dec: holds only
+- 23 Nov–6 Dec: repeat the best week owned (Sun 29 Nov, Sun 6 Dec); no progression in heavy jerk weeks
+- From 7 Dec: replaced by Mahi Strict HSPU Capacity (see below)
 Move up only when every minute last week was crisp; step back a row if a minute broke; cut the EMOM short if a rep slows. Bad shoulder: box pike push-ups or holds. Josh chose EMOMs and building to 5s (19 Oct). Source: knowledge/claude/supplementary-sessions.md (HSPU), policy.md §5.
 
 ### Front squat extras (1 session/wk, two days clear of Mon/Sat squats; loads via calc.py)
@@ -35,7 +36,9 @@ Sunday = HSPU EMOM + MU drills first, then long easy row/ski/bike at conversatio
 The long part is cut before anything else on a flat week.
 HR (Josh's watch, lactate-threshold zones off a default threshold HR of 160; age 33): zone 2 = 128–144 bpm, aim 130–140, hard cap 144. Row S2 "Z1→Z3" = start under 128, finish 145–152. Row S1 and relay shifts go by pace, not HR. Check the threshold from the Tue 3 Nov 3200 m race (average HR of the second half); if it's well above 163, re-set zones. Week review page: https://claude.ai/artifact/EkudBdg91pUaxkxJP39DFq
 
+## Skill programs: Mahi Movement (agreed 24 Nov)
+See programs/2026-11-29-mahi-skill-programs.md. Kipping RMU Foundations Sun 29 Nov–~24 Jan (3×/wk); Strict HSPU Capacity Mon 7 Dec–~21 Feb (3×/wk); Bar MU Capacity Mon 25 Jan–~21 Mar (2×/wk). Two at a time, paired ~60 min, 3 non-consecutive days; placeholders only.
+
 ## Block 2: gymnastics + strength, from 14 Dec to the 2027 Open
-- Ring MU: references/drills/ring-mu-kipping.md, 2–3 short fresh sessions/wk.
-- HSPU: continue the EMOM from where it got to, lengthen to 10–12 min or chase bigger sets; holds; deficit once POLP press is in 3x3.
+- Ring MU, HSPU, bar MU: the Mahi programs above.
 - POLP as class. Re-decide engine (row vs run) and squat extras.
