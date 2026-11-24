@@ -7,7 +7,7 @@
   "WL comp peak (12 Dec): wk 7/9, heavy",
   "POLP: press wk8 58 Mon · BS wk10 153 Wed · bench wk8 96 + DL wk5 208 Thu",
   "Recovering from the Long Hard Night: Mon WL only",
-  "Row 5K W1 S1 Fri, S2 Sun; HSPU EMOM 8 × 3s Sun"
+  "Row 5K W1 S1 Fri, S2 Sun; Sun: Mahi Kipping RMU Foundations wk 1 session 1 (replaces MU drills) + HSPU EMOM 8 × 3s"
  ],
  "summary": {
   "mon": {
@@ -49,7 +49,7 @@
   "sun": {
    "am": {
     "type": "Open gym",
-    "add": "HSPU EMOM + Row S2"
+    "add": "Mahi RMU wk1 s1 + HSPU EMOM + Row S2"
    }
   }
  },
@@ -61,7 +61,8 @@
   "Deadlift moves to Thursday's comp class after bench, in place of the AGQ test: 2 POLP lifts, no bench + press, and two days clear of Saturday's pulls.",
   "Tuesday's class moves to 5:30pm (Josh). Comp extras skipped: muscle-up blocks wait for Block 2.",
   "Row W1 S1 gets a fixed Friday slot. If it misses again, park rowing until after the comp.",
-  "HSPU EMOM stays at 8 min × 3s; Wednesday's strict HSPU ladder is an extra touch."
+  "HSPU EMOM stays at 8 min × 3s; Wednesday's strict HSPU ladder is an extra touch.",
+  "Mahi skill programs (Josh, 24 Nov): Kipping RMU Foundations starts Sun 29 Nov (wk 1 s1, replaces the MU drills), 3x/wk from 30 Nov, no drop in comp week. Strict HSPU Capacity starts Mon 7 Dec, replacing the Sunday EMOM. Bar MU Capacity from Mon 25 Jan. The 12 Dec comp is the gym's in-house comp."
  ],
  "week_card": {
   "block": {
@@ -108,9 +109,13 @@
    {
     "name": "Front squat extras",
     "dose": "Spanish squat holds Fri"
+   },
+   {
+    "name": "Ring MU",
+    "dose": "Mahi Kipping RMU Foundations wk 1 s1 Sun"
    }
   ],
-  "parked": "Running, full ring MU blocks (Block 2), comp extras",
+  "parked": "Running, comp extras",
   "protect": [
    {
     "day": "mon",
@@ -190,7 +195,7 @@
      {
       "day": "sun",
       "si": 0,
-      "text": "MU drills"
+      "text": "Mahi RMU wk1 s1"
      }
     ]
    }
@@ -374,9 +379,9 @@
    "date": "29 Nov",
    "streams": [
     {
-     "label": "Open gym — HSPU EMOM + MU drills, then Row S2",
+     "label": "Open gym — Mahi RMU wk 1 s1, HSPU EMOM, then Row S2",
      "accent": "lim",
-     "text": "HSPU EMOM: 8 min × 3 strict HSPU\n+ ~10 min ring MU drills (kip swings, false-grip kip to hips, low-ring transitions)\n\nRow 5K W1 S2:\nRow 30 min @ Z1 building to Z3 through the 30 min.\n\n→ Move up only if every minute is crisp; cut the EMOM short if a rep slows. Row: start under 128 bpm, finish 145–152.",
+     "text": "Mahi Kipping RMU Foundations: week 1, session 1 (~30 min, follow the program in the Mahi app)\n\nHSPU EMOM: 8 min × 3 strict HSPU\n\nRow 5K W1 S2:\nRow 30 min @ Z1 building to Z3 through the 30 min.\n\n→ Mahi session first while you're fresh; it replaces the MU drills. HSPU: move up only if every minute is crisp; cut the EMOM short if a rep slows. Row: start under 128 bpm, finish 145–152.",
      "loads": []
     }
    ]
